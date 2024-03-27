@@ -116,6 +116,17 @@
     </script>
 
     <script>
+        < script >
+            function updateButtonText(selectedItem) {
+                var buttonText = $(selectedItem).text();
+                $('#dropdownMenuButton').text(buttonText);
+            }
+
+        function goToNextPage() {
+
+            window.location.href = "step2.html";
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             // Array of items for the dropdown
             var schools = [
@@ -144,9 +155,13 @@
 
             // Populate dropdown menu with school options
             schools.forEach(function(school) {
+            // Iterate over the array and create <li> elements
+            schools.forEach(function(school) {
                 var listItem = document.createElement("li");
                 listItem.innerHTML =
+                   
                     '<a class="dropdown-item" href="#" style="color:white;">' +
+                   
                     school + '</a>';
                 dropdownMenu.appendChild(listItem);
             });
