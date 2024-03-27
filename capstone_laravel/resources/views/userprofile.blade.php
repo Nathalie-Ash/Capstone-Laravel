@@ -137,7 +137,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="card"  style="background-color:#f7f5f5;">
-                        <img  src="../Assets/placeholder.png" class="card-img-top" alt="...">
+                        <img  src={{ asset('images/placeholder.png') }} class="card-img-top" alt="...">
                     
                         <div class="card-body">
                         <h1 class="card-title">JOHN DOE</h1>

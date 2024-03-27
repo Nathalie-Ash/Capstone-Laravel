@@ -66,7 +66,7 @@
                   <h2>Few Questions Left!</h2>
               </div>
               <div class="col-md-8 col-lg-7 col-xl-3">
-                <img src="../Assets/image4.png"
+                <img src={{ asset('images/image4.png') }}
                   class="img-fluid" alt="Phone image" style="height: 500px">
             
         

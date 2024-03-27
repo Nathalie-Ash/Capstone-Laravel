@@ -23,7 +23,7 @@
             aria-controls="offcanvasExample" style="width: 50px;">
             <i class="fas fa-navicon fa-3x" style="color: #579792;"></i>
         </a>
-        <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;" src="../Assets/star.png">
+        <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;" src={{ asset('images/star.png') }}>
         <span style="font-size: 35px;">My Requests</span>
     </div>
 

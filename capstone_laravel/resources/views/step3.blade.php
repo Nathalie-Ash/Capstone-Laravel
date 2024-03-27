@@ -1,20 +1,4 @@
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styleN.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@400;500;700;900&display=swap"
-        rel="stylesheet">
-
-
-</head>
-
-<body>
+<x-stepLayout>
 
     <div>
       
@@ -31,7 +15,7 @@
             <div class="container text-center" style="flex: 1;">
                 <div class="row">
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         
                         <div id="division1">
                             
@@ -70,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division2" class="input">
 
                             <h1 id="step-title">What are your 3 movies/series genres ? </h1>
@@ -107,7 +91,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division3" class="input" >
                             <h1 id="step-title" style="padding-bottom: 30px">Tell Us More About You</h1>
                             <textarea id="description"
@@ -232,6 +216,4 @@
         }
     </script>
 
-</body>
-
-</html>
+</x-stepLayout>

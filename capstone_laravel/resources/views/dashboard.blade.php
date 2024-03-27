@@ -141,7 +141,7 @@
             aria-controls="offcanvasExample" style="width: 50px;">
             <i class="fas fa-navicon fa-3x" style="color: #579792;"></i>
         </a>
-        <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;" src="../Assets/star.png">
+        <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;" src={{ asset('images/star.png') }}>
         <span style="font-size: 35px;padding-top: 20px;">My Dashboard</span>
         <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
             <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
@@ -198,7 +198,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card" style="background-color:#f7f5f5;">
-                        <img src="../Assets/placeholder.png" class="card-img-top" alt="...">
+                        <img src={{ asset('images/placeholder.png') }} class="card-img-top" alt="...">
 
                         <div class="card-body">
                             <h1 class="card-title">JOHN DOE</h1>
@@ -233,7 +233,7 @@
                 <div class="col-md-6">
                     <!-- <div class="card mb-3"> -->
                     <div class="card" style="background-color:#f7f5f5;">
-                        <img src="../Assets/placeholder.png" class="card-img-top" alt="...">
+                        <img src={{ asset('images/placeholder.png') }} class="card-img-top" alt="...">
 
                         <div class="card-body">
                             <h1 class="card-title">JOHN DOE</h1>

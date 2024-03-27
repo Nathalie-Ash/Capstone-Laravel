@@ -22,7 +22,7 @@
 
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;">
 
-        <img style="width: 8%; height: 50px; padding-bottom: 10px;float:left;margin-top: 10px;" src="../Assets/star.png">
+        <img style="width: 8%; height: 50px; padding-bottom: 10px;float:left;margin-top: 10px;" src={{ asset('images/star.png') }}>
         <span style="font-size: 35px;padding-top: 20px;margin-top: 10px;">Personal Information</span>
         <div style="display:inline;float: right;text-align: right;margin-top: 10px;width: 50%;">
             <button type="button" onclick="goToNextPage()" class="btn"
