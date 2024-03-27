@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::get('/step3', [ExampleController::class, "step3"]);
 Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
+
+Route::post('/register', [UserController::class,"register"]);
 
