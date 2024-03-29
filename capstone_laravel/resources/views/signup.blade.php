@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="../Assets/image5.png" class="img-fluid" alt="Phone image" style="height:500px">
+                    <img src={{ asset('images/image5.png') }} class="img-fluid" alt="Phone image" style="height:500px">
 
 
                 </div>

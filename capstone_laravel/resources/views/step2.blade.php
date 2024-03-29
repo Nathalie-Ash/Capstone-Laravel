@@ -1,37 +1,24 @@
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styleN.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@400;500;700;900&display=swap"
-        rel="stylesheet">
+<x-stepLayout>
 
 
-</head>
 
-<body>
 
-    <div>
-      
-            
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
-        <p id="textStyle"style ="text-align: left;">Tell Us More About You!</p>
-      
+        <p id="textStyle"style="text-align: left;">Tell Us More About You!</p>
+
 
     </div>
+    <form method="POST" action="{{ route('step2') }}">
+
+        @csrf
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
 
             <div class="container text-center" style="flex: 1;">
                 <div class="row">
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division1">
                             <h1 id="step-title">Pick 3 Outdoor Activities You Enjoy</h1>
                             <div class="dropdown" style="padding-top: 5px;">
@@ -41,8 +28,10 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem1">
+                                    id="outdoorItem1" name="outdoorItem1">
                                 </ul>
+                                <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton2"
@@ -51,8 +40,10 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem2">
+                                    id="outdoorItem2" name="outdoorItem2">
                                 </ul>
+                                <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton3"
@@ -61,15 +52,17 @@
                                     Select Activity 3
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem3">
+                                    id="outdoorItem3" name="outdoorItem3">
                                 </ul>
+                                <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3Hidden">
+
                             </div>
 
 
                         </div>
                     </div>
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division2" class="input">
 
                             <h1 id="step-title">Pick 3 Indoor Activities You Enjoy</h1>
@@ -80,8 +73,10 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem1">
+                                    id="indoorItem1" >
                                 </ul>
+                                <input type="hidden" id="indoorItem1Hidden" name="indoorItem1Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton2"
@@ -90,8 +85,10 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem2">
+                                    id="indoorItem2" > 
                                 </ul>
+                                <input type="hidden" id="indoorItem2Hidden" name="indoorItem2Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton3"
@@ -100,13 +97,15 @@
                                     Select Activity 3
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem3">
+                                    id="indoorItem3" name="indoorItem3">
                                 </ul>
+                                <input type="hidden" id="indoorItem3Hidden" name="indoorItem3Hidden">
+
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <img class="animated-element" src="../Assets/image1.png">
+                        <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division3" class="input">
 
                             <h1 id="step-title">Pick 3 </h1>
@@ -120,32 +119,27 @@
             </div>
 
 
-    </div>
-    <div id="button-nav">
-        <button type="button" onclick="goToPrevPage()" class="btn"
-            style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-        <button type="button" onclick="goToNextPage()" class="btn"
-            style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
-    </div>
+            </div>
+            <div id="button-nav">
+                <button type="button" onclick="goToPrevPage()" class="btn"
+                    style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
+                <button type="submit"  class="btn"
+                    style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+            </div>
 
-    </section>
+        </section>
 
-
+    </form>
     </div>
-    <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
+       
 
-
-        function goToNextPage() {
-
-            window.location.href = "step3.html";
-        }
         function goToPrevPage() {
 
-            window.location.href = "step1.html";
+            window.location.href = "step1";
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
 
             // Array of items for the dropdown
             var outdoorActivities = [
@@ -162,7 +156,7 @@
             var outdoorDropdownMenu3 = document.getElementById("outdoorItem3");
 
             // Iterate over the array and create <li> elements for each dropdown
-            outdoorActivities.forEach(function (outdoorActivity) {
+            outdoorActivities.forEach(function(outdoorActivity) {
                 var listItem1 = document.createElement("li");
                 var listItem2 = document.createElement("li");
                 var listItem3 = document.createElement("li");
@@ -171,9 +165,15 @@
                 var divider2 = document.createElement("hr");
                 var divider3 = document.createElement("hr");
 
-                listItem1.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' + outdoorActivity + '</a>';
-                listItem2.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' + outdoorActivity + '</a>';
-                listItem3.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' + outdoorActivity + '</a>';
+                listItem1.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
+                    outdoorActivity + '</a>';
+                listItem2.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
+                    outdoorActivity + '</a>';
+                listItem3.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
+                    outdoorActivity + '</a>';
 
                 outdoorDropdownMenu1.appendChild(listItem1);
                 outdoorDropdownMenu1.appendChild(divider1);
@@ -199,7 +199,7 @@
             var indoorDropdownMenu3 = document.getElementById("indoorItem3");
 
             // Iterate over the array and create <li> elements for each dropdown
-            indoorActivities.forEach(function (indoorActivity) {
+            indoorActivities.forEach(function(indoorActivity) {
                 var listItem1 = document.createElement("li");
                 var listItem2 = document.createElement("li");
                 var listItem3 = document.createElement("li");
@@ -208,9 +208,15 @@
                 var divider2 = document.createElement("hr");
                 var divider3 = document.createElement("hr");
 
-                listItem1.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' + indoorActivity + '</a>';
-                listItem2.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' + indoorActivity + '</a>';
-                listItem3.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' + indoorActivity + '</a>';
+                listItem1.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' +
+                    indoorActivity + '</a>';
+                listItem2.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' +
+                    indoorActivity + '</a>';
+                listItem3.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' +
+                    indoorActivity + '</a>';
 
                 indoorDropdownMenu1.appendChild(listItem1);
                 indoorDropdownMenu1.appendChild(divider1);
@@ -219,8 +225,34 @@
                 indoorDropdownMenu2.appendChild(divider2);
 
                 indoorDropdownMenu3.appendChild(listItem3);
-               
+
             });
+            function updateHiddenInput(selectedItem, hiddenInputId) {
+            var selectedValue = selectedItem.textContent.trim();
+            document.getElementById(hiddenInputId).value = selectedValue;
+        }
+
+        // Function to handle click events on dropdown items
+        function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+            var selectedItem = event.target;
+            updateHiddenInput(selectedItem, hiddenInputId);
+        }
+
+        // Add event listeners for each dropdown menu
+        function addEventListenersToDropdowns() {
+            var dropdownMenus = document.querySelectorAll(".dropdown-menu");
+            dropdownMenus.forEach(function(dropdownMenu) {
+                dropdownMenu.addEventListener("click", function(event) {
+                    var dropdownMenuId = dropdownMenu.id;
+                    var hiddenInputId = dropdownMenuId + "Hidden";
+                    handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
+                });
+            });
+        }
+
+        // Call the function to add event listeners when the DOM is loaded
+        addEventListenersToDropdowns();
+
         });
 
 
@@ -234,8 +266,6 @@
             dropdownButton.innerText = buttonText;
         }
 
+        
     </script>
-
-</body>
-
-</html>
+</x-stepLayout>

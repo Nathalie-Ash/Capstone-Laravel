@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -34,9 +35,33 @@ Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 // Route::post('/register', [UserController::class,"register"]);
 Route::get('/signup', [UserController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [UserController::class, 'handlePage1']);
-Route::get('/sign2/{name}/{email}/{username}/{password}', [UserController::class, 'showPage2'])->name('signup.step2');
+Route::get('/sign2', [UserController::class, 'showPage2'])->name('sign2');
 Route::post('/sign2', [UserController::class, 'register']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('step1', [PreferencesController::class, 'storeStep1'])->name('step1');
+Route::get('step2', [PreferencesController::class, 'showStep2'])->name('step2');
+Route::post('step2', [PreferencesController::class, 'storeStep2'])->name('step2');
+Route::get('step3', [PreferencesController::class, 'showStep3'])->name('step3');
+
+Route::post('step3', [PreferencesController::class, 'storeStep3'])->name('step3');
+Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
+
+
+// Route::post('/step1', function () {
+//     return redirect('/step2'); 
+// });
+
+// Route::post('/step2', function () {
+//     return redirect('/step3'); 
+// });
+
+// Route::post('/step3', function () {
+//     return redirect('/step4'); 
+// });
+
+// Route::post('/step4', function () {
+//     return redirect('/dashboard'); 
+// });

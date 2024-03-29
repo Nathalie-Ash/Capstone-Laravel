@@ -66,7 +66,7 @@
                   <h2>Few Questions Left!</h2>
               </div>
               <div class="col-md-8 col-lg-7 col-xl-3">
-                <img src="../Assets/image4.png"
+                <img src={{ asset('images/image4.png') }}
                   class="img-fluid" alt="Phone image" style="height: 500px">
             
         
@@ -123,8 +123,8 @@
     
                             </div>
                         </div>
-                <div style ="text-align: center;">
-                    <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "./step1.blade.php" style="text-decoration:none; color:black" >SUBMIT</a></button>
+                        <div style ="text-align: center;">
+                  <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "/step1" style="text-decoration:none; color:black" >SUBMIT</a></button>
                   </div>
                 </form>
                 </div>

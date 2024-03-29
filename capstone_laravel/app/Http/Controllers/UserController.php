@@ -15,8 +15,10 @@ class UserController extends Controller
     }
 
     public function handlePage1(Request $request)
-    {
-        // Validate incoming data
+
+    {     $incomingFields = $request->all();
+        logger($incomingFields); // Log the incoming data
+        
         $validatedData = $request->validate([
             'name' => ['required', 'max:30'],
             'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+@lau\.edu$/'],
