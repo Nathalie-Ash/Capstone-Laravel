@@ -20,6 +20,7 @@
     text-align: left;
     margin-top: 20px;
     padding-top: 2%;
+    float: left;
 }
 #division1, #division2, #division3{
     width: 100%;

@@ -35,7 +35,7 @@
             </div>
 
     </div>
-    <div id="button-nav">
+    <div id="button-nav" style="padding-top: 0px; padding-bottom: 30px;">
         <button type="button" onclick="goToPrevPage()" class="btn"
             style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
 
