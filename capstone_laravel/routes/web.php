@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -31,7 +32,7 @@ Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
 
-Route::post('/register', [UserController::class,"register"]);
+Route::post('/storeStep1', [PreferencesController::class, "storeStep1"]);
 
 // Route::post('/step1', function () {
 //     return redirect('/step2'); 
