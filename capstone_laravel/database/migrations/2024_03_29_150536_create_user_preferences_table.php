@@ -15,7 +15,13 @@ return new class extends Migration
             $table->string('school');
             $table->string('major');
             $table->string('minor')->nullable();
-            $table->string('campus');
+            $table->string('outdoor_activity_1');
+            $table->string('outdoor_activity_2');
+            $table->string('outdoor_activity_3');
+            $table->string('indoor_activity_1');
+            $table->string('indoor_activity_2');
+            $table->string('indoor_activity_3');
+
             $table->timestamps(); // Add timestamps columns
         });
     }

@@ -9,7 +9,9 @@
 
 
     </div>
+    <form method="POST" action="{{ route('step2') }}">
 
+        @csrf
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
 
@@ -26,8 +28,10 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem1">
+                                    id="outdoorItem1" name="outdoorItem1">
                                 </ul>
+                                <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton2"
@@ -36,8 +40,10 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem2">
+                                    id="outdoorItem2" name="outdoorItem2">
                                 </ul>
+                                <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton3"
@@ -46,8 +52,10 @@
                                     Select Activity 3
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem3">
+                                    id="outdoorItem3" name="outdoorItem3">
                                 </ul>
+                                <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3Hidden">
+
                             </div>
 
 
@@ -65,8 +73,10 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem1">
+                                    id="indoorItem1" >
                                 </ul>
+                                <input type="hidden" id="indoorItem1Hidden" name="indoorItem1Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton2"
@@ -75,8 +85,10 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem2">
+                                    id="indoorItem2" > 
                                 </ul>
+                                <input type="hidden" id="indoorItem2Hidden" name="indoorItem2Hidden">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton3"
@@ -85,8 +97,10 @@
                                     Select Activity 3
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem3">
+                                    id="indoorItem3" name="indoorItem3">
                                 </ul>
+                                <input type="hidden" id="indoorItem3Hidden" name="indoorItem3Hidden">
+
                             </div>
                         </div>
                     </div>
@@ -107,20 +121,18 @@
 
             </div>
             <div id="button-nav">
-                <button type="submit" onclick="goToPrevPage()" class="btn"
+                <button type="button" onclick="goToPrevPage()" class="btn"
                     style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-                <button type="button" onclick="goToNextPage()" class="btn"
+                <button type="submit"  class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
 
+        </section>
 
     </form>
     </div>
     <script>
-        function goToNextPage() {
-
-            window.location.href = "step3";
-        }
+       
 
         function goToPrevPage() {
 
@@ -215,6 +227,32 @@
                 indoorDropdownMenu3.appendChild(listItem3);
 
             });
+            function updateHiddenInput(selectedItem, hiddenInputId) {
+            var selectedValue = selectedItem.textContent.trim();
+            document.getElementById(hiddenInputId).value = selectedValue;
+        }
+
+        // Function to handle click events on dropdown items
+        function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+            var selectedItem = event.target;
+            updateHiddenInput(selectedItem, hiddenInputId);
+        }
+
+        // Add event listeners for each dropdown menu
+        function addEventListenersToDropdowns() {
+            var dropdownMenus = document.querySelectorAll(".dropdown-menu");
+            dropdownMenus.forEach(function(dropdownMenu) {
+                dropdownMenu.addEventListener("click", function(event) {
+                    var dropdownMenuId = dropdownMenu.id;
+                    var hiddenInputId = dropdownMenuId + "Hidden";
+                    handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
+                });
+            });
+        }
+
+        // Call the function to add event listeners when the DOM is loaded
+        addEventListenersToDropdowns();
+
         });
 
 
@@ -227,5 +265,7 @@
             // Update the button text
             dropdownButton.innerText = buttonText;
         }
+
+        
     </script>
 </x-stepLayout>

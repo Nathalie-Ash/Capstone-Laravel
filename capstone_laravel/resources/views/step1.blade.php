@@ -7,7 +7,7 @@
             <p id="textStyle"style="text-align: left;"> Help Us Find Your Match !</p>
         </div>
 
-        <form action="/storeStep1" method="POST">
+        <form method="POST" action="{{ route('step1') }}">
             @csrf
             <section id="steps" style="padding-top: 20px;padding-left: 30px">
 
