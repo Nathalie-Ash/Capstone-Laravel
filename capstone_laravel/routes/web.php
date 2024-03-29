@@ -43,12 +43,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('step1', [PreferencesController::class, 'storeStep1'])->name('step1');
 Route::get('step2', [PreferencesController::class, 'showStep2'])->name('step2');
+
 Route::post('step2', [PreferencesController::class, 'storeStep2'])->name('step2');
 Route::get('step3', [PreferencesController::class, 'showStep3'])->name('step3');
 
 Route::post('step3', [PreferencesController::class, 'storeStep3'])->name('step3');
 Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
+Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
+// Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('step4');
 
 // Route::post('/step1', function () {
 //     return redirect('/step2'); 

@@ -32,7 +32,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="outdoorItem1" name="outdoorItem1">
                                 </ul>
-                                <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1Hidden">
+                                <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1">
 
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
@@ -44,7 +44,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="outdoorItem2" name="outdoorItem2">
                                 </ul>
-                                <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2Hidden">
+                                <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2">
 
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
@@ -56,7 +56,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="outdoorItem3" name="outdoorItem3">
                                 </ul>
-                                <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3Hidden">
+                                <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3">
 
                             </div>
 
@@ -77,7 +77,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem1" >
                                 </ul>
-                                <input type="hidden" id="indoorItem1Hidden" name="indoorItem1Hidden">
+                                <input type="hidden" id="indoorItem1Hidden" name="indoorItem1">
 
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
@@ -89,7 +89,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem2" > 
                                 </ul>
-                                <input type="hidden" id="indoorItem2Hidden" name="indoorItem2Hidden">
+                                <input type="hidden" id="indoorItem2Hidden" name="indoorItem2">
 
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
@@ -101,7 +101,7 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem3" name="indoorItem3">
                                 </ul>
-                                <input type="hidden" id="indoorItem3Hidden" name="indoorItem3Hidden">
+                                <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
 
                             </div>
                         </div>
@@ -229,6 +229,7 @@
                 indoorDropdownMenu3.appendChild(listItem3);
 
             });
+
             function updateHiddenInput(selectedItem, hiddenInputId) {
             var selectedValue = selectedItem.textContent.trim();
             document.getElementById(hiddenInputId).value = selectedValue;
