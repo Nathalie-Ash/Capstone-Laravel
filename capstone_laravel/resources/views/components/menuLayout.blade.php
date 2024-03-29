@@ -49,16 +49,16 @@
         <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
             <span style="text-align: center;font-size: large">JOHN DOE</span>
 
-            <a href="/profile1" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792">
+            <a href="./profile1.html" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792">
                 <i class="fas fa-user fa-fw me-3"></i><span>MY PROFILE</span>
             </a>
-            <a href="/dashboard" class="list-group-item list-group-item-action py-2 ripple"
+            <a href="./dashboard.html" class="list-group-item list-group-item-action py-2 ripple"
                 style="background-color:#579792"><i
                     class="fas fa-th-large fa-fw me-3"></i><span>DASHBOARD</span></a>
-            <a href="/connections" class="list-group-item list-group-item-action py-2 ripple"
+            <a href="./connections.html" class="list-group-item list-group-item-action py-2 ripple"
                 style="background-color:#579792"><i
                     class="fas fa-address-book fa-fw me-3"></i><span>CONNECTIONS</span></a>
-            <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
+            <a href="./requests.html" class="list-group-item list-group-item-action py-2 ripple"
                 style="background-color:#579792"><i
                     class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792">

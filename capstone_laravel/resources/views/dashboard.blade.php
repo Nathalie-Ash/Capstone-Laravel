@@ -1,5 +1,16 @@
 <x-menuLayout>
+<x-menuLayout>
     <style>
+      *{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold ;
+}
+#textStyle {
+    
+    color: #000;
+    font-size: 25px;
+}
+
       *{
     font-family: 'Poppins', sans-serif;
     font-weight: bold ;
@@ -109,18 +120,14 @@
     </style>
     </head>
 
-<body>
-
-    <div id="topNav">
-        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-            aria-controls="offcanvasExample" style="width: 50px;">
-            <i class="fas fa-navicon fa-3x" style="color: #579792;"></i>
-        </a>
-        <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;" src={{ asset('images/star.png') }}>
-        <span style="font-size: 35px;padding-top: 20px;">My Dashboard</span>
-        <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
-            <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
-            <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
+    <body>
+        <div>
+            <img
+                style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"src={{ asset('images/star.png') }}>
+            <span style="font-size: 35px;">My Dashboard</span>
+            <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
+                <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
+                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
 
             </div>
         </div>
@@ -158,7 +165,22 @@
                                     <a href="#" class="btn btn-primary"
                                         style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
                                         Add</a>
+                                <div style="display:flex; margin-top:1%; justify-content: space-between">
+                                    <a href="./userprofile.html" class="btn btn-primary"
+                                        style=" border: none;width:49%; background-color:#ff6f28; color: white">View
+                                        Profile</a>
+                                    <a href="#" class="btn btn-primary"
+                                        style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
+                                        Add</a>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <div class="card mb-3"> -->
+                        <div class="card" style="background-color:#f7f5f5;">
+                            <img src={{ asset('images/placeholder.png') }} class="card-img-top" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -198,6 +220,11 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </main>
                         <!-- </div> -->
                     </div>
                 </div>
