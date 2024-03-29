@@ -148,7 +148,7 @@
 
 
                                 <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                    <a href="./userprofile.html" class="btn btn-primary"
+                                    <a href="/userprofile" class="btn btn-primary"
                                         style=" border: none;width:49%; background-color:#ff6f28; color: white">View
                                         Profile</a>
                                     <a href="#" class="btn btn-primary"
@@ -184,7 +184,7 @@
 
 
                                 <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                    <a href="./userprofile.html" class="btn btn-primary"
+                                    <a href="/userprofile" class="btn btn-primary"
                                         style=" border: none;width:49%; background-color:#ff6f28; color: white">View
                                         Profile</a>
                                     <a href="#" class="btn btn-primary"

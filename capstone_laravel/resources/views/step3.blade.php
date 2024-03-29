@@ -1,6 +1,5 @@
 <x-stepLayout>
 
-    <div>
       
         <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
             <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 3</p>
@@ -8,6 +7,7 @@
           
     
         </div>
+      
         <section id="steps"
             style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
@@ -104,13 +104,14 @@
 
     </div>
     <div id="button-nav">
-        <button type="button" onclick="goToPrevPage()" class="btn"
+        <button type="submit" onclick="goToPrevPage()" class="btn"
             style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
         <button type="button" onclick="goToNextPage()" class="btn"
             style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
     </div>
     </section>
 
+       
 
     </div>
     <script>
@@ -194,6 +195,7 @@
         });
 
 
+
         function updateButtonText(selectedItem, dropdownMenuId, dropdownButtonId) {
             var buttonText = $(selectedItem).text();
             var dropdownMenu = document.getElementById(dropdownMenuId);
@@ -204,15 +206,16 @@
             dropdownButton.innerText = buttonText;
         }
 
+ function goToNextPage() {
 
-        function goToNextPage() {
-
-            window.location.href = "step4.html";
+            window.location.href = "step4";
         }
+
         function goToPrevPage() {
 
-            window.location.href = "step2.html";
+            window.location.href = "step2";
         }
+     
     </script>
 
 </x-stepLayout>

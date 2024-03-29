@@ -127,7 +127,7 @@
 
         function goToNextPage() {
 
-            window.location.href = "profile2.html";
+            window.location.href = "profile2";
         }
     </script>
 

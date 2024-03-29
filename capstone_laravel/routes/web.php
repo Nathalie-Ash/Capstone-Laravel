@@ -33,3 +33,18 @@ Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
 Route::post('/register', [UserController::class,"register"]);
 
+// Route::post('/step1', function () {
+//     return redirect('/step2'); 
+// });
+
+// Route::post('/step2', function () {
+//     return redirect('/step3'); 
+// });
+
+// Route::post('/step3', function () {
+//     return redirect('/step4'); 
+// });
+
+// Route::post('/step4', function () {
+//     return redirect('/dashboard'); 
+// });

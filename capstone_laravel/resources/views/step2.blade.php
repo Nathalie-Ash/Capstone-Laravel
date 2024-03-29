@@ -1,15 +1,15 @@
 <x-stepLayout>
 
 
-    <div>
-      
-            
+
+
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
-        <p id="textStyle"style ="text-align: left;">Tell Us More About You!</p>
-      
+        <p id="textStyle"style="text-align: left;">Tell Us More About You!</p>
+
 
     </div>
+
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
 
@@ -105,31 +105,29 @@
             </div>
 
 
-    </div>
-    <div id="button-nav">
-        <button type="button" onclick="goToPrevPage()" class="btn"
-            style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-        <button type="button" onclick="goToNextPage()" class="btn"
-            style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
-    </div>
-
-    </section>
+            </div>
+            <div id="button-nav">
+                <button type="submit" onclick="goToPrevPage()" class="btn"
+                    style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
+                <button type="button" onclick="goToNextPage()" class="btn"
+                    style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+            </div>
 
 
+    </form>
     </div>
     <script>
-
-
         function goToNextPage() {
 
-            window.location.href = "step3.html";
+            window.location.href = "step3";
         }
+
         function goToPrevPage() {
 
-            window.location.href = "step1.html";
+            window.location.href = "step1";
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
 
             // Array of items for the dropdown
             var outdoorActivities = [
@@ -146,7 +144,7 @@
             var outdoorDropdownMenu3 = document.getElementById("outdoorItem3");
 
             // Iterate over the array and create <li> elements for each dropdown
-            outdoorActivities.forEach(function (outdoorActivity) {
+            outdoorActivities.forEach(function(outdoorActivity) {
                 var listItem1 = document.createElement("li");
                 var listItem2 = document.createElement("li");
                 var listItem3 = document.createElement("li");
@@ -155,9 +153,15 @@
                 var divider2 = document.createElement("hr");
                 var divider3 = document.createElement("hr");
 
-                listItem1.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' + outdoorActivity + '</a>';
-                listItem2.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' + outdoorActivity + '</a>';
-                listItem3.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' + outdoorActivity + '</a>';
+                listItem1.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
+                    outdoorActivity + '</a>';
+                listItem2.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
+                    outdoorActivity + '</a>';
+                listItem3.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
+                    outdoorActivity + '</a>';
 
                 outdoorDropdownMenu1.appendChild(listItem1);
                 outdoorDropdownMenu1.appendChild(divider1);
@@ -183,7 +187,7 @@
             var indoorDropdownMenu3 = document.getElementById("indoorItem3");
 
             // Iterate over the array and create <li> elements for each dropdown
-            indoorActivities.forEach(function (indoorActivity) {
+            indoorActivities.forEach(function(indoorActivity) {
                 var listItem1 = document.createElement("li");
                 var listItem2 = document.createElement("li");
                 var listItem3 = document.createElement("li");
@@ -192,9 +196,15 @@
                 var divider2 = document.createElement("hr");
                 var divider3 = document.createElement("hr");
 
-                listItem1.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' + indoorActivity + '</a>';
-                listItem2.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' + indoorActivity + '</a>';
-                listItem3.innerHTML = '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' + indoorActivity + '</a>';
+                listItem1.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' +
+                    indoorActivity + '</a>';
+                listItem2.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' +
+                    indoorActivity + '</a>';
+                listItem3.innerHTML =
+                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' +
+                    indoorActivity + '</a>';
 
                 indoorDropdownMenu1.appendChild(listItem1);
                 indoorDropdownMenu1.appendChild(divider1);
@@ -203,7 +213,7 @@
                 indoorDropdownMenu2.appendChild(divider2);
 
                 indoorDropdownMenu3.appendChild(listItem3);
-               
+
             });
         });
 
@@ -217,6 +227,5 @@
             // Update the button text
             dropdownButton.innerText = buttonText;
         }
-
     </script>
 </x-stepLayout>

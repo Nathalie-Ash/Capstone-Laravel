@@ -7,37 +7,14 @@
             <p id="textStyle"style="text-align: left;"> Help Us Find Your Match !</p>
         </div>
 
+    
         <section id="steps" style="padding-top: 20px;padding-left: 30px">
-            <!-- <div id="steps"> -->
 
             <div class="container text-center">
                 <div class="row">
                     <div class="col">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
-                        <!-- <div id="division1" >
-                                <h1 id ="step-title">Which School Are You In?</h1>
-                                <div class="dropdown" style="padding-top: 10px;">
-                                    <button class="btn btn-secondary dropdown-toggle"  id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #579792;border: none;">
-                                    Select your School
-                                    </button>
-                                    <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;" >
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">School of Architecture & Design</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">School of Arts and Sciences</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">Adnan Kassar School of Business</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">School of Engineering</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">Gilbert and Rose-Marie Chagoury School of Medicine</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">Alice Ramez Chagoury School of Nursing</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this)">School of Pharmacy</a></li>
-                                    </ul>
-                                  </div>
-                               
-                            </div>-->
+                        
                         <div id="division1">
                             <h1 id="step-title">Which School Are You In?</h1>
                             <div class="dropdown" style="padding-top: 10px;">
@@ -115,6 +92,7 @@
             </div>
 
 
+
     </div>
     <div id="button-nav">
         <button type="button" onclick="goToNextPage()" class="btn"
@@ -134,8 +112,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
-    <script>
-        < script >
+    
+        <script>
             function updateButtonText(selectedItem) {
                 var buttonText = $(selectedItem).text();
                 $('#dropdownMenuButton').text(buttonText);
@@ -143,7 +121,7 @@
 
         function goToNextPage() {
 
-            window.location.href = "step2.html";
+            window.location.href = "step2";
         }
 
         document.addEventListener("DOMContentLoaded", function() {

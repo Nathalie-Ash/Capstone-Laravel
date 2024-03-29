@@ -56,11 +56,11 @@
 
         function goToNextPage() {
 
-            window.location.href = "step4.html";
+            window.location.href = "dashboard";
         }
         function goToPrevPage() {
 
-            window.location.href = "step3.html";
+            window.location.href = "step3";
         }
         function handleFileSelect(event) {
             const fileInput = event.target;
