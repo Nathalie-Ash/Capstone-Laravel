@@ -130,6 +130,13 @@ class PreferencesController extends Controller
         $request->session()->put('success', 'Preferences submitted successfully!');
 
         // Redirect to any other action
-        return redirect()->route('dashboard');
+        // fix this tmrw 
+        return view('dashboard');
     }
+    public function index()
+{
+    // Logic to retrieve data and display the dashboard view
+    return view('dashboard.index');
+}
+
 }

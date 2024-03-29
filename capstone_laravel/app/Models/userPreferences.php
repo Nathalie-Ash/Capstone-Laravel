@@ -22,6 +22,21 @@ class userPreferences extends Model
         'major',
         'minor',
         'campus',
+        'outdoorItem1',
+        'outdoorItem2',
+        'outdoorItem3',
+        'indoorItem1',
+        'indoorItem2',
+        'indoorItem3',
+        'musicItem1',
+        'musicItem2',
+        'musicItem3',
+        'movieItem1',
+        'movieItem2',
+        'movieItem3',
+        'description',
+        'displayName',
+    
     ];
 
     

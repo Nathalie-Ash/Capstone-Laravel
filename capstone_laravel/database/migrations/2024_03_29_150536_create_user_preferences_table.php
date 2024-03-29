@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('musicItem2');
             $table->string('musicItem3');
             $table->string('description');
-            $table->string('displaynName');
+            $table->string('displayName');
             $table->timestamps(); // Add timestamps columns
         });
     }
