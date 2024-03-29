@@ -72,15 +72,17 @@
         
               </div>
               
-              <!-- <img class="animated-element" src="../Assets/image1.png" style="height:20px; width:20px"> -->
-                <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1" style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
+            
+              <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1" style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
+                <form  action="/register" method="POST">
+                    @csrf
                     <div id="date-picker-example" class="md-fofvrm md-outline input-with-post-icon datepicker" inline="true">
                         <label for="birthdate"><h1>When is your birthday?</h1></label>
                         <br>
                         <input placeholder = "Select your birthdate" type="text" id="birthdate" name="birthdate" class="txtfield" style="border-radius:5%;border:none ;background-color:#579792; color:white">
                         <br>
                     </div>
-                <div class="col">
+                    <div class="col">
                         
                         <div id="division1">
                             <h1 id="step-title">What is your gender?</h1>
@@ -92,7 +94,7 @@
                                     Select Gender
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="genderDropdownMenu">
+                                    id="genderDropdownMenu" name="gender">
                                 </ul>
                             </div>
                            
@@ -100,7 +102,7 @@
 
                         </div>
                     </div>
-                    <div class="col">
+                        <div class="col">
                     
                             
                             <div id="division2">
@@ -113,7 +115,7 @@
                                         Select Option
                                     </button>
                                     <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                        id="orientationDropdownMenu">
+                                        id="orientationDropdownMenu" name ="sexualorientation">
                                     </ul>
                                 </div>
                                
@@ -121,19 +123,20 @@
     
                             </div>
                         </div>
-                        <div style ="text-align: center;">
-                  <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "./step1.html" style="text-decoration:none; color:black" >SUBMIT</a></button>
+                <div style ="text-align: center;">
+                    <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "./step1.blade.php" style="text-decoration:none; color:black" >SUBMIT</a></button>
                   </div>
+                </form>
                 </div>
             
-              </div>
-            </div>
-          </section>
+           </div>
+        </div>
+    </section>
     </body>
     <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize Datepicker
+            
             $("#birthdate").datepicker({
                 changeMonth: true,
                 changeYear: true,
