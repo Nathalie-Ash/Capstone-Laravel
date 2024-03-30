@@ -115,10 +115,12 @@ class PreferencesController extends Controller
             'displayName' => 'required',
         ]);
 
+        $request->session()->put('user_preferences.step4', $validatedData);
+
         $step1Data = $request->session()->get('user_preferences.step1');
         $step2Data = $request->session()->get('user_preferences.step2');
         $step3Data = $request->session()->get('user_preferences.step3');
-        
+
         // Merge all the data
         $userData = $step1Data + $step2Data + $step3Data + $validatedData;
         logger($userData);
@@ -131,12 +133,25 @@ class PreferencesController extends Controller
 
         // Redirect to any other action
         // fix this tmrw 
+        return redirect()->route('dashboard');
+    }
+    public function goToDashboard()
+    {   
+
         return view('dashboard');
     }
-    public function index()
-{
-    // Logic to retrieve data and display the dashboard view
-    return view('dashboard.index');
-}
 
+    public function displayProfile2(Request $request)
+{
+    // Retrieve user preferences data from the session
+    $userData = [
+        'step1Data' => $request->session()->get('user_preferences.step1'),
+        'step2Data' => $request->session()->get('user_preferences.step2'),
+        'step3Data' => $request->session()->get('user_preferences.step3'),
+        'step4Data' => $request->session()->get('user_preferences.step4')
+    ];
+
+    // Pass the collected data to the profile2 view
+    return view('profile2', compact('userData'));
+}
 }

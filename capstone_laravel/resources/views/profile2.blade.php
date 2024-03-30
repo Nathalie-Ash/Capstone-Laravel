@@ -32,36 +32,36 @@
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="School of Arts and Sciences">
+                                <input type="text" readonly class="form-control-plaintext" id="school"
+                                value="{{ $userData['step1Data']['school'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Computer Science">
+                                <input type="text" readonly class="form-control-plaintext" id="major"
+                                value="{{ $userData['step1Data']['major'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Mathematics">
+                                <input type="text" readonly class="form-control-plaintext" id="minor"
+                                value="{{ $userData['step1Data']['minor'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Beirut">
+                                <input type="text" readonly class="form-control-plaintext" id="campus"
+                                value="{{ $userData['step1Data']['campus'] }}">
                             </div>
                         </div>
                     </div>
                     <div class="col" id="div2"
                         style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
                         Bio
-                        <input class="form-control" type="text" value="Readonly input here..."
+                        <input class="form-control" type="text" value="{{ $userData['step3Data']['description'] }}"
                             aria-label="readonly input example"
                             style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
                     </div>
@@ -72,7 +72,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Running">
+                                value="{{ $userData['step2Data']['outdoorItem1'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -80,7 +80,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Swimming">
+                                value="{{ $userData['step2Data']['outdoorItem2'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -88,7 +88,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Skiing">
+                                value="{{ $userData['step2Data']['outdoorItem3'] }}">
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Reading">
+                                value="{{ $userData['step2Data']['indoorItem1'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -106,7 +106,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Playing Music">
+                                value="{{ $userData['step2Data']['indoorItem2'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -114,7 +114,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Knitting">
+                                value="{{ $userData['step2Data']['indoorItem3'] }}">
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Comedy">
+                                value="{{ $userData['step3Data']['movieItem1'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -132,7 +132,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Romance">
+                                value="{{ $userData['step3Data']['movieItem2'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -140,7 +140,8 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Sci-Fi">
+                                value="{{ $userData['step3Data']['movieItem3'] }}">
+
                             </div>
                         </div>
                     </div>
@@ -151,7 +152,8 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Rap">
+                                value="{{ $userData['step3Data']['musicItem1'] }}">
+
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -159,7 +161,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="Indie">
+                                value="{{ $userData['step3Data']['musicItem2'] }}">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -167,7 +169,7 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="RnB">
+                                value="{{ $userData['step3Data']['musicItem3'] }}">
                             </div>
                         </div>
                     </div>

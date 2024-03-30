@@ -51,7 +51,7 @@ Route::post('step3', [PreferencesController::class, 'storeStep3'])->name('step3'
 Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
-Route::get('dashboard', [PreferencesController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
 
 // Route::post('/step1', function () {
 //     return redirect('/step2'); 
