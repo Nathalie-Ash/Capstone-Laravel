@@ -31,7 +31,7 @@ Route::get('/step3', [ExampleController::class, "step3"]);
 Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
-
+// Route::get('/step1',[UserController])
 // Route::post('/register', [UserController::class,"register"]);
 Route::get('/signup', [UserController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [UserController::class, 'handlePage1']);

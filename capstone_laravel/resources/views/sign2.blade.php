@@ -5,8 +5,8 @@
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        {{-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> --}}
   
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
@@ -94,8 +94,9 @@
                                     Select Gender
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="genderDropdownMenu" name="gender">
+                                    id="genderDropdownMenu">
                                 </ul>
+                                <input type="hidden" name="gender" id="gender">
                             </div>
                            
                             
@@ -115,8 +116,9 @@
                                         Select Option
                                     </button>
                                     <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                        id="orientationDropdownMenu" name ="sexualorientation">
+                                        id="orientationDropdownMenu">
                                     </ul>
+                                    <input type="hidden" name ="sexualorientation" id="sexualorientation">
                                 </div>
                                
                                 
@@ -134,20 +136,21 @@
     </section>
     </body>
     <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
             
             $("#birthdate").datepicker({
                 changeMonth: true,
                 changeYear: true,
-                yearRange: 'c-100:c', // Allows selecting from 100 years ago to the current year
-                dateFormat: 'yy-mm-dd' // Sets the date format to YYYY-MM-DD
+                yearRange: 'c-100:c', 
+                dateFormat: 'yy-mm-dd'
             });
         });
         
         document.addEventListener("DOMContentLoaded", function () {
-        
-            // Array of gender options
             var genders = [
                 "Male",
                 "Female",

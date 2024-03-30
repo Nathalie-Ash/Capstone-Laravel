@@ -3,6 +3,8 @@
 
 
 
+
+
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
         <p id="textStyle"style="text-align: left;">Tell Us More About You!</p>

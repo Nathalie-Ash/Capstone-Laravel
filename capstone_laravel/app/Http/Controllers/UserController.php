@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         // Retrieve data from session (page 1 data)
         $signupData = $request->session()->get('signup_data');
-
+        logger($signupData);
         // Check if data exists in session
         if (!$signupData) {
             // Handle case when data is missing
@@ -66,7 +66,7 @@ class UserController extends Controller
 
         // Merge page 1 and page 2 data
         $userData = array_merge($signupData, $validatedData);
-
+        logger($userData);
         // Create new user
         $user = User::create([
             'name' => $userData['name'],

@@ -124,7 +124,7 @@
 
         function goToNextPage() {
 
-            window.location.href = "step2.html";
+            window.location.href = "step2";
         }
 
         document.addEventListener("DOMContentLoaded", function() {
