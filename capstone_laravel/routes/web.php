@@ -31,7 +31,9 @@ Route::get('/step3', [ExampleController::class, "step3"]);
 Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
-// Route::get('/step1',[UserController])
+Route::get('profile2', [PreferencesController::class, 'displayProfile2'])->name('profile2');
+
+
 // Route::post('/register', [UserController::class,"register"]);
 Route::get('/signup', [UserController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [UserController::class, 'handlePage1']);
@@ -51,6 +53,7 @@ Route::post('step3', [PreferencesController::class, 'storeStep3'])->name('step3'
 Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
+Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
 Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
 
 // Route::post('/step1', function () {
