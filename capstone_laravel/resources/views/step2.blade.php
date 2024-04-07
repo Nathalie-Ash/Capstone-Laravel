@@ -102,6 +102,7 @@
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem3">
+                                    id="indoorItem3">
                                 </ul>
                                 <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
 
@@ -150,7 +151,6 @@
     </form>
     </div>
     <script>
-    
         document.addEventListener("DOMContentLoaded", function() {
 
             // Array of items for the dropdown
@@ -179,11 +179,14 @@
 
                 listItem1.innerHTML =
                     '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
                     outdoorActivity + '</a>';
                 listItem2.innerHTML =
                     '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
+                    '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
                     outdoorActivity + '</a>';
                 listItem3.innerHTML =
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
                     '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
                     outdoorActivity + '</a>';
 
@@ -239,11 +242,30 @@
                 indoorDropdownMenu3.appendChild(listItem3);
                 indoorDropdownMenu3.appendChild(divider2);
                 
+                indoorDropdownMenu3.appendChild(divider2);
+                
             });
 
             function updateHiddenInput(selectedItem, hiddenInputId) {
                 var selectedValue = selectedItem.textContent.trim();
                 document.getElementById(hiddenInputId).value = selectedValue;
+            }
+
+
+            // Function to remove or disable the selected activity from all dropdown menus
+            function updateDropdowns(selectedActivity) {
+                var allDropdowns = document.querySelectorAll(".dropdown-menu");
+                allDropdowns.forEach(function(dropdown) {
+                    for (var i = 0; i < dropdown.children.length; i++) {
+                        var listItem = dropdown.children[i];
+                        if (listItem.textContent.trim() === selectedActivity) {
+                            listItem.style.opacity = '0.5'; // Reduce opacity
+                            listItem.style.pointerEvents = 'none'; // Disable pointer events
+                            listItem.style.cursor = 'not-allowed';
+                            break;
+                        }
+                    }
+                });
             }
 
 
@@ -284,17 +306,6 @@
                     });
                 });
             }
-            // Add event listeners for each dropdown menu
-            function addEventListenersToDropdowns() {
-                var dropdownMenus = document.querySelectorAll(".dropdown-menu");
-                dropdownMenus.forEach(function(dropdownMenu) {
-                    dropdownMenu.addEventListener("click", function(event) {
-                        var dropdownMenuId = dropdownMenu.id;
-                        var hiddenInputId = dropdownMenuId + "Hidden";
-                        handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
-                    });
-                });
-            }
 
             // Call the function to add event listeners when the DOM is loaded
             addEventListenersToDropdowns();
@@ -315,27 +326,28 @@
         }
 
         function populateStep2Fields() {
-        var step2Data = JSON.parse(localStorage.getItem('step2Data'));
-        if (step2Data) {
-            var dropdownMenu = document.getElementById(dropdownMenuId);
-            var dropdownButton = document.getElementById(dropdownButtonId);
+            var step2Data = JSON.parse(localStorage.getItem('step2Data'));
+            if (step2Data) {
+                var dropdownMenu = document.getElementById(dropdownMenuId);
+                var dropdownButton = document.getElementById(dropdownButtonId);
 
-            document.getElementById('outdoorDropdownMenuButton1').value = step2Data.outdoorItem1;
-            document.getElementById('outdoorDropdownMenuButton2').value = step2Data.outdoorItem2;
-            document.getElementById('outdoorDropdownMenuButton3').value = step2Data.outdoorItem3;
-            document.getElementById('indoorItem1Hidden').value = step2Data.indoorItem1;
-            document.getElementById('indoorItem2Hidden').value = step2Data.indoorItem2;
-            document.getElementById('indoorItem3Hidden').value = step2Data.indoorItem3;
-            
+                document.getElementById('outdoorDropdownMenuButton1').value = step2Data.outdoorItem1;
+                document.getElementById('outdoorDropdownMenuButton2').value = step2Data.outdoorItem2;
+                document.getElementById('outdoorDropdownMenuButton3').value = step2Data.outdoorItem3;
+                document.getElementById('indoorItem1Hidden').value = step2Data.indoorItem1;
+                document.getElementById('indoorItem2Hidden').value = step2Data.indoorItem2;
+                document.getElementById('indoorItem3Hidden').value = step2Data.indoorItem3;
+
+            }
         }
-    }
-   
-    function goToPrevPage() {
+
+        function goToPrevPage() {
             // Store Step 2 data before navigating back to Step 1
             storeStep2Data();
             // Redirect to Step 1
             window.location.href = "{{ route('step1') }}";
         }
+
         function goToNextPage() {
             // Store Step 2 data before navigating back to Step 1
             storeStep2Data();
@@ -344,15 +356,15 @@
         }
 
         function storeStep2Data() {
-                var formData = {
-                    outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
-                    outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
-                    outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
-                    indoorItem1: document.getElementById('indoorItem1Hidden').value,
-                    indoorItem2: document.getElementById('indoorItem2Hidden').value,
-                    indoorItem3: document.getElementById('indoorItem3Hidden').value,
-                };
-                localStorage.setItem('step2Data', JSON.stringify(formData));
-            }
+            var formData = {
+                outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                indoorItem3: document.getElementById('indoorItem3Hidden').value,
+            };
+            localStorage.setItem('step2Data', JSON.stringify(formData));
+        }
     </script>
 </x-stepLayout>

@@ -58,6 +58,8 @@ Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('
 
 Route::post('/updateUserData', 'UserController@updateUserData')->name('updateUserData');
 
+Route::post('/updateUserData', 'UserController@updateUserData')->name('updateUserData');
+
 // Route::post('/step1', function () {
 //     return redirect('/step2'); 
 // });
