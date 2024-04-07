@@ -1,20 +1,28 @@
-
 <x-menuLayout>
-<head>
-   <link rel="stylesheet" href="/styleN.css">
-   
 
-</head>
+    <head>
+        <link rel="stylesheet" href="/styleN.css">
+
+        <style>
+            input[type="text"] {
+                color: black;
+            }
+        </style>
+
+
+
+    </head>
 
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;">
 
-        <img style="width: 8%; height: 50px; padding-bottom: 10px;float:left;margin-top: 10px;" src={{ asset('images/star.png') }}>
+        <img style="width: 8%; height: 50px; padding-bottom: 10px;float:left;margin-top: 10px;"
+            src={{ asset('images/star.png') }}>
         <span style="font-size: 35px;padding-top: 20px;margin-top: 10px;">Personal Information</span>
         <div style="display:inline;float: right;text-align: right;margin-top: 10px;width: 50%;">
-            <button type="button" onclick="goToNextPage()" class="btn"
+            <button type="button" id="editButton" class="btn"
                 style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger; margin-left: 30px;">Edit</button>
 
-            <button type="button" class="btn btn-secondary"
+            <button type="button" id="saveButton" class="btn btn-secondary"
                 style=" width: 20%;color:white;font-size: larger;">Save</button>
 
         </div>
@@ -22,7 +30,8 @@
 
     </div>
 
-    <section id="steps" style="padding-top:0px;padding-left: 30px;display: flex; flex-direction: column;">
+    <section id="steps"
+        style="padding-top:0px;padding-left: 30px;display: flex; flex-direction: column; color: black;">
         <div class="container text-center">
 
             <div class="container text-center" style="width: 100%;">
@@ -33,36 +42,36 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="school"
-                                value="{{ $userData['step1Data']['school'] }}">
+                                    value="{{ $userData['step1Data']['school'] }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="major"
-                                value="{{ $userData['step1Data']['major'] }}">
+                                    value="{{ $userData['step1Data']['major'] }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="minor"
-                                value="{{ $userData['step1Data']['minor'] }}">
+                                    value="{{ $userData['step1Data']['minor'] }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="campus"
-                                value="{{ $userData['step1Data']['campus'] }}">
+                                    value="{{ $userData['step1Data']['campus'] }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
                     <div class="col" id="div2"
                         style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
                         Bio
-                        <input class="form-control" type="text" value="{{ $userData['step3Data']['description'] }}"
-                            aria-label="readonly input example"
+                        <input class="form-control" readonly type="text"
+                            value="{{ $userData['step3Data']['description'] }}" aria-label="readonly input example"
                             style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
                     </div>
 
@@ -71,24 +80,27 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['outdoorItem1'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem1"
+                                    value="{{ $userData['step2Data']['outdoorItem1'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['outdoorItem2'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem2"
+                                    value="{{ $userData['step2Data']['outdoorItem2'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['outdoorItem3'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem3"
+                                    value="{{ $userData['step2Data']['outdoorItem3'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -97,50 +109,59 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['indoorItem1'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="indoorItem1"
+                                    value="{{ $userData['step2Data']['indoorItem1'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['indoorItem2'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="indoorItem2"
+                                    value="{{ $userData['step2Data']['indoorItem2'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label"
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step2Data']['indoorItem3'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="indoorItem3"
+                                    value="{{ $userData['step2Data']['indoorItem3'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
                     <div class="col" id="div5">Movies/Series
                         <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 1</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['movieItem1'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="movieItem1"
+                                    value="{{ $userData['step3Data']['movieItem1'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 2</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['movieItem2'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="movieItem2"
+                                    value="{{ $userData['step3Data']['movieItem2'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 3</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['movieItem3'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="movieItem3"
+                                    value="{{ $userData['step3Data']['movieItem3'] }}"
+                                    style="background-color: #c2c2c2">
 
                             </div>
                         </div>
@@ -148,28 +169,34 @@
                     <div class="col" id="div6">Music Genres
 
                         <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 1</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['musicItem1'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="musicItem1"
+                                    value="{{ $userData['step3Data']['musicItem1'] }}"
+                                    style="background-color: #c2c2c2">
 
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 2</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['musicItem2'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="musicItem2"
+                                    value="{{ $userData['step3Data']['musicItem2'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label" style="width:fit-content;">Genre
+                            <label for="staticUsername" class="col-sm-2 col-form-label"
+                                style="width:fit-content;">Genre
                                 3</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                value="{{ $userData['step3Data']['musicItem3'] }}">
+                                <input type="text" readonly class="form-control-plaintext" id="musicItem3"
+                                    value="{{ $userData['step3Data']['musicItem3'] }}"
+                                    style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -191,6 +218,106 @@
         function goToNextPage() {
 
             window.location.href = "profile2";
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add event listener to the Edit button
+            document.getElementById("editButton").addEventListener("click", function() {
+                // Enable editing of form fields
+                enableFormFields();
+                changeTextBackground();
+            });
+
+            // Add event listener to the Save button
+            document.getElementById("saveButton").addEventListener("click", function() {
+                // Collect updated form data
+                var updatedData = {
+                    school: document.getElementById("school").value,
+                    major: document.getElementById("major").value,
+                    minor: document.getElementById("minor").value,
+                    campus: document.getElementById("campus").value,
+                    outdoorItem1: document.getElementById("outdoorItem1").value,
+                    outdoorItem2: document.getElementById("outdoorItem2").value,
+                    outdoorItem3: document.getElementById("outdoorItem3").value,
+                    indoorItem1: document.getElementById("indoorItem1").value,
+                    indoorItem2: document.getElementById("indoorItem2").value,
+                    indoorItem3: document.getElementById("indoorItem3").value,
+                    musicItem1: document.getElementById("musicItem1").value,
+                    musicItem2: document.getElementById("musicItem2").value,
+                    musicItem3: document.getElementById("musicItem3").value,
+                    movieItem1: document.getElementById("movieItem1").value,
+                    movieItem2: document.getElementById("movieItem2").value,
+                    movieItem3: document.getElementById("movieItem3").value
+                };
+                // Send updated data to the backend for storage
+                saveUserData(updatedData);
+            });
+        });
+
+        // Function to enable editing of form fields
+        function enableFormFields() {
+
+            // Remove readonly attribute from form fields to enable editing
+            document.getElementById("school").removeAttribute("readonly");
+            document.getElementById("major").removeAttribute("readonly");
+            document.getElementById("minor").removeAttribute("readonly");
+            document.getElementById("campus").removeAttribute("readonly");
+            document.getElementById("outdoorItem1").removeAttribute("readonly");
+            document.getElementById("outdoorItem2").removeAttribute("readonly");
+            document.getElementById("outdoorItem3").removeAttribute("readonly");
+            document.getElementById("indoorItem1").removeAttribute("readonly");
+            document.getElementById("indoorItem2").removeAttribute("readonly");
+            document.getElementById("indoorItem3").removeAttribute("readonly");
+            document.getElementById("musicItem1").removeAttribute("readonly");
+            document.getElementById("musicItem2").removeAttribute("readonly");
+            document.getElementById("musicItem3").removeAttribute("readonly");
+            document.getElementById("movieItem1").removeAttribute("readonly");
+            document.getElementById("movieItem2").removeAttribute("readonly");
+            document.getElementById("movieItem3").removeAttribute("readonly");
+        }
+
+        // Function to send updated user data to the backend for storage
+        function saveUserData(data) {
+            // Send a POST request to the backend endpoint with the updated data
+            fetch("/saveUserDataEndpoint", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Data saved successfully
+                        alert("User data saved successfully.");
+                    } else {
+                        // Error saving data
+                        alert("Failed to save user data.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred while saving user data.");
+                });
+        }
+
+        function changeTextBackground() {
+            // Change background color of text fields
+            document.getElementById("school").style.backgroundColor = "#579792";
+            document.getElementById("major").style.backgroundColor = "#579792";
+            document.getElementById("minor").style.backgroundColor = "#579792";
+            document.getElementById("campus").style.backgroundColor = "#579792";
+            document.getElementById("outdoorItem1").style.backgroundColor = "#579792";
+            document.getElementById("outdoorItem2").style.backgroundColor = "#579792";
+            document.getElementById("outdoorItem3").style.backgroundColor = "#579792";
+            document.getElementById("indoorItem1").style.backgroundColor = "#579792";
+            document.getElementById("indoorItem2").style.backgroundColor = "#579792";
+            document.getElementById("indoorItem3").style.backgroundColor = "#579792";
+            document.getElementById("musicItem1").style.backgroundColor = "#579792";
+            document.getElementById("musicItem2").style.backgroundColor = "#579792";
+            document.getElementById("musicItem3").style.backgroundColor = "#579792";
+            document.getElementById("movieItem1").style.backgroundColor = "#579792";
+            document.getElementById("movieItem2").style.backgroundColor = "#579792";
+            document.getElementById("movieItem3").style.backgroundColor = "#579792";
         }
     </script>
 

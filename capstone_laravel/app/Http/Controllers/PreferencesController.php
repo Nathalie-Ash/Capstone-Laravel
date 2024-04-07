@@ -153,5 +153,34 @@ class PreferencesController extends Controller
 
     // Pass the collected data to the profile2 view
     return view('profile2', compact('userData'));
+
+    
 }
+
+public function updateUserData(Request $request)
+    {
+        // Retrieve the updated user data from the request
+        $userData = $request->all();
+
+        try {
+            // Assuming you have a user ID passed in the request or some other means to identify the user
+            $userId = $request->input('user_id');
+
+            // Find the user by ID
+            $user = User::find($userId);
+
+            if (!$user) {
+                return response()->json(['message' => 'User not found'], 404);
+            }
+
+            // Update the user's data
+            $user->update($userData);
+
+            return response()->json(['message' => 'User data updated successfully'], 200);
+        } catch (\Exception $e) {
+            // Handle any errors that occur during the update process
+            return response()->json(['message' => 'Failed to update user data'], 500);
+        }
+    }
+
 }

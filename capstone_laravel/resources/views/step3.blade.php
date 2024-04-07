@@ -232,10 +232,27 @@
                 document.getElementById(hiddenInputId).value = selectedValue;
             }
 
+            function updateDropdowns(selectedActivity) {
+                var allDropdowns = document.querySelectorAll(".dropdown-menu");
+                allDropdowns.forEach(function(dropdown) {
+                    for (var i = 0; i < dropdown.children.length; i++) {
+                        var listItem = dropdown.children[i];
+                        if (listItem.textContent.trim() === selectedActivity) {
+                            listItem.style.opacity = '0.5'; // Reduce opacity
+                            listItem.style.pointerEvents = 'none'; // Disable pointer events
+                            listItem.style.cursor = 'not-allowed';
+                            break;
+                        }
+                    }
+                });
+            }
+
             // Function to handle click events on dropdown items
             function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
                 var selectedItem = event.target;
                 updateHiddenInput(selectedItem, hiddenInputId);
+                var selectedActivity = selectedItem.textContent.trim();
+                updateDropdowns(selectedActivity); // Update all dropdown menus
             }
 
             // Add event listeners for each dropdown menu
