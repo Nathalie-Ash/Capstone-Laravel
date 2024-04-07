@@ -14,6 +14,7 @@
     <form method="POST" action="{{ route('step2') }}">
 
         @csrf
+
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
 
@@ -75,7 +76,7 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem1" >
+                                    id="indoorItem1">
                                 </ul>
                                 <input type="hidden" id="indoorItem1Hidden" name="indoorItem1">
 
@@ -87,7 +88,7 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="indoorItem2" > 
+                                    id="indoorItem2">
                                 </ul>
                                 <input type="hidden" id="indoorItem2Hidden" name="indoorItem2">
 
@@ -125,22 +126,30 @@
             <div id="button-nav">
                 <button type="button" onclick="goToPrevPage()" class="btn"
                     style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-                <button type="submit"  class="btn"
+                <button type="submit" onclick="goToNextPage()" class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
 
         </section>
+        <script>
+            function storeStep2Data() {
+                var formData = {
+                    outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                    outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                    outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                    indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                    indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                    indoorItem3: document.getElementById('indoorItem3Hidden').value,
+                };
+                localStorage.setItem('step2Data', JSON.stringify(formData));
+            }
+        </script>
+
 
     </form>
     </div>
     <script>
-       
-
-        function goToPrevPage() {
-
-            window.location.href = "step1";
-        }
-
+    
         document.addEventListener("DOMContentLoaded", function() {
 
             // Array of items for the dropdown
@@ -231,32 +240,34 @@
             });
 
             function updateHiddenInput(selectedItem, hiddenInputId) {
-            var selectedValue = selectedItem.textContent.trim();
-            document.getElementById(hiddenInputId).value = selectedValue;
-        }
+                var selectedValue = selectedItem.textContent.trim();
+                document.getElementById(hiddenInputId).value = selectedValue;
+            }
 
-        // Function to handle click events on dropdown items
-        function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
-            var selectedItem = event.target;
-            updateHiddenInput(selectedItem, hiddenInputId);
-        }
+            // Function to handle click events on dropdown items
+            function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+                var selectedItem = event.target;
+                updateHiddenInput(selectedItem, hiddenInputId);
+            }
 
-        // Add event listeners for each dropdown menu
-        function addEventListenersToDropdowns() {
-            var dropdownMenus = document.querySelectorAll(".dropdown-menu");
-            dropdownMenus.forEach(function(dropdownMenu) {
-                dropdownMenu.addEventListener("click", function(event) {
-                    var dropdownMenuId = dropdownMenu.id;
-                    var hiddenInputId = dropdownMenuId + "Hidden";
-                    handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
+            // Add event listeners for each dropdown menu
+            function addEventListenersToDropdowns() {
+                var dropdownMenus = document.querySelectorAll(".dropdown-menu");
+                dropdownMenus.forEach(function(dropdownMenu) {
+                    dropdownMenu.addEventListener("click", function(event) {
+                        var dropdownMenuId = dropdownMenu.id;
+                        var hiddenInputId = dropdownMenuId + "Hidden";
+                        handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
+                    });
                 });
-            });
-        }
+            }
 
-        // Call the function to add event listeners when the DOM is loaded
-        addEventListenersToDropdowns();
-
+            // Call the function to add event listeners when the DOM is loaded
+            addEventListenersToDropdowns();
+            populateStep2Fields();
         });
+
+
 
 
         function updateButtonText(selectedItem, dropdownMenuId, dropdownButtonId) {
@@ -269,6 +280,45 @@
             dropdownButton.innerText = buttonText;
         }
 
-        
+        function populateStep2Fields() {
+        var step2Data = JSON.parse(localStorage.getItem('step2Data'));
+        if (step2Data) {
+            var dropdownMenu = document.getElementById(dropdownMenuId);
+            var dropdownButton = document.getElementById(dropdownButtonId);
+
+            document.getElementById('outdoorDropdownMenuButton1').value = step2Data.outdoorItem1;
+            document.getElementById('outdoorDropdownMenuButton2').value = step2Data.outdoorItem2;
+            document.getElementById('outdoorDropdownMenuButton3').value = step2Data.outdoorItem3;
+            document.getElementById('indoorItem1Hidden').value = step2Data.indoorItem1;
+            document.getElementById('indoorItem2Hidden').value = step2Data.indoorItem2;
+            document.getElementById('indoorItem3Hidden').value = step2Data.indoorItem3;
+            
+        }
+    }
+   
+    function goToPrevPage() {
+            // Store Step 2 data before navigating back to Step 1
+            storeStep2Data();
+            // Redirect to Step 1
+            window.location.href = "{{ route('step1') }}";
+        }
+        function goToNextPage() {
+            // Store Step 2 data before navigating back to Step 1
+            storeStep2Data();
+            // Redirect to Step 1
+            window.location.href = "{{ route('step2') }}";
+        }
+
+        function storeStep2Data() {
+                var formData = {
+                    outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                    outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                    outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                    indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                    indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                    indoorItem3: document.getElementById('indoorItem3Hidden').value,
+                };
+                localStorage.setItem('step2Data', JSON.stringify(formData));
+            }
     </script>
 </x-stepLayout>
