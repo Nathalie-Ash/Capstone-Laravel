@@ -1,16 +1,5 @@
 <x-menuLayout>
-<x-menuLayout>
     <style>
-      *{
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold ;
-}
-#textStyle {
-    
-    color: #000;
-    font-size: 25px;
-}
-
       *{
     font-family: 'Poppins', sans-serif;
     font-weight: bold ;
@@ -165,22 +154,7 @@
                                     <a href="#" class="btn btn-primary"
                                         style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
                                         Add</a>
-                                <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                    <a href="./userprofile.html" class="btn btn-primary"
-                                        style=" border: none;width:49%; background-color:#ff6f28; color: white">View
-                                        Profile</a>
-                                    <a href="#" class="btn btn-primary"
-                                        style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
-                                        Add</a>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <div class="card mb-3"> -->
-                        <div class="card" style="background-color:#f7f5f5;">
-                            <img src={{ asset('images/placeholder.png') }} class="card-img-top" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -220,11 +194,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- </div> -->
-                    </div>
-                </div>
-            </div>
-        </main>
                         <!-- </div> -->
                     </div>
                 </div>

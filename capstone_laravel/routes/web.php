@@ -40,7 +40,7 @@ Route::post('/signup', [UserController::class, 'handlePage1']);
 Route::get('/sign2', [UserController::class, 'showPage2'])->name('sign2');
 Route::post('/sign2', [UserController::class, 'register']);
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('step1', [PreferencesController::class, 'storeStep1'])->name('step1');
