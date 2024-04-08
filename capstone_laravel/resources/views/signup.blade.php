@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form1Example23">Confirm Password</label>
-                            <input type="password"name="conpassword" id="form1Example234" class="form-control form-control-lg"
+                            <input type="password"name="password_confirmation" id="form1Example234" class="form-control form-control-lg"
                                 style="background-color:#dcdcdf;" />
                         </div>
                         <div class="d-flex justify-content-around align-items-center mb-4">
@@ -94,25 +94,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ps97M0vlg8OelK1uYGvcnFYaZcQ3Kvoz5+M+CUa+M2Z5tT4PUpYhQFLEcXS6P+jj" crossorigin="anonymous"></script>
 <script>
-    function validateForm() {
-        // var password = document.getElementById("password").value;
-        // var confirmPassword = document.getElementById("confirmPassword").value;
-
-     
-        // if (password !== confirmPassword) {
-        //     alert("Passwords do not match");
-        //     return false;
-        // }
-
-       
-        // var passwordStrengthRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
-        // if (!passwordStrengthRegex.test(password)) {
-        //     alert("Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.");
-        //     return false;
-        // }
-
-        return true;
-    }
+    
 </script>
 </body>
 

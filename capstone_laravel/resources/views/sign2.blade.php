@@ -74,7 +74,7 @@
               
             
               <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1" style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
-                <form  action="/register" method="POST">
+                <form  action="/sign2" method="POST">
                     @csrf
                     <div id="date-picker-example" class="md-fofvrm md-outline input-with-post-icon datepicker" inline="true">
                         <label for="birthdate"><h1>When is your birthday?</h1></label>
@@ -159,7 +159,16 @@
         
             // Get the dropdown menu element for gender
             var genderDropdownMenu = document.getElementById("genderDropdownMenu");
-        
+             // Add click event listener to dropdown items
+             genderDropdownMenu.addEventListener("click", function(event) {
+                if (event.target && event.target.classList.contains("dropdown-item")) {
+                    var selectedgender = event.target.innerText;
+                    document.getElementById('genderDropdownButton').innerText =
+                        selectedgender; // Update dropdown button text
+                    document.getElementById('gender').value =
+                        selectedgender; // Set the selected school name to the hidden input field
+                }
+            });
             // Iterate over the array and create <li> elements for the gender dropdown
             genders.forEach(function (gender) {
                 var listItem = document.createElement("li");
@@ -183,6 +192,16 @@
             // Get the dropdown menu element for sexual orientation
             var orientationDropdownMenu = document.getElementById("orientationDropdownMenu");
         
+              // Add click event listener to dropdown items
+              orientationDropdownMenu.addEventListener("click", function(event) {
+                if (event.target && event.target.classList.contains("dropdown-item")) {
+                    var selectedorient = event.target.innerText;
+                    document.getElementById('orientationDropdownButton').innerText =
+                        selectedorient; // Update dropdown button text
+                    document.getElementById('sexualorientation').value =
+                        selectedorient; // Set the selected school name to the hidden input field
+                }
+            });
             // Iterate over the array and create <li> elements for the orientation dropdown
             orientations.forEach(function (orientation) {
                 var listItem = document.createElement("li");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -23,7 +24,7 @@ class UserController extends Controller
             'name' => ['required', 'max:30'],
             'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+@lau\.edu$/'],
             'username' => ['required', 'min:3', 'max:30'],
-            'password' => ['required', 'min:8', 'max:30', 'confirmed'], // Ensure password confirmation field is named password_confirmation
+            'password' => ['required', 'min:8', 'max:30','confirmed'], // Ensure password confirmation field is named password_confirmation
         ]);
 
         // Store validated data from page 1 in session
@@ -36,7 +37,7 @@ class UserController extends Controller
     {
         // Retrieve data from session (page 1 data)
         $signupData = $request->session()->get('signup_data');
-
+        //logger($signupData);
         // Check if data exists in session
         if (!$signupData) {
             // Handle case when data is missing
@@ -63,9 +64,10 @@ class UserController extends Controller
             'sexualorientation' => ['required'], 
             'gender' => ['required'], 
         ]);
-
+        $birthdate = date('Y-m-d', strtotime($validatedData['birthdate']));
         // Merge page 1 and page 2 data
         $userData = array_merge($signupData, $validatedData);
+        $userData['birthdate'] = $birthdate;
         logger($userData);
         // Create new user
         $user = User::create([
@@ -80,6 +82,7 @@ class UserController extends Controller
 
         // Clear signup data from session
         $request->session()->forget('signup_data');
+        redirect()->route('step1');
 
         return "User created successfully!";
     }
