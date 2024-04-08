@@ -5,8 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./styles/stylej.css"> -->
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,11 +64,13 @@
                             <label class="form-label" for="form1Example23">Password</label>
                             <input type="password" name ="password" id="form1Example23" class="form-control form-control-lg"
                                 style="background-color:#dcdcdf;" />
+                                <span id="passwordStrengthFeedback" style="color: red;"></span>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form1Example23">Confirm Password</label>
                             <input type="password"name="password_confirmation" id="form1Example234" class="form-control form-control-lg"
                                 style="background-color:#dcdcdf;" />
+                                <span id="passwordMatchError" style="color: red;"></span>
                         </div>
                         <div class="d-flex justify-content-around align-items-center mb-4">
                         </div>
@@ -96,8 +97,58 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
 <script>
-    
+    document.addEventListener('DOMContentLoaded', function () {
+        let passwordInput = document.getElementById('form1Example23');
+        let confirmPasswordInput = document.getElementById('form1Example234');
+        let passwordStrengthFeedback = document.getElementById('passwordStrengthFeedback');
+        let passwordMatchError = document.getElementById('passwordMatchError');
+
+        // Function to check password match when typing in the confirm password field
+        confirmPasswordInput.addEventListener('input', function () {
+            let password = passwordInput.value;
+            let confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                passwordMatchError.innerText = "Passwords do not match";
+            } else {
+                passwordMatchError.innerText = "";
+            }
+        });
+
+        // Function to check password strength when typing in the password field
+        passwordInput.addEventListener('input', function () {
+            let password = passwordInput.value;
+
+            // Evaluate password strength
+            let strength = calculatePasswordStrength(password);
+
+            // Display feedback based on strength
+            if (strength === 'weak') {
+                passwordStrengthFeedback.innerText = "Password is weak. Please choose a stronger password.";
+            } else {
+                passwordStrengthFeedback.innerText = "";
+            }
+        });
+    });
+
+    // Function to calculate password strength
+    function calculatePasswordStrength(password) {
+        // Define criteria for password strength evaluation
+        let hasUppercase = /[A-Z]/.test(password);
+        let hasLowercase = /[a-z]/.test(password);
+        let hasNumber = /\d/.test(password);
+        let hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+        // Check if password meets criteria
+        if (password.length < 8 || !hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) {
+            return 'weak';
+        } else {
+            return 'strong';
+        }
+    }
 </script>
+
+
 </body>
 
 </html>
