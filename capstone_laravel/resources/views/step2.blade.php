@@ -3,12 +3,18 @@
 
 
 
+
+
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
         <p id="textStyle"style="text-align: left;">Tell Us More About You!</p>
 
 
     </div>
+    <form method="POST" action="{{ route('step2') }}">
+
+        @csrf
+
 
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
             <!-- <div id="steps"> -->
@@ -26,8 +32,10 @@
                                     Select Activity 1
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem1">
+                                    id="outdoorItem1" name="outdoorItem1">
                                 </ul>
+                                <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton2"
@@ -36,8 +44,10 @@
                                     Select Activity 2
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem2">
+                                    id="outdoorItem2" name="outdoorItem2">
                                 </ul>
+                                <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton3"
@@ -46,8 +56,10 @@
                                     Select Activity 3
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
-                                    id="outdoorItem3">
+                                    id="outdoorItem3" name="outdoorItem3">
                                 </ul>
+                                <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3">
+
                             </div>
 
 
@@ -67,6 +79,8 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem1">
                                 </ul>
+                                <input type="hidden" id="indoorItem1Hidden" name="indoorItem1">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton2"
@@ -77,6 +91,8 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem2">
                                 </ul>
+                                <input type="hidden" id="indoorItem2Hidden" name="indoorItem2">
+
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton3"
@@ -86,7 +102,10 @@
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem3">
+                                    id="indoorItem3">
                                 </ul>
+                                <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
+
                             </div>
                         </div>
                     </div>
@@ -107,26 +126,31 @@
 
             </div>
             <div id="button-nav">
-                <button type="submit" onclick="goToPrevPage()" class="btn"
+                <button type="button" onclick="goToPrevPage()" class="btn"
                     style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-                <button type="button" onclick="goToNextPage()" class="btn"
+                <button type="submit" onclick="goToNextPage()" class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
+
+        </section>
+        <script>
+            function storeStep2Data() {
+                var formData = {
+                    outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                    outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                    outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                    indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                    indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                    indoorItem3: document.getElementById('indoorItem3Hidden').value,
+                };
+                localStorage.setItem('step2Data', JSON.stringify(formData));
+            }
+        </script>
 
 
     </form>
     </div>
     <script>
-        function goToNextPage() {
-
-            window.location.href = "step3";
-        }
-
-        function goToPrevPage() {
-
-            window.location.href = "step1";
-        }
-
         document.addEventListener("DOMContentLoaded", function() {
 
             // Array of items for the dropdown
@@ -154,13 +178,16 @@
                 var divider3 = document.createElement("hr");
 
                 listItem1.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
                     outdoorActivity + '</a>';
                 listItem2.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
+                    '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
+                    '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
                     outdoorActivity + '</a>';
                 listItem3.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
                     outdoorActivity + '</a>';
 
                 outdoorDropdownMenu1.appendChild(listItem1);
@@ -213,9 +240,79 @@
                 indoorDropdownMenu2.appendChild(divider2);
 
                 indoorDropdownMenu3.appendChild(listItem3);
-
+                indoorDropdownMenu3.appendChild(divider2);
+                
+                indoorDropdownMenu3.appendChild(divider2);
+                
             });
+
+            function updateHiddenInput(selectedItem, hiddenInputId) {
+                var selectedValue = selectedItem.textContent.trim();
+                document.getElementById(hiddenInputId).value = selectedValue;
+            }
+
+
+            // Function to remove or disable the selected activity from all dropdown menus
+            function updateDropdowns(selectedActivity) {
+                var allDropdowns = document.querySelectorAll(".dropdown-menu");
+                allDropdowns.forEach(function(dropdown) {
+                    for (var i = 0; i < dropdown.children.length; i++) {
+                        var listItem = dropdown.children[i];
+                        if (listItem.textContent.trim() === selectedActivity) {
+                            listItem.style.opacity = '0.5'; // Reduce opacity
+                            listItem.style.pointerEvents = 'none'; // Disable pointer events
+                            listItem.style.cursor = 'not-allowed';
+                            break;
+                        }
+                    }
+                });
+            }
+
+
+            // Function to remove or disable the selected activity from all dropdown menus
+            function updateDropdowns(selectedActivity) {
+                var allDropdowns = document.querySelectorAll(".dropdown-menu");
+                allDropdowns.forEach(function(dropdown) {
+                    for (var i = 0; i < dropdown.children.length; i++) {
+                        var listItem = dropdown.children[i];
+                        if (listItem.textContent.trim() === selectedActivity) {
+                            listItem.style.opacity = '0.5'; // Reduce opacity
+                            listItem.style.pointerEvents = 'none'; // Disable pointer events
+                            listItem.style.cursor = 'not-allowed';
+                            break;
+                        }
+                    }
+                });
+            }
+
+            // Function to handle click events on dropdown items
+            function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+                var selectedItem = event.target;
+                updateHiddenInput(selectedItem, hiddenInputId);
+                var selectedActivity = selectedItem.textContent.trim();
+                updateDropdowns(selectedActivity); // Update all dropdown menus
+            }
+
+
+
+            // Add event listeners for each dropdown menu
+            function addEventListenersToDropdowns() {
+                var dropdownMenus = document.querySelectorAll(".dropdown-menu");
+                dropdownMenus.forEach(function(dropdownMenu) {
+                    dropdownMenu.addEventListener("click", function(event) {
+                        var dropdownMenuId = dropdownMenu.id;
+                        var hiddenInputId = dropdownMenuId + "Hidden";
+                        handleDropdownItemClick(event, dropdownMenuId, hiddenInputId);
+                    });
+                });
+            }
+
+            // Call the function to add event listeners when the DOM is loaded
+            addEventListenersToDropdowns();
+            populateStep2Fields();
         });
+
+
 
 
         function updateButtonText(selectedItem, dropdownMenuId, dropdownButtonId) {
@@ -226,6 +323,48 @@
 
             // Update the button text
             dropdownButton.innerText = buttonText;
+        }
+
+        function populateStep2Fields() {
+            var step2Data = JSON.parse(localStorage.getItem('step2Data'));
+            if (step2Data) {
+                var dropdownMenu = document.getElementById(dropdownMenuId);
+                var dropdownButton = document.getElementById(dropdownButtonId);
+
+                document.getElementById('outdoorDropdownMenuButton1').value = step2Data.outdoorItem1;
+                document.getElementById('outdoorDropdownMenuButton2').value = step2Data.outdoorItem2;
+                document.getElementById('outdoorDropdownMenuButton3').value = step2Data.outdoorItem3;
+                document.getElementById('indoorItem1Hidden').value = step2Data.indoorItem1;
+                document.getElementById('indoorItem2Hidden').value = step2Data.indoorItem2;
+                document.getElementById('indoorItem3Hidden').value = step2Data.indoorItem3;
+
+            }
+        }
+
+        function goToPrevPage() {
+            // Store Step 2 data before navigating back to Step 1
+            storeStep2Data();
+            // Redirect to Step 1
+            window.location.href = "{{ route('step1') }}";
+        }
+
+        function goToNextPage() {
+            // Store Step 2 data before navigating back to Step 1
+            storeStep2Data();
+            // Redirect to Step 1
+            window.location.href = "{{ route('step2') }}";
+        }
+
+        function storeStep2Data() {
+            var formData = {
+                outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                indoorItem3: document.getElementById('indoorItem3Hidden').value,
+            };
+            localStorage.setItem('step2Data', JSON.stringify(formData));
         }
     </script>
 </x-stepLayout>

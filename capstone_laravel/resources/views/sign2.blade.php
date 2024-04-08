@@ -5,8 +5,8 @@
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        {{-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> --}}
   
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
@@ -72,15 +72,17 @@
         
               </div>
               
-              <!-- <img class="animated-element" src="../Assets/image1.png" style="height:20px; width:20px"> -->
-                <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1" style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
+            
+              <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1" style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
+                <form  action="/sign2" method="POST">
+                    @csrf
                     <div id="date-picker-example" class="md-fofvrm md-outline input-with-post-icon datepicker" inline="true">
                         <label for="birthdate"><h1>When is your birthday?</h1></label>
                         <br>
                         <input placeholder = "Select your birthdate" type="text" id="birthdate" name="birthdate" class="txtfield" style="border-radius:5%;border:none ;background-color:#579792; color:white">
                         <br>
                     </div>
-                <div class="col">
+                    <div class="col">
                         
                         <div id="division1">
                             <h1 id="step-title">What is your gender?</h1>
@@ -94,13 +96,14 @@
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="genderDropdownMenu">
                                 </ul>
+                                <input type="hidden" name="gender" id="gender">
                             </div>
                            
                             
 
                         </div>
                     </div>
-                    <div class="col">
+                        <div class="col">
                     
                             
                             <div id="division2">
@@ -115,6 +118,7 @@
                                     <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                         id="orientationDropdownMenu">
                                     </ul>
+                                    <input type="hidden" name ="sexualorientation" id="sexualorientation">
                                 </div>
                                
                                 
@@ -124,27 +128,29 @@
                         <div style ="text-align: center;">
                   <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "/step1" style="text-decoration:none; color:black" >SUBMIT</a></button>
                   </div>
+                </form>
                 </div>
             
-              </div>
-            </div>
-          </section>
+           </div>
+        </div>
+    </section>
     </body>
     <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize Datepicker
+            
             $("#birthdate").datepicker({
                 changeMonth: true,
                 changeYear: true,
-                yearRange: 'c-100:c', // Allows selecting from 100 years ago to the current year
-                dateFormat: 'yy-mm-dd' // Sets the date format to YYYY-MM-DD
+                yearRange: 'c-100:c', 
+                dateFormat: 'yy-mm-dd'
             });
         });
         
         document.addEventListener("DOMContentLoaded", function () {
-        
-            // Array of gender options
             var genders = [
                 "Male",
                 "Female",
@@ -153,7 +159,16 @@
         
             // Get the dropdown menu element for gender
             var genderDropdownMenu = document.getElementById("genderDropdownMenu");
-        
+             // Add click event listener to dropdown items
+             genderDropdownMenu.addEventListener("click", function(event) {
+                if (event.target && event.target.classList.contains("dropdown-item")) {
+                    var selectedgender = event.target.innerText;
+                    document.getElementById('genderDropdownButton').innerText =
+                        selectedgender; // Update dropdown button text
+                    document.getElementById('gender').value =
+                        selectedgender; // Set the selected school name to the hidden input field
+                }
+            });
             // Iterate over the array and create <li> elements for the gender dropdown
             genders.forEach(function (gender) {
                 var listItem = document.createElement("li");
@@ -177,6 +192,16 @@
             // Get the dropdown menu element for sexual orientation
             var orientationDropdownMenu = document.getElementById("orientationDropdownMenu");
         
+              // Add click event listener to dropdown items
+              orientationDropdownMenu.addEventListener("click", function(event) {
+                if (event.target && event.target.classList.contains("dropdown-item")) {
+                    var selectedorient = event.target.innerText;
+                    document.getElementById('orientationDropdownButton').innerText =
+                        selectedorient; // Update dropdown button text
+                    document.getElementById('sexualorientation').value =
+                        selectedorient; // Set the selected school name to the hidden input field
+                }
+            });
             // Iterate over the array and create <li> elements for the orientation dropdown
             orientations.forEach(function (orientation) {
                 var listItem = document.createElement("li");
