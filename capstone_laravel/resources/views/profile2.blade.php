@@ -71,7 +71,7 @@
                         style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
                         Bio
                         <input class="form-control" readonly type="text"
-                            value="{{ $userData['step3Data']['description'] }}" aria-label="readonly input example"
+                            value="{{ $userData['step3Data']['description'] }}" id = "description"
                             style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
                     </div>
 
@@ -235,6 +235,7 @@
                     major: document.getElementById("major").value,
                     minor: document.getElementById("minor").value,
                     campus: document.getElementById("campus").value,
+                    description: document.getElementById("description").value,
                     outdoorItem1: document.getElementById("outdoorItem1").value,
                     outdoorItem2: document.getElementById("outdoorItem2").value,
                     outdoorItem3: document.getElementById("outdoorItem3").value,
@@ -261,6 +262,7 @@
             document.getElementById("major").removeAttribute("readonly");
             document.getElementById("minor").removeAttribute("readonly");
             document.getElementById("campus").removeAttribute("readonly");
+            document.getElementById("description").removeAttribute("readonly");
             document.getElementById("outdoorItem1").removeAttribute("readonly");
             document.getElementById("outdoorItem2").removeAttribute("readonly");
             document.getElementById("outdoorItem3").removeAttribute("readonly");
@@ -306,6 +308,7 @@
             document.getElementById("major").style.backgroundColor = "#579792";
             document.getElementById("minor").style.backgroundColor = "#579792";
             document.getElementById("campus").style.backgroundColor = "#579792";
+            document.getElementById("description").style.backgroundColor = "#579792";
             document.getElementById("outdoorItem1").style.backgroundColor = "#579792";
             document.getElementById("outdoorItem2").style.backgroundColor = "#579792";
             document.getElementById("outdoorItem3").style.backgroundColor = "#579792";
