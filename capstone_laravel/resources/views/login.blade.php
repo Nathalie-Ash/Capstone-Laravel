@@ -75,7 +75,9 @@
           {{-- </div> --}}
         </br>
           </br>
-            <span>Don't have an account? </span><a href="/signup" style="text-decoration: none; color:#ff6f28;">SIGN UP</a>
+         
+      
+            <span>Don't have an account? </span><a href="{{ route('signup') }}" style="text-decoration: none; color:#ff6f28;">SIGN UP</a>
           </div>
           
           <!-- <div class="divider d-flex align-items-center my-4">

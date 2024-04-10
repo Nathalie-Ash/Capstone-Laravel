@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Log;
@@ -10,16 +11,15 @@ class PreferencesController extends Controller
 {
     public function showStep1(Request $request)
     {
-        if (!$request->session()->has('user_id'))
-        {
+        if (!$request->session()->has('user_id')) {
             return redirect()->route('signup'); // Redirect to signup page if user ID is present
         }
-    
-    return view('step1'); 
+
+        return view('step1');
     }
     public function storeStep1(Request $request)
     {
-        
+
         $incomingFields = $request->all();
         logger($incomingFields); // Log the incoming data
 
@@ -30,7 +30,7 @@ class PreferencesController extends Controller
             'campus' => 'required',
         ]);
 
-    
+
         $request->session()->put('user_preferences.step1', $validatedData);
 
         return redirect()->route('step2');
@@ -147,8 +147,8 @@ class PreferencesController extends Controller
         // Merge all the data
         $userData = array_merge($step1Data, $step2Data, $step3Data, $validatedData);
 
-    // Set the user ID as the first element in the array
-    $userData['user_id'] = $userId;
+        // Set the user ID as the first element in the array
+        $userData['user_id'] = $userId;
         logger($userData);
 
         // Store data in the database
@@ -162,22 +162,25 @@ class PreferencesController extends Controller
         return redirect()->route('dashboard');
     }
     public function goToDashboard()
-    {   
+    {
 
         return view('dashboard');
     }
 
-    public function displayProfile2(Request $request)
-{
-    // Retrieve user preferences data from the session
-    $userData = [
-        'step1Data' => $request->session()->get('user_preferences.step1'),
-        'step2Data' => $request->session()->get('user_preferences.step2'),
-        'step3Data' => $request->session()->get('user_preferences.step3'),
-        'step4Data' => $request->session()->get('user_preferences.step4')
-    ];
 
-    // Pass the collected data to the profile2 view
-    return view('profile2', compact('userData'));
-}
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Assuming authentication is required for profile1 page
+        $this->displayProfile2(); // Call the displayProfile1 method automatically
+    }
+
+    public function displayProfile2()
+    {
+        // Retrieve user data from the database
+        $userData = User::find(auth()->id());
+
+        // Render the profile1 view with user data
+        return view('profile2', compact('userData'));
+    }
 }

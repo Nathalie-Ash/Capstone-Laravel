@@ -1,0 +1,276 @@
+[33mcommit 36f30b8c2a152609c01d50b3c9ec75fc820963ed[m[33m ([m[1;36mHEAD -> [m[1;32mNathalie[m[33m, [m[1;31morigin/Nathalie[m[33m)[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 20:19:38 2024 +0300
+
+    please
+
+[33mcommit 85aa4eafaea38762d3bb5fedd79a6740b90f58c6[m
+Merge: b97519e d42be14
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 20:18:38 2024 +0300
+
+    i m begging you
+
+[33mcommit b97519efb94bd7946371f02f0d74418ffa89dc3e[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 20:16:17 2024 +0300
+
+    This is the final version
+
+[33mcommit 0aea520a89cdfe8305382b7174473aeaf98e828b[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 20:32:23 2024 +0300
+
+    Fixed readonly and edit in steps and profile2
+
+[33mcommit acfaab0ea17090a02f7bb332a37886dfc31bef3b[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 19:24:44 2024 +0300
+
+    Diff changes
+
+[33mcommit 9ee34a186788f1d4eca26bd38d7410b569df324e[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 11:19:16 2024 +0300
+
+    Minor fixes
+
+[33mcommit 5beeaf49a7e0cc73c1adfa9d4f62862f23d92c23[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 20:32:23 2024 +0300
+
+    Fixed readonly and edit in steps and profile2
+
+[33mcommit 3862b88228a44ab2514f6b9b007f0459c97b9eda[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 19:24:44 2024 +0300
+
+    Diff changes
+
+[33mcommit fb4772580f87f262861f314f1397d6c0dbeb023e[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 12:44:25 2024 +0200
+
+    Profile 2 now displayes user preferences
+
+[33mcommit b13a6f1c0c6371f05c8e9d450ceb3e1bcda8a3d9[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 08:10:45 2024 +0300
+
+    login/signup
+
+[33mcommit 59ff4615e839453dc4c7d10eef4c1c0659806811[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 12:44:25 2024 +0200
+
+    Profile 1 now displayes user preferences
+
+[33mcommit 4505a3508ac357fdd59e521f9b36c917f1052363[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:11:25 2024 +0200
+
+    Connected to Database
+
+[33mcommit 98433b21dd0e7953f691e5a6f3652223f8fe5eeb[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:00:36 2024 +0200
+
+    Data is now collected between pages
+
+[33mcommit 5d4accd2783d65ae3360ceee52c88bdc264c0df3[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Sat Mar 30 12:59:51 2024 +0200
+
+    ntori
+
+[33mcommit f6b48212e8c96c3f219b2a4456b5cb466f8d3a7e[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Fri Mar 29 15:42:24 2024 +0200
+
+    Fixed merges
+
+[33mcommit e92e47d1a76ba320cf216214cab4317105e86f59[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Wed Mar 27 11:56:59 2024 +0200
+
+    Trying to fix the merged changes
+
+[33mcommit d42be148727a4f32d9eeb09bd0a7eb9d2bb47b78[m[33m ([m[1;31morigin/Jana[m[33m)[m
+Merge: 846c9b1 482d634
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 11:59:15 2024 +0300
+
+    Fixesplease
+
+[33mcommit 846c9b1a759809bfe162dcdeae7a0110298e4589[m
+Merge: 97f3802 99cb06f
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 11:56:44 2024 +0300
+
+    Merge branch 'Jana' of https://github.com/Nathalie-Ash/Capstone-Laravel into Jana
+
+[33mcommit 97f38028a9e570418c2efc4315c82173bd1651ee[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 11:56:09 2024 +0300
+
+    database
+
+[33mcommit 482d6341e5bee0b29053ab0d04786505478380db[m
+Merge: 64ca511 e46c3a0
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 11:51:01 2024 +0300
+
+    fixed conflicts
+
+[33mcommit 64ca511f85d639e72093e98ef189d1d01738716c[m
+Merge: 4c05f65 99cb06f
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 11:46:20 2024 +0300
+
+    cleaning working tree
+
+[33mcommit 99cb06fea3c0808fcb337f4d8c7f8d3a6e3419d8[m
+Merge: 64bc2ba 297a977
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 11:43:28 2024 +0300
+
+    fixing merges
+
+[33mcommit 4c05f652f3caa9836fda48207cd42f32819be3b7[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 11:19:16 2024 +0300
+
+    Minor fixes
+
+[33mcommit fe1db96eded39390dc4c00c7246015cf6d3e6691[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 20:32:23 2024 +0300
+
+    Fixed readonly and edit in steps and profile2
+
+[33mcommit 2f80de4e6793c2e83339f0f7a95cef9b03ea6175[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 19:24:44 2024 +0300
+
+    Diff changes
+
+[33mcommit 96933285b6bba3ad60e86e0da1fea303be1672cd[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 12:44:25 2024 +0200
+
+    Profile 2 now displayes user preferences
+
+[33mcommit d74b580e17372ac9d11d8cbb14fba91c119f0939[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:11:25 2024 +0200
+
+    Connected to Database
+
+[33mcommit bb3230d2772dc63d7b96830284544fdc84fda1fb[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:00:36 2024 +0200
+
+    Data is now collected between pages
+
+[33mcommit e46c3a0d94cd3a5cc354f80f299071dc8cb28892[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Mon Apr 8 11:19:16 2024 +0300
+
+    Minor fixes
+
+[33mcommit 64bc2baddb3f96545f629f77bbfa4b56881f5e10[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 11:18:47 2024 +0300
+
+    login/signup
+
+[33mcommit 4d18100136c345db31cbda9d2bac478f985acb30[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Mon Apr 8 08:10:45 2024 +0300
+
+    login/signup
+
+[33mcommit a7c0d7d53f1bac6d9ba4b36f0ff7a8f1bd050e0c[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 20:32:23 2024 +0300
+
+    Fixed readonly and edit in steps and profile2
+
+[33mcommit c66f79d1d831f26d5b15f6efbdaf067bea136257[m
+Merge: 60cb83e 297a977
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 19:25:24 2024 +0300
+
+    Merge branch 'Jana' of https://github.com/Nathalie-Ash/Capstone-Laravel into Nathalie
+
+[33mcommit 60cb83ec3f9047f9eeab23bd0e494e41598a55f8[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sun Apr 7 19:24:44 2024 +0300
+
+    Diff changes
+
+[33mcommit 4eead78e227594d324af9bbee8f269a41951760d[m
+Merge: c9e9946 8a08b3a
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Sat Mar 30 13:05:24 2024 +0200
+
+    merged?!
+
+[33mcommit c9e99464476f2e4377baacb5f5d0d88344dfb400[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Sat Mar 30 12:59:51 2024 +0200
+
+    ntori
+
+[33mcommit 8a08b3af60c04212fe624dad036e1403780fe596[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 12:44:25 2024 +0200
+
+    Profile 2 now displayes user preferences
+
+[33mcommit 6963729048069576dcd03fee95097f15a9cd8134[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:11:25 2024 +0200
+
+    Connected to Database
+
+[33mcommit 6c4063e8a4221a2a455ae788c7b90b8b7eb8f308[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Sat Mar 30 01:00:36 2024 +0200
+
+    Data is now collected between pages
+
+[33mcommit b9353736565853990d6ba50ba9432988ac8f0bbf[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Fri Mar 29 15:42:24 2024 +0200
+
+    Fixed UI and bootstrap
+
+[33mcommit cc2db7faad9420e0b3e0ca17294e1c2f7c26f43f[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Wed Mar 27 11:56:59 2024 +0200
+
+    Fixed bootstrap and added images
+
+[33mcommit 297a9774723aebfa3eb0e312cdcd5533ebef7f07[m[33m ([m[1;32mjana[m[33m)[m
+Merge: bb737c0 0d32cc9
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Sat Mar 30 00:25:40 2024 +0200
+
+    help
+
+[33mcommit bb737c08c40e00f3e2f1d4ad7be5e6682dfed56c[m
+Author: janabardan <janaalbardan04@gmail.com>
+Date:   Fri Mar 29 23:29:22 2024 +0200
+
+    enu mneeh rehet aa sign2
+
+[33mcommit 0d32cc913765bffb1b1ebb4eb4bf02c4a7d4011e[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Fri Mar 29 23:07:32 2024 +0200
+
+    added sessions and took data from 1 to 2 to 3
+
+[33mcommit ba64bca398bb90748fa68e6803576d296b57ada3[m
+Author: NATHALIE\hp <elashkarnathalie@gmail.com>
+Date:   Fri Mar 29 20:19:32 2024 +0200
