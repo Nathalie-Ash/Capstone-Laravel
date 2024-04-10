@@ -100,4 +100,22 @@ class UserController extends Controller
         
 
     }
+
+    
+
+    public function __construct()
+    {
+        $this->middleware('auth'); // Assuming authentication is required for profile1 page
+        $this->displayProfile1(); // Call the displayProfile1 method automatically
+    }
+
+    public function displayProfile1()
+    {
+        // Retrieve user data from the database
+        $userData = User::find(auth()->id());
+
+        // Render the profile1 view with user data
+        return view('profile1', compact('userData'));
+    }
+    
 }

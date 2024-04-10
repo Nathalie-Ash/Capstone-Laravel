@@ -5,6 +5,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,7 @@ Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
 Route::get('profile2', [PreferencesController::class, 'displayProfile2'])->name('profile2');
+Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profile1');
 
 
 // Route::post('/register', [UserController::class,"register"]);

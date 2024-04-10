@@ -105,7 +105,7 @@
                         <div id="division3" class="input">
                             <h1 id="step-title" style="padding-bottom: 30px">Tell Us More About You</h1>
                             <textarea id="description" name="description"
-                                style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;"></textarea>
+                                style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;color: white;"></textarea>
 
                         </div>
                     </div>

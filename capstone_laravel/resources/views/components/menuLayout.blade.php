@@ -29,55 +29,58 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <div id="topNav">
-        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
-        style="width: 50px;">
-        <i class="fas fa-bars fa-3x" style="color: #579792;"></i>
-    </a>
-        
+        <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+            aria-controls="offcanvasExample" style="width: 50px;">
+            <i class="fas fa-bars fa-3x" style="color: #579792;"></i>
+        </a>
+
     </div>
-   
 
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
-    style="width: 20%;">
-    <div class="offcanvas-header" style="background-color:#579792">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body" style="background-color:#579792">
 
-        <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
-            <span style="text-align: center;font-size: large">JOHN DOE</span>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
+        style="width: 20%;">
+        <div class="offcanvas-header" style="background-color:#579792">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="background-color:#579792">
 
-            <a href="/profile1" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792">
-                <i class="fas fa-user fa-fw me-3"></i><span>MY PROFILE</span>
-            </a>
-            <a href="/dashboard" class="list-group-item list-group-item-action py-2 ripple"
-                style="background-color:#579792"><i
-                    class="fas fa-th-large fa-fw me-3"></i><span>DASHBOARD</span></a>
-            <a href="/connections" class="list-group-item list-group-item-action py-2 ripple"
-                style="background-color:#579792"><i
-                    class="fas fa-address-book fa-fw me-3"></i><span>CONNECTIONS</span></a>
-            <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
-                style="background-color:#579792"><i
-                    class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
-                    <a href="{{ route('logout') }}" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792"
+            <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
+                <span style="text-align: center;font-size: large">JOHN DOE</span>
+
+                <a href="profile1" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792">
+                    <i class="fas fa-user fa-fw me-3"></i><span>MY PROFILE</span>
+                </a>
+                <a href="/dashboard" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792"><i
+                        class="fas fa-th-large fa-fw me-3"></i><span>DASHBOARD</span></a>
+                <a href="/connections" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792"><i
+                        class="fas fa-address-book fa-fw me-3"></i><span>CONNECTIONS</span></a>
+                <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792"><i
+                        class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
+                <a href="{{ route('logout') }}" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt fa-fw me-3"></i><span style="color:#a43838">Sign Out</span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-                
-        </div>
 
+            </div>
+
+        </div>
     </div>
-</div>
 
 
     {{ $slot }}
 
-    <footer class=" fixed-bottom text-center small text-muted py-2" style ="
+    <footer class=" fixed-bottom text-center small text-muted py-2"
+        style ="
         position: relative;
         bottom: 0;
         left: 0;

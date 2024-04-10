@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // assuming users table name is 'users'
             $table->string('school');
             $table->string('major');
-            $table->string('minor')->nullable();
+            $table->string('minor')->nullable()->default('N/A');;
             $table->string('campus');
             $table->string('outdoorItem1');
             $table->string('outdoorItem2');
