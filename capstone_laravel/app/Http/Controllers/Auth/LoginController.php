@@ -51,4 +51,11 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
     }
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Log the user out
+        $request->session()->invalidate(); // Invalidate the session
+        $request->session()->regenerateToken(); // Regenerate the CSRF token
+        return redirect('/'); // Redirect to the home page or any other page after logout
+    }
 }

@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div style ="text-align: center;">
-                  <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;"><a href = "/step1" style="text-decoration:none; color:black" >SUBMIT</a></button>
+                  <button type= "submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28; color:black">SUBMIT</button>
                   </div>
                 </form>
                 </div>

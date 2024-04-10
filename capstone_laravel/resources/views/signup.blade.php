@@ -31,14 +31,12 @@
 
 <body>
     <section class="vh-100">
-        <div class="container py-5 h-100">
+        <div class="container py-5 h-100" style="padding: 0%">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="text">
-                    <h2>Build Your Profile</h2>
-                </div>
+                
 
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1"
-                    style ="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
+                    style ="border-radius: 3%;background-color: #f7f5f5; padding:1.25%">
                       <form action ="/signup" method ="POST">
                         @csrf
                         <!-- Email input -->
@@ -72,20 +70,25 @@
                                 style="background-color:#dcdcdf;" />
                                 <span id="passwordMatchError" style="color: red;"></span>
                         </div>
-                        <div class="d-flex justify-content-around align-items-center mb-4">
-                        </div>
+                        {{-- <div class="d-flex justify-content-around align-items-center mb-4">
+                        </div> --}}
 
                         <div style ="text-align: center;">
 
                             <button type= "submit" class="btn btn-primary btn-lg btn-block"
                                 style="border: none;background-color:#ff6f28;"><a href = "./sign2"
                                     style="text-decoration:none;color:black">NEXT</a></button>
+                        </br>
+                            <span>Already have an account? </span><a href="/" style="text-decoration: none; color:#ff6f28;">LOG IN</a>
                         </div>
 
                     </form>
                 </div>
-
+                
                 <div class="col-md-8 col-lg-7 col-xl-6">
+                    <div class="text">
+                        <h2>Build Your Profile</h2>
+                    </div>
                     <img src={{ asset('images/image5.png') }} class="img-fluid" alt="Phone image" style="height:500px">
 
 
