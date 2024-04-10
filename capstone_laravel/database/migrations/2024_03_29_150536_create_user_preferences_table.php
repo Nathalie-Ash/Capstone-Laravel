@@ -12,6 +12,8 @@ return new class extends Migration
     {
         Schema::create('user_preferences', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // assuming users table name is 'users'
             $table->string('school');
             $table->string('major');
             $table->string('minor')->nullable();

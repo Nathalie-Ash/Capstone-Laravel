@@ -17,7 +17,8 @@ class UserController extends Controller
 
     public function handlePage1(Request $request)
 
-    {     $incomingFields = $request->all();
+    {    
+        $incomingFields = $request->all();
         logger($incomingFields); // Log the incoming data
         
         $validatedData = $request->validate([
@@ -51,8 +52,7 @@ class UserController extends Controller
     {
         // Retrieve data from session (page 1 data)
         $signupData = $request->session()->get('signup_data');
-        logger($signupData);
-        // Check if data exists in session
+       
         if (!$signupData) {
             // Handle case when data is missing
             return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
@@ -64,12 +64,17 @@ class UserController extends Controller
             'sexualorientation' => ['required'], 
             'gender' => ['required'], 
         ]);
+        
+        logger($validatedData);
         $birthdate = date('Y-m-d', strtotime($validatedData['birthdate']));
+
         // Merge page 1 and page 2 data
         $userData = array_merge($signupData, $validatedData);
         $userData['birthdate'] = $birthdate;
+        
         logger($userData);
         // Create new user
+
         $user = User::create([
             'name' => $userData['name'],
             'email' => $userData['email'],
@@ -80,10 +85,19 @@ class UserController extends Controller
             'gender' => $userData['gender'], 
         ]);
 
-        // Clear signup data from session
-        $request->session()->forget('signup_data');
-        redirect()->route('step1');
+        $user = User::where('email', $userData['email'])->first();
 
-        return "User created successfully!";
+        if ($user) {
+            $userId = $user->id;
+            $request->session()->put('user_id', $userId);
+            $request->session()->forget('signup_data');
+
+        return redirect()->route('steps');
+        } 
+        else{
+            return 'user nu uh';
+        }
+        
+
     }
 }

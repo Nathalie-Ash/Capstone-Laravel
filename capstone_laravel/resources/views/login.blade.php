@@ -1,4 +1,4 @@
-?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -70,8 +70,14 @@
           </div>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;">Sign in</button>
-
+          <div style="text-align: center">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" style="border: none;background-color:#ff6f28;">SIGN IN</button>
+          {{-- </div> --}}
+        </br>
+          </br>
+            <span>Don't have an account? </span><a href="/signup" style="text-decoration: none; color:#ff6f28;">SIGN UP</a>
+          </div>
+          
           <!-- <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
           </div> -->

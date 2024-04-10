@@ -61,10 +61,14 @@
             <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
                 style="background-color:#579792"><i
                     class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792">
-                <i class="fa-solid fa-right-from-bracket" style="background-color: black;"></i><span
-                    style="color:#a43838">SIGN OUT</span>
-            </a>
+                    <a href="{{ route('logout') }}" class="list-group-item list-group-item-action py-2 ripple" style="background-color:#579792"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt fa-fw me-3"></i><span style="color:#a43838">Sign Out</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                
         </div>
 
     </div>

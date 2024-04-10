@@ -8,19 +8,29 @@ use Illuminate\Support\Facades\Log;
 
 class PreferencesController extends Controller
 {
+    public function showStep1(Request $request)
+    {
+        if (!$request->session()->has('user_id'))
+        {
+            return redirect()->route('signup'); // Redirect to signup page if user ID is present
+        }
+    
+    return view('step1'); 
+    }
     public function storeStep1(Request $request)
     {
+        
         $incomingFields = $request->all();
         logger($incomingFields); // Log the incoming data
 
         $validatedData = $request->validate([
             'school' => 'required',
             'major' => 'required',
-            'minor' => 'required',
+            'minor',
             'campus' => 'required',
         ]);
 
-
+    
         $request->session()->put('user_preferences.step1', $validatedData);
 
         return redirect()->route('step2');
@@ -28,8 +38,13 @@ class PreferencesController extends Controller
 
     public function showStep2(Request $request)
     {
+
         // Retrieve data from session
         $step1Data = $request->session()->get('user_preferences.step1');
+        if (!$step1Data) {
+            // Handle case when data is missing
+            return redirect()->route('step1')->with('error', 'Please fill out page 1 form first');
+        }
 
         return view('step2', compact('step1Data'));
     }
@@ -69,6 +84,10 @@ class PreferencesController extends Controller
     {
         // Retrieve data from session
         $step2Data = $request->session()->get('user_preferences.step2');
+        if (!$step2Data) {
+            // Handle case when data is missing
+            return redirect()->route('step2')->with('error', 'Please fill out page 2 form first');
+        }
 
         return view('step3', compact('step2Data'));
     }
@@ -101,6 +120,10 @@ class PreferencesController extends Controller
     {
         // Retrieve data from session
         $step3Data = $request->session()->get('user_preferences.step3');
+        if (!$step3Data) {
+            // Handle case when data is missing
+            return redirect()->route('step3')->with('error', 'Please fill out page 3 form first');
+        }
 
         return view('step4', compact('step3Data'));
     }
@@ -109,7 +132,7 @@ class PreferencesController extends Controller
 
     public function storeStep4(Request $request)
     {
-
+        $userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
             'displayName' => 'required',
@@ -122,7 +145,10 @@ class PreferencesController extends Controller
         $step3Data = $request->session()->get('user_preferences.step3');
 
         // Merge all the data
-        $userData = $step1Data + $step2Data + $step3Data + $validatedData;
+        $userData = array_merge($step1Data, $step2Data, $step3Data, $validatedData);
+
+    // Set the user ID as the first element in the array
+    $userData['user_id'] = $userId;
         logger($userData);
 
         // Store data in the database

@@ -38,11 +38,13 @@ Route::get('profile2', [PreferencesController::class, 'displayProfile2'])->name(
 Route::get('/signup', [UserController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [UserController::class, 'handlePage1']);
 Route::get('/sign2', [UserController::class, 'showPage2'])->name('sign2');
-Route::post('/sign2', [UserController::class, 'register']);
+Route::post('/sign2', [UserController::class, 'register'])->name('register');
 
-// Auth::routes();
+Auth::routes();
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('step1', [PreferencesController::class, 'showStep1'])->name('steps');
 Route::post('step1', [PreferencesController::class, 'storeStep1'])->name('step1');
 Route::get('step2', [PreferencesController::class, 'showStep2'])->name('step2');
 
@@ -54,24 +56,6 @@ Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
 Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
-Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
 
 Route::post('/updateUserData', 'UserController@updateUserData')->name('updateUserData');
 
-Route::post('/updateUserData', 'UserController@updateUserData')->name('updateUserData');
-
-// Route::post('/step1', function () {
-//     return redirect('/step2'); 
-// });
-
-// Route::post('/step2', function () {
-//     return redirect('/step3'); 
-// });
-
-// Route::post('/step3', function () {
-//     return redirect('/step4'); 
-// });
-
-// Route::post('/step4', function () {
-//     return redirect('/dashboard'); 
-// });
