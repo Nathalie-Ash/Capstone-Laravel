@@ -137,7 +137,6 @@ class PreferencesController extends Controller
         //$userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
-            'displayName' => 'required',
             'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
         ]);

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('sexualorientation');
             $table->string('gender');
-            $table->string('deleted');
+            $table->tinyInteger('deleted')->default(0);
         });
     }
 

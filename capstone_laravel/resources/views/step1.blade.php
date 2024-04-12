@@ -102,20 +102,20 @@
 
     </section>
     <!-- Within the Form in Step 1 View -->
-<script>
-    // Function to store Step 1 data in local storage
-    function storeStep1Data() {
-        var formData = {
-            school: document.getElementById('school').value,
-            major: document.getElementById('major').value,
-            minor: document.getElementById('minor').value,
-            campus: document.querySelector('input[name="campus"]:checked').value
-        };
-        localStorage.setItem('step1Data', JSON.stringify(formData));
-        document.getElementById('dropdownMenuButton').innerText = formData.school;
+    <script>
+        // Function to store Step 1 data in local storage
+        function storeStep1Data() {
+            var formData = {
+                school: document.getElementById('school').value,
+                major: document.getElementById('major').value,
+                minor: document.getElementById('minor').value,
+                campus: document.querySelector('input[name="campus"]:checked').value
+            };
+            localStorage.setItem('step1Data', JSON.stringify(formData));
+            document.getElementById('dropdownMenuButton').innerText = formData.school;
 
-    }
-</script>
+        }
+    </script>
 
     </form>
 
@@ -131,7 +131,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 
-     {{-- <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Array of items for the dropdown
             var schools = [
@@ -429,9 +429,9 @@
         }
     </script>
      --}}
-    
 
-     <script>
+
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Array of items for the dropdown
             var schools = [
@@ -443,10 +443,10 @@
                 "Alice Ramez Chagoury School of Nursing",
                 "School of Pharmacy"
             ];
-    
+
             // Get the dropdown menu element
             var dropdownMenu = document.getElementById("dropdownItems");
-    
+
             // Add click event listener to dropdown items
             dropdownMenu.addEventListener("click", function(event) {
                 if (event.target && event.target.classList.contains("dropdown-item")) {
@@ -457,37 +457,46 @@
                         selectedSchool; // Set the selected school name to the hidden input field
                 }
             });
-    
+
             // Populate dropdown menu with school options
-            schools.forEach(function(school) {
+            schools.forEach(function(school, index) {
                 var listItem = document.createElement("li");
                 listItem.innerHTML =
                     '<a class="dropdown-item" href="#" style="color:white;">' +
                     school + '</a>';
+
                 dropdownMenu.appendChild(listItem);
+
+                // Add a divider after each item except for the last one
+                if (index < schools.length - 1) {
+                    var divider = document.createElement("div");
+                    divider.className = "dropdown-divider";
+                    dropdownMenu.appendChild(divider);
+                }
             });
-    
+
+
             var campusRadios = document.querySelectorAll('input[name="campus"]');
-    
+
             // Get the hidden input field to store selected campus ID
             var campusInput = document.getElementById("campus_id");
-    
+
             // Add change event listener to radio buttons
             campusRadios.forEach(function(radio) {
                 radio.addEventListener("change", function() {
                     if (this.checked) {
                         campusInput.value = this
-                        .value; // Update hidden input field with selected campus ID
+                            .value; // Update hidden input field with selected campus ID
                         console.log("Selected Campus ID:", campusInput
-                        .value); // Log selected campus ID
+                            .value); // Log selected campus ID
                     }
                 });
             });
-    
+
             // Call the function to populate Step 1 fields when the page loads
             populateStep1Fields();
         });
-    
+
         function populateStep1Fields() {
             var step1Data = JSON.parse(localStorage.getItem('step1Data'));
             if (step1Data) {
@@ -502,14 +511,14 @@
                 });
             }
         }
-    
+
         function goToPrevPage() {
             // Store Step 2 data before navigating back to Step 1
             storeStep1Data();
             // Redirect to Step 1
             window.location.href = "{{ route('step2') }}";
         }
-    
+
         function sendStep1Data() {
             var formData = {
                 school: document.getElementById('school').value,
@@ -519,30 +528,30 @@
             };
             // Send the form data to the server using AJAX
             fetch("{{ route('step1') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Redirect to Step 2 upon successful submission
-                    window.location.href = "{{ route('step2') }}";
-                } else {
-                    // Handle errors if needed
-                    console.error('Failed to send Step 1 data');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirect to Step 2 upon successful submission
+                        window.location.href = "{{ route('step2') }}";
+                    } else {
+                        // Handle errors if needed
+                        console.error('Failed to send Step 1 data');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
-    
+
         function storeStep1Data() {
             // No longer needed since data is stored on the server-side
         }
     </script>
-    
+
 </x-stepLayout>
