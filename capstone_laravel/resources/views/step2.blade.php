@@ -20,7 +20,14 @@
             <!-- <div id="steps"> -->
 
             <div class="container text-center" style="flex: 1;">
+
                 <div class="row">
+                    <div class="col">
+                        
+                        <div >
+                          <img src={{ asset('images/friends_picture.png') }} style="height: 350px;" >
+                          </div> 
+                      </div>
                     <div class="col">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division1">
@@ -109,17 +116,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <img class="animated-element" src={{ asset('images/image1.png') }}>
-                        <div id="division3" class="input">
-
-                            <h1 id="step-title">Pick 3 </h1>
-                            <input type="text" placeholder="1." style="margin-bottom: 15px;">
-                            <input type="text" placeholder="2." style="margin-bottom: 15px;">
-                            <input type="text" placeholder="3." style="margin-bottom: 15px;">
-
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
 

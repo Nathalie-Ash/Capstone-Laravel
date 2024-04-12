@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // assuming users table name is 'users'
             $table->string('school');
             $table->string('major');
-            $table->string('minor')->nullable()->default('N/A');;
+            $table->string('minor')->nullable()->default('N/A');
             $table->string('campus');
             $table->string('outdoorItem1');
             $table->string('outdoorItem2');
@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('musicItem3');
             $table->string('description');
             $table->string('displayName');
+            $table->string('avatar')->nullable();
+            $table->string('timetable_path')->nullable();
             $table->timestamps(); // Add timestamps columns
         });
     }
@@ -42,6 +44,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('user_preferences');    
+        
     }
 };
 

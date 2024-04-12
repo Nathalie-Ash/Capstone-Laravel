@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -36,7 +37,9 @@ class userPreferences extends Model
         'movieItem2',
         'movieItem3',
         'description',
+        'avatar',
         'displayName',
+        'timetable'
     
     ];
 
