@@ -123,12 +123,10 @@
                         <img src={{ asset('images/placeholder.png') }} class="card-img-top" style="height: 20%;">
 
                         <div class="card-body">
-                            <h1 class="card-title" style="font-size: 30px;">John Doe</h1>
-                            <p style="font-size: 15px; font-weight: lighter">Computer Science, Beirut Campus
+                            <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>
+                            <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }}
                             <p>
-                            <p class="card-text" style=" font-weight: normal">A first year computer science student who
-                                is looking for people who
-                                like video games, board games and chess </p>
+                            <p class="card-text" style=" font-weight: normal">{{ $userPreferences->description }} </p>
 
                             <div class="progress-container">
                                 <span>MATCH:</span>
@@ -166,7 +164,7 @@
                                     style="width:fit-content;">Activity 1</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Running">
+                                        value="{{ $userPreferences->outdoorItem1 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -174,7 +172,7 @@
                                     style="width:fit-content;">Activity 2</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Swimming">
+                                        value="{{ $userPreferences->outdoorItem2 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -182,7 +180,7 @@
                                     style="width:fit-content;">Activity 3</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Skiing">
+                                        value="{{ $userPreferences->outdoorItem3 }}">
                                 </div>
                             </div>
                         </div>
@@ -197,7 +195,7 @@
                                     style="width:fit-content;">Activity 1</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Reading">
+                                        value="{{ $userPreferences->indoorItem1 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -205,7 +203,7 @@
                                     style="width:fit-content;">Activity 2</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Playing Music">
+                                        value="{{ $userPreferences->indoorItem2 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -213,7 +211,7 @@
                                     style="width:fit-content;">Activity 3</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Knitting">
+                                        value="{{ $userPreferences->indoorItem3 }}">
                                 </div>
                             </div>
                         </div>
@@ -231,7 +229,7 @@
                                     style="width:fit-content;">Genre 1</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Comedy">
+                                        value="{{ $userPreferences->movieItem1 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -239,7 +237,7 @@
                                     style="width:fit-content;">Genre 2</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Romance">
+                                        value="{{ $userPreferences->movieItem2 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -247,7 +245,7 @@
                                     style="width:fit-content;">Genre 3</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Sci-Fi">
+                                        value="{{ $userPreferences->movieItem3 }}">
                                 </div>
                             </div>
                         </div>
@@ -262,7 +260,7 @@
                                     style="width:fit-content;">Genre 1</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Rap">
+                                        value="{{ $userPreferences->musicItem1 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -270,7 +268,7 @@
                                     style="width:fit-content;">Genre 2</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="Indie">
+                                        value="{{ $userPreferences->musicItem2 }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -278,7 +276,7 @@
                                     style="width:fit-content;">Genre 3</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="RnB">
+                                        value="{{ $userPreferences->musicItem3 }}">
                                 </div>
                             </div>
                         </div>

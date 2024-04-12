@@ -106,6 +106,28 @@
             height: 75%;
             margin: 0 auto;
         }
+    
+        .fa-search {
+    color: black;
+}
+
+/* Set the background of the search icon button */
+.btn-primary {
+    background-color: white;
+    border: none; /* Set the border color */
+}
+
+/* Set the hover effect */
+.btn-primary:hover {
+    background-color: #f0f0f0; /* Light grey */
+}
+.search-form {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically */
+}
+
+    /* Position the search icon next to the search input */
+     
     </style>
     </head>
 
@@ -116,9 +138,21 @@
             <span style="font-size: 35px;">My Dashboard</span>
             <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
                 <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
-                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
-
+                <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
+                    <input class="form-control form-control-sm" type="text" name="query" placeholder="Search" aria-label="Search">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                @if (!empty($users))
+               
+                    @foreach ($users as $user)
+                    <li><a href="{{ route('user.profile', ['name' => $user->name]) }}">{{ $user->name }}</a></li>
+                    @endforeach
+               
+                @endif
             </div>
+            
         </div>
 
         <main class="main-content" style="margin-bottom:2%; ">
@@ -242,6 +276,20 @@
 
                 // Your code to run since DOM is loaded and ready
             });
+        //     document.addEventListener("DOMContentLoaded", function(event) {
+        //     const searchInput = document.querySelector('.form-control');
+        //     const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        //     // Show/hide dropdown menu on focus/blur of search input
+        //     searchInput.addEventListener('focus', function() {
+        //         dropdownMenu.classList.add('show');
+        //     });
+
+        //     searchInput.addEventListener('blur', function() {
+        //         dropdownMenu.classList.remove('show');
+        //     });
+        // });
         </script>
+
 
 </x-menuLayout>

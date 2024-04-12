@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
@@ -61,5 +62,7 @@ Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4'
 Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
 Route::post('saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
+Route::get('/user/{name}', [DashboardController::class, 'userProfile'])->name('user.profile');
 
+Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');

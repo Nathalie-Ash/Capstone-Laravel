@@ -47,7 +47,7 @@
         <div class="offcanvas-body" style="background-color:#579792">
 
             <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
-                <span style="text-align: center;font-size: large">JOHN DOE</span>
+                <span style="text-align: center;font-size: large">{{ auth()->user()->name }}</span>
 
                 <a href="profile1" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792">

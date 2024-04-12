@@ -138,7 +138,7 @@ class PreferencesController extends Controller
         $validatedData = $request->validate([
             'displayName' => 'required',
             'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
-            'avatar' => 'file|mimes:png,jpg,jpeg|max:2048'
+            'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
         ]);
 
         logger($validatedData);

@@ -117,5 +117,17 @@ class UserController extends Controller
         // Render the profile1 view with user data
         return view('profile1', compact('userData'));
     }
+    public function search(Request $request)
+{
+    // Get the search query from the request
+    $query = $request->input('query');
+
+    // Perform the search query using the User model
+    $users = User::where('name', 'like', '%' . $query . '%')->get();
+
+    // Return the search results view with the users and query
+    return view('search', compact('users', 'query'));
+}
+
     
 }
