@@ -22,7 +22,7 @@
                             <h1 id="step-title" style="text-align: left;">Add your image below</h1>
                             <div id="imageContainer">
                                 <img id="imagePlaceholder" src={{ asset('images/placeholder.png') }}>
-                                <input type="file" id="fileInput" accept="image/*"
+                                <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
                                     onchange="handleFileSelect(event)" name = "avatar">
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 
                                 <div id="division3" class="input" style ="height:min-content; margin-top: 9%;">
                                     <h1 id="step-title" style="padding-top: 5px;">Upload Your Timetable</h1>
-                                    <input type="file" id="timetable" name="timetable" accept=".pdf,.doc,.docx" style="margin-bottom: 15px;">
+                                    <input type="file" id="timetable" name="timetable_path" accept=".pdf,.doc,.docx" style="margin-bottom: 15px;">
                                 </div>
                             
                             

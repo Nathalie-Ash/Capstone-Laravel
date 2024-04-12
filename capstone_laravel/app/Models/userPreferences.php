@@ -39,7 +39,7 @@ class userPreferences extends Model
         'description',
         'avatar',
         'displayName',
-        'timetable'
+        'timetable_path'
     
     ];
 

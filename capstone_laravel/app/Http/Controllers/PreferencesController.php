@@ -132,20 +132,21 @@ class PreferencesController extends Controller
 
 
     public function storeStep4(Request $request)
-    {
+    {logger('Before validation');
         //$userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
             'displayName' => 'required',
-            'timetable' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'avatar' => 'file|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        if ($request->hasFile('timetable')) {
-            $timetableFile = $request->file('timetable');
+        logger($validatedData);
+        if ($request->hasFile('timetable_path')) {
+            $timetableFile = $request->file('timetable_path');
             $timetableFileName = time() . '.' . $timetableFile->extension(); // Generate unique timetable file name
             $timetableFile->move(public_path('timetables'), $timetableFileName); // Move the uploaded file to the public/timetables directory
-            $validatedData['timetable'] = 'timetables/' . $timetableFileName; // Save the file path to the database
+            $validatedData['timetable_path'] = 'timetables/' . $timetableFileName; // Save the file path to the database
         }
 
         if ($request->hasFile('avatar')) {
