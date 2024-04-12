@@ -42,14 +42,14 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="school"
-                                value="{{ $userData->school }}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->school }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="major"
-                                    value="{{ $userData->major}}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->major }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -63,15 +63,15 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="campus"
-                                    value="{{ $userData->campus}}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->campus }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
                     <div class="col" id="div2"
                         style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
                         Bio
-                        <input class="form-control" readonly type="text"
-                            value="{{ $userData->description }}" id = "description"
+                        <input class="form-control" readonly type="text" value="{{ $userData->description }}"
+                            id = "description"
                             style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
                     </div>
 
@@ -81,8 +81,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem1"
-                                    value="{{ $userData->outdoorItem1}}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->outdoorItem1 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -90,8 +89,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem2"
-                                    value="{{ $userData->outdoorItem2 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->outdoorItem2 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -99,8 +97,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem3"
-                                    value="{{ $userData->outdoorItem3}}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->outdoorItem3 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -110,8 +107,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem1"
-                                    value="{{ $userData->indoorItem1 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->indoorItem1 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -119,8 +115,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem2"
-                                    value="{{ $userData->indoorItem2 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->indoorItem2 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -128,8 +123,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem3"
-                                    value="{{ $userData->indoorItem3 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->indoorItem3 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -140,8 +134,7 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem1"
-                                    value="{{ $userData->movieItem1}}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->movieItem1 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -150,8 +143,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem2"
-                                    value="{{ $userData->movieItem2 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->movieItem2 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -160,8 +152,7 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem3"
-                                    value="{{ $userData->movieItem3 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->movieItem3 }}" style="background-color: #c2c2c2">
 
                             </div>
                         </div>
@@ -174,8 +165,7 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem1"
-                                    value="{{ $userData->musicItem1 }}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->musicItem1 }}" style="background-color: #c2c2c2">
 
                             </div>
                         </div>
@@ -185,8 +175,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem2"
-                                    value="{{ $userData->musicItem2}}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->musicItem2 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -195,8 +184,7 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem3"
-                                    value="{{ $userData->musicItem3}}"
-                                    style="background-color: #c2c2c2">
+                                    value="{{ $userData->musicItem3 }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -213,7 +201,6 @@
 
 
     </div>
-    <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function goToNextPage() {
 
@@ -283,14 +270,19 @@
             fetch("{{ route('saveUserData') }}", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}" // Add CSRF token
                     },
                     body: JSON.stringify(data)
                 })
                 .then(response => {
                     if (response.ok) {
                         // Data saved successfully
-                        alert("User data saved successfully.");
+                        
+
+                       // alert("User data saved successfully.");
+                        resetTextBackground();
+                        window.location.href = "profile1";
                     } else {
                         // Error saving data
                         alert("Failed to save user data.");
@@ -301,6 +293,7 @@
                     alert("An error occurred while saving user data.");
                 });
         }
+
 
         function changeTextBackground() {
             // Change background color of text fields
@@ -321,6 +314,29 @@
             document.getElementById("movieItem1").style.backgroundColor = "#579792";
             document.getElementById("movieItem2").style.backgroundColor = "#579792";
             document.getElementById("movieItem3").style.backgroundColor = "#579792";
+        }
+
+        
+
+        function resetTextBackground() {
+            // Change background color of text fields
+            document.getElementById("school").style.backgroundColor = "#c2c2c2";
+            document.getElementById("major").style.backgroundColor = "#c2c2c2";
+            document.getElementById("minor").style.backgroundColor = "#c2c2c2";
+            document.getElementById("campus").style.backgroundColor = "#c2c2c2";
+            document.getElementById("description").style.backgroundColor = "#c2c2c2";
+            document.getElementById("outdoorItem1").style.backgroundColor = "#c2c2c2";
+            document.getElementById("outdoorItem2").style.backgroundColor = "#c2c2c2";
+            document.getElementById("outdoorItem3").style.backgroundColor = "#c2c2c2";
+            document.getElementById("indoorItem1").style.backgroundColor = "#c2c2c2";
+            document.getElementById("indoorItem2").style.backgroundColor = "#c2c2c2";
+            document.getElementById("indoorItem3").style.backgroundColor = "#c2c2c2";
+            document.getElementById("musicItem1").style.backgroundColor = "#c2c2c2";
+            document.getElementById("musicItem2").style.backgroundColor = "#c2c2c2";
+            document.getElementById("musicItem3").style.backgroundColor = "#c2c2c2";
+            document.getElementById("movieItem1").style.backgroundColor = "#c2c2c2";
+            document.getElementById("movieItem2").style.backgroundColor = "#c2c2c2";
+            document.getElementById("movieItem3").style.backgroundColor = "#c2c2c2";
         }
     </script>
 

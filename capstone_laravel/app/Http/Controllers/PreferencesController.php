@@ -227,12 +227,15 @@ class PreferencesController extends Controller
 
     public function saveUserData(Request $request)
     {
-        $userData = UserPreferences::where('user_id', auth()->id())->first();
-
-        // Update the user preferences with the new data
-        $userData->update($request->all());
-
-        // Optionally, you can return a response indicating success or failure
-        return response()->json(['message' => 'User data updated successfully']);
+        // Retrieve the updated user data from the request
+        $updatedData = $request->all();
+        
+        // Update the user's information
+        $user = UserPreferences::where('user_id', auth()->id())->first();
+        $user->update($updatedData);
+    
+        // Return a response indicating success or failure
+        return response()->json(['message' => 'User data saved successfully.']);
     }
+    
 }

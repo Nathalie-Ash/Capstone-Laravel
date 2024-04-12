@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\UserPreferences;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserController extends Controller
 {
+    use SoftDeletes;
+
     // public function showPage1()
     // {
     //     return view('signup');
@@ -121,6 +125,30 @@ class UserController extends Controller
         return view('profile1', compact('userData', 'userImage'));
     }
 
+    public function showDeleteAccountConfirmation()
+    {
+        // You can return a view with a confirmation message
+        return view('confirm-delete-account');
+    }
+
+    public function softDelete($id)
+    {
+        $user = User::findOrFail($id);
+        $user->deleted = true; // Set the custom deleted field to true
+        $user->save();
+    
+        return redirect()->route('login')->with('success', 'User soft deleted successfully.');
+    }
+    
+    public function restore($id)
+    {
+        $user = User::findOrFail($id);
+        $user->deleted = false; // Restore the record by setting custom deleted field to false
+        $user->save();
+    
+        return redirect()->back()->with('success', 'User restored successfully.');
+    }
+    
 
     
 }
