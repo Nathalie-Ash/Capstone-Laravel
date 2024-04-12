@@ -129,7 +129,7 @@
     <script>
         function goToPrevPage() {
 
-            window.location.href = "step1";
+            window.location.href = "step2";
         }
 
         document.addEventListener("DOMContentLoaded", function() {

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+
 class PreferencesController extends Controller
 {
     public function showStep1(Request $request)
@@ -131,12 +132,30 @@ class PreferencesController extends Controller
 
 
     public function storeStep4(Request $request)
-    {
+    {logger('Before validation');
         //$userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
             'displayName' => 'required',
+            'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'avatar' => 'file|mimes:png,jpg,jpeg|max:2048'
         ]);
+
+        logger($validatedData);
+        if ($request->hasFile('timetable_path')) {
+            $timetableFile = $request->file('timetable_path');
+            $timetableFileName = time() . '.' . $timetableFile->extension(); // Generate unique timetable file name
+            $timetableFile->move(public_path('timetables'), $timetableFileName); // Move the uploaded file to the public/timetables directory
+            $validatedData['timetable_path'] = 'timetables/' . $timetableFileName; // Save the file path to the database
+        }
+
+        if ($request->hasFile('avatar')) {
+            $avatarFile = $request->file('avatar');
+            $avatarFileName = time() . '.' . $avatarFile->extension(); // Generate unique avatar file name
+            $avatarFile->move(public_path('avatars'), $avatarFileName); // Move the uploaded file to the public/avatars directory
+            $validatedData['avatar'] = 'avatars/' . $avatarFileName; // Save the file path to the database
+
+        }
 
         $request->session()->put('user_preferences.step4', $validatedData);
 
@@ -169,6 +188,7 @@ class PreferencesController extends Controller
 
         return redirect()->route('dashboard');
     }
+
     public function goToDashboard()
     {
 
@@ -187,18 +207,21 @@ class PreferencesController extends Controller
     {
         // Retrieve user data from the database
         $userData = UserPreferences::where('user_id', auth()->id())->first();
+        $userImage = User::where('id', auth()->id())->first();
         // Render the profile1 view with user data
-        return view('profile2', compact('userData'));
+        return view('profile2', compact('userData', 'userImage'));
     }
 
+
+
     public function saveUserData(Request $request)
-{
-    $userData = UserPreferences::where('user_id', auth()->id())->first();
+    {
+        $userData = UserPreferences::where('user_id', auth()->id())->first();
 
-    // Update the user preferences with the new data
-    $userData->update($request->all());
+        // Update the user preferences with the new data
+        $userData->update($request->all());
 
-    // Optionally, you can return a response indicating success or failure
-    return response()->json(['message' => 'User data updated successfully']);
-}
+        // Optionally, you can return a response indicating success or failure
+        return response()->json(['message' => 'User data updated successfully']);
+    }
 }

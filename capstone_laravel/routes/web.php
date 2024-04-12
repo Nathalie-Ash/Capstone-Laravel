@@ -62,3 +62,4 @@ Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('
 Route::post('saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
 
+Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');

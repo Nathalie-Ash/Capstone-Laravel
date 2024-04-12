@@ -22,8 +22,8 @@
                             <h1 id="step-title" style="text-align: left;">Add your image below</h1>
                             <div id="imageContainer">
                                 <img id="imagePlaceholder" src={{ asset('images/placeholder.png') }}>
-                                <input type="file" id="fileInput" accept="image/*"
-                                    onchange="handleFileSelect(event)">
+                                <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
+                                    onchange="handleFileSelect(event)" name = "avatar">
                             </div>
                         </div>
                         <div class="col">
@@ -33,17 +33,26 @@
                                 <input type="text" id="display-username"
                                     name ="displayName"style="margin-bottom: 15px;">
                             </div>
+                           
+                                
+                                <div id="division3" class="input" style ="height:min-content; margin-top: 9%;">
+                                    <h1 id="step-title" style="padding-top: 5px;">Upload Your Timetable</h1>
+                                    <input type="file" id="timetable" name="timetable_path" accept=".pdf,.doc,.docx" style="margin-bottom: 15px;">
+                                </div>
+                            
+                            
                         </div>
+
                     </div>
                 </div>
 
     </div>
     <div id="button-nav" style="padding-top: 0px; padding-bottom: 30px;">
         <button type="button" onclick="goToPrevPage()" class="btn"
-            style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
+            style="background-color:#a19e9e; width: 13%;border-right:50px;color:white;font-size: larger;">BACK</button>
 
         <button type="submit" class="btn"
-            style="background-color:#FF6F28; width: 25%;border-right:30px;color:white;font-size: larger;">Make Profile
+            style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger;">Make Profile
             Public</button>
     </div>
 
