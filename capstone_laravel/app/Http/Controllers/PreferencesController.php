@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Auth;
 class PreferencesController extends Controller
 {
     public function showStep1(Request $request)
     {
-        if (!$request->session()->has('user_id')) {
-            return redirect()->route('signup'); // Redirect to signup page if user ID is present
-        }
+        // if (!$request->session()->has('user_id')) {
+        //     return redirect()->route('signup'); // Redirect to signup page if user ID is present
+        // }
 
         return view('step1');
     }
@@ -132,7 +132,7 @@ class PreferencesController extends Controller
 
     public function storeStep4(Request $request)
     {
-        $userId = $request->session()->get('user_id');
+        //$userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
             'displayName' => 'required',
@@ -146,7 +146,8 @@ class PreferencesController extends Controller
 
         // Merge all the data
         $userData = array_merge($step1Data, $step2Data, $step3Data, $validatedData);
-
+        $user = Auth::user();
+        $userId = $user->id;
         // Set the user ID as the first element in the array
         $userData['user_id'] = $userId;
         logger($userData);
@@ -159,6 +160,13 @@ class PreferencesController extends Controller
 
         // Redirect to any other action
         // fix this tmrw 
+        // $user = User::find($userId);
+
+
+        // Auth::loginUsingId($user->id);
+
+
+
         return redirect()->route('dashboard');
     }
     public function goToDashboard()

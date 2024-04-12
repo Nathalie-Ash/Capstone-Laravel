@@ -5,6 +5,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/ppp', [ExampleController::class, "ppp"]);
 Route::get('/profile1', [ExampleController::class, "profile1"]);
 Route::get('/profile2', [ExampleController::class, "profile2"]);
 Route::get('/requests', [ExampleController::class, "requests"]);
-Route::get('/signup', [ExampleController::class, "signup"]);
+//Route::get('/signup', [ExampleController::class, "signup"]);
 Route::get('/step1', [ExampleController::class, "step1"])->name('step1');
 Route::get('/step2', [ExampleController::class, "step2"]);
 Route::get('/step3', [ExampleController::class, "step3"]);
@@ -37,10 +38,10 @@ Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profil
 
 
 // Route::post('/register', [UserController::class,"register"]);
-Route::get('/signup', [UserController::class, 'showPage1'])->name('signup');
-Route::post('/signup', [UserController::class, 'handlePage1']);
-Route::get('/sign2', [UserController::class, 'showPage2'])->name('sign2');
-Route::post('/sign2', [UserController::class, 'register'])->name('register');
+Route::get('/signup', [RegisterController::class, 'showPage1'])->name('signup');
+Route::post('/signup', [RegisterController::class, 'handlePage1']);
+Route::get('/sign2', [RegisterController::class, 'showPage2'])->name('sign2');
+Route::post('/sign2', [RegisterController::class, 'register'])->name('register');
 
 Auth::routes();
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
