@@ -186,9 +186,19 @@ class PreferencesController extends Controller
     public function displayProfile2()
     {
         // Retrieve user data from the database
-        $userData = User::find(auth()->id());
-
+        $userData = UserPreferences::where('user_id', auth()->id())->first();
         // Render the profile1 view with user data
         return view('profile2', compact('userData'));
     }
+
+    public function saveUserData(Request $request)
+{
+    $userData = UserPreferences::where('user_id', auth()->id())->first();
+
+    // Update the user preferences with the new data
+    $userData->update($request->all());
+
+    // Optionally, you can return a response indicating success or failure
+    return response()->json(['message' => 'User data updated successfully']);
+}
 }

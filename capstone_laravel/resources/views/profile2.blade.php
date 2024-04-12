@@ -42,28 +42,28 @@
                             <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="school"
-                                    value="{{ $userData['step1Data']['school'] }}" style="background-color: #c2c2c2">
+                                value="{{ $userData->school }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="major"
-                                    value="{{ $userData['step1Data']['major'] }}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->major}}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="minor"
-                                    value="{{ $userData['step1Data']['minor'] }}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->minor }}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
                             <div class="col-sm-10">
                                 <input type="text" readonly class="form-control-plaintext" id="campus"
-                                    value="{{ $userData['step1Data']['campus'] }}" style="background-color: #c2c2c2">
+                                    value="{{ $userData->campus}}" style="background-color: #c2c2c2">
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
                         Bio
                         <input class="form-control" readonly type="text"
-                            value="{{ $userData['step3Data']['description'] }}" id = "description"
+                            value="{{ $userData->description }}" id = "description"
                             style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
                     </div>
 
@@ -81,7 +81,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem1"
-                                    value="{{ $userData['step2Data']['outdoorItem1'] }}"
+                                    value="{{ $userData->outdoorItem1}}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem2"
-                                    value="{{ $userData['step2Data']['outdoorItem2'] }}"
+                                    value="{{ $userData->outdoorItem2 }}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="outdoorItem3"
-                                    value="{{ $userData['step2Data']['outdoorItem3'] }}"
+                                    value="{{ $userData->outdoorItem3}}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                 style="width:fit-content;">Activity 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem1"
-                                    value="{{ $userData['step2Data']['indoorItem1'] }}"
+                                    value="{{ $userData->indoorItem1 }}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                 style="width:fit-content;">Activity 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem2"
-                                    value="{{ $userData['step2Data']['indoorItem2'] }}"
+                                    value="{{ $userData->indoorItem2 }}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                 style="width:fit-content;">Activity 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="indoorItem3"
-                                    value="{{ $userData['step2Data']['indoorItem3'] }}"
+                                    value="{{ $userData->indoorItem3 }}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem1"
-                                    value="{{ $userData['step3Data']['movieItem1'] }}"
+                                    value="{{ $userData->movieItem1}}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem2"
-                                    value="{{ $userData['step3Data']['movieItem2'] }}"
+                                    value="{{ $userData->movieItem2 }}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="movieItem3"
-                                    value="{{ $userData['step3Data']['movieItem3'] }}"
+                                    value="{{ $userData->movieItem3 }}"
                                     style="background-color: #c2c2c2">
 
                             </div>
@@ -174,7 +174,7 @@
                                 1</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem1"
-                                    value="{{ $userData['step3Data']['musicItem1'] }}"
+                                    value="{{ $userData->musicItem1 }}"
                                     style="background-color: #c2c2c2">
 
                             </div>
@@ -185,7 +185,7 @@
                                 2</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem2"
-                                    value="{{ $userData['step3Data']['musicItem2'] }}"
+                                    value="{{ $userData->musicItem2}}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                                 3</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="musicItem3"
-                                    value="{{ $userData['step3Data']['musicItem3'] }}"
+                                    value="{{ $userData->musicItem3}}"
                                     style="background-color: #c2c2c2">
                             </div>
                         </div>
@@ -280,7 +280,7 @@
         // Function to send updated user data to the backend for storage
         function saveUserData(data) {
             // Send a POST request to the backend endpoint with the updated data
-            fetch("/saveUserDataEndpoint", {
+            fetch("{{ route('saveUserData') }}", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

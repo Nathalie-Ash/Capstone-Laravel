@@ -59,6 +59,6 @@ Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
 Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
+Route::post('saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
-Route::post('/updateUserData', 'UserController@updateUserData')->name('updateUserData');
 
