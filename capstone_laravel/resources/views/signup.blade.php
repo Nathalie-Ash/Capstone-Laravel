@@ -75,7 +75,7 @@
 
                         <div style ="text-align: center;">
 
-                            <button type= "submit" class="btn btn-primary btn-lg btn-block"
+                            <button type= "button" class="btn btn-primary btn-lg btn-block"
                                 style="border: none;background-color:#ff6f28;"><a href = "./sign2"
                                     style="text-decoration:none;color:black">NEXT</a></button>
                         </br>
