@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserPreferences;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -112,10 +114,13 @@ class UserController extends Controller
     public function displayProfile1()
     {
         // Retrieve user data from the database
-        $userData = User::find(auth()->id());
+        $userData = User::find(auth()->id()); 
+        $userImage = UserPreferences::where('user_id', auth()->id())->first();
 
         // Render the profile1 view with user data
-        return view('profile1', compact('userData'));
+        return view('profile1', compact('userData', 'userImage'));
     }
+
+
     
 }

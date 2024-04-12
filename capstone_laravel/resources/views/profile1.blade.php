@@ -101,12 +101,11 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="step-title" style="padding-top: 0px;">Change your profile picture</p>
-                    <div id="imageContainer" style="    display: inline-block;">
-                        <img id="imagePlaceholder" src={{ asset('images/placeholder.png') }}>
-                        <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)">
-                    </div>
+                    <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
+                    <div id="imageContainer" style="display: inline-block;">
+                       <img style="height: 100%; width: 100%;" src="{{ URL::asset('avatars/' . $userImage->avatar) }}" alt="">                     </div>
                 </div>
+                
             </div>
 
         </div>

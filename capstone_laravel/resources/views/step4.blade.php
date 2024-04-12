@@ -7,7 +7,7 @@
 
 
         </div>
-        <form method="POST" action="{{ route('step4') }}">
+        <form method="POST" action="{{ route('step4') }}" enctype="multipart/form-data">
             @csrf
             <section id="steps"
                 style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column; margin-bottom: 10px;">
@@ -60,7 +60,6 @@
     </form>
 
     </div>
-    <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function updateButtonText(selectedItem) {
             var buttonText = $(selectedItem).text();
