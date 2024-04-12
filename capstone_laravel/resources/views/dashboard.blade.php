@@ -33,14 +33,14 @@
                 z-index: 600;
                 overflow-y: auto;
             }
-
+/* 
             .main-content {
 
 
                 padding: 20px;
                 display: flex;
                 justify-content: space-between;
-            }
+            } */
 
             .card {
                 flex: 0 0 calc(50% - 10px);
@@ -54,11 +54,11 @@
                 padding-top: 0;
             }
 
-            .main-content {
+            /* .main-content {
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
-            }
+            } */
 
             .card {
                 width: 100%;
@@ -120,11 +120,30 @@
 /* Set the hover effect */
 .btn-primary:hover {
     background-color: #f0f0f0; /* Light grey */
+}.search-form {
+    margin-bottom: 0%;
+    padding-bottom:0%; 
+    display: flex;
+    align-items: center;
+    position: relative; /* Position container relatively */
 }
-.search-form {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Align items vertically */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width:100%; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* padding: 5px 0; */
+    display: block; /* Always display the dropdown */
 }
+#user-list {
+    display: none; /* Hide the user list by default */
+}
+
 
     /* Position the search icon next to the search input */
      
@@ -136,25 +155,30 @@
             <img
                 style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"src={{ asset('images/star.png') }}>
             <span style="font-size: 35px;">My Dashboard</span>
-            <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
-                <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
+            <div style="display: inline; float: right; padding-right: 10%; text-align: center; margin-top: 20px; position: relative;">
                 <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
                     <input class="form-control form-control-sm" type="text" name="query" placeholder="Search" aria-label="Search">
-                    <button type="submit" class="btn btn-primary">
+                    <button id="search-button" type="button" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
+                    
+                    <div class="dropdown-menu" id="user-list">
+                        @if (!empty($users))
+                            @foreach ($users as $user)
+                                <li><a href="{{ route('user.profile', ['name' => $user->name]) }}">{{ $user->name }}</a></li>
+                            @endforeach
+                        @endif
+                    </div>
                 </form>
-                @if (!empty($users))
+            
                
-                    @foreach ($users as $user)
-                    <li><a href="{{ route('user.profile', ['name' => $user->name]) }}">{{ $user->name }}</a></li>
-                    @endforeach
+                
+            
                
-                @endif
             </div>
             
         </div>
-
+        <div>
         <main class="main-content" style="margin-bottom:2%; ">
             <div class="container">
                 <div class="row">
@@ -233,6 +257,7 @@
                 </div>
             </div>
         </main>
+    </div>
 
 
         <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
@@ -276,20 +301,22 @@
 
                 // Your code to run since DOM is loaded and ready
             });
-        //     document.addEventListener("DOMContentLoaded", function(event) {
-        //     const searchInput = document.querySelector('.form-control');
-        //     const dropdownMenu = document.querySelector('.dropdown-menu');
+            document.addEventListener("DOMContentLoaded", function(event) {
+    const searchButton = document.getElementById('search-button');
+    const userList = document.getElementById('user-list');
 
-        //     // Show/hide dropdown menu on focus/blur of search input
-        //     searchInput.addEventListener('focus', function() {
-        //         dropdownMenu.classList.add('show');
-        //     });
+    searchButton.addEventListener('click', function() {
+        event.preventDefault();
+        userList.style.display = (userList.style.display === 'block') ? 'none' : 'block';
+    });
+});
 
-        //     searchInput.addEventListener('blur', function() {
-        //         dropdownMenu.classList.remove('show');
-        //     });
-        // });
+    
         </script>
+  
+    
+    
+        
 
 
 </x-menuLayout>
