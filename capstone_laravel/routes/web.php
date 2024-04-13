@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/connections', [ExampleController::class, "connections"]);
+Route::get('/connections', [ExampleController::class, "connections"])->name('connections');
 Route::get('/dashboard', [ExampleController::class, "dashboard"]);
 Route::get('/ppp', [ExampleController::class, "ppp"]);
 Route::get('/profile1', [ExampleController::class, "profile1"]);
@@ -63,6 +63,11 @@ Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('
 Route::post('saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
 Route::get('/user/{name}', [DashboardController::class, 'userProfile'])->name('user.profile');
+use App\Http\Controllers\ConnectionsController;
+
+Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
+Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
+Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');

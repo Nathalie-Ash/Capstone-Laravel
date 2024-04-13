@@ -140,9 +140,6 @@
     /* padding: 5px 0; */
     display: block; /* Always display the dropdown */
 }
-#user-list {
-    display: none; /* Hide the user list by default */
-}
 
 
     /* Position the search icon next to the search input */
@@ -158,11 +155,10 @@
             <div style="display: inline; float: right; padding-right: 10%; text-align: center; margin-top: 20px; position: relative;">
                 <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
                     <input class="form-control form-control-sm" type="text" name="query" placeholder="Search" aria-label="Search">
-                    <button id="search-button" type="button" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
-                    
-                    <div class="dropdown-menu" id="user-list">
+                    <div class="dropdown-menu show">
                         @if (!empty($users))
                             @foreach ($users as $user)
                                 <li><a href="{{ route('user.profile', ['name' => $user->name]) }}">{{ $user->name }}</a></li>
@@ -301,16 +297,6 @@
 
                 // Your code to run since DOM is loaded and ready
             });
-            document.addEventListener("DOMContentLoaded", function(event) {
-    const searchButton = document.getElementById('search-button');
-    const userList = document.getElementById('user-list');
-
-    searchButton.addEventListener('click', function() {
-        event.preventDefault();
-        userList.style.display = (userList.style.display === 'block') ? 'none' : 'block';
-    });
-});
-
     
         </script>
   
