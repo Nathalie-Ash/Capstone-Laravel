@@ -35,6 +35,7 @@ Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
 Route::get('profile2', [PreferencesController::class, 'displayProfile2'])->name('profile2');
 Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profile1');
+//Route::get('profile1', [PreferencesController::class, 'displayAvatar'])->name('profile1');
 
 
 // Route::post('/register', [UserController::class,"register"]);
@@ -59,7 +60,6 @@ Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
 Route::get('dashboard', [PreferencesController::class, 'goToDashboard'])->name('dashboard');
-Route::post('saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
+Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
-
-Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
+Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');

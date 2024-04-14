@@ -7,7 +7,7 @@
 
 
         </div>
-        <form method="POST" action="{{ route('step4') }}">
+        <form method="POST" action="{{ route('step4') }}" enctype="multipart/form-data">
             @csrf
             <section id="steps"
                 style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column; margin-bottom: 10px;">
@@ -28,15 +28,13 @@
                         </div>
                         <div class="col">
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
-                            <div id="division3" class="input" style ="height:min-content;">
-                                <h1 id="step-title">Display Username</h1>
-                                <input type="text" id="display-username"
-                                    name ="displayName"style="margin-bottom: 15px;">
-                            </div>
+                            
                            
                                 
-                                <div id="division3" class="input" style ="height:min-content; margin-top: 9%;">
+                                <div id="division3" class="input" style ="height:min-content; ">
                                     <h1 id="step-title" style="padding-top: 5px;">Upload Your Timetable</h1>
+                                    <p style="background-color: #579792; border-radius: 5%; padding: 5px; font-weight: normal"> Upload your schedules to help others know your free time and any potential common classes ! 
+                                        Accepted formats are in .pdf, .doc, .docx
                                     <input type="file" id="timetable" name="timetable_path" accept=".pdf,.doc,.docx" style="margin-bottom: 15px;">
                                 </div>
                             
@@ -60,7 +58,6 @@
     </form>
 
     </div>
-    <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function updateButtonText(selectedItem) {
             var buttonText = $(selectedItem).text();

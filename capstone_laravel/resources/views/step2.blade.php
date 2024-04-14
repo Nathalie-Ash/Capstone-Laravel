@@ -109,7 +109,7 @@
                                 </button>
                                 <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
                                     id="indoorItem3">
-                                    id="indoorItem3">
+                                    
                                 </ul>
                                 <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
 
@@ -177,14 +177,11 @@
 
                 listItem1.innerHTML =
                     '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
-                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem1\', \'outdoorDropdownMenuButton1\')">' +
                     outdoorActivity + '</a>';
                 listItem2.innerHTML =
                     '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
-                    '<a class="dropdown-item"  style="color:white;" onclick="updateButtonText(this, \'outdoorItem2\', \'outdoorDropdownMenuButton2\')">' +
                     outdoorActivity + '</a>';
                 listItem3.innerHTML =
-                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
                     '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'outdoorItem3\', \'outdoorDropdownMenuButton3\')">' +
                     outdoorActivity + '</a>';
 
@@ -222,15 +219,16 @@
                 var divider3 = document.createElement("hr");
 
                 listItem1.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'indoorItem1\', \'indoorDropdownMenuButton1\')">' +
                     indoorActivity + '</a>';
                 listItem2.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'indoorItem2\', \'indoorDropdownMenuButton2\')">' +
                     indoorActivity + '</a>';
                 listItem3.innerHTML =
-                    '<a class="dropdown-item" href="#" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' +
+                    '<a class="dropdown-item" style="color:white;" onclick="updateButtonText(this, \'indoorItem3\', \'indoorDropdownMenuButton3\')">' +
                     indoorActivity + '</a>';
 
+          
                 indoorDropdownMenu1.appendChild(listItem1);
                 indoorDropdownMenu1.appendChild(divider1);
 
@@ -238,9 +236,10 @@
                 indoorDropdownMenu2.appendChild(divider2);
 
                 indoorDropdownMenu3.appendChild(listItem3);
-                indoorDropdownMenu3.appendChild(divider2);
-                
-                indoorDropdownMenu3.appendChild(divider2);
+                indoorDropdownMenu3.appendChild(divider3);
+                 
+                //indoorDropdownMenu3.appendChild(divider3);
+          
                 
             });
 
@@ -269,19 +268,37 @@
 
             // Function to remove or disable the selected activity from all dropdown menus
             function updateDropdowns(selectedActivity) {
-                var allDropdowns = document.querySelectorAll(".dropdown-menu");
-                allDropdowns.forEach(function(dropdown) {
-                    for (var i = 0; i < dropdown.children.length; i++) {
-                        var listItem = dropdown.children[i];
-                        if (listItem.textContent.trim() === selectedActivity) {
-                            listItem.style.opacity = '0.5'; // Reduce opacity
-                            listItem.style.pointerEvents = 'none'; // Disable pointer events
-                            listItem.style.cursor = 'not-allowed';
-                            break;
-                        }
-                    }
-                });
+    var allDropdowns = document.querySelectorAll(".dropdown-menu");
+    var found = false; // Flag to check if selected activity is found in any dropdown
+    allDropdowns.forEach(function(dropdown) {
+        for (var i = 0; i < dropdown.children.length; i++) {
+            var listItem = dropdown.children[i];
+            if (listItem.textContent.trim() === selectedActivity) {
+                // If the selected activity is found in any dropdown, set flag to true
+                found = true;
+                // Disable the selected activity
+                listItem.style.opacity = '0.5'; // Reduce opacity
+                listItem.style.pointerEvents = 'none'; // Disable pointer events
+                listItem.style.cursor = 'not-allowed'; // Change cursor to not-allowed
             }
+        }
+    });
+
+    // If the selected activity is not found in any dropdown, enable it in all dropdowns
+    if (!found) {
+        allDropdowns.forEach(function(dropdown) {
+            fountd = false;
+            for (var i = 0; i < dropdown.children.length; i++) {
+                var listItem = dropdown.children[i];
+                listItem.style.opacity = '1'; // Restore opacity
+                listItem.style.pointerEvents = 'auto'; // Enable pointer events
+                listItem.style.cursor = 'pointer'; // Change cursor to pointer
+            }
+        });
+    }
+}
+
+
 
             // Function to handle click events on dropdown items
             function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {

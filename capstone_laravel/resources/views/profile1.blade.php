@@ -73,7 +73,6 @@
 
                                     <a href="{{ route('logout') }}"
                                         class="list-group-item list-group-item-action py-2 ripple"
-                                        
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <span style="color:#FF6F28; font-weight: normal">Sign
                                             Out</span>
@@ -82,11 +81,43 @@
                                         @csrf
                                     </form>
                                 </div>
-                                <div class="col-4" style="width: 50%;">
-                                    <button type="submit" class="btn btn-primary mb-3"
-                                        style="width: 100%;text-align: center;background-color: transparent; color:#FF6F28; border: none">Delete
-                                        Account</button>
+                                <!-- Delete Account Button -->
+                                <div class="col-4">
+
+                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                        <span style="color:#FF6F28; font-weight: normal">Delete Account</span>
+                                    </a>
+                                    
+
                                 </div>
+
+
+                                <!-- Confirm Delete Modal -->
+                                <div class="modal fade" id="confirmDeleteModal" tabindex="-1"
+                                    aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete your account?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <form action="{{ route('softDeleteUser', ['id' => $userData->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger" style="background-color:#FF6F28 ">Yes, Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div
                                 style="display: flex;
@@ -101,12 +132,17 @@
                     </div>
                 </div>
                 <div class="col">
-                    <p id="step-title" style="padding-top: 0px;">Change your profile picture</p>
-                    <div id="imageContainer" style="    display: inline-block;">
-                        <img id="imagePlaceholder" src={{ asset('images/placeholder.png') }}>
-                        <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)">
+                    <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
+                    <div id="imageContainer" style="display: inline-block;">
+                        @if ($userImage)
+                            <img style="height: 100%; width: 100%;" src="{{ asset($userImage->avatar) }}">
+                        @else
+                            <img style="height: 100%; width: 100%;" src="{{ asset('images/placeholder.png') }}"
+                                alt="Placeholder Image">
+                        @endif
                     </div>
                 </div>
+
             </div>
 
         </div>

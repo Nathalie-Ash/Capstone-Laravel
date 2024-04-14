@@ -26,6 +26,7 @@ class User extends Authenticatable
         'gender',
         'sexualorientation',
         'birthdate',
+        'deleted'
     ];
 
     /**
