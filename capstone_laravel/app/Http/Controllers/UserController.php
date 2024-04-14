@@ -26,7 +26,7 @@ class UserController extends Controller
     // {    
     //     $incomingFields = $request->all();
     //     logger($incomingFields); // Log the incoming data
-        
+
     //     $validatedData = $request->validate([
     //         'name' => ['required', 'max:30'],
     //         'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+@lau\.edu$/'],
@@ -58,7 +58,7 @@ class UserController extends Controller
     // {
     //     // Retrieve data from session (page 1 data)
     //     $signupData = $request->session()->get('signup_data');
-       
+
     //     if (!$signupData) {
     //         // Handle case when data is missing
     //         return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
@@ -70,14 +70,14 @@ class UserController extends Controller
     //         'sexualorientation' => ['required'], 
     //         'gender' => ['required'], 
     //     ]);
-        
+
     //     logger($validatedData);
     //     $birthdate = date('Y-m-d', strtotime($validatedData['birthdate']));
 
     //     // Merge page 1 and page 2 data
     //     $userData = array_merge($signupData, $validatedData);
     //     $userData['birthdate'] = $birthdate;
-        
+
     //     logger($userData);
     //     // Create new user
 
@@ -103,11 +103,11 @@ class UserController extends Controller
     //     else{
     //         return 'user nu uh';
     //     }
-        
+
 
     // }
 
-    
+
 
     public function __construct()
     {
@@ -118,7 +118,7 @@ class UserController extends Controller
     public function displayProfile1()
     {
         // Retrieve user data from the database
-        $userData = User::find(auth()->id()); 
+        $userData = User::find(auth()->id());
         $userImage = UserPreferences::where('user_id', auth()->id())->first();
 
         // Render the profile1 view with user data
@@ -136,31 +136,32 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->deleted = true; // Set the custom deleted field to true
         $user->save();
-    
+
         return redirect()->route('login')->with('success', 'User soft deleted successfully.');
     }
     public function search(Request $request)
-{
-    // Get the search query from the request
-    $query = $request->input('query');
+    {
+        // Get the search query from the request
+        $query = $request->input('query');
 
-    // Perform the search query using the User model
-    $users = User::where('name', 'like', '%' . $query . '%')->get();
-
-    // Return the search results view with the users and query
-    return view('search', compact('users', 'query'));
-}
-
+        // Perform the search query using the User model
+        $users = User::where('name', 'like', '%' . $query . '%')->get();
+        $userData = [];
+        foreach ($users as $user) {
+            $userData[$user->id] = UserPreferences::where('user_id', $user->id)->first();
+        }
     
+        // Return the search results view with the users, query, and userData
+        return view('search', compact('users', 'query', 'userData'));
+    }
+    
+
     public function restore($id)
     {
         $user = User::findOrFail($id);
         $user->deleted = false; // Restore the record by setting custom deleted field to false
         $user->save();
-    
+
         return redirect()->back()->with('success', 'User restored successfully.');
     }
-    
-
-    
 }
