@@ -139,6 +139,18 @@ class UserController extends Controller
     
         return redirect()->route('login')->with('success', 'User soft deleted successfully.');
     }
+    public function search(Request $request)
+{
+    // Get the search query from the request
+    $query = $request->input('query');
+
+    // Perform the search query using the User model
+    $users = User::where('name', 'like', '%' . $query . '%')->get();
+
+    // Return the search results view with the users and query
+    return view('search', compact('users', 'query'));
+}
+
     
     public function restore($id)
     {

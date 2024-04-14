@@ -33,14 +33,14 @@
                 z-index: 600;
                 overflow-y: auto;
             }
-
+/* 
             .main-content {
 
 
                 padding: 20px;
                 display: flex;
                 justify-content: space-between;
-            }
+            } */
 
             .card {
                 flex: 0 0 calc(50% - 10px);
@@ -54,11 +54,11 @@
                 padding-top: 0;
             }
 
-            .main-content {
+            /* .main-content {
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
-            }
+            } */
 
             .card {
                 width: 100%;
@@ -106,6 +106,44 @@
             height: 75%;
             margin: 0 auto;
         }
+    
+        .fa-search {
+    color: black;
+}
+
+/* Set the background of the search icon button */
+.btn-primary {
+    background-color: white;
+    border: none; /* Set the border color */
+}
+
+/* Set the hover effect */
+.btn-primary:hover {
+    background-color: #f0f0f0; /* Light grey */
+}.search-form {
+    margin-bottom: 0%;
+    padding-bottom:0%; 
+    display: flex;
+    align-items: center;
+    position: relative; /* Position container relatively */
+}
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width:100%; /* Adjust width as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* padding: 5px 0; */
+    display: block; /* Always display the dropdown */
+}
+
+
+    /* Position the search icon next to the search input */
+     
     </style>
     </head>
 
@@ -114,13 +152,29 @@
             <img
                 style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"src={{ asset('images/star.png') }}>
             <span style="font-size: 35px;">My Dashboard</span>
-            <div style="display:inline ;float: right; padding-right: 10%;text-align: center;margin-top: 20px;">
-                <!-- <i class="fas fa-search fa-sm ml-2" aria-hidden="true"></i> -->
-                <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search">
-
+            <div style="display: inline; float: right; padding-right: 10%; text-align: center; margin-top: 20px; position: relative;">
+                <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
+                    <input class="form-control form-control-sm" type="text" name="query" placeholder="Search" aria-label="Search">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="dropdown-menu show">
+                        @if (!empty($users))
+                            @foreach ($users as $user)
+                                <li><a href="{{ route('user.profile', ['name' => $user->name]) }}">{{ $user->name }}</a></li>
+                            @endforeach
+                        @endif
+                    </div>
+                </form>
+            
+               
+                
+            
+               
             </div>
+            
         </div>
-
+        <div>
         <main class="main-content" style="margin-bottom:2%; ">
             <div class="container">
                 <div class="row">
@@ -199,6 +253,7 @@
                 </div>
             </div>
         </main>
+    </div>
 
 
         <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
@@ -242,6 +297,12 @@
 
                 // Your code to run since DOM is loaded and ready
             });
+    
         </script>
+  
+    
+    
+        
+
 
 </x-menuLayout>
