@@ -132,15 +132,16 @@ class PreferencesController extends Controller
 
 
     public function storeStep4(Request $request)
-    {logger('Before validation');
+    {
+        logger('Before validation');
         //$userId = $request->session()->get('user_id');
         // Validate the incoming form data
         $validatedData = $request->validate([
-            'displayName' => 'required',
             'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
         ]);
 
+        
         logger($validatedData);
         if ($request->hasFile('timetable_path')) {
             $timetableFile = $request->file('timetable_path');
@@ -200,28 +201,40 @@ class PreferencesController extends Controller
     public function __construct()
     {
         $this->middleware('auth'); // Assuming authentication is required for profile1 page
-        $this->displayProfile2(); // Call the displayProfile1 method automatically
+        $this->displayProfile2();
+       // $this->displayAvatar(); // Call the displayProfile1 method automatically
     }
 
     public function displayProfile2()
     {
         // Retrieve user data from the database
         $userData = UserPreferences::where('user_id', auth()->id())->first();
-        $userImage = User::where('id', auth()->id())->first();
         // Render the profile1 view with user data
-        return view('profile2', compact('userData', 'userImage'));
+        return view('profile2', compact('userData'));
     }
+
+    
+    // public function displayAvatar()
+    // {
+    //     // Retrieve user data from the database
+    //     $userImage = UserPreferences::where('user_id', auth()->id())->first();
+    //     // Render the profile1 view with user data
+    //     return view('profile1', compact('userImage'));
+    // }
 
 
 
     public function saveUserData(Request $request)
     {
-        $userData = UserPreferences::where('user_id', auth()->id())->first();
-
-        // Update the user preferences with the new data
-        $userData->update($request->all());
-
-        // Optionally, you can return a response indicating success or failure
-        return response()->json(['message' => 'User data updated successfully']);
+        // Retrieve the updated user data from the request
+        $updatedData = $request->all();
+        
+        // Update the user's information
+        $user = UserPreferences::where('user_id', auth()->id())->first();
+        $user->update($updatedData);
+    
+        // Return a response indicating success or failure
+        return response()->json(['message' => 'User data saved successfully.']);
     }
+    
 }

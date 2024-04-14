@@ -38,7 +38,6 @@ class userPreferences extends Model
         'movieItem3',
         'description',
         'avatar',
-        'displayName',
         'timetable_path'
     
     ];

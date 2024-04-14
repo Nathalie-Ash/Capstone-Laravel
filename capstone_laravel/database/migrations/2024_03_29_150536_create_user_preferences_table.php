@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('musicItem2');
             $table->string('musicItem3');
             $table->string('description');
-            $table->string('displayName');
             $table->string('avatar')->nullable();
             $table->string('timetable_path')->nullable();
             $table->timestamps(); // Add timestamps columns

@@ -76,7 +76,9 @@
                         <div style ="text-align: center;">
 
                             <button type= "submit" class="btn btn-primary btn-lg btn-block"
+
                                 style="border: none;background-color:#ff6f28;">NEXT</button>
+
                         </br>
                             <span>Already have an account? </span><a href="/" style="text-decoration: none; color:#ff6f28;">LOG IN</a>
                         </div>
