@@ -142,11 +142,19 @@
 
 
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
+                            @if (true)
+                                <a href="#" class="btn"
+                                style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
+                                data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a>
                                 <a href="#" class="btn btn-primary"
-                                    style=" border: none;width:49%; background-color:#579792; color: white">ADD
-                                    FRIEND</a>
+                                    style="border: none;width:40%; background-color:#ff6f28; color: white">REMOVE</a>
+                            @else
+                                <a href="#" class="btn btn-primary"
+                                    style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a>
+                            @endif
+                                
 
                             </div>
                         </div>
@@ -282,7 +290,42 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="contactInfoModalLabel">View Contact Information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Connect with others by contacting them via phone number or instagram.
+                            <div style="padding-top: 4%;">
+                                <div class="mb-3 row">
+                                    <label for="phone" class="col-sm-4 col-form-label"
+                                        style="text-align: left; padding-left: 4.5%;">Phone Number</label>
+                                    <div class="col-sm-8">
+                                        <input type="text"  readonly class="form-control-plaintext" id="phone" style="width: 80%; background-color: #579792;border-radius:10%; padding-left: 10px"" value="+961 71 0911 73">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="instagram" class="col-sm-4 col-form-label"
+                                        style="text-align: left; padding-left: 4.5%;">Instagram</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" id="phone" style="width: 80%;background-color: #579792;border-radius:7%; padding-left: 10px" value="nathalie.elashkar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
             </div>
         </div>
     </main>

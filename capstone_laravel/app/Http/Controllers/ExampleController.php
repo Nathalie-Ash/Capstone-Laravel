@@ -52,4 +52,8 @@ class ExampleController extends Controller
     public function userProfile() {
         return view('userProfile');
     }
+
+    public function contact() {
+        return view('contact');
+    }
 }

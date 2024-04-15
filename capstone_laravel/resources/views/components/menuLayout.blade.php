@@ -58,10 +58,13 @@
                         class="fas fa-th-large fa-fw me-3"></i><span>DASHBOARD</span></a>
                 <a href="/connections" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792"><i
-                        class="fas fa-address-book fa-fw me-3"></i><span>CONNECTIONS</span></a>
+                        class="fas fa-users fa-fw me-3"></i><span>CONNECTIONS</span></a>
                 <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792"><i
                         class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
+                <a href="/contact" class="list-group-item list-group-item-action py-2 ripple"
+                    style="background-color:#579792"><i
+                        class="fas fa-address-book fa-fw me-3"></i><span>CONTACTS</span></a>
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
