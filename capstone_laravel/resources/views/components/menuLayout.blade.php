@@ -49,7 +49,7 @@
             <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
                 <span style="text-align: center;font-size: large">{{ auth()->user()->name }}</span>
 
-                <a href="profile1" class="list-group-item list-group-item-action py-2 ripple"
+                <a href="/profile1" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792">
                     <i class="fas fa-user fa-fw me-3"></i><span>MY PROFILE</span>
                 </a>
