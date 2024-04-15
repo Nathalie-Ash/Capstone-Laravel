@@ -34,6 +34,8 @@ Route::get('/step3', [ExampleController::class, "step3"]);
 Route::get('/step4', [ExampleController::class, "step4"]);
 Route::get('/userProfile', [ExampleController::class, "userProfile"]);
 
+Route::get('/contact', [ExampleController::class, 'contact'])->name('contact');
+
 Route::get('profile2', [PreferencesController::class, 'displayProfile2'])->name('profile2');
 Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profile1');
 //Route::get('profile1', [PreferencesController::class, 'displayAvatar'])->name('profile1');
