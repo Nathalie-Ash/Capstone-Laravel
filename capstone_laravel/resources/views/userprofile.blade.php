@@ -142,15 +142,16 @@
 
 
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
-                            @if (true)
+                            @if ($isConnection)  
                                 <a href="#" class="btn"
                                 style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
                                 data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a>
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:40%; background-color:#ff6f28; color: white">REMOVE</a>
                             @else
-                                <a href="#" class="btn btn-primary"
-                                    style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                            <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
+                                style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                            
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a>
                             @endif
