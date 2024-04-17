@@ -84,10 +84,11 @@
 
     <footer class=" fixed-bottom text-center small text-muted py-2"
         style ="
-        position: relative;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
+        
         
         z-index: 1;
     

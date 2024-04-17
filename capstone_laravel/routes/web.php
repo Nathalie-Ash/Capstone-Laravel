@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ConnectionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,12 +68,12 @@ Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->na
 
 
 Route::get('/user/{name}', [DashboardController::class, 'userProfile'])->name('user.profile');
-use App\Http\Controllers\ConnectionsController;
+
 
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
 Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
 Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
-// web.php
+Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 
 
 

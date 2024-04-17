@@ -49,7 +49,7 @@
                                 style="width: 45%; margin: 5px; float: left; margin-left: 15px;">
                         </div>
                         <div class="col-sm-2" style="float: left;">
-                            <p class="textStyle" style="text-align: left; font-size: 30px; padding: 0; margin: 0;">
+                            <p class="textStyle" style="text-align: left; font-size: 30px; padding: 0; margin: 0;width: max-content;">
                                 {{ $connection->sender->name }}</p>
                             <p style="text-align: left; font-weight: lighter; padding: 0;">7 Mutual friends</p>
                         </div>
@@ -58,7 +58,7 @@
                         style="background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
                         data-bs-toggle="modal" data-bs-target="#contactInfoModal"> Share</a>
                             <a href="{{ route('user.profile', ['name' => $connection->sender->name]) }}" class="btn"
-                                style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">View
+                                style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
                                 Profile</a>
                             <button type="button" class="btn btn-secondary"
                                 style="width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</button>
