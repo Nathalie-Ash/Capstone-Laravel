@@ -149,8 +149,9 @@
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:40%; background-color:#ff6f28; color: white">REMOVE</a>
                             @else
-                                <a href="#" class="btn btn-primary"
-                                    style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                            <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
+                                style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                            
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a>
                             @endif

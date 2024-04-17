@@ -11,102 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Connections;
 
 class UserController extends Controller
 {
     use SoftDeletes;
-
-    // public function showPage1()
-    // {
-    //     return view('signup');
-    // }
-
-    // public function handlePage1(Request $request)
-
-    // {    
-    //     $incomingFields = $request->all();
-    //     logger($incomingFields); // Log the incoming data
-
-    //     $validatedData = $request->validate([
-    //         'name' => ['required', 'max:30'],
-    //         'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+@lau\.edu$/'],
-    //         'username' => ['required', 'min:3', 'max:30'],
-    //         'password' => ['required', 'min:8', 'max:30','confirmed'], // Ensure password confirmation field is named password_confirmation
-    //     ]);
-
-    //     // Store validated data from page 1 in session
-    //     $request->session()->put('signup_data', $validatedData);
-
-    //     return redirect()->route('sign2'); // Redirect to page 2 for additional signup data
-    // }
-
-    // public function showPage2(Request $request)
-    // {
-    //     // Retrieve data from session (page 1 data)
-    //     $signupData = $request->session()->get('signup_data');
-    //     //logger($signupData);
-    //     // Check if data exists in session
-    //     if (!$signupData) {
-    //         // Handle case when data is missing
-    //         return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
-    //     }
-
-    //     return view('sign2', compact('signupData'));
-    // }
-
-    // public function register(Request $request)
-    // {
-    //     // Retrieve data from session (page 1 data)
-    //     $signupData = $request->session()->get('signup_data');
-
-    //     if (!$signupData) {
-    //         // Handle case when data is missing
-    //         return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
-    //     }
-
-    //     // Validate additional data from page 2
-    //     $validatedData = $request->validate([
-    //         'birthdate' => ['required'], 
-    //         'sexualorientation' => ['required'], 
-    //         'gender' => ['required'], 
-    //     ]);
-
-    //     logger($validatedData);
-    //     $birthdate = date('Y-m-d', strtotime($validatedData['birthdate']));
-
-    //     // Merge page 1 and page 2 data
-    //     $userData = array_merge($signupData, $validatedData);
-    //     $userData['birthdate'] = $birthdate;
-
-    //     logger($userData);
-    //     // Create new user
-
-    //     $user = User::create([
-    //         'name' => $userData['name'],
-    //         'email' => $userData['email'],
-    //         'username' => $userData['username'],
-    //         'password' => Hash::make($userData['password']),
-    //         'birthdate' => $userData['birthdate'], 
-    //         'sexualorientation' => $userData['sexualorientation'], 
-    //         'gender' => $userData['gender'], 
-    //     ]);
-
-    //     $user = User::where('email', $userData['email'])->first();
-
-    //     if ($user) {
-    //         $userId = $user->id;
-    //         $request->session()->put('user_id', $userId);
-    //         $request->session()->forget('signup_data');
-
-    //     return redirect()->route('steps');
-    //     } 
-    //     else{
-    //         return 'user nu uh';
-    //     }
-
-
-    // }
-
 
 
     public function __construct()
@@ -164,4 +73,19 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User restored successfully.');
     }
+    public function addProfile($profileId)
+{
+    // Get the authenticated user's ID
+    $userId = auth()->id();
+
+    // Assuming you want to create a new connection request
+    $connection = new Connections();
+    $connection->user_id = $profileId; // Authenticated user's ID
+    $connection->connection_id = $userId; // ID of the profile being viewed
+    $connection->state = false; // Assuming it's a pending request
+    $connection->save();
+
+    // Redirect back or to any desired page
+    return redirect()->back()->with('success', 'Friend request sent successfully');
+}
 }

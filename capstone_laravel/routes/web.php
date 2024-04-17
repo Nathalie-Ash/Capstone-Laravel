@@ -72,6 +72,11 @@ use App\Http\Controllers\ConnectionsController;
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
 Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
 Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
+// web.php
+
+
+
+Route::get('/add-profile/{profileId}', [UserController::class, 'addProfile'])->name('add.profile');
 
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
