@@ -21,11 +21,12 @@
                     <div class="row"
                         style="border: 2px solid black; display: flex; align-items: center; border-radius: 5px;">
                         <div class="col-sm-2">
+                            
                             <img src="https://orig00.deviantart.net/d7b0/f/2011/166/d/4/avatar_100x100_by_demonfox_zephz-d3iyw6a.png" class="rounded-circle"
                                 style="width: 45%; margin: 5px;float: left;margin-left: 15px;">
                         </div>
                         <div class="col-sm-2" style="float: left;">
-                            <p class="textStyle" style="text-align: left; font-size: 30px; padding: 0p; margin: 0px;">
+                            <p class="textStyle" style="text-align: left; font-size: 30px; padding: 0p; margin: 0px;width: max-content;">
                                 {{ $request->sender->name }}</p>
                             <p style="text-align: left; font-weight: lighter; padding: 0px;">7
                                 Mutual friends</p>
@@ -38,7 +39,7 @@
                             <form method="POST" action="{{ route('acceptConnection') }}">
                                     @csrf
                                     <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
-                                <button type="submit" class="btn" style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Accept</button>
+                                <button type="submit" class="btn" style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Accept</button>
                             </form>
                                 
                             <button type="button" class="btn"

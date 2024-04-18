@@ -57,8 +57,7 @@
                     style="background-color:#579792"><i
                         class="fas fa-th-large fa-fw me-3"></i><span>DASHBOARD</span></a>
                 <a href="/connections" class="list-group-item list-group-item-action py-2 ripple"
-                    style="background-color:#579792"><i
-                        class="fas fa-users fa-fw me-3"></i><span>CONNECTIONS</span></a>
+                    style="background-color:#579792"><i class="fas fa-users fa-fw me-3"></i><span>CONNECTIONS</span></a>
                 <a href="/requests" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792"><i
                         class="fas fa-user-plus fa-fw me-3"></i><span>REQUESTS</span></a>
@@ -82,20 +81,11 @@
 
     {{ $slot }}
 
-    <footer class=" fixed-bottom text-center small text-muted py-2"
-        style ="
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        
-        
-        z-index: 1;
-    
-    ">
-        <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
-        </p>
-    </footer>
+    <footer class="fixed-bottom text-center small text-muted py-2"
+    style="position: unset; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+    </p>
+</footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

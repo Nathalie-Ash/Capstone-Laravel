@@ -120,7 +120,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card" style="background-color:#f7f5f5;">
-                        <img src={{ asset('images/placeholder.png') }} class="card-img-top" style="height: 20%;">
+                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;">
 
                         <div class="card-body">
                             <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>

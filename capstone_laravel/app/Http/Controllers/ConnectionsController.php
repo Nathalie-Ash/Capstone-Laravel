@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Connections;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PreferencesController;
+use App\Models\userPreferences;
 
 class ConnectionsController extends Controller
 {
@@ -31,26 +33,29 @@ class ConnectionsController extends Controller
 
     }
     public function myConnections()
-    {
-        // Retrieve the authenticated user's ID
-        $userId = auth()->id();
+{
+    // Retrieve the authenticated user's ID
+    $userId = auth()->id();
 
-        // Retrieve pending connection requests for the authenticated user
-        $connections = Connections::where('user_id', $userId) // Assuming receiver_id is the foreign key for the user who received the request
-            ->where('state', true)
-            ->with('sender')
-            ->get();
-
-        // If there are pending requests, retrieve the corresponding senders
-        // if ($connections->isNotEmpty()) {
-        //     return view('connections', compact('connections'));
-        // }
-
-        // // If there are no pending requests, return a message or redirect
-        // return redirect()->route('connections')->with('success', 'Connection accepted successfully.');
-        return view('connections', compact('connections'));
-    }
+    // Retrieve pending connection requests for the authenticated user
+    $connections = Connections::where('user_id', $userId)
+        ->where('state', true)
+        ->with('sender')
+        ->get();
     
+    // Initialize an array to store user images
+    $userImages = [];
+
+    // Retrieve user image for each connection
+    foreach ($connections as $connection) {
+        $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
+        if ($userImage)
+        $userImages[$connection->sender->id] = $userImage ? $userImage->avatar : 'images/default_profile.png';
+    }
+
+    return view('connections', compact('connections', 'userImages'));
+}
+
     
     public function acceptConnection(Request $request)
     {
