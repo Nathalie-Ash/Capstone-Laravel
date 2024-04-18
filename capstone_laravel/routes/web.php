@@ -45,6 +45,8 @@ Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profil
 // Route::post('/register', [UserController::class,"register"]);
 Route::get('/signup', [RegisterController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [RegisterController::class, 'handlePage1']);
+//Route::post('/check-username', 'Auth\RegisterController@checkUsernameAvailability');
+
 Route::get('/sign2', [RegisterController::class, 'showPage2'])->name('sign2');
 Route::post('/sign2', [RegisterController::class, 'register'])->name('register');
 
