@@ -56,14 +56,22 @@ class ConnectionsController extends Controller
     {
         $connectionId = $request->input('connection_id');
 
-        $connection = Connections::find($connectionId);
-
+        $connection = Connections::where('connection_id', $connectionId)->first(); // Assuming receiver_id is the foreign key for the user who received the request
+            
         if (!$connection) {
             return redirect()->back()->with('error', 'Connection not found.');
         }
 
         $connection->state = true;
         $connection->save();
+        // Get the authenticated user's ID
+    $userId = auth()->id();
+    logger($userId);
+    $connection1 = new Connections();
+    $connection1->user_id = $connectionId; // Authenticated user's ID
+    $connection1->connection_id = $userId; // ID of the profile being viewed
+    $connection1->state = true; 
+    $connection1->save();
 
         return redirect()->back()->with('success', 'Connection accepted successfully.');
     }

@@ -157,6 +157,7 @@
             <main class="main-content" style="margin-bottom:2%; ">
                 <div class="container">
                     <div class="row">
+                        @if (!empty($matchedUsers))
                         @foreach ($matchedUsers as $matchedUser)
                        
                         @php
@@ -182,15 +183,16 @@
                                             <span>{{ $matchedUser['matching_percentage'] }}%</span>
                                         </div>
                                         <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                            
                                             <a href="{{ route('user.profile', ['name' => $userName]) }}" class="btn btn-primary" style=" border: none;width:49%; background-color:#ff6f28; color: white">View Profile</a>
                                             <a href="#" class="btn btn-primary" style="border: none;width:49%; background-color:#ff6f28; color: white">Quick Add</a>
                                         </div>
                                     </div>
                                 </div>
+                              
                             </div>
-                         
+                        
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </main>
