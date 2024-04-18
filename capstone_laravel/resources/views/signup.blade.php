@@ -55,6 +55,7 @@
                             <label class="form-label" for="form1Example13">Username</label>
                             <input type="text" name = "username" id="form1Example1234" class="form-control form-control-lg"
                                 style="background-color:#dcdcdf;" />
+                                <span id="usernameAvailability" style="color: red;"></span>
                         </div>
 
                         <!-- Password input -->
@@ -151,6 +152,7 @@
         }
     }
 </script>
+
 
 
 </body>

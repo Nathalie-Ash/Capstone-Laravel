@@ -37,7 +37,7 @@
                             </form>
                             <form method="POST" action="{{ route('acceptConnection') }}">
                                     @csrf
-                                    <input type="hidden" name="connection_id" value="{{ $request->id }}">
+                                    <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
                                 <button type="submit" class="btn" style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Accept</button>
                             </form>
                                 

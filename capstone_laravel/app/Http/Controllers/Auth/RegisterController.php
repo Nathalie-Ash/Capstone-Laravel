@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -42,7 +43,7 @@ class RegisterController extends Controller
 
         return redirect()->route('sign2');
     }
-
+    
     protected function showPage2(Request $request)
     {
         $signupData = $request->session()->get('signup_data');
@@ -96,6 +97,7 @@ class RegisterController extends Controller
         }
     }
 
+    
     public function redirectTo()
     {
         return route('steps');
