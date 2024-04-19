@@ -8,52 +8,16 @@ use App\Models\UserPreferences;
 use App\Models\Connections;
 
 class DashboardController extends Controller
-{  public function userProfile($name)
-    {
-        // Retrieve the authenticated user's ID
-        $userId = auth()->id();
-    
-        // Retrieve the user based on the username
-        $user = User::where('name', $name)->first();
-    
-        // Check if user exists
-        if ($user) {
-            // Retrieve user preferences
-            $userPreferences = UserPreferences::where('user_id', $user->id)->first();
-            
-            // Check if there exists a connection between the authenticated user and the profile being viewed
-            $connection = Connections::where('user_id', $userId)
-                                        ->where('connection_id', $user->id)
-                                        ->first();
-
-            // Determine if the user profile being viewed is a connection and its state
-            $isConnection = $connection && $connection->state;
-    
-            // Render the userProfile view with user data and connection status
-            return view('userProfile', compact('user', 'userPreferences', 'isConnection'));
-        }
-    }
-    
-
+{  
     public function search(Request $request)
     {
         $query = $request->input('query');
-    
-        // Perform search logic to retrieve users
+
+        // Perform search logic, for example:
         $users = User::where('name', 'like', "%$query%")->get();
-    
-        // Retrieve user images based on user IDs
-        $userIds = $users->pluck('id')->toArray();
-        $userImages = UserPreferences::whereIn('user_id', $userIds)->get();
-    
-        // Associate each user with their image
-        foreach ($users as $user) {
-            $user->avatar = $userImages->firstWhere('user_id', $user->id)->avatar ?? null;
-        }
-    
-        return view('dashboard', compact('users', 'query','userImages'));
+
+        return view('dashboard', compact('users', 'query'));
     }
-    
     
     public function dashboard()
     {
@@ -61,7 +25,14 @@ class DashboardController extends Controller
         $authenticatedUser = auth()->user();
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
         // Retrieve all users except the authenticated user
-        $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)->get();
+        $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
+        ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
+            $query->select('connection_id')
+                  ->from('connections')
+                  ->where('user_id', $authenticatedUser->id)
+                  ->where('state', true);
+        })
+        ->get();
 
         // Calculate matching scores for each user
         $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $users);
