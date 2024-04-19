@@ -74,18 +74,31 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User restored successfully.');
     }
     public function addProfile($profileId)
-{
-    // Get the authenticated user's ID
-    $userId = auth()->id();
-
-    // Assuming you want to create a new connection request
-    $connection = new Connections();
-    $connection->user_id = $profileId; // Authenticated user's ID
-    $connection->connection_id = $userId; // ID of the profile being viewed
-    $connection->state = false; // Assuming it's a pending request
-    $connection->save();
-
-    // Redirect back or to any desired page
-    return redirect()->back()->with('success', 'Friend request sent successfully');
-}
+    {
+        // Get the authenticated user's ID
+        $userId = auth()->id();
+    
+        // Check if a connection already exists between the users
+        $existingConnection = Connections::where('user_id', $profileId)
+                                         ->where('connection_id', $userId)
+                                         ->first();
+    
+        if ($existingConnection) {
+            // Connection already exists, so it's either pending or accepted
+            // You can handle this case as per your requirements
+            // For now, let's assume you want to show a message
+            return redirect()->back()->with('error', 'Friend request already sent or accepted');
+        }
+    
+        // Assuming you want to create a new connection request
+        $connection = new Connections();
+        $connection->user_id = $profileId; // Profile being viewed
+        $connection->connection_id = $userId; // Authenticated user
+        $connection->state = false; // Pending request
+        $connection->save();
+    
+        // Redirect back or to any desired page
+        return redirect()->back()->with('success', 'Friend request sent successfully');
+    }
+    
 }

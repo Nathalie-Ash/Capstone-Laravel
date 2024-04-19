@@ -188,7 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+                                <div class="spacer" style="margin-bottom: 1%"></div>
                             </div>
                         
                         @endforeach
