@@ -25,7 +25,7 @@ class DashboardController extends Controller
             $connection = Connections::where('user_id', $userId)
                                         ->where('connection_id', $user->id)
                                         ->first();
-    
+
             // Determine if the user profile being viewed is a connection and its state
             $isConnection = $connection && $connection->state;
     
@@ -38,12 +38,22 @@ class DashboardController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
-        // Perform search logic, for example:
+    
+        // Perform search logic to retrieve users
         $users = User::where('name', 'like', "%$query%")->get();
-
-        return view('dashboard', compact('users', 'query'));
+    
+        // Retrieve user images based on user IDs
+        $userIds = $users->pluck('id')->toArray();
+        $userImages = UserPreferences::whereIn('user_id', $userIds)->get();
+    
+        // Associate each user with their image
+        foreach ($users as $user) {
+            $user->avatar = $userImages->firstWhere('user_id', $user->id)->avatar ?? null;
+        }
+    
+        return view('dashboard', compact('users', 'query','userImages'));
     }
+    
     
     public function dashboard()
     {
