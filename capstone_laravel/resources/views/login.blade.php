@@ -26,49 +26,87 @@
             font-weight: bold;
         }
     </style>
+
 </head>
 
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page">LAU Connect</a>
+                    </li>
 
+                </ul>
+                <form class="d-flex">
+                    <a href="#logIn" class="btn btn-primary"
+                        style=" border: none;width:max-content; background-color:rgba(87, 151, 146); color: white; ">LOG
+                        IN</a>
+                    <a href="{{ route('signup') }}" class="btn btn-primary"
+                        style=" border: none;width:max-content; background-color:#ff6f28; color: white; margin-left: 20px;">SIGN
+                        UP</a>
+                </form>
+            </div>
+        </div>
+    </nav>
     <section class="vh-100" style="margin-bottom: 50px;">
+
         <div class="container py-5 h-100">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="text">
                         <h2>Welcome to LAU Connect!</h2>
                     </div>
                     <div>
-                        <h1>About Us</h1>
+                        <h2 style="color: rgba(87, 151, 146);">About Us</h2>
                         <p>At LAU Connect, we're dedicated to making your experience at Lebanese American University
                             (LAU)
                             an unforgettable one by helping you connect with fellow students who share your interests,
                             passions, and goals. College is not just about academics; it's also about forming lifelong
                             friendships and creating lasting memories. That's where we come in.</p>
-                        <p style="text-align: center">How It Works</p>
+                        <h2 style="text-align: center; color:rgba(87, 151, 146);">How It Works</h2>
                         <ul>
-                            <li>Step 1: Create Your Profile</li>
-                            <li>Step 2: Discover Common Interests</li>
-                            <li>Step 3: Connect with Peers</li>
+
+                            <li><span style="color: #ff6f28;">Step 1:</span> Create Your Profile</li>
+                            <li><span style="color: #ff6f28;">Step 2:</span> Discover Common Interests</li>
+
+
+                            <li><span style="color: #ff6f28;">Step 3:</span> Connect With Peers</li>
+
                         </ul>
-                        <p style="text-align: center">Our Mission</p>
+                        <h2 style="text-align: center; color:rgba(87, 151, 146);">Our Mission</h2>
                         <p>At LAU Connect, we believe that forming meaningful connections is essential to a fulfilling
                             college
                             experience. Whether you're looking for study buddies, gym partners, or simply someone to
                             grab coffee
                             with between classes, we're here to help you find your tribe.</p>
-                        <p style="text-align: center">Get Started Today!</p>
+                        <h2 style="text-align: center; color:rgba(87, 151, 146);">Get Started Today!</h2>
+
                         <p>Don't wait to start building your network at LAU. Join LAU Connect now and take the first
                             step
                             towards creating friendships that will last a lifetime.</p>
-                        <p>Contact Us:<br>
-                            Email: nathalie.elashkar@lau.edu, jana.albardan@lau.edu</p>
+                        <p><span style="color: #ff6f28;padding-right: 2px">Contact Us: </span> nathalie.elashkar@lau.edu, jana.albardan@lau.edu</p>
+
                     </div>
+                    <br><br>
                 </div>
-                <div class="col-md-6" >
-                    <img src="{{ asset('images/aboutUs.png') }}" class="img-fluid">
+                <div class="col-md-3">
+                    <img src="{{ asset('images/anawjana.png') }}" class="img-fluid" style="height: 100%;">
+                    <img src="{{ asset('images/squiggle.png') }}" class="img-fluid" style="height: 100%;">
+
                 </div>
                 <div class="col-md-6">
+                    <img src="{{ asset('images/aboutUs.png') }}" class="img-fluid">
+                </div>
+                <div class="col-md-6" id ="logIn">
                     <div style="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -98,6 +136,7 @@
 
                             <!-- Submit button -->
                             <div style="text-align: center">
+
                                 <button type="submit" class="btn btn-primary btn-lg btn-block"
                                     style="border: none;background-color:#ff6f28;">SIGN IN</button>
                                 {{-- </div> --}}
@@ -112,6 +151,7 @@
                 </div>
             </div>
         </div>
+        <br><br>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -145,8 +185,10 @@
         }
     </script>
 </body>
-<footer class="fixed-bottom text-center small text-muted py-2" style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1;">
-  <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.</p>
+<footer class="fixed-bottom text-center small text-muted py-2"
+    style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1;">
+    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+    </p>
 </footer>
 
 
