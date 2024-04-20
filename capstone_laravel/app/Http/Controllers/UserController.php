@@ -73,19 +73,5 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User restored successfully.');
     }
-    public function addProfile($profileId)
-{
-    // Get the authenticated user's ID
-    $userId = auth()->id();
-
-    // Assuming you want to create a new connection request
-    $connection = new Connections();
-    $connection->user_id = $profileId; // Authenticated user's ID
-    $connection->connection_id = $userId; // ID of the profile being viewed
-    $connection->state = false; // Assuming it's a pending request
-    $connection->save();
-
-    // Redirect back or to any desired page
-    return redirect()->back()->with('success', 'Friend request sent successfully');
-}
+    
 }

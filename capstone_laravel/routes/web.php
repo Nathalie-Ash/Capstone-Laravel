@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserProfileControllerController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ConnectionsController;
@@ -70,7 +72,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
 
-Route::get('/user/{name}', [DashboardController::class, 'userProfile'])->name('user.profile');
+Route::get('/user/{name}', [UserProfileController::class, 'userProfile'])->name('user.profile');
 
 
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
@@ -80,7 +82,7 @@ Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->nam
 
 
 
-Route::get('/add-profile/{profileId}', [UserController::class, 'addProfile'])->name('add.profile');
+Route::get('/add-profile/{profileId}', [UserProfileController::class, 'addProfile'])->name('add.profile');
 
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');

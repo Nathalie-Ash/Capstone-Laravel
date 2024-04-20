@@ -214,7 +214,10 @@ $userPreferences = App\Models\UserPreferences::where(
                                     </div>
 
                                 </div>
-                            @endforeach
+                                <div class="spacer" style="margin-bottom: 1%"></div>
+                            </div>
+                        
+                        @endforeach
                         @endif
                     </div>
                 </div>

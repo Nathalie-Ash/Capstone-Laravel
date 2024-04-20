@@ -149,8 +149,15 @@
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:40%; background-color:#ff6f28; color: white">REMOVE</a>
                             @else
-                            <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
+                            @if ($existingConnection)
+                            <!-- Connection exists, display "Requested" button -->
+                            <button class="btn btn-primary" style="border: none;width:49%; background-color:#579792; color: white" disabled>Requested</button>
+                        @else
+                            <!-- No connection exists, display "Add Friend" button -->
+                                          <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
                                 style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                        @endif
+                        
                             
                                 <a href="#" class="btn btn-primary"
                                     style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a>
