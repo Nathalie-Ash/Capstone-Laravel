@@ -70,13 +70,13 @@ class ConnectionsController extends Controller
         $connection->state = true;
         $connection->save();
         // Get the authenticated user's ID
-    $userId = auth()->id();
-    logger($userId);
-    $connection1 = new Connections();
-    $connection1->user_id = $connectionId; // Authenticated user's ID
-    $connection1->connection_id = $userId; // ID of the profile being viewed
-    $connection1->state = true; 
-    $connection1->save();
+        $userId = auth()->id();
+        logger($userId);
+        $connection1 = new Connections();
+        $connection1->user_id = $connectionId; // Authenticated user's ID
+        $connection1->connection_id = $userId; // ID of the profile being viewed
+        $connection1->state = true; 
+        $connection1->save();
 
         return redirect()->back()->with('success', 'Connection accepted successfully.');
     }

@@ -91,7 +91,7 @@
                     <div class="text">
                         <h2>Build Your Profile</h2>
                     </div>
-                    <img src={{ asset('images/image5.png') }} class="img-fluid" alt="Phone image" style="height:500px">
+                    <img src={{ asset('images/stairs.png') }} class="img-fluid" alt="Phone image" style="height:500px; margin-left: 60px;">
 
 
                 </div>
