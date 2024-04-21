@@ -83,7 +83,7 @@ Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->nam
 
 
 Route::get('/add-profile/{profileId}', [UserProfileController::class, 'addProfile'])->name('add.profile');
-
+Route::get('/dashboard/filter', [DashboardController::class, 'filter'])->name('dashboard.filter');
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
 
