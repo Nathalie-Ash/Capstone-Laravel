@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Connections;
 use App\Models\User;
+use App\Models\Connections;
+use App\Models\userContacts;
+use Illuminate\Http\Request;
 use App\Models\userPreferences;
 
 class UserProfileController extends Controller
@@ -41,8 +42,12 @@ class UserProfileController extends Controller
             ->where('connection_id', $userId)
             ->first();
 
+            $sharedContact = userContacts::where('user_id', $user->id)->where('connection_id',$userId)->where('sent',1)->first();
+
+            
+
 // Render the userProfile view with user data, connection status, and existing connection
-return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage','existingConnection'));
+return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage','existingConnection','sharedContact'));
         }
     }
     

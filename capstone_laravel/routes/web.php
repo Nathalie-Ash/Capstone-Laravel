@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\UserProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExampleController;
-use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\UserProfileControllerController;
-use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ConnectionsController;
+use App\Http\Controllers\PreferencesController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\userContactsController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserProfileControllerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,3 +89,4 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('d
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
 
 Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
+Route::post('/connections',[userContactsController::class,'sendContact'])->name('sendContact');

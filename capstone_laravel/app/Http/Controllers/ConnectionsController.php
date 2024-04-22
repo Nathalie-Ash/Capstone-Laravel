@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Connections;
+use App\Models\userContacts;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PreferencesController;
 use App\Models\userPreferences;
+use App\Http\Controllers\PreferencesController;
 
 class ConnectionsController extends Controller
 {
@@ -51,9 +52,15 @@ class ConnectionsController extends Controller
         $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
         if ($userImage)
         $userImages[$connection->sender->id] = $userImage ? $userImage->avatar : 'images/default_profile.png';
+
+        $sentContact = userContacts::where('user_id', $userId)
+        ->where('state', true)->where('sent',1)
+        ->first();
+        logger($sentContact);
     }
 
-    return view('connections', compact('connections', 'userImages'));
+
+    return view('connections', compact('connections', 'userImages', 'sentContact'));
 }
 
     
