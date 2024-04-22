@@ -186,13 +186,16 @@
                     outdoorActivity + '</a>';
 
                 outdoorDropdownMenu1.appendChild(listItem1);
-                outdoorDropdownMenu1.appendChild(divider1);
+                if (outdoorActivity!="Football"){
+                outdoorDropdownMenu1.appendChild(divider1);}
 
                 outdoorDropdownMenu2.appendChild(listItem2);
-                outdoorDropdownMenu2.appendChild(divider2);
+                if (outdoorActivity!="Football"){
+                outdoorDropdownMenu2.appendChild(divider2);}
 
                 outdoorDropdownMenu3.appendChild(listItem3);
-                outdoorDropdownMenu3.appendChild(divider3);
+                if (outdoorActivity!="Football"){
+                outdoorDropdownMenu3.appendChild(divider3);}
             });
 
             var indoorActivities = [
@@ -230,13 +233,16 @@
 
           
                 indoorDropdownMenu1.appendChild(listItem1);
-                indoorDropdownMenu1.appendChild(divider1);
+                if (indoorActivity!="Meditating"){
+                indoorDropdownMenu1.appendChild(divider1);}
 
                 indoorDropdownMenu2.appendChild(listItem2);
-                indoorDropdownMenu2.appendChild(divider2);
+                if (indoorActivity!="Meditating"){
+                indoorDropdownMenu2.appendChild(divider2);}
 
                 indoorDropdownMenu3.appendChild(listItem3);
-                indoorDropdownMenu3.appendChild(divider3);
+                if (indoorActivity!="Meditating"){
+                indoorDropdownMenu3.appendChild(divider3);}
                  
                 //indoorDropdownMenu3.appendChild(divider3);
           
@@ -250,65 +256,48 @@
 
 
             // Function to remove or disable the selected activity from all dropdown menus
-            function updateDropdowns(selectedActivity) {
-                var allDropdowns = document.querySelectorAll(".dropdown-menu");
-                allDropdowns.forEach(function(dropdown) {
-                    for (var i = 0; i < dropdown.children.length; i++) {
-                        var listItem = dropdown.children[i];
-                        if (listItem.textContent.trim() === selectedActivity) {
-                            listItem.style.opacity = '0.5'; // Reduce opacity
-                            listItem.style.pointerEvents = 'none'; // Disable pointer events
-                            listItem.style.cursor = 'not-allowed';
-                            break;
-                        }
-                    }
-                });
-            }
+            var selectedItems = [];
 
-
-            // Function to remove or disable the selected activity from all dropdown menus
-            function updateDropdowns(selectedActivity) {
+function updateDropdowns(selectedActivity, currentDropdownId) {
     var allDropdowns = document.querySelectorAll(".dropdown-menu");
-    var found = false; // Flag to check if selected activity is found in any dropdown
+
+    // Remove the previously selected item from the selectedItems array
+    selectedItems = selectedItems.filter(item => item.dropdownId !== currentDropdownId);
+
+    // Deselect item if already selected, otherwise select it
+    if (selectedItems.some(item => item.value === selectedActivity && item.dropdownId !== currentDropdownId)) {
+        selectedItems = selectedItems.filter(item => item.value !== selectedActivity);
+    } else {
+        selectedItems.push({ value: selectedActivity, dropdownId: currentDropdownId });
+    }
+
+    // Update all dropdowns
     allDropdowns.forEach(function(dropdown) {
         for (var i = 0; i < dropdown.children.length; i++) {
             var listItem = dropdown.children[i];
-            if (listItem.textContent.trim() === selectedActivity) {
-                // If the selected activity is found in any dropdown, set flag to true
-                found = true;
-                // Disable the selected activity
+            if (selectedItems.some(item => item.value === listItem.textContent.trim() && item.dropdownId !== dropdown.id)) {
                 listItem.style.opacity = '0.5'; // Reduce opacity
                 listItem.style.pointerEvents = 'none'; // Disable pointer events
-                listItem.style.cursor = 'not-allowed'; // Change cursor to not-allowed
+                listItem.style.cursor = 'not-allowed';
+            } else {
+                listItem.style.opacity = '1'; // Reset opacity
+                listItem.style.pointerEvents = 'auto'; // Reset pointer events
+                listItem.style.cursor = 'pointer';
             }
         }
     });
 
-    // If the selected activity is not found in any dropdown, enable it in all dropdowns
-    if (!found) {
-        allDropdowns.forEach(function(dropdown) {
-            fountd = false;
-            for (var i = 0; i < dropdown.children.length; i++) {
-                var listItem = dropdown.children[i];
-                listItem.style.opacity = '1'; // Restore opacity
-                listItem.style.pointerEvents = 'auto'; // Enable pointer events
-                listItem.style.cursor = 'pointer'; // Change cursor to pointer
-            }
-        });
-    }
+    console.log(selectedItems);
 }
 
-
-
-            // Function to handle click events on dropdown items
-            function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
-                var selectedItem = event.target;
-                updateHiddenInput(selectedItem, hiddenInputId);
-                var selectedActivity = selectedItem.textContent.trim();
-                updateDropdowns(selectedActivity); // Update all dropdown menus
-            }
-
-
+// Function to handle click events on dropdown items
+function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+    var selectedItem = event.target;
+    var currentDropdownId = dropdownMenuId.substring(8); // Extract the dropdown number
+    updateHiddenInput(selectedItem, hiddenInputId);
+    var selectedActivity = selectedItem.textContent.trim();
+    updateDropdowns(selectedActivity, currentDropdownId); // Update all dropdown menus
+}
 
             // Add event listeners for each dropdown menu
             function addEventListenersToDropdowns() {

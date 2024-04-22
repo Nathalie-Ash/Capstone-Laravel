@@ -171,13 +171,16 @@
 
 
                 musicDropdownMenu1.appendChild(listItem1);
-                musicDropdownMenu1.appendChild(divider1);
+                if (music!="Indie"){
+                musicDropdownMenu1.appendChild(divider1);}
 
                 musicDropdownMenu2.appendChild(listItem2);
-                musicDropdownMenu2.appendChild(divider2);
+                if (music!="Indie"){
+                musicDropdownMenu2.appendChild(divider2);}
 
                 musicDropdownMenu3.appendChild(listItem3);
-                musicDropdownMenu3.appendChild(divider3);
+                if (music!="Indie"){
+                musicDropdownMenu3.appendChild(divider3);}
             });
 
 
@@ -217,13 +220,16 @@
 
 
                 movieDropdownMenu1.appendChild(listItem1);
-                movieDropdownMenu1.appendChild(divider1);
+                if (movie!="Documentary"){
+                movieDropdownMenu1.appendChild(divider1);}
 
                 movieDropdownMenu2.appendChild(listItem2);
-                movieDropdownMenu2.appendChild(divider2);
+                if (movie!="Documentary"){
+                movieDropdownMenu2.appendChild(divider2);}
 
                 movieDropdownMenu3.appendChild(listItem3);
-                movieDropdownMenu3.appendChild(divider3);
+                if (movie!="Documentary"){
+                movieDropdownMenu3.appendChild(divider3);}
 
             });
 
@@ -231,29 +237,48 @@
                 var selectedValue = selectedItem.textContent.trim();
                 document.getElementById(hiddenInputId).value = selectedValue;
             }
+            var selectedItems = [];
 
-            function updateDropdowns(selectedActivity) {
-                var allDropdowns = document.querySelectorAll(".dropdown-menu");
-                allDropdowns.forEach(function(dropdown) {
-                    for (var i = 0; i < dropdown.children.length; i++) {
-                        var listItem = dropdown.children[i];
-                        if (listItem.textContent.trim() === selectedActivity) {
-                            listItem.style.opacity = '0.5'; // Reduce opacity
-                            listItem.style.pointerEvents = 'none'; // Disable pointer events
-                            listItem.style.cursor = 'not-allowed';
-                            break;
-                        }
-                    }
-                });
-            }
+function updateDropdowns(selectedActivity, currentDropdownId) {
+    var allDropdowns = document.querySelectorAll(".dropdown-menu");
 
-            // Function to handle click events on dropdown items
-            function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
-                var selectedItem = event.target;
-                updateHiddenInput(selectedItem, hiddenInputId);
-                var selectedActivity = selectedItem.textContent.trim();
-                updateDropdowns(selectedActivity); // Update all dropdown menus
+    // Remove the previously selected item from the selectedItems array
+    selectedItems = selectedItems.filter(item => item.dropdownId !== currentDropdownId);
+
+    // Deselect item if already selected, otherwise select it
+    if (selectedItems.some(item => item.value === selectedActivity && item.dropdownId !== currentDropdownId)) {
+        selectedItems = selectedItems.filter(item => item.value !== selectedActivity);
+    } else {
+        selectedItems.push({ value: selectedActivity, dropdownId: currentDropdownId });
+    }
+
+    // Update all dropdowns
+    allDropdowns.forEach(function(dropdown) {
+        for (var i = 0; i < dropdown.children.length; i++) {
+            var listItem = dropdown.children[i];
+            if (selectedItems.some(item => item.value === listItem.textContent.trim() && item.dropdownId !== dropdown.id)) {
+                listItem.style.opacity = '0.5'; // Reduce opacity
+                listItem.style.pointerEvents = 'none'; // Disable pointer events
+                listItem.style.cursor = 'not-allowed';
+            } else {
+                listItem.style.opacity = '1'; // Reset opacity
+                listItem.style.pointerEvents = 'auto'; // Reset pointer events
+                listItem.style.cursor = 'pointer';
             }
+        }
+    });
+
+    //console.log(selectedItems);
+}
+
+// Function to handle click events on dropdown items
+function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
+    var selectedItem = event.target;
+    var currentDropdownId = dropdownMenuId.substring(8); // Extract the dropdown number
+    updateHiddenInput(selectedItem, hiddenInputId);
+    var selectedActivity = selectedItem.textContent.trim();
+    updateDropdowns(selectedActivity, currentDropdownId); // Update all dropdown menus
+}
 
             // Add event listeners for each dropdown menu
             function addEventListenersToDropdowns() {

@@ -44,6 +44,9 @@
         .date-selected .form-control {
             background-color: #579792;
         }
+        .dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: #c2c2c4 ;
+}
     </style>
 </head>
 
@@ -167,7 +170,8 @@
                 gender + '</a>';
 
             genderDropdownMenu.appendChild(listItem);
-            genderDropdownMenu.appendChild(divider);
+            if (gender!="Other"){
+            genderDropdownMenu.appendChild(divider);}
         });
 
         // Array of sexual orientation options
@@ -202,7 +206,8 @@
                 orientation + '</a>';
 
             orientationDropdownMenu.appendChild(listItem);
-            orientationDropdownMenu.appendChild(divider);
+            if (orientation!="Asexual"){
+            orientationDropdownMenu.appendChild(divider);}
         });
     });
 
