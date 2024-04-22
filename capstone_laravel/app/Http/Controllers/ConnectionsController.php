@@ -87,5 +87,28 @@ class ConnectionsController extends Controller
 
         return redirect()->back()->with('success', 'Connection accepted successfully.');
     }
+    public function removeConnection($connectionid)
+    {
+        $connection = Connections::find($connectionid);
+    
+        if (!$connection) {
+            return redirect()->back()->with('error', 'Connection not found.');
+        }
+    
+        // Delete the connection
+        $connection->delete();
+    
+        // Also, delete the reverse connection
+        $reverseConnection = Connections::where('user_id', $connection->connection_id)
+                                         ->where('connection_id', $connection->user_id)
+                                         ->first();
+        if ($reverseConnection) {
+            $reverseConnection->delete();
+        }
+    
+        return redirect()->back()->with('success', 'Connection removed successfully.');
+    }
+    
+
 
 }

@@ -102,4 +102,15 @@ class RegisterController extends Controller
     {
         return route('steps');
     }
+    public function checkUsername(Request $request)
+{
+    $username = $request->username;
+    $user = User::where('username', $username)->first();
+    if ($user) {
+        return response()->json('taken');
+    } else {
+        return response()->json('available');
+    }
+}
+
 }
