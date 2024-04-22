@@ -44,6 +44,8 @@ Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profil
 //Route::get('profile1', [PreferencesController::class, 'displayAvatar'])->name('profile1');
 
 
+Route::post('/check-username', [RegisterController::class, 'checkUsername'])->name('checkUsername');
+
 // Route::post('/register', [UserController::class,"register"]);
 Route::get('/signup', [RegisterController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [RegisterController::class, 'handlePage1']);
@@ -79,6 +81,7 @@ Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequest
 Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
 Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->name('my.connections');
+Route::get('/remove-connection/{connectionid}', [ConnectionsController::class, 'removeConnection'])->name('remove.connection');
 
 
 

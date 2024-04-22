@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+
 
 class LoginController extends Controller
 {
@@ -51,6 +53,12 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
     }
+    protected function sendFailedLoginResponse(Request $request)
+{
+    throw ValidationException::withMessages([
+        $this->username() => [trans('auth.failed')],
+    ]);
+}
     public function logout(Request $request)
     {
         Auth::logout(); // Log the user out

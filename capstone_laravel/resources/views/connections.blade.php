@@ -71,8 +71,12 @@
                             <a href="{{ route('user.profile', ['name' => $connection->sender->name]) }}" class="btn"
                                 style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
                                 Profile</a>
-                            <button type="button" class="btn btn-secondary"
-                                style="width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</button>
+                            {{-- <button type="button" class="btn btn-secondary"
+                                style="width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</button> --}}
+                        
+                                <a href="{{ route('remove.connection', ['connectionid' => $connection->id]) }}" class="btn" 
+                                    style=" background-color: black;width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</a>
+                                
                         </div>
                     </div>
                 @endforeach
@@ -130,6 +134,6 @@
 
         //     window.location.href = "profile2";
         // }
-
+</script>
 
         </x-menuLayout>

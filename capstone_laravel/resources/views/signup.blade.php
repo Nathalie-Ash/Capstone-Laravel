@@ -55,7 +55,8 @@
                             <label class="form-label" for="form1Example13">Username</label>
                             <input type="text" name = "username" id="form1Example1234" class="form-control form-control-lg"
                                 style="background-color:#dcdcdf;" />
-                                <span id="usernameAvailability" style="color: red;"></span>
+                                <span id="usernameAvailability" style="color: red; margin-left:0.5%"></span>
+                                <span id="usernameAvailability1" style="color: black;"></span>
                         </div>
 
                         <!-- Password input -->
@@ -101,6 +102,42 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#form1Example1234').on('input', function() {
+            var username = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('checkUsername') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "username": username
+                },
+                success: function(response) {
+                    console.log(response); // Add this line for debugging
+                    if (response.trim() === 'taken') {
+                        $('#usernameAvailability').html("Username is already taken.");
+                        $('#usernameAvailability1').html("");
+                       // $('#usernameAvailability').addClass('text-danger'); // Change class to "text-danger"
+                    } else {
+                        $('#usernameAvailability1').html("Username is available.");
+                        $('#usernameAvailability').html("");
+                       // $('#usernameAvailability1').removeClass('text-danger'); // Remove class "text-danger"
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let passwordInput = document.getElementById('form1Example23');

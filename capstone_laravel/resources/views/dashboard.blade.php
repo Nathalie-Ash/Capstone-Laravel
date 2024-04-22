@@ -132,7 +132,7 @@
             <div style="margin-left: auto; padding-top:1%">
                 <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" method="GET">
                     <select class="form-control form-control-sm" name="campus" id="campusSelect">
-                        <option value="" selected disabled><i class="fa fa-filter" style="color: #000"></i>
+                        <option value="" selected disabled> <i class="fa-solid fa-filter" style="color:#000"></i>
                         </option>
                         @foreach ($campuses as $campus)
                             <option value="{{ $campus }}">{{ $campus }}</option>
