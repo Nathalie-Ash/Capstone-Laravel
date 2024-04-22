@@ -1,5 +1,5 @@
 <x-menuLayout>
-   
+
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -35,9 +35,12 @@
             }
 
             .card {
-                flex: 0 0 calc(50% - 15px); /* Adjusted width */
-                margin-right: 10px; /* Added margin */
-                margin-left: 5px; /* Added margin */
+                flex: 0 0 calc(50% - 15px);
+                /* Adjusted width */
+                margin-right: 10px;
+                /* Added margin */
+                margin-left: 5px;
+                /* Added margin */
             }
         }
 
@@ -88,6 +91,7 @@
         .fa-search {
             color: black;
         }
+
         .fa-filter {
             color: black;
         }
@@ -129,21 +133,32 @@
             <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%; margin-left: 5%;"
                 src="{{ asset('images/star.png') }}">
             <span style="font-size: 35px; margin-left: 10px;">My Dashboard</span>
-            <div style="margin-left: auto; padding-top:1%">
-                <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" method="GET">
-                    <select class="form-control form-control-sm" name="campus" id="campusSelect">
-                        <option value="" selected disabled> <i class="fa-solid fa-filter" style="color:#000"></i>
-                        </option>
-                        @foreach ($campuses as $campus)
-                            <option value="{{ $campus }}">{{ $campus }}</option>
-                        @endforeach
-                         <option value="Both">Both</option>
-                    </select>
-                    {{-- <button type="submit" class="btn btn-primary">
+            <div style="margin-left: auto; ">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style ="margin-right: 2px; height: 30px; background-color:#579792; text-align: center; ">
                         Filter
-                    </button> --}}
-                </form>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
+                        <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}"
+                            method="GET">
+                            <li>
+                                <select class="form-control form-control-sm" name="campus" id="campusSelect">
+                                    <option value="" selected disabled>Choose Campus</option>
+                                    @foreach ($campuses as $campus)
+                                        <option value="{{ $campus }}">{{ $campus }}</option>
+                                    @endforeach
+                                    <option value="Both">Both</option>
+                                </select>
+                            </li>
+                            {{-- Add more filter options here if needed --}}
+                            <li><button type="submit" class="btn btn-primary">Apply</button></li>
+                        </form>
+                    </ul>
+                </div>
             </div>
+
             <div style="padding-right: 10%; text-align: center; position: relative;">
                 <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
                     <input class="form-control form-control-sm" type="text" name="query" placeholder="Search"
@@ -151,7 +166,7 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
-        
+
                     @if (!empty($users))
                         <div class="dropdown-menu show"
                             style="padding-left: 2%; background-color: rgba(87, 151, 146, 0.5);">
@@ -171,13 +186,13 @@
                                     </a>
                                 </li>
                             @endforeach
-        
+
                         </div>
                     @endif
                 </form>
             </div>
         </div>
-        
+
         <div>
             <main class="main-content">
                 <div class="container">
@@ -192,7 +207,10 @@
                                         @php
                                             $matchedUser = $matchedUsers[$j];
                                             $userName = App\Models\User::find($matchedUser['user_id'])->name;
-                                            $userPreferences = App\Models\UserPreferences::where('user_id', $matchedUser['user_id'])->first();
+                                            $userPreferences = App\Models\UserPreferences::where(
+                                                'user_id',
+                                                $matchedUser['user_id'],
+                                            )->first();
                                         @endphp
                                         <div class="col-md-6" style="margin-top: 1%;">
                                             <div class="card" style="background-color:#f7f5f5;">
@@ -202,7 +220,8 @@
                                                 <div class="card-body">
                                                     <h1 class="card-title">{{ $userName }}</h1>
                                                     <p style="font-size: 15px; font-weight: lighter">
-                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }}</p>
+                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }}
+                                                    </p>
                                                     <p class="card-text" style=" font-weight: normal">
                                                         {{ $userPreferences->description }}</p>
                                                     <div class="progress-container">
@@ -218,7 +237,8 @@
                                                         </div>
                                                         <span>{{ $matchedUser['matching_percentage'] }}%</span>
                                                     </div>
-                                                    <div style="display:flex; margin-top:1%; justify-content: space-between">
+                                                    <div
+                                                        style="display:flex; margin-top:1%; justify-content: space-between">
                                                         <a href="{{ route('user.profile', ['name' => $userName]) }}"
                                                             class="btn btn-primary"
                                                             style=" border: none;width:49%; background-color:#ff6f28; color: white">View
@@ -239,44 +259,75 @@
                 </div>
             </main>
         </div>
-        
+
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
+                // Function to toggle the visibility of the dropdown menu
+                function toggleDropdown() {
+                    var dropdownMenu = document.querySelector(".dropdown-menu");
+                    dropdownMenu.classList.toggle("show");
+                }
+
+                // Get the filter dropdown button
+                var filterDropdownButton = document.getElementById("filterDropdownButton");
+
+                // Add click event listener to the filter dropdown button
+                filterDropdownButton.addEventListener("click", function(event) {
+                    // Toggle the visibility of the dropdown menu
+                    toggleDropdown();
+                    // Prevent the default action of the button
+                    event.preventDefault();
+                });
+
+                // Close dropdown menu when clicking outside of it
+                document.addEventListener("click", function(event) {
+                    var dropdownMenu = document.querySelector(".dropdown-menu");
+                    // Check if the click is outside of the dropdown menu and the filter button
+                    if (!dropdownMenu.contains(event.target) && event.target !== filterDropdownButton) {
+                        // Hide the dropdown menu
+                        dropdownMenu.classList.remove("show");
+                    }
+                });
+
+                // Function to show the navbar
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
                     const toggle = document.getElementById(toggleId),
                         nav = document.getElementById(navId),
                         bodypd = document.getElementById(bodyId),
-                        headerpd = document.getElementById(headerId)
+                        headerpd = document.getElementById(headerId);
 
                     if (toggle && nav && bodypd && headerpd) {
                         toggle.addEventListener('click', () => {
-                            nav.classList.toggle('show')
-                            toggle.classList.toggle('bx-x')
-                            bodypd.classList.toggle('body-pd')
-                            headerpd.classList.toggle('body-pd')
-                        })
+                            nav.classList.toggle('show');
+                            toggle.classList.toggle('bx-x');
+                            bodypd.classList.toggle('body-pd');
+                            headerpd.classList.toggle('body-pd');
+                        });
                     }
-                }
+                };
 
-                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+                // Call the function to show the navbar
+                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
 
-                const linkColor = document.querySelectorAll('.nav_link')
+                // Function to handle link color
+                const linkColor = document.querySelectorAll('.nav_link');
 
                 function colorLink() {
                     if (linkColor) {
-                        linkColor.forEach(l => l.classList.remove('active'))
-                        this.classList.add('active')
+                        linkColor.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
                     }
                 }
-                linkColor.forEach(l => l.addEventListener('click', colorLink))
+                linkColor.forEach(l => l.addEventListener('click', colorLink));
+
+                // Event listener for campus select change
+                document.getElementById('campusSelect').addEventListener('change', function() {
+                    var campus = this.value;
+                    var filterForm = document.getElementById('filterForm');
+                    filterForm.action = "{{ route('dashboard.filter') }}?campus=" + encodeURIComponent(campus);
+                    filterForm.submit();
+                });
             });
         </script>
-        <script>
-            document.getElementById('campusSelect').addEventListener('change', function() {
-                var campus = this.value;
-                var filterForm = document.getElementById('filterForm');
-                filterForm.action = "{{ route('dashboard.filter') }}?campus=" + encodeURIComponent(campus);
-                filterForm.submit(); 
-            });
-        </script>
+
 </x-menuLayout>
