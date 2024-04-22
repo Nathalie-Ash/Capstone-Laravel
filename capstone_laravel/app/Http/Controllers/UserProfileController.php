@@ -42,12 +42,15 @@ class UserProfileController extends Controller
             ->where('connection_id', $userId)
             ->first();
 
+            $contact = userContacts::where('user_id', $userId)
+            ->where('connection_id', $user->id)
+            ->first();
             $sharedContact = userContacts::where('user_id', $user->id)->where('connection_id',$userId)->where('sent',1)->first();
-
+            $isContact = $contact && $contact->sent;
             
 
 // Render the userProfile view with user data, connection status, and existing connection
-return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage','existingConnection','sharedContact'));
+return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage','existingConnection','sharedContact', 'isContact'));
         }
     }
     

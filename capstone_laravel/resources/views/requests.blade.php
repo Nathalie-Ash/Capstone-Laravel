@@ -34,7 +34,7 @@
                         <div class="col-sm-8" >
                             <form action="{{ route('user.profile', ['name' => $request->sender->name]) }}">
                                @csrf
-                                <button type="submit" class="btn" style="background-color:#1b413d; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">View Profile</button>
+                                <button type="submit" class="btn" style="background-color:#1b413d; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View Profile</button>
                             </form>
                             <form method="POST" action="{{ route('acceptConnection') }}">
                                     @csrf
@@ -56,20 +56,6 @@
 
 
     </div>
-    <script src="../bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(function() {
-            $('#datepicker').datepicker();
-        });
 
-      
-    </script>
-    {{-- <script>
-        function goToNextPage() {
-            // Redirect to the user's profile page
-            window.location.href = "{{ route('userProfile', ['name' => $request->user->name]) }}";
-        }
-    </script> --}}
-    
 
 </x-menuLayout>

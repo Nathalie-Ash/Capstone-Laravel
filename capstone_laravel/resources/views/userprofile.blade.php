@@ -142,7 +142,7 @@
 
 
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
-                            @if ($isConnection)  
+                            @if ($isConnection && $isContact)  
                                 <a href="#" class="btn"
                                 style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
                                 data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a>
@@ -301,11 +301,13 @@
                 <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
+                   
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="contactInfoModalLabel">View Contact Information</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                    @if($isContact){
                         <div class="modal-body">
                             Connect with others by contacting them via phone number or instagram.
                             <div style="padding-top: 4%;">
@@ -339,6 +341,10 @@
                                 </div>
                             </div>
                         </div>
+                    }
+                        @else
+                        <p>No shared contact information available.</p>
+                    @endif
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     
