@@ -166,7 +166,7 @@
 
             // Display feedback based on strength
             if (strength === 'weak') {
-                passwordStrengthFeedback.innerText = "Password is weak. Please choose a stronger password.";
+                passwordStrengthFeedback.innerText = "Password must be at least 8 characters long, containing at least one uppercase letter, one number, and one special character.";
             } else {
                 passwordStrengthFeedback.innerText = "";
             }

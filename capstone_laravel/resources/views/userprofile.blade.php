@@ -146,21 +146,21 @@
                                 <a href="#" class="btn"
                                 style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
                                 data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a>
-                                <a href="#" class="btn btn-primary"
+                                <a href="{{ route('remove.connection', ['connectionid' => $userPreferences->user_id]) }}" class="btn btn-primary"
                                     style="border: none;width:40%; background-color:#ff6f28; color: white">REMOVE</a>
                             @else
                             @if ($existingConnection)
                             <!-- Connection exists, display "Requested" button -->
-                            <button class="btn btn-primary" style="border: none;width:49%; background-color:#579792; color: white" disabled>Requested</button>
+                            <button class="btn btn-primary" style="border: none;width:98%; background-color:#579792; color: white" disabled>Requested</button>
                         @else
                             <!-- No connection exists, display "Add Friend" button -->
                                           <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
-                                style="border: none;width:49%; background-color:#579792; color: white">ADD FRIEND</a>
+                                style="border: none;width:98%; background-color:#579792; color: white">ADD FRIEND</a>
                         @endif
                         
                             
-                                <a href="#" class="btn btn-primary"
-                                    style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a>
+                                {{-- <a href="#" class="btn btn-primary"
+                                    style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a> --}}
                             @endif
                                 
 
