@@ -12,18 +12,33 @@ class DashboardController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
+    
         // Perform search logic, for example:
         $users = User::where('name', 'like', "%$query%")->get();
-
-        return view('dashboard', compact('users', 'query'));
+    
+        // Retrieve the authenticated user's information
+        $authenticatedUser = auth()->user();
+        $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
+    
+        // Calculate matching scores for each user
+        $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $users);
+        
+        // Sort the users based on matching scores
+        usort($matchedUsers, function($a, $b) {
+            return $b['matching_percentage'] - $a['matching_percentage'];
+        });
+    
+        return view('dashboard', compact('users', 'query', 'matchedUsers'));
     }
+    
     
     public function dashboard()
     {
         // Retrieve the authenticated user's information
         $authenticatedUser = auth()->user();
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
+       
+        $campuses = UserPreferences::distinct()->pluck('campus');
         // Retrieve all users except the authenticated user
         $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
         ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
@@ -43,7 +58,7 @@ class DashboardController extends Controller
         });
 
         // Return the dashboard view with matched users
-        return view('dashboard', compact('matchedUsers'));
+        return view('dashboard',  compact('matchedUsers', 'campuses'));
     }
     private function calculateMatchingScores($authenticatedUser, $users)
     {
@@ -104,11 +119,40 @@ class DashboardController extends Controller
     
             // Add user and matching percentage to the matchedUsers array
             $matchedUsers[] = [
-                'user_id' => $user->id,
+                'user_id' => $user->user_id,
                 'matching_percentage' => $matchingPercentage
             ];
         }
     
         return $matchedUsers;
     }
+    public function filter(Request $request)
+    {
+        $authenticatedUser = auth()->user();
+        $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
+        $campus = $request->input('campus');
+        $campuses = UserPreferences::distinct()->pluck('campus');
+        $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
+            ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
+                $query->select('connection_id')
+                    ->from('connections')
+                    ->where('user_id', $authenticatedUser->id)
+                    ->where('state', true);
+            });
+    
+        if ($campus && $campus !== 'Both') {
+            $users = $users->where('campus', $campus);
+        }
+    
+        $users = $users->get();
+    
+        $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $users);
+    
+        usort($matchedUsers, function ($a, $b) {
+            return $b['matching_percentage'] - $a['matching_percentage'];
+        });
+    
+        return view('dashboard', compact('matchedUsers','campuses'));
+    }
+    
 }

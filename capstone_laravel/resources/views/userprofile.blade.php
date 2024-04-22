@@ -132,12 +132,12 @@
                                 <span>MATCH:</span>
                                 <div class="progress-wrapper">
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                                        <div class="progress-bar" role="progressbar" style="width: {{ $matchingPercentage }}%"
+                                            aria-valuenow="{{ $matchingPercentage }}" aria-valuemin="0" aria-valuemax="100"
                                             style="background-color:#579792;"></div>
                                     </div>
                                 </div>
-                                <span>80%</span>
+                                <span>{{ $matchingPercentage }}%</span>
                             </div>
 
 
