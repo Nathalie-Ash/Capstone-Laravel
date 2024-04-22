@@ -34,7 +34,7 @@ class userContactsController extends Controller
     
         // Loop through each connection and create a separate UserContact record
         foreach ($connections as $connection) {
-            $userContact = new UserContacts();
+            $userContact = new userContacts();
             $userContact->user_id = $userId; // Authenticated user's ID
             $userContact->connection_id = $connection->connection_id; // Connection's ID
             $userContact->phone_number = $validatedData['phone_number'];
@@ -50,5 +50,19 @@ class userContactsController extends Controller
         return redirect()->back()->with('success', 'Contact information sent successfully!');
     }
 
+    public function receivedContacts()
+    {
+        // Retrieve the ID of the current authenticated user
+        $userId = auth()->id();
+
+        // Query connections where the current user is the receiver
+        $receivedContacts = userContacts::where('connection_id', $userId)
+        ->where('sent', 1) // Assuming 'sent' indicates the contact has been shared
+        ->join('users', 'user_contacts.connection_id', '=', 'users.id')
+        ->select('user_contacts.*', 'users.name as sender_name')
+        ->get();;
+        // Pass the received connections to the view for display
+        return view('contact', compact('receivedContacts'));
+    }
 
 }
