@@ -11,16 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('userContact', function (Blueprint $table) {
+        Schema::create('user_contacts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('state');
+            $table->boolean('sent');
             $table->unsignedBigInteger('connection_id');
             $table->foreign('connection_id')->references('id')->on('users')->onDelete('cascade'); // assuming users table name is 'users'
             $table->string('phone_number')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('linkedIn')->nullable();
             $table->timestamps(); 
         });
+
     }
 
     /**
