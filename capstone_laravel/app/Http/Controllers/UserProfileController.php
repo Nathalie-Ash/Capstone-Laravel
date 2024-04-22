@@ -27,17 +27,22 @@ class UserProfileController extends Controller
             $connection = Connections::where('user_id', $userId)
                                         ->where('connection_id', $user->id)
                                         ->first();
-    
+        
             // Determine if the user profile being viewed is a connection and its state
             $isConnection = $connection && $connection->state;
-    
+            $authenticatedUserPreferences = UserPreferences::where('user_id', $userId)->first();
+            
+            // Calculate matching scores between the authenticated user and the user whose profile is being viewed
+          
+            $matchingPercentage = $this->calculateMatchingScores($authenticatedUserPreferences, $userPreferences);
+
             // Render the userProfile view with user data and connection status
             $existingConnection = Connections::where('user_id', $user->id)
             ->where('connection_id', $userId)
             ->first();
 
 // Render the userProfile view with user data, connection status, and existing connection
-return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'existingConnection'));
+return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage','existingConnection'));
         }
     }
     
@@ -68,6 +73,71 @@ return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'e
         // Redirect back or to any desired page
         return redirect()->back()->with('success', 'Friend request sent successfully');
     }
+
+     private function calculateMatchingScores($authenticatedUser, $user)
+    {
     
+        
+            $score = 0;
+    
+            // School Matching
+            if ($authenticatedUser->school == $user->school) {
+                $score += 8; // Significant score for same school
+            }
+    
+            // Major Matching
+            if ($authenticatedUser->major == $user->major) {
+                $score += 10; // Lower score for same major
+            }
+    
+            // Campus Matching
+            if ($authenticatedUser->campus == $user->campus) {
+                $score += 12; // Moderate score for same campus
+            }
+    
+            // Preference Matching (Outdoor, Indoor, Music, Movies)
+            $preferences = ['outdoor', 'indoor', 'music', 'movie'];
+    
+            foreach ($preferences as $preference) {
+                for ($i = 1; $i <= 3; $i++) {
+                    $userPreference = $user->{$preference . 'Item' . $i};
+                
+                    $authenticatedUserPreference = $authenticatedUser->{$preference . 'Item' . $i};
+                    logger($userPreference);
+    
+                    // Check if the preferences match
+                    if ($userPreference == $authenticatedUserPreference) {
+                        // Add score based on the priority of the preference
+                        switch ($i) {
+                            case 1:
+                                $score += 17.5; // Significant score for first preference
+                                break;
+                            case 2:
+                                $score += 13; // Lower score for second preference
+                                break;
+                            case 3:
+                                $score += 8; // Lowest score for third preference
+                                break;
+                        }
+                        // Break the loop since a match is found
+                        break;
+                    }
+                }
+                logger($score);
+            }
+    
+            // Calculate matching percentage out of 100
+            $totalScore = 100; // Total score possible
+            $matchingPercentage = ceil(($score / $totalScore) * 100);
+    
+            // Add user and matching percentage to the matchedUsers array
+            $matchedUsers[] = [
+                'user_id' => $user->user_id,
+                'matching_percentage' => $matchingPercentage
+            ];
+       
+    
+        return $matchingPercentage;
+    }
 
 }

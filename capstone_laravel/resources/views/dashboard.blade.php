@@ -1,4 +1,5 @@
 <x-menuLayout>
+   
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -34,7 +35,9 @@
             }
 
             .card {
-                flex: 0 0 calc(50% - 10px);
+                flex: 0 0 calc(50% - 15px); /* Adjusted width */
+                margin-right: 10px; /* Added margin */
+                margin-left: 5px; /* Added margin */
             }
         }
 
@@ -52,8 +55,6 @@
         }
 
         .card {
-            width: 90%;
-            margin: 0 auto;
             border-radius: 10px;
             overflow: hidden;
             overflow-y: auto;
@@ -85,6 +86,9 @@
         }
 
         .fa-search {
+            color: black;
+        }
+        .fa-filter {
             color: black;
         }
 
@@ -121,19 +125,33 @@
     </head>
 
     <body>
-        <div>
-            <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"
-                src={{ asset('images/star.png') }}>
-            <span style="font-size: 35px;">My Dashboard</span>
-            <div
-                style="display: inline; float: right; padding-right: 10%; text-align: center; margin-top: 20px; position: relative;">
+        <div style="display: flex; align-items: center;">
+            <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%; margin-left: 5%;"
+                src="{{ asset('images/star.png') }}">
+            <span style="font-size: 35px; margin-left: 10px;">My Dashboard</span>
+            <div style="margin-left: auto; padding-top:1%">
+                <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" method="GET">
+                    <select class="form-control form-control-sm" name="campus" id="campusSelect">
+                        <option value="" selected disabled><i class="fa fa-filter" style="color: #000"></i>
+                        </option>
+                        @foreach ($campuses as $campus)
+                            <option value="{{ $campus }}">{{ $campus }}</option>
+                        @endforeach
+                         <option value="Both">Both</option>
+                    </select>
+                    {{-- <button type="submit" class="btn btn-primary">
+                        Filter
+                    </button> --}}
+                </form>
+            </div>
+            <div style="padding-right: 10%; text-align: center; position: relative;">
                 <form class="search-form" action="{{ route('dashboard.search') }}" method="GET">
                     <input class="form-control form-control-sm" type="text" name="query" placeholder="Search"
                         aria-label="Search">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
-
+        
                     @if (!empty($users))
                         <div class="dropdown-menu show"
                             style="padding-left: 2%; background-color: rgba(87, 151, 146, 0.5);">
@@ -143,7 +161,7 @@
                                         style="text-decoration: none; color: inherit;">
                                         @if (isset($userImages[$user->id]))
                                             <img src="{{ asset($userImages[$user->id]->avatar) }}" alt="Profile Picture"
-                                                style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                                style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px; object-fit:contain">
                                         @else
                                             <img src="{{ asset('images/default_profile.png') }}"
                                                 alt="Default Profile Picture"
@@ -153,77 +171,75 @@
                                     </a>
                                 </li>
                             @endforeach
-
+        
                         </div>
                     @endif
                 </form>
             </div>
         </div>
+        
         <div>
             <main class="main-content">
                 <div class="container">
                     <div class="row">
                         @if (!empty($matchedUsers))
-                            @foreach ($matchedUsers as $matchedUser)
-                                @php
-                                    // Retrieve the user's name from the users table using their ID
-$userName = App\Models\User::find($matchedUser['user_id'])->name;
-$userPreferences = App\Models\UserPreferences::where(
-    'user_id',
-    $matchedUser['user_id'],
-                                    )->first();
-                                @endphp
-                                <div class="col-md-6" style="margin-top: 4%;">
-                                    <div class="card" style="background-color:#f7f5f5;">
-
-                                        <img style ="height: 300px;margin-top: 7px;"
-                                            src={{ asset($userPreferences->avatar) }} class="card-img-top"
-                                            alt="...">
-
-
-                                        <div class="card-body">
-                                            <h1 class="card-title">{{ $userName }}</h1>
-                                            <p style="font-size: 15px; font-weight: lighter">
-                                                {{ $userPreferences->major }}, {{ $userPreferences->campus }}
-                                            <p>
-                                            <p class="card-text" style=" font-weight: normal">
-                                                {{ $userPreferences->description }} </p>
-                                            <div class="progress-container">
-                                                <span>MATCH:</span>
-                                                <div class="progress-wrapper">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $matchedUser['matching_percentage'] }}%"
-                                                            aria-valuenow="{{ $matchedUser['matching_percentage'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"
-                                                            style="background-color:#579792;"></div>
+                            @php
+                                $userCount = count($matchedUsers);
+                            @endphp
+                            @for ($i = 0; $i < $userCount; $i += 2)
+                                <div class="row">
+                                    @for ($j = $i; $j < min($userCount, $i + 2); $j++)
+                                        @php
+                                            $matchedUser = $matchedUsers[$j];
+                                            $userName = App\Models\User::find($matchedUser['user_id'])->name;
+                                            $userPreferences = App\Models\UserPreferences::where('user_id', $matchedUser['user_id'])->first();
+                                        @endphp
+                                        <div class="col-md-6" style="margin-top: 1%;">
+                                            <div class="card" style="background-color:#f7f5f5;">
+                                                <img style="height: 300px;margin-top: 7px;"
+                                                    src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
+                                                    alt="...">
+                                                <div class="card-body">
+                                                    <h1 class="card-title">{{ $userName }}</h1>
+                                                    <p style="font-size: 15px; font-weight: lighter">
+                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }}</p>
+                                                    <p class="card-text" style=" font-weight: normal">
+                                                        {{ $userPreferences->description }}</p>
+                                                    <div class="progress-container">
+                                                        <span>MATCH:</span>
+                                                        <div class="progress-wrapper">
+                                                            <div class="progress">
+                                                                <div class="progress-bar" role="progressbar"
+                                                                    style="width: {{ $matchedUser['matching_percentage'] }}%"
+                                                                    aria-valuenow="{{ $matchedUser['matching_percentage'] }}"
+                                                                    aria-valuemin="0" aria-valuemax="100"
+                                                                    style="background-color:#579792;"></div>
+                                                            </div>
+                                                        </div>
+                                                        <span>{{ $matchedUser['matching_percentage'] }}%</span>
+                                                    </div>
+                                                    <div style="display:flex; margin-top:1%; justify-content: space-between">
+                                                        <a href="{{ route('user.profile', ['name' => $userName]) }}"
+                                                            class="btn btn-primary"
+                                                            style=" border: none;width:49%; background-color:#ff6f28; color: white">View
+                                                            Profile</a>
+                                                        <a href="#" class="btn btn-primary"
+                                                            style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
+                                                            Add</a>
                                                     </div>
                                                 </div>
-                                                <span>{{ $matchedUser['matching_percentage'] }}%</span>
-                                            </div>
-                                            <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                                <a href="{{ route('user.profile', ['name' => $userName]) }}"
-                                                    class="btn btn-primary"
-                                                    style=" border: none;width:49%; background-color:#ff6f28; color: white">View
-                                                    Profile</a>
-                                                <a href="#" class="btn btn-primary"
-                                                    style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
-                                                    Add</a>
                                             </div>
                                         </div>
-                                    </div>
-
+                                    @endfor
                                 </div>
                                 <div class="spacer" style="margin-bottom: 1%"></div>
-                            </div>
-                        
-                        @endforeach
+                            @endfor
                         @endif
                     </div>
                 </div>
             </main>
         </div>
-
+        
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -253,6 +269,14 @@ $userPreferences = App\Models\UserPreferences::where(
                     }
                 }
                 linkColor.forEach(l => l.addEventListener('click', colorLink))
+            });
+        </script>
+        <script>
+            document.getElementById('campusSelect').addEventListener('change', function() {
+                var campus = this.value;
+                var filterForm = document.getElementById('filterForm');
+                filterForm.action = "{{ route('dashboard.filter') }}?campus=" + encodeURIComponent(campus);
+                filterForm.submit(); 
             });
         </script>
 </x-menuLayout>
