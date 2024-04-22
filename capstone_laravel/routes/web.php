@@ -90,3 +90,4 @@ Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->nam
 
 Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
 Route::post('/connections',[userContactsController::class,'sendContact'])->name('sendContact');
+Route::get('/contact', [userContactsController::class, 'receivedContacts'])->name('received.contacts');
