@@ -22,7 +22,11 @@
     color: white; /* Set the desired color */
 }
 
-       
+.dropdown-menu .dropdown-item:hover {
+    background-color: #cccccc; /* Light grey color */
+    color: #000000; /* Text color when hovered */
+}
+
 
         .datepicker-dropdown {
             z-index: 1051 !important;
@@ -142,7 +146,7 @@
         var genders = [
             "Male",
             "Female",
-            "Other"
+            "Prefer Not To Say", 
         ];
 
         // Get the dropdown menu element for gender
@@ -176,7 +180,9 @@
             "Homosexual",
             "Bisexual",
             "Pansexual",
-            "Asexual"
+            "Asexual", 
+            "Other", 
+            "Prefer Not To Specify"
         ];
 
         // Get the dropdown menu element for sexual orientation

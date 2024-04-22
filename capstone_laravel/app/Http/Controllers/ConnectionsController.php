@@ -34,34 +34,38 @@ class ConnectionsController extends Controller
 
     }
     public function myConnections()
-{
-    // Retrieve the authenticated user's ID
-    $userId = auth()->id();
-
-    // Retrieve pending connection requests for the authenticated user
-    $connections = Connections::where('user_id', $userId)
-        ->where('state', true)
-        ->with('sender')
-        ->get();
+    {
+        // Retrieve the authenticated user's ID
+        $userId = auth()->id();
     
-    // Initialize an array to store user images
-    $userImages = [];
-
-    // Retrieve user image for each connection
-    foreach ($connections as $connection) {
-        $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
-        if ($userImage)
-        $userImages[$connection->sender->id] = $userImage ? $userImage->avatar : 'images/default_profile.png';
-
-        $sentContact = userContacts::where('user_id', $userId)
-        ->where('state', true)->where('sent',1)
-        ->first();
-        logger($sentContact);
+        // Retrieve pending connection requests for the authenticated user
+        $connections = Connections::where('user_id', $userId)
+            ->where('state', true)
+            ->with('sender')
+            ->get();
+        
+        // Initialize an array to store user images
+        $userImages = [];
+    
+        // Initialize the $sentContact variable
+        $sentContact = null;
+    
+        // Retrieve user image for each connection
+        foreach ($connections as $connection) {
+            $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
+            if ($userImage)
+                $userImages[$connection->sender->id] = $userImage->avatar;
+    
+            // Retrieve sent contact information
+            $sentContact = userContacts::where('user_id', $userId)
+                ->where('state', true)
+                ->where('sent', 1)
+                ->first();
+        }
+    
+        return view('connections', compact('connections', 'userImages', 'sentContact'));
     }
-
-
-    return view('connections', compact('connections', 'userImages', 'sentContact'));
-}
+    
 
     
     public function acceptConnection(Request $request)
