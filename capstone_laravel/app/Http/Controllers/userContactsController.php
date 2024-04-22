@@ -56,11 +56,16 @@ class userContactsController extends Controller
         $userId = auth()->id();
 
         // Query connections where the current user is the receiver
-        $receivedContacts = userContacts::where('connection_id', $userId)
-        ->where('sent', 1) // Assuming 'sent' indicates the contact has been shared
-        ->join('users', 'user_contacts.user_id', '=', 'users.id')
-        ->select('user_contacts.*', 'users.name as sender_name')
-        ->get();
+        $receivedContacts = UserContacts::where('user_contacts.connection_id', $userId)
+    ->where('user_contacts.sent', 1) // Assuming 'sent' indicates the contact has been shared
+    ->join('users as sender', 'user_contacts.connection_id', '=', 'sender.id')
+    ->join('users as receiver', 'user_contacts.user_id', '=', 'receiver.id')
+    ->select('user_contacts.*', 'sender.name as sender_name', 'receiver.name as receiver_name')
+    ->get();
+
+    logger($receivedContacts);
+
+    
         // Pass the received connections to the view for display
         return view('contact', compact('receivedContacts'));
     }
