@@ -63,7 +63,8 @@ class userContactsController extends Controller
     ->where('user_contacts.sent', 1) // Assuming 'sent' indicates the contact has been shared
     ->join('users as sender', 'user_contacts.connection_id', '=', 'sender.id')
     ->join('users as receiver', 'user_contacts.user_id', '=', 'receiver.id')
-    ->select('user_contacts.*', 'sender.name as sender_name', 'receiver.name as receiver_name')
+    ->select('user_contacts.*', 'sender.name as sender_name', 'receiver.name as receiver_name', 
+    'receiver.id as receiver_id')
     ->get();
 
     logger($receivedContacts);

@@ -27,19 +27,19 @@
 
 
                         @php
-                            $senderId = $contact->sender->id;
-                            $userImage = $userImages[$senderId] ?? null;
+                            $userId = $contact->receiver_id;
+                            $senderAvatar = \App\Models\userPreferences::where('user_id', $userId)->value('avatar');
+
                         @endphp
-                        @if ($userImage)
-                            <img src="{{ asset($userImage) }}"
-                                style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
-                        @else
-                            <!-- Display a default image if no user image is available -->
-                            <img src="{{ asset('images/default_profile.png') }}"
-                                style="width: 100px; margin: 5px; float: left; margin-left: 15px;">
-                        @endif
-
-
+                        
+                        @if ($senderAvatar)
+                        <!-- Display the sender's avatar if available -->
+                        <img src="{{ asset($senderAvatar) }}" style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
+                    @else
+                        <!-- Display a default image if no user image is available -->
+                        <img src="{{ asset('images/default_profile.png') }}" style="width: 100px; margin: 5px; float: left; margin-left: 15px;">
+                    @endif
+            
 
                         <div class="col-sm-2" style="float: left;">
                             <p class="textStyle"
@@ -54,7 +54,8 @@
                                 <!-- No connection exists, display "Add Friend" button -->
                                 <a href="#" class="btn"
                                     style="background-color: #579792; width: max-content; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
-                                    data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View Contact Information</a>
+                                    data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View Contact
+                                    Information</a>
                             @endif
 
                         </div>
@@ -73,7 +74,6 @@
                     </div>
 
                     @if (!$receivedContacts->isEmpty())
-                        
                         <div class="modal-body">
                             Connect with others by contacting them via phone number or instagram.
                             <div style="padding-top: 4%;">
@@ -115,8 +115,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        
                     @else
                         <p>No shared contact information available.</p>
                     @endif
@@ -125,9 +123,9 @@
 
 
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </x-menuLayout>
