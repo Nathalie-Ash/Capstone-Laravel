@@ -42,8 +42,8 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <input type="password" readonly class="form-control" id="staticPassword"
-                                        value="{{ $userData->password }}"
-                                        style="width: 50%; background-color: #579792; border-radius: 5%;">
+                                    value="{{ substr($userData->password, 0, 13) }}"
+                                        style="width: 300px; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
 
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary"
