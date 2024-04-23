@@ -137,6 +137,7 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton"
                         data-bs-toggle="dropdown" aria-expanded="false"
+
                         style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;">
                         Filter
                     </button>
@@ -200,6 +201,7 @@
                                 {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
                             </form>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -304,6 +306,7 @@
                 </div>
             </main>
         </div>
+
         <script>
             function changeCategory(category, value) {
                 document.getElementById('category').value = category;
@@ -316,10 +319,12 @@
                     var dropdownMenu = document.querySelector(".dropdown-menu");
                     dropdownMenu.classList.toggle("show");
                 }
+
         
                 // Get the filter dropdown button
                 var filterDropdownButton = document.getElementById("filterDropdownButton");
         
+
                 // Add click event listener to the filter dropdown button
                 filterDropdownButton.addEventListener("click", function(event) {
                     // Toggle the visibility of the dropdown menu
@@ -327,7 +332,7 @@
                     // Prevent the default action of the button
                     event.preventDefault();
                 });
-        
+
                 // Close dropdown menu when clicking outside of it
                 document.addEventListener("click", function(event) {
                     var dropdownMenu = document.querySelector(".dropdown-menu");
@@ -337,14 +342,14 @@
                         dropdownMenu.classList.remove("show");
                     }
                 });
-        
+
                 // Function to show the navbar
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
                     const toggle = document.getElementById(toggleId),
                         nav = document.getElementById(navId),
                         bodypd = document.getElementById(bodyId),
                         headerpd = document.getElementById(headerId);
-        
+
                     if (toggle && nav && bodypd && headerpd) {
                         toggle.addEventListener('click', () => {
                             nav.classList.toggle('show');
@@ -354,6 +359,7 @@
                         });
                     }
                 };
+
         
                 // Call the function to show the navbar
                 showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
@@ -361,6 +367,7 @@
                 // Function to handle link color
                 const linkColor = document.querySelectorAll('.nav_link');
         
+
                 function colorLink() {
                     if (linkColor) {
                         linkColor.forEach(l => l.classList.remove('active'));
@@ -368,7 +375,7 @@
                     }
                 }
                 linkColor.forEach(l => l.addEventListener('click', colorLink));
-        
+
                 // Event listener for filter select change
                 document.querySelectorAll('.filter-form select').forEach(select => {
                     select.addEventListener('change', function() {
@@ -382,5 +389,6 @@
             });
         </script>
         
+
 
 </x-menuLayout>
