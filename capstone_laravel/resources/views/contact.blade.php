@@ -1,5 +1,6 @@
 <x-menuLayout>
 
+
     <head>
         <link rel="stylesheet" href="/styleN.css">
     </head>
@@ -114,6 +115,7 @@
                                 </div>
                             </div>
                         </div>
+
                         
                     @else
                         <p>No shared contact information available.</p>
@@ -122,9 +124,10 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
 
-                    </div>
+
                 </div>
             </div>
-
         </div>
+
+    </div>
 </x-menuLayout>

@@ -174,7 +174,7 @@
                 gender + '</a>';
 
             genderDropdownMenu.appendChild(listItem);
-            if (gender!="Other"){
+            if (gender!="Prefer Not To Say"){
             genderDropdownMenu.appendChild(divider);}
         });
 
@@ -212,7 +212,7 @@
                 orientation + '</a>';
 
             orientationDropdownMenu.appendChild(listItem);
-            if (orientation!="Asexual"){
+            if (orientation!="Prefer Not To Specify"){
             orientationDropdownMenu.appendChild(divider);}
         });
     });

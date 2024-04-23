@@ -37,10 +37,11 @@
                                 <button type="submit" class="btn" style="background-color:#1b413d; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View Profile</button>
                             </form>
                             <form method="POST" action="{{ route('acceptConnection') }}">
-                                    @csrf
-                                    <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
+                                @csrf
+                                <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
                                 <button type="submit" class="btn" style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Accept</button>
                             </form>
+                            
                                 
                             <button type="button" class="btn"
                                 style=" width: 15%; border-left: 30px; color: white; background-color:#FF6F28;font-size: larger; float: right;">Delete
