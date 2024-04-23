@@ -137,24 +137,69 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton"
                         data-bs-toggle="dropdown" aria-expanded="false"
-                        style ="margin-right: 2px; height: 30px; background-color:#579792; text-align: center; ">
+                        style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;">
                         Filter
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
-                        <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}"
-                            method="GET">
-                            <li>
-                                <select class="form-control form-control-sm" name="campus" id="campusSelect">
-                                    <option value="" selected disabled>Choose Campus</option>
-                                    @foreach ($campuses as $campus)
+                        <li>
+                            <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" method="GET">
+                                <input type="hidden" name="category" id="category"> <!-- New -->
+                                <input type="hidden" name="value" id="value"> <!-- New -->
+                                <li>
+                                    <select class="form-control form-control-sm" name="campus" id="campusSelect"
+                                        onchange="changeCategory('campus', this.value)">
+                                        <option value="" selected disabled>Choose Campus</option>
+                                        @foreach ($campuses as $campus)
                                         <option value="{{ $campus }}">{{ $campus }}</option>
-                                    @endforeach
-                                    <option value="Both">Both</option>
-                                </select>
-                            </li>
-                            {{-- Add more filter options here if needed --}}
-                            <li><button type="submit" class="btn btn-primary">Apply</button></li>
-                        </form>
+                                        @endforeach
+                                        <option value="Both">Both</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class="form-control form-control-sm" name="outdoor" id="outdoorSelect"
+                                        onchange="changeCategory('outdoor', this.value)">
+                                        <option value="" selected disabled>Choose Outdoor</option>
+                            
+                                        <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
+                                        <option value="{{ $outdoor2 }}">{{ $outdoor2 }}</option>
+                                        <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option>
+                            
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class="form-control form-control-sm" name="indoor" id="indoorSelect"
+                                        onchange="changeCategory('indoor', this.value)">
+                                        <option value="" selected disabled>Choose Indoor</option>
+                                        <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
+                                        <option value="{{ $indoor2 }}">{{ $indoor2 }}</option>
+                                        <option value="{{ $indoor3 }}">{{ $indoor3 }}</option>
+                            
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class="form-control form-control-sm" name="music" id="musicSelect"
+                                        onchange="changeCategory('music', this.value)">
+                                        <option value="" selected disabled>Choose music</option>
+                                        <option value="{{ $music1 }}">{{ $music1 }}</option>
+                                        <option value="{{ $music2 }}">{{ $music2 }}</option>
+                                        <option value="{{ $music3 }}">{{ $music3 }}</option>
+                            
+                                    </select>
+                                </li>
+                                <li>
+                                    <select class="form-control form-control-sm" name="movie" id="movieSelect"
+                                        onchange="changeCategory('movie', this.value)">
+                                        <option value="" selected disabled>Choose movie</option>
+                                        <option value="{{ $movie1 }}">{{ $movie1 }}</option>
+                                        <option value="{{ $movie2 }}">{{ $movie2 }}</option>
+                                        <option value="{{ $movie3 }}">{{ $movie3 }}</option>
+                            
+                                    </select>
+                                </li>
+                            
+                                {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -259,18 +304,22 @@
                 </div>
             </main>
         </div>
-
         <script>
+            function changeCategory(category, value) {
+                document.getElementById('category').value = category;
+                document.getElementById('value').value = value;
+            }
+        
             document.addEventListener("DOMContentLoaded", function(event) {
                 // Function to toggle the visibility of the dropdown menu
                 function toggleDropdown() {
                     var dropdownMenu = document.querySelector(".dropdown-menu");
                     dropdownMenu.classList.toggle("show");
                 }
-
+        
                 // Get the filter dropdown button
                 var filterDropdownButton = document.getElementById("filterDropdownButton");
-
+        
                 // Add click event listener to the filter dropdown button
                 filterDropdownButton.addEventListener("click", function(event) {
                     // Toggle the visibility of the dropdown menu
@@ -278,7 +327,7 @@
                     // Prevent the default action of the button
                     event.preventDefault();
                 });
-
+        
                 // Close dropdown menu when clicking outside of it
                 document.addEventListener("click", function(event) {
                     var dropdownMenu = document.querySelector(".dropdown-menu");
@@ -288,14 +337,14 @@
                         dropdownMenu.classList.remove("show");
                     }
                 });
-
+        
                 // Function to show the navbar
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
                     const toggle = document.getElementById(toggleId),
                         nav = document.getElementById(navId),
                         bodypd = document.getElementById(bodyId),
                         headerpd = document.getElementById(headerId);
-
+        
                     if (toggle && nav && bodypd && headerpd) {
                         toggle.addEventListener('click', () => {
                             nav.classList.toggle('show');
@@ -305,13 +354,13 @@
                         });
                     }
                 };
-
+        
                 // Call the function to show the navbar
                 showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
-
+        
                 // Function to handle link color
                 const linkColor = document.querySelectorAll('.nav_link');
-
+        
                 function colorLink() {
                     if (linkColor) {
                         linkColor.forEach(l => l.classList.remove('active'));
@@ -319,15 +368,19 @@
                     }
                 }
                 linkColor.forEach(l => l.addEventListener('click', colorLink));
-
-                // Event listener for campus select change
-                document.getElementById('campusSelect').addEventListener('change', function() {
-                    var campus = this.value;
-                    var filterForm = document.getElementById('filterForm');
-                    filterForm.action = "{{ route('dashboard.filter') }}?campus=" + encodeURIComponent(campus);
-                    filterForm.submit();
+        
+                // Event listener for filter select change
+                document.querySelectorAll('.filter-form select').forEach(select => {
+                    select.addEventListener('change', function() {
+                        var category = this.name;
+                        var value = this.value;
+                        var filterForm = document.getElementById('filterForm');
+                        filterForm.action = "{{ route('dashboard.filter') }}?category=" + category + "&value=" + encodeURIComponent(value);
+                        filterForm.submit();
+                    });
                 });
             });
         </script>
+        
 
 </x-menuLayout>

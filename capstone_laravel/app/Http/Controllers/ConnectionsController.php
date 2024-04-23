@@ -24,7 +24,7 @@ class ConnectionsController extends Controller
             ->where('state', false)
             ->with('sender')
             ->get();
-
+        logger($requests);
         // If there are pending requests, retrieve the corresponding senders
        
             return view('requests', compact('requests'));
@@ -70,27 +70,33 @@ class ConnectionsController extends Controller
     
     public function acceptConnection(Request $request)
     {
+        $userId = auth()->id();
         $connectionId = $request->input('connection_id');
-
-        $connection = Connections::where('connection_id', $connectionId)->first(); // Assuming receiver_id is the foreign key for the user who received the request
-            
+    
+        $connection = Connections::where('connection_id', $connectionId)
+            ->where('user_id', $userId) // Add this condition
+            ->first();
+    
         if (!$connection) {
             return redirect()->back()->with('error', 'Connection not found.');
         }
-
+    
+        if ($connection->state == true) {
+            return redirect()->back()->with('error', 'Connection exists.');
+        }
+        
         $connection->state = true;
         $connection->save();
-        // Get the authenticated user's ID
-        $userId = auth()->id();
-        logger($userId);
+        
         $connection1 = new Connections();
-        $connection1->user_id = $connectionId; // Authenticated user's ID
-        $connection1->connection_id = $userId; // ID of the profile being viewed
+        $connection1->user_id = $connectionId;
+        $connection1->connection_id = $userId;
         $connection1->state = true; 
         $connection1->save();
-
+    
         return redirect()->back()->with('success', 'Connection accepted successfully.');
     }
+    
     public function removeConnection($connectionid)
     {
         $connection = Connections::find($connectionid);

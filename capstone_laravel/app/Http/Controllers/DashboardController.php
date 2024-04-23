@@ -36,9 +36,29 @@ class DashboardController extends Controller
     {
         // Retrieve the authenticated user's information
         $authenticatedUser = auth()->user();
-        $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
        
+        $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
+        //logger($authenticatedUserPreferences);
         $campuses = UserPreferences::distinct()->pluck('campus');
+        //logger($campuses);
+            $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
+            $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
+            $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
+    
+            $indoor1 = $authenticatedUserPreferences->indoorItem1;
+            $indoor2 = $authenticatedUserPreferences->indoorItem2;
+            $indoor3 = $authenticatedUserPreferences->indoorItem3;
+    
+            $music1 = $authenticatedUserPreferences->musicItem1;
+            $music2 = $authenticatedUserPreferences->musicItem2;
+            $music3 = $authenticatedUserPreferences->musicItem3;
+    
+            $movie1 = $authenticatedUserPreferences->movieItem1;
+            $movie2 = $authenticatedUserPreferences->movieItem2;
+            $movie3 = $authenticatedUserPreferences->movieItem3;
+
+           // logger($outdoor1);
+        
         // Retrieve all users except the authenticated user
         $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
         ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
@@ -58,7 +78,12 @@ class DashboardController extends Controller
         });
 
         // Return the dashboard view with matched users
-        return view('dashboard',  compact('matchedUsers', 'campuses'));
+        return view('dashboard',  compact('matchedUsers', 'campuses',
+        'outdoor1','outdoor2','outdoor3',
+        'indoor1','indoor2','indoor3', 
+        'music1', 'music2','music3',
+        'movie1','movie2','movie3'
+    ));
     }
     private function calculateMatchingScores($authenticatedUser, $users)
     {
@@ -90,7 +115,7 @@ class DashboardController extends Controller
                     $userPreference = $user->{$preference . 'Item' . $i};
                 
                     $authenticatedUserPreference = $authenticatedUser->{$preference . 'Item' . $i};
-                    logger($userPreference);
+                    //logger($userPreference);
     
                     // Check if the preferences match
                     if ($userPreference == $authenticatedUserPreference) {
@@ -110,7 +135,7 @@ class DashboardController extends Controller
                         break;
                     }
                 }
-                logger($score);
+                //logger($score);
             }
     
             // Calculate matching percentage out of 100
@@ -125,12 +150,14 @@ class DashboardController extends Controller
         }
     
         return $matchedUsers;
-    }
-    public function filter(Request $request)
+    }public function filter(Request $request)
     {
         $authenticatedUser = auth()->user();
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
-        $campus = $request->input('campus');
+        $category = $request->input('category');
+        logger($request); // New
+        $value = $request->input('value'); // New
+        logger($value);
         $campuses = UserPreferences::distinct()->pluck('campus');
         $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
             ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
@@ -140,8 +167,15 @@ class DashboardController extends Controller
                     ->where('state', true);
             });
     
-        if ($campus && $campus !== 'Both') {
-            $users = $users->where('campus', $campus);
+        if ($category === 'campus' & $value!="Both") {
+            $users = $users->where($category, $value);
+        } 
+            else {
+            $users = $users->where(function ($query) use ($category, $value) {
+                for ($i = 1; $i <= 3; $i++) {
+                    $query->orWhere($category . 'Item' . $i, $value);
+                }
+            });
         }
     
         $users = $users->get();
@@ -151,8 +185,29 @@ class DashboardController extends Controller
         usort($matchedUsers, function ($a, $b) {
             return $b['matching_percentage'] - $a['matching_percentage'];
         });
+        $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
+        $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
+        $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
     
-        return view('dashboard', compact('matchedUsers','campuses'));
+        $indoor1 = $authenticatedUserPreferences->indoorItem1;
+        $indoor2 = $authenticatedUserPreferences->indoorItem2;
+        $indoor3 = $authenticatedUserPreferences->indoorItem3;
+    
+        $music1 = $authenticatedUserPreferences->musicItem1;
+        $music2 = $authenticatedUserPreferences->musicItem2;
+        $music3 = $authenticatedUserPreferences->musicItem3;
+    
+        $movie1 = $authenticatedUserPreferences->movieItem1;
+        $movie2 = $authenticatedUserPreferences->movieItem2;
+        $movie3 = $authenticatedUserPreferences->movieItem3;
+        
+        return view('dashboard', compact('matchedUsers', 'campuses',
+            'outdoor1', 'outdoor2', 'outdoor3',
+            'indoor1', 'indoor2', 'indoor3',
+            'music1', 'music2', 'music3',
+            'movie1', 'movie2', 'movie3'
+        ));
     }
+    
     
 }

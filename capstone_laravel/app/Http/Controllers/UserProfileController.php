@@ -15,7 +15,7 @@ class UserProfileController extends Controller
     {
         // Retrieve the authenticated user's ID
         $userId = auth()->id();
-    
+        logger($name);
         // Retrieve the user based on the username
         $user = User::where('name', $name)->first();
     
