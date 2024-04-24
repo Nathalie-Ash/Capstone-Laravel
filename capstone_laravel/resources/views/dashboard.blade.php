@@ -123,8 +123,13 @@
             border-radius: 5px;
             width: 100%;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: block;
+            display: none;
         }
+        .dropdown-menu.show{
+            padding: 0px;
+        }
+      
+
     </style>
     </head>
 
@@ -137,69 +142,69 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton"
                         data-bs-toggle="dropdown" aria-expanded="false"
-
                         style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;">
                         Filter
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
                         <li>
-                            <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" method="GET">
+                            <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}"
+                                method="GET">
                                 <input type="hidden" name="category" id="category"> <!-- New -->
                                 <input type="hidden" name="value" id="value"> <!-- New -->
-                                <li>
-                                    <select class="form-control form-control-sm" name="campus" id="campusSelect"
-                                        onchange="changeCategory('campus', this.value)">
-                                        <option value="" selected disabled>Choose Campus</option>
-                                        @foreach ($campuses as $campus)
-                                        <option value="{{ $campus }}">{{ $campus }}</option>
-                                        @endforeach
-                                        <option value="Both">Both</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <select class="form-control form-control-sm" name="outdoor" id="outdoorSelect"
-                                        onchange="changeCategory('outdoor', this.value)">
-                                        <option value="" selected disabled>Choose Outdoor</option>
-                            
-                                        <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
-                                        <option value="{{ $outdoor2 }}">{{ $outdoor2 }}</option>
-                                        <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option>
-                            
-                                    </select>
-                                </li>
-                                <li>
-                                    <select class="form-control form-control-sm" name="indoor" id="indoorSelect"
-                                        onchange="changeCategory('indoor', this.value)">
-                                        <option value="" selected disabled>Choose Indoor</option>
-                                        <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
-                                        <option value="{{ $indoor2 }}">{{ $indoor2 }}</option>
-                                        <option value="{{ $indoor3 }}">{{ $indoor3 }}</option>
-                            
-                                    </select>
-                                </li>
-                                <li>
-                                    <select class="form-control form-control-sm" name="music" id="musicSelect"
-                                        onchange="changeCategory('music', this.value)">
-                                        <option value="" selected disabled>Choose music</option>
-                                        <option value="{{ $music1 }}">{{ $music1 }}</option>
-                                        <option value="{{ $music2 }}">{{ $music2 }}</option>
-                                        <option value="{{ $music3 }}">{{ $music3 }}</option>
-                            
-                                    </select>
-                                </li>
-                                <li>
-                                    <select class="form-control form-control-sm" name="movie" id="movieSelect"
-                                        onchange="changeCategory('movie', this.value)">
-                                        <option value="" selected disabled>Choose movie</option>
-                                        <option value="{{ $movie1 }}">{{ $movie1 }}</option>
-                                        <option value="{{ $movie2 }}">{{ $movie2 }}</option>
-                                        <option value="{{ $movie3 }}">{{ $movie3 }}</option>
-                            
-                                    </select>
-                                </li>
-                            
-                                {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
-                            </form>
+                        <li>
+                            <select class="form-control form-control-sm" name="campus" id="campusSelect"
+                                onchange="changeCategory('campus', this.value)">
+                                <option value="" selected disabled>By Campus</option>
+                                @foreach ($campuses as $campus)
+                                    <option value="{{ $campus }}">{{ $campus }}</option>
+                                @endforeach
+                                <option value="Both">Both</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control form-control-sm" name="outdoor" id="outdoorSelect"
+                                onchange="changeCategory('outdoor', this.value)">
+                                <option value="" selected disabled>By Outdoor Activity</option>
+
+                                <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
+                                <option value="{{ $outdoor2 }}">{{ $outdoor2 }}</option>
+                                <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option>
+
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control form-control-sm" name="indoor" id="indoorSelect"
+                                onchange="changeCategory('indoor', this.value)">
+                                <option value="" selected disabled>By Indoor Activity</option>
+                                <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
+                                <option value="{{ $indoor2 }}">{{ $indoor2 }}</option>
+                                <option value="{{ $indoor3 }}">{{ $indoor3 }}</option>
+
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control form-control-sm" name="music" id="musicSelect"
+                                onchange="changeCategory('music', this.value)">
+                                <option value="" selected disabled>By Music Genre </option>
+                                <option value="{{ $music1 }}">{{ $music1 }}</option>
+                                <option value="{{ $music2 }}">{{ $music2 }}</option>
+                                <option value="{{ $music3 }}">{{ $music3 }}</option>
+
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control form-control-sm" name="movie" id="movieSelect"
+                                onchange="changeCategory('movie', this.value)">
+                                <option value="" selected disabled>By Movie Genre</option>
+                                <option value="{{ $movie1 }}">{{ $movie1 }}</option>
+                                <option value="{{ $movie2 }}">{{ $movie2 }}</option>
+                                <option value="{{ $movie3 }}">{{ $movie3 }}</option>
+
+                            </select>
+                        </li>
+
+                        {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
+                        </form>
                         </li>
 
                     </ul>
@@ -216,13 +221,14 @@
 
                     @if (!empty($users))
                         <div class="dropdown-menu show"
-                            style="padding-left: 2%; background-color: rgba(87, 151, 146, 0.5);">
+                            style="padding-left: 2%; background-color: rgba(87, 151, 146, 0.5);padding: 0px;">
                             @foreach ($users as $user)
                                 <li>
                                     <a href="{{ route('user.profile', ['name' => $user->name]) }}"
                                         style="text-decoration: none; color: inherit;">
                                         @if (isset($userImages[$user->id]))
-                                            <img src="{{ asset($userImages[$user->id]->avatar) }}" alt="Profile Picture"
+                                            <img src="{{ asset($userImages[$user->id]->avatar) }}"
+                                                alt="Profile Picture"
                                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px; object-fit:contain">
                                         @else
                                             <img src="{{ asset('images/default_profile.png') }}"
@@ -312,36 +318,24 @@
                 document.getElementById('category').value = category;
                 document.getElementById('value').value = value;
             }
-        
-            document.addEventListener("DOMContentLoaded", function(event) {
-                // Function to toggle the visibility of the dropdown menu
-                function toggleDropdown() {
-                    var dropdownMenu = document.querySelector(".dropdown-menu");
-                    dropdownMenu.classList.toggle("show");
-                }
 
-        
-                // Get the filter dropdown button
-                var filterDropdownButton = document.getElementById("filterDropdownButton");
-        
+            // document.addEventListener("DOMContentLoaded", function(event) {
+            //     // Function to toggle the visibility of the dropdown menu
+            //     function toggleDropdown() {
+            //         var dropdownMenu = document.querySelector(".dropdown-menu");
+            //         dropdownMenu.classList.toggle("show");
+            //     }
 
-                // Add click event listener to the filter dropdown button
-                filterDropdownButton.addEventListener("click", function(event) {
-                    // Toggle the visibility of the dropdown menu
-                    toggleDropdown();
-                    // Prevent the default action of the button
-                    event.preventDefault();
-                });
+            //     // Get the filter dropdown button
+            //     var filterDropdownButton = document.getElementById("filterDropdownButton");
 
-                // Close dropdown menu when clicking outside of it
-                document.addEventListener("click", function(event) {
-                    var dropdownMenu = document.querySelector(".dropdown-menu");
-                    // Check if the click is outside of the dropdown menu and the filter button
-                    if (!dropdownMenu.contains(event.target) && event.target !== filterDropdownButton) {
-                        // Hide the dropdown menu
-                        dropdownMenu.classList.remove("show");
-                    }
-                });
+            //     // Add click event listener to the filter dropdown button
+            //     filterDropdownButton.addEventListener("click", function(event) {
+            //         // Toggle the visibility of the dropdown menu
+            //         toggleDropdown();
+            //         // Prevent the default action of the button
+            //         event.preventDefault();
+            //     });
 
                 // Function to show the navbar
                 const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -360,13 +354,13 @@
                     }
                 };
 
-        
+
                 // Call the function to show the navbar
                 showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
-        
+
                 // Function to handle link color
                 const linkColor = document.querySelectorAll('.nav_link');
-        
+
 
                 function colorLink() {
                     if (linkColor) {
@@ -382,13 +376,14 @@
                         var category = this.name;
                         var value = this.value;
                         var filterForm = document.getElementById('filterForm');
-                        filterForm.action = "{{ route('dashboard.filter') }}?category=" + category + "&value=" + encodeURIComponent(value);
+                        filterForm.action = "{{ route('dashboard.filter') }}?category=" + category +
+                            "&value=" + encodeURIComponent(value);
                         filterForm.submit();
                     });
                 });
             });
         </script>
-        
+
 
 
 </x-menuLayout>
