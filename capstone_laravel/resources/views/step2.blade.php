@@ -124,8 +124,6 @@
 
             </div>
             <div id="button-nav">
-                <button type="button" onclick="goToPrevPage()" class="btn"
-                    style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
                 <button type="submit" onclick="goToNextPage()" class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
@@ -345,12 +343,7 @@ function handleDropdownItemClick(event, dropdownMenuId, hiddenInputId) {
             }
         }
 
-        function goToPrevPage() {
-            // Store Step 2 data before navigating back to Step 1
-            storeStep2Data();
-            // Redirect to Step 1
-            window.location.href = "{{ route('step1') }}";
-        }
+      
 
         function goToNextPage() {
             // Store Step 2 data before navigating back to Step 1
