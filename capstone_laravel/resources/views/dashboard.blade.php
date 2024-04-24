@@ -142,7 +142,7 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton"
                         data-bs-toggle="dropdown" aria-expanded="false"
-                        style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;">
+                        style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;padding-top: 0px; padding-bottom: 0px; padding-left: 7px;">
                         Filter
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
@@ -226,10 +226,15 @@
                                 <li>
                                     <a href="{{ route('user.profile', ['name' => $user->name]) }}"
                                         style="text-decoration: none; color: inherit;">
-                                        @if (isset($userImages[$user->id]))
-                                            <img src="{{ asset($userImages[$user->id]->avatar) }}"
+                                        @php
+                                        $senderId = $user->id;
+                                        $userImage = $userImages[$senderId] ?? null;
+                                        @endphp
+                                  
+                                        @if ($userImage)
+                                            <img src="{{ asset($userImage) }}"
                                                 alt="Profile Picture"
-                                                style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px; object-fit:contain">
+                                                style="width: 40px; height: 40px; border-radius: 50%; margin-right: 5px; object-fit:scale; padding: 5px;">
                                         @else
                                             <img src="{{ asset('images/default_profile.png') }}"
                                                 alt="Default Profile Picture"
