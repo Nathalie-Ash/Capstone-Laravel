@@ -19,10 +19,10 @@ return new class extends Migration
             $table->boolean('sent');
             $table->unsignedBigInteger('connection_id');
             $table->foreign('connection_id')->references('id')->on('users')->onDelete('cascade'); // assuming users table name is 'users'
-            $table->string('phone_number')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('tiktok')->nullable();
-            $table->string('linkedIn')->nullable();
+            $table->string('phone_number')->nullable()->default("Not Available");
+            $table->string('instagram')->nullable()->default("Not Available");
+            $table->string('tiktok')->nullable()->default("Not Available");
+            $table->string('linkedIn')->nullable()->default("Not Available");
             $table->timestamps(); 
         });
 

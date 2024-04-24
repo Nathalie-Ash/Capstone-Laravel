@@ -114,9 +114,7 @@
 
             </div>
             <div id="button-nav">
-                <button type="button" onclick="goToPrevPage()" class="btn"
-                    style="background-color:#a19e9e; width: 15%;border-right:50px;color:white;font-size: larger;">BACK</button>
-                <button type="submit" class="btn"
+               <button type="submit" class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
         </section>
@@ -127,10 +125,7 @@
 
 
     <script>
-        function goToPrevPage() {
-
-            window.location.href = "step2";
-        }
+      
 
         document.addEventListener("DOMContentLoaded", function() {
 

@@ -12,6 +12,7 @@ class DashboardController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
+        
     
         // Perform search logic, for example:
         $users = User::where('name', 'like', "%$query%")->get();
@@ -20,15 +21,45 @@ class DashboardController extends Controller
         $authenticatedUser = auth()->user();
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
     
+        $usersformatch = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
+        ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
+            $query->select('connection_id')
+                  ->from('connections')
+                  ->where('user_id', $authenticatedUser->id)
+                  ->where('state', true);
+        })
+        ->get();
+
         // Calculate matching scores for each user
-        $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $users);
+        $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $usersformatch);
+        $campuses = UserPreferences::distinct()->pluck('campus');
+        //logger($campuses);
+            $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
+            $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
+            $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
+    
+            $indoor1 = $authenticatedUserPreferences->indoorItem1;
+            $indoor2 = $authenticatedUserPreferences->indoorItem2;
+            $indoor3 = $authenticatedUserPreferences->indoorItem3;
+    
+            $music1 = $authenticatedUserPreferences->musicItem1;
+            $music2 = $authenticatedUserPreferences->musicItem2;
+            $music3 = $authenticatedUserPreferences->musicItem3;
+    
+            $movie1 = $authenticatedUserPreferences->movieItem1;
+            $movie2 = $authenticatedUserPreferences->movieItem2;
+            $movie3 = $authenticatedUserPreferences->movieItem3;
         
         // Sort the users based on matching scores
         usort($matchedUsers, function($a, $b) {
             return $b['matching_percentage'] - $a['matching_percentage'];
         });
     
-        return view('dashboard', compact('users', 'query', 'matchedUsers'));
+        return view('dashboard', compact('users', 'query', 'matchedUsers','campuses',
+        'outdoor1','outdoor2','outdoor3',
+        'indoor1','indoor2','indoor3', 
+        'music1', 'music2','music3',
+        'movie1','movie2','movie3'));
     }
     
     
