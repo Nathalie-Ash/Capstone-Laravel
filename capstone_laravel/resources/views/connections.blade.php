@@ -66,7 +66,7 @@
                             <p class="textStyle"
                                 style="text-align: left; font-size: 30px; padding: 0; margin: 0;width: max-content;">
                                 {{ $connection->sender->name }}</p>
-                            <p style="text-align: left; font-weight: lighter; padding: 0;">7 Mutual friends</p>
+                            <p style="text-align: left; font-weight: lighter; padding: 0;">{{$mutualConnections[$senderId]}} mutual connections</p>
                         </div>
                         <div class="col-sm-8">
 
@@ -82,13 +82,13 @@
                             data-bs-toggle="modal" data-bs-target="#contactInfoModal"> Share</a>
                         @endif
                           
-                            <a href="{{ route('user.profile', ['name' => $connection->sender->name]) }}" class="btn"
+                            <a href="{{ route('user.profile', ['id' => $connection->sender->id]) }}" class="btn"
                                 style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
                                 Profile</a>
                             {{-- <button type="button" class="btn btn-secondary"
                                 style="width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</button> --}}
-                        
-                                <a href="{{ route('remove.connection', ['connectionid' => $connection->id]) }}" class="btn" 
+                                {{-- {{ route('remove.connection', ['connectionid' => $userPreferences->user_id]) }} --}}
+                                <a href="{{ route('remove.connection', ['connectionid' => $connection->sender->id]) }}" class="btn" 
                                     style=" background-color: black;width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</a>
                                 
                         </div>

@@ -75,11 +75,12 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
 
-Route::get('/user/{name}', [UserProfileController::class, 'userProfile'])->name('user.profile');
+Route::get('/user/{id}', [UserProfileController::class, 'userProfile'])->name('user.profile');
 
 
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
 Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
+Route::post('/deleteRequest', [ConnectionsController::class, 'deleteRequest'])->name('deleteRequest');
 Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 Route::get('/remove-connection/{connectionid}', [ConnectionsController::class, 'removeConnection'])->name('remove.connection');

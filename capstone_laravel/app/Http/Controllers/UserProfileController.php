@@ -11,13 +11,13 @@ use App\Models\userPreferences;
 class UserProfileController extends Controller
 {
     //
-    public function userProfile($name)
+    public function userProfile($id)
     {
         // Retrieve the authenticated user's ID
         $userId = auth()->id();
-        logger($name);
+        logger($id);
         // Retrieve the user based on the username
-        $user = User::where('name', $name)->first();
+        $user = User::where('id', $id)->first();
     
         // Check if user exists
         if ($user) {
@@ -40,6 +40,7 @@ class UserProfileController extends Controller
             // Render the userProfile view with user data and connection status
             $existingConnection = Connections::where('user_id', $user->id)
             ->where('connection_id', $userId)
+            ->where('state',false)
             ->first();
 
             $contact = userContacts::where('user_id', $userId)
@@ -81,26 +82,26 @@ return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'm
         // Redirect back or to any desired page
         return redirect()->back()->with('success', 'Friend request sent successfully');
     }
-
-     private function calculateMatchingScores($authenticatedUser, $user)
+    private function calculateMatchingScores($authenticatedUser, $user)
     {
-    
-        
+        //$matchedUsers = [];
+
+        //foreach ($users as $user) {
             $score = 0;
     
             // School Matching
             if ($authenticatedUser->school == $user->school) {
-                $score += 8; // Significant score for same school
+                $score += 5; // Significant score for same school
             }
     
             // Major Matching
             if ($authenticatedUser->major == $user->major) {
-                $score += 10; // Lower score for same major
+                $score += 8; // Lower score for same major
             }
     
             // Campus Matching
             if ($authenticatedUser->campus == $user->campus) {
-                $score += 12; // Moderate score for same campus
+                $score += 8; // Moderate score for same campus
             }
     
             // Preference Matching (Outdoor, Indoor, Music, Movies)
@@ -111,39 +112,39 @@ return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'm
                     $userPreference = $user->{$preference . 'Item' . $i};
                 
                     $authenticatedUserPreference = $authenticatedUser->{$preference . 'Item' . $i};
-                    logger($userPreference);
+                    //logger($userPreference);
     
                     // Check if the preferences match
                     if ($userPreference == $authenticatedUserPreference) {
                         // Add score based on the priority of the preference
                         switch ($i) {
                             case 1:
-                                $score += 17.5; // Significant score for first preference
+                                $score += 10; // Significant score for first preference
                                 break;
                             case 2:
-                                $score += 13; // Lower score for second preference
+                                $score += 7.5; // Lower score for second preference
                                 break;
                             case 3:
-                                $score += 8; // Lowest score for third preference
+                                $score += 5; // Lowest score for third preference
                                 break;
                         }
                         // Break the loop since a match is found
                         break;
                     }
                 }
-                logger($score);
-            }
+                //logger($score);
+            //}
     
             // Calculate matching percentage out of 100
             $totalScore = 100; // Total score possible
             $matchingPercentage = ceil(($score / $totalScore) * 100);
     
             // Add user and matching percentage to the matchedUsers array
-            $matchedUsers[] = [
-                'user_id' => $user->user_id,
-                'matching_percentage' => $matchingPercentage
-            ];
-       
+            // $matchedUsers[] = [
+            //     'user_id' => $user->user_id,
+            //     'matching_percentage' => $matchingPercentage
+            // ];
+        }
     
         return $matchingPercentage;
     }

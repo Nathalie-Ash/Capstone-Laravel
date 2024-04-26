@@ -11,18 +11,22 @@ use App\Models\Connections;
 class DashboardController extends Controller
 {  
     public function search(Request $request)
-{
-    $query = $request->input('query');
 
-    // Retrieve users with their IDs and names based on the search query
-    $users = User::select('id', 'name')->where('name', 'like', "%$query%")->get();
+    {
+        $query = $request->input('query');
+        $authenticatedUser = auth()->user();
+    
+        // Perform search logic, for example:
+        $users = User::where('name', 'like', "%$query%")
+                    ->where('id', '!=', $authenticatedUser->id)
+                    ->get();
+    
+        // Retrieve the authenticated user's information
+        
+        $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
+    
+        $usersformatch = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
 
-    // Retrieve authenticated user's information and preferences
-    $authenticatedUser = auth()->user();
-    $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
-
-    // Retrieve users for matching
-    $usersForMatch = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
         ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
             $query->select('connection_id')
                 ->from('connections')
@@ -31,6 +35,42 @@ class DashboardController extends Controller
         })
         ->get();
 
+
+        // Calculate matching scores for each user
+        $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $usersformatch);
+        $campuses = UserPreferences::distinct()->pluck('campus');
+        // $outdoors= UserPreferences::distinct()->pluck('outdoorItem1'f);
+        //logger($campuses);
+        $outdoors = UserPreferences::pluck('outdoorItem1')
+        ->merge(UserPreferences::pluck('outdoorItem2'))
+        ->merge(UserPreferences::pluck('outdoorItem3'))
+        ->flatten()
+        ->unique();
+
+$indoors = UserPreferences::pluck('indoorItem1')
+        ->merge(UserPreferences::pluck('indoorItem2'))
+        ->merge(UserPreferences::pluck('indoorItem3'))
+        ->flatten()
+        ->unique();
+
+$musics = UserPreferences::pluck('musicItem1')
+        ->merge(UserPreferences::pluck('musicItem2'))
+        ->merge(UserPreferences::pluck('musicItem3'))
+        ->flatten()
+        ->unique();
+
+$movies = UserPreferences::pluck('movieItem1')
+        ->merge(UserPreferences::pluck('movieItem2'))
+        ->merge(UserPreferences::pluck('movieItem3'))
+        ->flatten()
+        ->unique();
+        // Sort the users based on matching scoresfffffffffffffffrvrvvvvvvvvvvvvvvvvrvrrvvffrv
+        usort($matchedUsers, function($a, $b) {
+            return $b['matching_percentage'] - $a['matching_percentage'];
+        });
+    
+        
+
     // Retrieve avatars for the users returned from the search query
     $userImages = [];
     foreach ($users as $user) {
@@ -38,39 +78,15 @@ class DashboardController extends Controller
         if ($userPreferences) {
             $userImages[$user->id] = $userPreferences->avatar;
         }
+        logger($userImages);
     }
 
-    // Calculate matching scores for each user
-    $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $usersForMatch);
 
-    // Retrieve campus options
-    $campuses = UserPreferences::distinct()->pluck('campus');
-
-    // Retrieve user preferences for outdoor, indoor, music, and movie
-    $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
-    $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
-    $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
-
-    $indoor1 = $authenticatedUserPreferences->indoorItem1;
-    $indoor2 = $authenticatedUserPreferences->indoorItem2;
-    $indoor3 = $authenticatedUserPreferences->indoorItem3;
-
-    $music1 = $authenticatedUserPreferences->musicItem1;
-    $music2 = $authenticatedUserPreferences->musicItem2;
-    $music3 = $authenticatedUserPreferences->musicItem3;
-
-    $movie1 = $authenticatedUserPreferences->movieItem1;
-    $movie2 = $authenticatedUserPreferences->movieItem2;
-    $movie3 = $authenticatedUserPreferences->movieItem3;
-
-    // Sort the users based on matching scores
-    usort($matchedUsers, function($a, $b) {
-        return $b['matching_percentage'] - $a['matching_percentage'];
-    });
-
-    return view('dashboard', compact('users', 'query', 'matchedUsers', 'campuses', 'userImages',
-        'outdoor1', 'outdoor2', 'outdoor3', 'indoor1', 'indoor2', 'indoor3', 
-        'music1', 'music2', 'music3', 'movie1', 'movie2', 'movie3'));
+    return view('dashboard', compact('users', 'query', 'matchedUsers','campuses','userImages',
+    'outdoors',
+    'indoors',
+    'musics', 
+    'movies'));
 }
 
     
@@ -78,27 +94,36 @@ class DashboardController extends Controller
     public function dashboard()
     {
         // Retrieve the authenticated user's information
+        if (auth()->check()) {
         $authenticatedUser = auth()->user();
        
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
         //logger($authenticatedUserPreferences);
         $campuses = UserPreferences::distinct()->pluck('campus');
         //logger($campuses);
-            $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
-            $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
-            $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
-    
-            $indoor1 = $authenticatedUserPreferences->indoorItem1;
-            $indoor2 = $authenticatedUserPreferences->indoorItem2;
-            $indoor3 = $authenticatedUserPreferences->indoorItem3;
-    
-            $music1 = $authenticatedUserPreferences->musicItem1;
-            $music2 = $authenticatedUserPreferences->musicItem2;
-            $music3 = $authenticatedUserPreferences->musicItem3;
-    
-            $movie1 = $authenticatedUserPreferences->movieItem1;
-            $movie2 = $authenticatedUserPreferences->movieItem2;
-            $movie3 = $authenticatedUserPreferences->movieItem3;
+        $outdoors = UserPreferences::pluck('outdoorItem1')
+                                ->merge(UserPreferences::pluck('outdoorItem2'))
+                                ->merge(UserPreferences::pluck('outdoorItem3'))
+                                ->flatten()
+                                ->unique();
+
+$indoors = UserPreferences::pluck('indoorItem1')
+                                ->merge(UserPreferences::pluck('indoorItem2'))
+                                ->merge(UserPreferences::pluck('indoorItem3'))
+                                ->flatten()
+                                ->unique();
+
+$musics = UserPreferences::pluck('musicItem1')
+                                ->merge(UserPreferences::pluck('musicItem2'))
+                                ->merge(UserPreferences::pluck('musicItem3'))
+                                ->flatten()
+                                ->unique();
+
+$movies = UserPreferences::pluck('movieItem1')
+                                ->merge(UserPreferences::pluck('movieItem2'))
+                                ->merge(UserPreferences::pluck('movieItem3'))
+                                ->flatten()
+                                ->unique();
 
            // logger($outdoor1);
         
@@ -122,12 +147,16 @@ class DashboardController extends Controller
 
         // Return the dashboard view with matched users
         return view('dashboard',  compact('matchedUsers', 'campuses',
-        'outdoor1','outdoor2','outdoor3',
-        'indoor1','indoor2','indoor3', 
-        'music1', 'music2','music3',
-        'movie1','movie2','movie3'
-    ));
+        'outdoors',
+        'indoors',
+        'musics', 
+        'movies'));
+    } else {
+        // User is not authenticated, redirect to login page
+        return redirect('/login')->with('status', 'Your session has expired. Please log in again.');
     }
+    }
+    
     private function calculateMatchingScores($authenticatedUser, $users)
     {
         $matchedUsers = [];
@@ -137,17 +166,17 @@ class DashboardController extends Controller
     
             // School Matching
             if ($authenticatedUser->school == $user->school) {
-                $score += 8; // Significant score for same school
+                $score += 5; // Significant score for same school
             }
     
             // Major Matching
             if ($authenticatedUser->major == $user->major) {
-                $score += 10; // Lower score for same major
+                $score += 8; // Lower score for same major
             }
     
             // Campus Matching
             if ($authenticatedUser->campus == $user->campus) {
-                $score += 12; // Moderate score for same campus
+                $score += 8; // Moderate score for same campus
             }
     
             // Preference Matching (Outdoor, Indoor, Music, Movies)
@@ -165,13 +194,13 @@ class DashboardController extends Controller
                         // Add score based on the priority of the preference
                         switch ($i) {
                             case 1:
-                                $score += 17.5; // Significant score for first preference
+                                $score += 10; // Significant score for first preference
                                 break;
                             case 2:
-                                $score += 13; // Lower score for second preference
+                                $score += 7.5; // Lower score for second preference
                                 break;
                             case 3:
-                                $score += 8; // Lowest score for third preference
+                                $score += 5; // Lowest score for third preference
                                 break;
                         }
                         // Break the loop since a match is found
@@ -193,7 +222,8 @@ class DashboardController extends Controller
         }
     
         return $matchedUsers;
-    }public function filter(Request $request)
+    }
+    public function filter(Request $request)
     {
         $authenticatedUser = auth()->user();
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
@@ -212,7 +242,9 @@ class DashboardController extends Controller
     
         if ($category === 'campus' & $value!="Both") {
             $users = $users->where($category, $value);
-        } 
+        } else if ($category === 'campus' & $value==="Both"){
+            $users = $users->whereIn($category, ['Beirut', 'Byblos']);
+        }
             else {
             $users = $users->where(function ($query) use ($category, $value) {
                 for ($i = 1; $i <= 3; $i++) {
@@ -228,27 +260,36 @@ class DashboardController extends Controller
         usort($matchedUsers, function ($a, $b) {
             return $b['matching_percentage'] - $a['matching_percentage'];
         });
-        $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
-        $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
-        $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
-    
-        $indoor1 = $authenticatedUserPreferences->indoorItem1;
-        $indoor2 = $authenticatedUserPreferences->indoorItem2;
-        $indoor3 = $authenticatedUserPreferences->indoorItem3;
-    
-        $music1 = $authenticatedUserPreferences->musicItem1;
-        $music2 = $authenticatedUserPreferences->musicItem2;
-        $music3 = $authenticatedUserPreferences->musicItem3;
-    
-        $movie1 = $authenticatedUserPreferences->movieItem1;
-        $movie2 = $authenticatedUserPreferences->movieItem2;
-        $movie3 = $authenticatedUserPreferences->movieItem3;
-        
+        $outdoors = UserPreferences::pluck('outdoorItem1')
+                                ->merge(UserPreferences::pluck('outdoorItem2'))
+                                ->merge(UserPreferences::pluck('outdoorItem3'))
+                                ->flatten()
+                                ->unique();
+
+$indoors = UserPreferences::pluck('indoorItem1')
+                                ->merge(UserPreferences::pluck('indoorItem2'))
+                                ->merge(UserPreferences::pluck('indoorItem3'))
+                                ->flatten()
+                                ->unique();
+
+$musics = UserPreferences::pluck('musicItem1')
+                                ->merge(UserPreferences::pluck('musicItem2'))
+                                ->merge(UserPreferences::pluck('musicItem3'))
+                                ->flatten()
+                                ->unique();
+
+$movies = UserPreferences::pluck('movieItem1')
+                                ->merge(UserPreferences::pluck('movieItem2'))
+                                ->merge(UserPreferences::pluck('movieItem3'))
+                                ->flatten()
+                                ->unique();
+
+
         return view('dashboard', compact('matchedUsers', 'campuses',
-            'outdoor1', 'outdoor2', 'outdoor3',
-            'indoor1', 'indoor2', 'indoor3',
-            'music1', 'music2', 'music3',
-            'movie1', 'movie2', 'movie3'
+            'outdoors', 
+            'indoors',
+            'musics', 
+            'movies'
         ));
     }
     

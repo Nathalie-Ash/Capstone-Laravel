@@ -25,19 +25,23 @@ class ConnectionsController extends Controller
             ->with('sender')
             ->get();
         logger($requests);
+
         $userImages = [];
+        $mutualConnections=[];
         // If there are pending requests, retrieve the corresponding senders
         foreach ($requests as $connection) {
             $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
             if ($userImage)
                 $userImages[$connection->sender->id] = $userImage->avatar;
+            $mutualConnections[$connection->sender->id] = $this->getMutualConnections($userId, $connection->sender->id);
         }
-            return view('requests', compact('requests', 'userImages'));
+        return view('requests', compact('requests', 'userImages','mutualConnections'));
    
 
         // If there are no pending requests, return a message or redirect
 
     }
+    
     public function myConnections()
     {
         // Retrieve the authenticated user's ID
@@ -54,6 +58,7 @@ class ConnectionsController extends Controller
     
         // Initialize the $sentContact variable
         $sentContact = null;
+        $mutualConnections = [];
     
         // Retrieve user image for each connection
         foreach ($connections as $connection) {
@@ -66,12 +71,21 @@ class ConnectionsController extends Controller
                 ->where('state', true)
                 ->where('sent', 1)
                 ->first();
+            $mutualConnections[$connection->sender->id] = $this->getMutualConnections($userId, $connection->sender->id);
         }
     
-        return view('connections', compact('connections', 'userImages', 'sentContact'));
+        return view('connections', compact('connections', 'userImages', 'sentContact','mutualConnections'));
     }
     
+    private function getMutualConnections($user1Id, $user2Id)
+{
+    $user1Connections = Connections::where('user_id', $user1Id)->where('state',true)->pluck('connection_id');
+    $user2Connections = Connections::where('user_id', $user2Id)->where('state',true)->pluck('connection_id');
 
+    $mutualConnections = $user1Connections->intersect($user2Connections)->toArray();
+
+    return count($mutualConnections);
+}
     
     public function acceptConnection(Request $request)
     {
@@ -104,7 +118,11 @@ class ConnectionsController extends Controller
     
     public function removeConnection($connectionid)
     {
-        $connection = Connections::find($connectionid);
+        $userId = auth()->id();
+        $connection = Connections::where('connection_id', $connectionid)
+        ->where('user_id', $userId) // Add this condition
+        ->first();
+
     
         if (!$connection) {
             return redirect()->back()->with('error', 'Connection not found.');
@@ -124,6 +142,31 @@ class ConnectionsController extends Controller
         return redirect()->back()->with('success', 'Connection removed successfully.');
     }
     
+    public function deleteRequest(Request $request)
+    {
+        $userId = auth()->id();
+        $connectionid = $request->input('connection_id');
+        $connection = Connections::where('connection_id', $connectionid)
+        ->where('user_id', $userId) // Add this condition
+        ->first();
 
+    
+        if (!$connection) {
+            return redirect()->back()->with('error', 'Connection not found.');
+        }
+    
+        // Delete the connection
+        $connection->delete();
+    
+        // Also, delete the reverse connection
+        // $reverseConnection = Connections::where('user_id', $connection->connection_id)
+        //                                  ->where('connection_id', $connection->user_id)
+        //                                  ->first();
+        // if ($reverseConnection) {
+        //     $reverseConnection->delete();
+        // }
+    
+        return redirect()->back()->with('success', 'Connection removed successfully.');
+    }
 
 }
