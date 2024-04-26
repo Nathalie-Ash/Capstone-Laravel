@@ -65,7 +65,7 @@
                             <p class="textStyle"
                                 style="text-align: left; font-size: 30px; padding: 0; margin: 0;width: max-content;">
                                 {{ $connection->sender->name }}</p>
-                            <p style="text-align: left; font-weight: lighter; padding: 0;">7 Mutual friends</p>
+                            <p style="text-align: left; font-weight: lighter; padding: 0;">{{$mutualConnections[$senderId]}} Mutual connections</p>
                         </div>
                         <div class="col-sm-8">
 

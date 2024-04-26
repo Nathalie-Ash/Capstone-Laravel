@@ -76,6 +76,7 @@ $movies = UserPreferences::pluck('movieItem1')
     public function dashboard()
     {
         // Retrieve the authenticated user's information
+        if (auth()->check()) {
         $authenticatedUser = auth()->user();
        
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
@@ -132,7 +133,12 @@ $movies = UserPreferences::pluck('movieItem1')
         'indoors',
         'musics', 
         'movies'));
+    } else {
+        // User is not authenticated, redirect to login page
+        return redirect('/login')->with('status', 'Your session has expired. Please log in again.');
     }
+    }
+    
     private function calculateMatchingScores($authenticatedUser, $users)
     {
         $matchedUsers = [];
@@ -218,7 +224,9 @@ $movies = UserPreferences::pluck('movieItem1')
     
         if ($category === 'campus' & $value!="Both") {
             $users = $users->where($category, $value);
-        } 
+        } else if ($category === 'campus' & $value==="Both"){
+            $users = $users->whereIn($category, ['Beirut', 'Byblos']);
+        }
             else {
             $users = $users->where(function ($query) use ($category, $value) {
                 for ($i = 1; $i <= 3; $i++) {
