@@ -379,10 +379,10 @@
                         "&value=" + encodeURIComponent(value);
                     filterForm.submit();
                 });
-            });
-            // });
+});
 
-    document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function () {
+
         // Function to show or hide the dropdown based on text input
         document.querySelector('.search-form button[type="submit"]').addEventListener('click', function (event) {
             var searchInput = document.querySelector('.search-form input[type="text"]');
@@ -399,8 +399,9 @@
             dropdownMenu.classList.add('show');
         });
 
-        
-</script>
+    });
+      
+        </script>
 
 
 
