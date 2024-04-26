@@ -80,6 +80,7 @@ Route::get('/user/{id}', [UserProfileController::class, 'userProfile'])->name('u
 
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');
 Route::post('/accept-connection', [ConnectionsController::class, 'acceptConnection'])->name('acceptConnection');
+Route::post('/deleteRequest', [ConnectionsController::class, 'deleteRequest'])->name('deleteRequest');
 Route::get('/connections', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 Route::get('/userProfile', [ConnectionsController::class, 'myConnections'])->name('my.connections');
 Route::get('/remove-connection/{connectionid}', [ConnectionsController::class, 'removeConnection'])->name('remove.connection');
