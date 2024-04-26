@@ -14,10 +14,9 @@
     </head>
 
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;">
-
-        <img style="width: 8%; height: 50px; padding-bottom: 10px;float:left;margin-top: 10px;"
-            src={{ asset('images/star.png') }}>
-        <span style="font-size: 35px;padding-top: 20px;margin-top: 10px;">Personal Information</span>
+        <span style="font-size: 35px;padding-top: 20px;margin-top: 10px;"> <i class="fas fa-star fa-lg md-3"
+                style="font-size: 50px; color: #8971f6;text-align: start;vertical-align: sub;"></i>
+            Personal Information</span>
         <div style="display:inline;float: right;text-align: right;margin-top: 10px;width: 50%;">
             <button type="button" id="editButton" class="btn"
                 style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger; margin-left: 30px;">Edit</button>
@@ -278,9 +277,9 @@
                 .then(response => {
                     if (response.ok) {
                         // Data saved successfully
-                        
 
-                       // alert("User data saved successfully.");
+
+                        // alert("User data saved successfully.");
                         resetTextBackground();
                         window.location.href = "profile1";
                     } else {
@@ -316,7 +315,7 @@
             document.getElementById("movieItem3").style.backgroundColor = "#579792";
         }
 
-        
+
 
         function resetTextBackground() {
             // Change background color of text fields

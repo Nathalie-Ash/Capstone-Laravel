@@ -122,7 +122,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 100%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px rgba(0, 0, 0, 0.1);
             display: none;
         }
         .dropdown-menu.show{
@@ -135,8 +135,7 @@
 
     <body>
         <div style="display: flex; align-items: center;">
-            <img style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%; margin-left: 5%;"
-                src="{{ asset('images/star.png') }}">
+            <i class="fas fa-star fa-lg md-3" style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
             <span style="font-size: 35px; margin-left: 10px;">My Dashboard</span>
             <div style="margin-left: auto; ">
                 <div class="dropdown">
@@ -145,9 +144,9 @@
                         style="margin-right: 2px; height: 30px; background-color:#579792; text-align: center;padding-top: 0px; padding-bottom: 0px; padding-left: 7px;">
                         Filter
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
-                        <li>
-                            <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}"
+                    <ul class="dropdown-menu" aria-labelledby="filterDropdownButton" style="padding-bottom:0%;margin-bottom:0%">
+                        
+                            <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}" style="margin:0"
                                 method="GET">
                                 <input type="hidden" name="category" id="category"> <!-- New -->
                                 <input type="hidden" name="value" id="value"> <!-- New -->
@@ -205,7 +204,7 @@
 
                         {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
                         </form>
-                        </li>
+                        
 
                     </ul>
                 </div>

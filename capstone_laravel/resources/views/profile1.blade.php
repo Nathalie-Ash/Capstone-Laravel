@@ -8,9 +8,9 @@
 
 
     <div>
-        <img
-            style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"src={{ asset('images/star.png') }}>
-        <span style="font-size: 35px;">My Profile</span>
+        <span style="font-size: 35px;">
+            <i class="fas fa-star fa-lg md-3" style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
+            My Profile</span>
     </div>
 
 
