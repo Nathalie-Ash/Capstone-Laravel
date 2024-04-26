@@ -99,7 +99,11 @@ class ConnectionsController extends Controller
     
     public function removeConnection($connectionid)
     {
-        $connection = Connections::find($connectionid);
+        $userId = auth()->id();
+        $connection = Connections::where('connection_id', $connectionid)
+        ->where('user_id', $userId) // Add this condition
+        ->first();
+
     
         if (!$connection) {
             return redirect()->back()->with('error', 'Connection not found.');

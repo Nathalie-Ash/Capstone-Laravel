@@ -75,7 +75,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
 
 
-Route::get('/user/{name}', [UserProfileController::class, 'userProfile'])->name('user.profile');
+Route::get('/user/{id}', [UserProfileController::class, 'userProfile'])->name('user.profile');
 
 
 Route::get('/requests', [ConnectionsController::class, 'pendingConnectionRequests'])->name('requests');

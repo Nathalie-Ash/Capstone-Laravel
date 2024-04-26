@@ -165,10 +165,12 @@
                             <select class="form-control form-control-sm" name="outdoor" id="outdoorSelect"
                                 onchange="changeCategory('outdoor', this.value)">
                                 <option value="" selected disabled>By Outdoor Activity</option>
-
-                                <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
+                                @foreach ($outdoors as $outdoor)
+                                <option value="{{ $outdoor }}">{{ $outdoor }}</option>
+                                 @endforeach
+                                {{-- <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
                                 <option value="{{ $outdoor2 }}">{{ $outdoor2 }}</option>
-                                <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option>
+                                <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option> --}}
 
                             </select>
                         </li>
@@ -176,9 +178,12 @@
                             <select class="form-control form-control-sm" name="indoor" id="indoorSelect"
                                 onchange="changeCategory('indoor', this.value)">
                                 <option value="" selected disabled>By Indoor Activity</option>
-                                <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
+                                @foreach ($indoors as $indoor)
+                                <option value="{{ $indoor }}">{{ $indoor }}</option>
+                                 @endforeach
+                                {{-- <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
                                 <option value="{{ $indoor2 }}">{{ $indoor2 }}</option>
-                                <option value="{{ $indoor3 }}">{{ $indoor3 }}</option>
+                                <option value="{{ $indoor3 }}">{{ $indoor3 }}</option> --}}
 
                             </select>
                         </li>
@@ -186,9 +191,12 @@
                             <select class="form-control form-control-sm" name="music" id="musicSelect"
                                 onchange="changeCategory('music', this.value)">
                                 <option value="" selected disabled>By Music Genre </option>
-                                <option value="{{ $music1 }}">{{ $music1 }}</option>
+                                @foreach ($musics as $music)
+                                <option value="{{ $music }}">{{ $music }}</option>
+                                 @endforeach
+                                {{-- <option value="{{ $music1 }}">{{ $music1 }}</option>
                                 <option value="{{ $music2 }}">{{ $music2 }}</option>
-                                <option value="{{ $music3 }}">{{ $music3 }}</option>
+                                <option value="{{ $music3 }}">{{ $music3 }}</option> --}}
 
                             </select>
                         </li>
@@ -196,9 +204,12 @@
                             <select class="form-control form-control-sm" name="movie" id="movieSelect"
                                 onchange="changeCategory('movie', this.value)">
                                 <option value="" selected disabled>By Movie Genre</option>
-                                <option value="{{ $movie1 }}">{{ $movie1 }}</option>
+                                @foreach ($movies as $movie)
+                                <option value="{{ $movie }}">{{ $movie }}</option>
+                                 @endforeach
+                                {{-- <option value="{{ $movie1 }}">{{ $movie1 }}</option>
                                 <option value="{{ $movie2 }}">{{ $movie2 }}</option>
-                                <option value="{{ $movie3 }}">{{ $movie3 }}</option>
+                                <option value="{{ $movie3 }}">{{ $movie3 }}</option> --}}
 
                             </select>
                         </li>
@@ -224,7 +235,7 @@
                             style="padding-left: 2%; background-color: rgba(87, 151, 146, 0.5);padding: 0px;">
                             @foreach ($users as $user)
                                 <li>
-                                    <a href="{{ route('user.profile', ['name' => $user->name]) }}"
+                                    <a href="{{ route('user.profile', ['id' => $user->id]) }}"
                                         style="text-decoration: none; color: inherit;">
                                         @if (isset($userImages[$user->id]))
                                             <img src="{{ asset($userImages[$user->id]->avatar) }}"
@@ -292,11 +303,11 @@
                                                     </div>
                                                     <div
                                                         style="display:flex; margin-top:1%; justify-content: space-between">
-                                                        <a href="{{ route('user.profile', ['name' => $userName]) }}"
+                                                        <a href="{{ route('user.profile', ['id' => $userPreferences->user_id]) }}"
                                                             class="btn btn-primary"
                                                             style=" border: none;width:49%; background-color:#ff6f28; color: white">View
                                                             Profile</a>
-                                                        <a href="#" class="btn btn-primary"
+                                                        <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
                                                             style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
                                                             Add</a>
                                                     </div>
@@ -381,7 +392,7 @@
                         filterForm.submit();
                     });
                 });
-            });
+            // });
         </script>
 
 

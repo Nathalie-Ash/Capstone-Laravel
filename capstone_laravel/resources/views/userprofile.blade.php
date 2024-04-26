@@ -142,7 +142,7 @@
 
 
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
-                            @if ($isConnection && $isContact)  
+                            @if ($isConnection)  
                                 <a href="#" class="btn"
                                 style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
                                 data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a>

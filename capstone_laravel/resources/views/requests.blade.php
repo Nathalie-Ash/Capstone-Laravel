@@ -40,7 +40,7 @@
                                     Mutual friends</p>
                             </div>
                             <div class="col-sm-8">
-                                <form action="{{ route('user.profile', ['name' => $request->sender->name]) }}">
+                                <form action="{{ route('user.profile', ['id' => $request->sender->id]) }}">
                                     @csrf
                                     <button type="submit" class="btn"
                                         style="background-color:#1b413d; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View
