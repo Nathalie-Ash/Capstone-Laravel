@@ -4,9 +4,10 @@
         <link rel="stylesheet" href="/styleN.css">
     </head>
     <div>
-        <img
-            style="width: 10%; height: 50px; padding-bottom: 10px; padding-left: 5%;margin-left:5%;"src={{ asset('images/star.png') }}><span
-            style="font-size: 35px;">My Requests</span>
+        <span
+            style="font-size: 35px;">
+            <i class="fas fa-star fa-lg md-3" style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
+            My Requests</span>
     </div>
 
     <div>
@@ -24,14 +25,18 @@
                             style="border: 2px solid black; display: flex; align-items: center; border-radius: 5px;">
                             <div class="col-sm-2">
                                 @php
-                                $userId = $request->sender->connection_id;
-                                    $senderAvatar = \App\Models\userPreferences::where('user_id', $userId)->value(
-                                        'avatar',
-                                    );
-                                @endphp
-                                <img src={{ asset($senderAvatar) }} class="rounded-circle"
-                                    style="width: 45%; margin: 5px;float: left;margin-left: 15px;">
-                            </div>
+                                $senderId = $request->sender->id;
+                                $userImage = $userImages[$senderId] ?? null;
+                            @endphp
+                            @if ($userImage)
+                                <img src="{{ asset($userImage) }}"
+                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
+                            @else
+                                <!-- Display a default image if no user image is available -->
+                                <img src="{{ asset('images/default_profile.png') }}"
+                                    style="width: 100px; margin: 5px; float: left; margin-left: 15px;">
+                            @endif
+                                </div>
                             <div class="col-sm-2" style="float: left;">
                                 <p class="textStyle"
                                     style="text-align: left; font-size: 30px; padding: 0p; margin: 0px;width: max-content;">

@@ -25,10 +25,16 @@ class ConnectionsController extends Controller
             ->with('sender')
             ->get();
         logger($requests);
-        
+
+        $userImages = [];
+
         // If there are pending requests, retrieve the corresponding senders
-       
-            return view('requests', compact('requests'));
+        foreach ($requests as $connection) {
+            $userImage = UserPreferences::where('user_id', $connection->sender->id)->first();
+            if ($userImage)
+                $userImages[$connection->sender->id] = $userImage->avatar;
+        }
+            return view('requests', compact('requests', 'userImages'));
    
 
         // If there are no pending requests, return a message or redirect
