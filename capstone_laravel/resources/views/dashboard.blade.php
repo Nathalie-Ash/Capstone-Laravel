@@ -385,7 +385,25 @@
                         filterForm.submit();
                     });
                 });
-            });
+
+                document.addEventListener('DOMContentLoaded', function () {
+        // Function to show or hide the dropdown based on text input
+        document.querySelector('.search-form button[type="submit"]').addEventListener('click', function (event) {
+            var searchInput = document.querySelector('.search-form input[type="text"]');
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+
+            // Check if the search input is empty
+            if (searchInput.value.trim() === '') {
+                // If empty, prevent default action (form submission) and don't show the dropdown
+                event.preventDefault();
+                return;
+            }
+
+            // If input is not empty, show the dropdown
+            dropdownMenu.classList.add('show');
+        });
+    });
+      
         </script>
 
 
