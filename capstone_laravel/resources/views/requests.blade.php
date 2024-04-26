@@ -41,8 +41,7 @@
                                 <p class="textStyle"
                                     style="text-align: left; font-size: 30px; padding: 0p; margin: 0px;width: max-content;">
                                     {{ $request->sender->name }}</p>
-                                <p style="text-align: left; font-weight: lighter; padding: 0px;">7
-                                    Mutual friends</p>
+                                <p style="text-align: left; font-weight: lighter; padding: 0px;">{{$mutualConnections[$senderId]}} mutual connections</p>
                             </div>
                             <div class="col-sm-8">
                                 <form action="{{ route('user.profile', ['id' => $request->sender->id]) }}">
@@ -58,10 +57,15 @@
                                         style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Accept</button>
                                 </form>
 
-
-                                <button type="button" class="btn"
+                                <form method="POST" action="{{ route('deleteRequest') }}">
+                                    @csrf
+                                    <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
+                                    <button type="submit" class="btn"
+                                        style="background-color:#FF6F28; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Delete</button>
+                                </form>
+                                {{-- <button type="button" class="btn"
                                     style=" width: 15%; border-left: 30px; color: white; background-color:#FF6F28;font-size: larger; float: right;">Delete
-                                </button>
+                                </button> --}}
 
                             </div>
                         </div>
