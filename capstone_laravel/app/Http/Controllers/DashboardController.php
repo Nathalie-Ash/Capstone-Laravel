@@ -69,11 +69,7 @@ $movies = UserPreferences::pluck('movieItem1')
             return $b['matching_percentage'] - $a['matching_percentage'];
         });
     
-        return view('dashboard', compact('users', 'query', 'matchedUsers','campuses',
-        'outdoors',
-        'indoors',
-        'musics', 
-        'movies'));
+        
 
     // Retrieve avatars for the users returned from the search query
     $userImages = [];
@@ -82,40 +78,15 @@ $movies = UserPreferences::pluck('movieItem1')
         if ($userPreferences) {
             $userImages[$user->id] = $userPreferences->avatar;
         }
-
+        logger($userImages);
     }
 
-    // Calculate matching scores for each user
-    $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $usersForMatch);
 
-    // Retrieve campus options
-    $campuses = UserPreferences::distinct()->pluck('campus');
-
-    // Retrieve user preferences for outdoor, indoor, music, and movie
-    $outdoor1 = $authenticatedUserPreferences->outdoorItem1;
-    $outdoor2 = $authenticatedUserPreferences->outdoorItem2;
-    $outdoor3 = $authenticatedUserPreferences->outdoorItem3;
-
-    $indoor1 = $authenticatedUserPreferences->indoorItem1;
-    $indoor2 = $authenticatedUserPreferences->indoorItem2;
-    $indoor3 = $authenticatedUserPreferences->indoorItem3;
-
-    $music1 = $authenticatedUserPreferences->musicItem1;
-    $music2 = $authenticatedUserPreferences->musicItem2;
-    $music3 = $authenticatedUserPreferences->musicItem3;
-
-    $movie1 = $authenticatedUserPreferences->movieItem1;
-    $movie2 = $authenticatedUserPreferences->movieItem2;
-    $movie3 = $authenticatedUserPreferences->movieItem3;
-
-    // Sort the users based on matching scores
-    usort($matchedUsers, function($a, $b) {
-        return $b['matching_percentage'] - $a['matching_percentage'];
-    });
-
-    return view('dashboard', compact('users', 'query', 'matchedUsers', 'campuses', 'userImages',
-        'outdoor1', 'outdoor2', 'outdoor3', 'indoor1', 'indoor2', 'indoor3', 
-        'music1', 'music2', 'music3', 'movie1', 'movie2', 'movie3'));
+    return view('dashboard', compact('users', 'query', 'matchedUsers','campuses','userImages',
+    'outdoors',
+    'indoors',
+    'musics', 
+    'movies'));
 }
 
     
