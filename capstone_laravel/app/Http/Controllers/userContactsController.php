@@ -14,7 +14,7 @@ class userContactsController extends Controller
         // $this->displayProfile1(); // Call the displayProfile1 method automatically
     }
 
-    public function sendContact($connectionId)
+    public function sendContact($connectionid)
     {
         // Validate the incoming request data
         $validatedData = request()->validate([
@@ -29,7 +29,7 @@ class userContactsController extends Controller
 
         // Find the connection by ID to ensure it belongs to the authenticated user
         $connection = Connections::where('user_id', $userId)
-            ->where('connection_id', $connectionId)
+            ->where('connection_id', $connectionid)
             ->where('state', true)
             ->first();
 
@@ -42,7 +42,7 @@ class userContactsController extends Controller
         // Create a new UserContact record for the specific connection
         $userContact = new userContacts();
         $userContact->user_id = $userId; // Authenticated user's ID
-        $userContact->connection_id = $connectionId; // Connection's ID
+        $userContact->connection_id = $connectionid; // Connection's ID
         $userContact->phone_number = $validatedData['phone_number'];
         $userContact->instagram = $validatedData['instagram'];
         $userContact->tiktok = $validatedData['tiktok'];

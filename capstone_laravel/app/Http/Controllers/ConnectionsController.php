@@ -57,7 +57,7 @@ class ConnectionsController extends Controller
         $userImages = [];
     
         // Initialize the $sentContact variable
-        $sentContact = null;
+        $sentContact = [];
         $mutualConnections = [];
     
         // Retrieve user image for each connection
@@ -67,11 +67,12 @@ class ConnectionsController extends Controller
                 $userImages[$connection->sender->id] = $userImage->avatar;
     
             // Retrieve sent contact information
-            $sentContact = userContacts::where('user_id', $userId)
-                ->where('connection_id', $connection->sender->id)
-                ->where('state', true)
-                ->where('sent', 1)
-                ->first();
+            $sentContact[$connection->sender->id] = userContacts::where('user_id', $userId)
+            ->where('connection_id', $connection->sender->id)
+            ->where('state', true)
+            ->where('sent', 1)
+            ->first();
+            
             $mutualConnections[$connection->sender->id] = $this->getMutualConnections($userId, $connection->sender->id);
         }
     

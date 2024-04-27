@@ -93,7 +93,7 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('d
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
 
 Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
-Route::post('/connections',[userContactsController::class,'sendContact'])->name('sendContact');
+Route::post('/connections/{connectionid}',[userContactsController::class,'sendContact'])->name('sendContact');
 Route::get('/contact', [userContactsController::class, 'receivedContacts'])->name('received.contacts');
 
 
