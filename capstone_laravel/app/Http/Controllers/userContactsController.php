@@ -14,10 +14,10 @@ class userContactsController extends Controller
         // $this->displayProfile1(); // Call the displayProfile1 method automatically
     }
 
-    public function sendContact(Request $request, $connectionId)
+    public function sendContact($connectionId)
     {
         // Validate the incoming request data
-        $validatedData = $request->validate([
+        $validatedData = request()->validate([
             'phone_number' => 'nullable|string',
             'instagram' => 'nullable|string',
             'linkedIn' => 'nullable|string',

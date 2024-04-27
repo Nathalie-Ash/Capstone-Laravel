@@ -231,7 +231,7 @@
                     </button>
 
                     @if (!empty($users))
-                        <div class="dropdown-menu show"
+                        <div class="dropdown-menu show" id ="searchDropdown"
                             style="padding-left: 2%; background-color: rgba(87, 151, 146);padding: 0px;">
                             @foreach ($users as $user)
                                 <li>
@@ -386,7 +386,7 @@
         // Function to show or hide the dropdown based on text input
         document.querySelector('.search-form button[type="submit"]').addEventListener('click', function (event) {
             var searchInput = document.querySelector('.search-form input[type="text"]');
-            var dropdownMenu = document.querySelector('.dropdown-menu');
+            var dropdownMenu = document.querySelector('.searchDropdown');
 
             // Check if the search input is empty
             if (searchInput.value.trim() === '') {
@@ -400,6 +400,19 @@
         });
 
     });
+    document.addEventListener('click', function (event) {
+    var dropdownMenu = document.getElementById('searchDropdown');
+    var searchInput = document.querySelector('.search-form input[type="text"]');
+    var searchButton = document.querySelector('.search-form button[type="submit"]');
+    
+    var isClickedInsideDropdown = dropdownMenu.contains(event.target);
+    var isClickedInsideSearch = searchInput.contains(event.target) || searchButton.contains(event.target);
+
+    if (!isClickedInsideDropdown && !isClickedInsideSearch) {
+        dropdownMenu.classList.remove('show');
+    }
+});
+
       
         </script>
 

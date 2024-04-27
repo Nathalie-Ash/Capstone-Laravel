@@ -41,7 +41,7 @@
                                 <p class="textStyle"
                                     style="text-align: left; font-size: 30px; padding: 0p; margin: 0px;width: max-content;">
                                     {{ $request->sender->name }}</p>
-                                <p style="text-align: left; font-weight: lighter; padding: 0px;">{{$mutualConnections[$senderId]}} mutual connections</p>
+                                <p style="text-align: left; font-weight: lighter; padding: 0px;width: max-content">{{$mutualConnections[$senderId]}} mutual connections</p>
                             </div>
                             <div class="col-sm-8">
                                 <form action="{{ route('user.profile', ['id' => $request->sender->id]) }}">

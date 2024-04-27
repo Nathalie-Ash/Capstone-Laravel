@@ -68,6 +68,7 @@ class ConnectionsController extends Controller
     
             // Retrieve sent contact information
             $sentContact = userContacts::where('user_id', $userId)
+                ->where('connection_id', $connection->sender->id)
                 ->where('state', true)
                 ->where('sent', 1)
                 ->first();
