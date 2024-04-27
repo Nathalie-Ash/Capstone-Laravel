@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-sm-8">
 
-                            @if ($sentContact)
+                        @if (isset($sentContact[$connection->sender->id]))
                             <!-- Connection exists, display "Requested" button -->
                             {{-- <a class="btn" style="background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
                             data-bs-toggle="modal" data-bs-target="#contactInfoModal" disabled> Shared</a> --}}
@@ -100,7 +100,7 @@
         <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
-                <form action="{{ route('sendContact') }}" method="POST">
+                <form action="{{ route('sendContact', ['connectionid' => $connection->sender->id]) }}" method="POST">
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
