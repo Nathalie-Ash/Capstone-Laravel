@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-
+use App\Models\User; // Adjust the path if needed
 
 class LoginController extends Controller
 {
@@ -19,10 +19,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     public function showLoginForm()
-{
-    return view('login'); // Assuming your custom login view is located at resources/views/auth/login.blade.php
-}
+    {
+        return view('login'); // Assuming your custom login view is located at resources/views/auth/login.blade.php
+    }
+
     // Override the username method to use 'username' field instead of 'email'
     public function username()
     {
@@ -44,7 +46,20 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Attempt to authenticate the user
+        // Check if the user is the hardcoded admin
+        if ($request->input('username') === 'admin' && $request->input('password') === 'adminpassword') {
+            // Create a fake user object to represent the admin
+            $admin = new User();
+            $admin->username = 'admin';
+            
+            // Log in the admin user
+            Auth::login($admin);
+            
+            // Redirect the admin user to /admin
+            return redirect('/admin');
+        }
+
+        // Attempt to authenticate the user against the database
         if (Auth::attempt($this->credentials($request))) {
             // Authentication passed
             return $this->sendLoginResponse($request);
@@ -53,12 +68,28 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
     }
+
     protected function sendFailedLoginResponse(Request $request)
-{
-    throw ValidationException::withMessages([
-        $this->username() => [trans('auth.failed')],
-    ]);
-}
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        // Redirect admin to /admin
+        if (Auth::user()->username === 'admin') {
+            return redirect('/admin');
+        }
+
+        // Redirect regular users to $redirectTo
+        return $this->authenticated($request, $this->guard()->user())
+            ?: redirect()->intended($this->redirectPath());
+    }
+
     public function logout(Request $request)
     {
         Auth::logout(); // Log the user out
