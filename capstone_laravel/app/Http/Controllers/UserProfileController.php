@@ -47,6 +47,7 @@ class UserProfileController extends Controller
             ->where('connection_id', $user->id)
             ->first();
             $sharedContact = userContacts::where('user_id', $user->id)->where('connection_id',$userId)->where('sent',1)->first();
+            logger("shared contact info", [$sharedContact]);
             $isContact = $contact && $contact->sent;
             
 

@@ -73,5 +73,26 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User restored successfully.');
     }
+
+    public function resetPassword(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'user_id' => 'required|exists:users,id', // Assuming user_id is passed along with the request
+            'new_password' => ['required', 'min:8', 'max:30', 'confirmed'],
+        ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($request->user_id);
+
+        // Update the user's password
+        $user->password = bcrypt($request->new_password); // Hash the new password before saving
+
+        // Save the updated user
+        $user->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Password reset successfully!');
+    }
     
 }

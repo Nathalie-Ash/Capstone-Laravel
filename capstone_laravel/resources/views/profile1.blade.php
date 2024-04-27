@@ -9,7 +9,8 @@
 
     <div>
         <span style="font-size: 35px;">
-            <i class="fas fa-star fa-lg md-3" style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
+            <i class="fas fa-star fa-lg md-3"
+                style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
             My Profile</span>
     </div>
 
@@ -36,21 +37,25 @@
                                     value="{{ $userData->email }}" style="width: 70%;">
                             </div>
                         </div>
+                        <form action="{{ route('reset.password') }}" method="POST">
+                            @csrf
                         <div class="mb-3 row">
                             <label for="staticPass" class="col-sm-3 col-form-label"
                                 style="text-align: left; padding-left: 4.5%;">Password</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="password" readonly class="form-control" id="staticPassword"
-                                    value="{{ substr($userData->password, 0, 13) }}"
-                                        style="width: 300px; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
+                            
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="password" readonly class="form-control" id="staticPassword"
+                                            value="{{ substr($userData->password, 0, 13) }}"
+                                            style="width: min-content; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
 
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary"
-                                            style="margin-left: 5px; background-color: #FF6F28; border: none">Reset</button>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary"
+                                                style="margin-left: 5px; background-color: #FF6F28; border: none">Reset</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
 
 
                             <section class="container">
@@ -84,10 +89,11 @@
                                 <!-- Delete Account Button -->
                                 <div class="col-4">
 
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                                        data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
                                         <span style="color:#FF6F28; font-weight: normal">Delete Account</span>
                                     </a>
-                                    
+
 
                                 </div>
 
@@ -111,7 +117,8 @@
                                                 <form action="{{ route('softDeleteUser', ['id' => $userData->id]) }}"
                                                     method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger" style="background-color:#FF6F28 ">Yes, Delete</button>
+                                                    <button type="submit" class="btn btn-danger"
+                                                        style="background-color:#FF6F28 ">Yes, Delete</button>
                                                 </form>
                                             </div>
                                         </div>
