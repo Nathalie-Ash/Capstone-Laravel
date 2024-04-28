@@ -24,6 +24,8 @@ class UserController extends Controller
         $this->displayProfile1(); // Call the displayProfile1 method automatically
     }
 
+    
+
     public function displayProfile1()
     {
         // Retrieve user data from the database
