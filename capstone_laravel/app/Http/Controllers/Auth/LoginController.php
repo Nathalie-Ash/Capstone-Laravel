@@ -41,7 +41,7 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        return view('login'); // Assuming your custom login view is located at resources/views/auth/login.blade.php
+        return view('auth.login'); // Assuming your custom login view is located at resources/views/auth/login.blade.php
     }
         // Override the username method to use 'username' field instead of 'email'
         public function username()

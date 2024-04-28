@@ -31,9 +31,7 @@ use App\Http\Controllers\UserProfileControllerController;
 |
 */
 
-//Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-
+ 
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
@@ -60,14 +58,14 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update');
 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email');
+    return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
  
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
  
-    return redirect('/dashboard');
+    return redirect('/step1');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
@@ -76,8 +74,9 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+ 
 Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['username' => 'required|username']);
+    $request->validate(['email' => 'required|email']);
  
     $status = Password::sendResetLink(
         $request->only('email')
@@ -162,7 +161,7 @@ Route::post('/connections/{connectionid}',[userContactsController::class,'sendCo
 Route::get('/contact', [userContactsController::class, 'receivedContacts'])->name('received.contacts');
 
 
-Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('reset.password');
+// Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('reset.password');
 
 Auth::routes();
 

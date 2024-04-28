@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 class RegisterController extends Controller
 {
     /*
@@ -42,7 +44,10 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    protected function registered(Request $request, $user)
+    {
+        return redirect()->route('verification.notice');
+    }
     // /**
     //  * Get a validator for an incoming registration request.
     //  *
@@ -88,6 +93,7 @@ class RegisterController extends Controller
             'username' => ['required', 'min:3', 'max:30'],
             'password' => ['required', 'min:8', 'max:30', 'confirmed'],
         ]);
+        $request->session()->put('signup_email', $validatedData['email']);
 
         $request->session()->put('signup_data', $validatedData);
 
@@ -97,12 +103,13 @@ class RegisterController extends Controller
     protected function showPage2(Request $request)
     {
         $signupData = $request->session()->get('signup_data');
+        $signupEmail = $request->session()->get('signup_email');
 
-        if (!$signupData) {
+        if (!$signupData || !$signupEmail) {
             return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
         }
-
-        return view('sign2', compact('signupData'));
+    
+        return view('sign2', compact('signupData', 'signupEmail'));
     }
 
     public function register(Request $request)
@@ -138,10 +145,13 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
+            event(new Registered($user));
             Auth::login($user);
             $request->session()->forget('signup_data');
+            $user->sendEmailVerificationNotification(); // Send verification email
 
-            return redirect()->route('steps');
+            return redirect()->route('verification.notice');
+            // return redirect()->route('steps');
         } else {
             return 'user nu uh';
         }

@@ -32,7 +32,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" >Logo </a>
+            <a class="navbar-brand">Logo </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -110,16 +110,17 @@
                     <div class="col-md-6">
                         <img src="{{ asset('images/aboutUs.png') }}" class="img-fluid">
                     </div>
-                        <div class="col-md-6" id ="logIn">
+                    <div class="col-md-6" id ="logIn">
+                        <div style="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
 
                             <form method="POST" action="{{ route('login') }}" id="login-form">
                                 @csrf
 
-                               
+
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example13">Username</label>
                                     <input type="text" name = "username" id="form1Example13"
-                                        class="form-control form-control-lg" style="background-color:#dcdcdf;" />
+                                        class="form-control form-control-lg" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">Password</label>
@@ -128,6 +129,10 @@
                                     <input id="password" type="password" name="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">
+                                    <div class="invalid-feedback" style="display:none; color: red; margin-left:0.5%"
+                                        role="alert" id="invalid-feedback">
+                                        <strong>Authentication failed! Retry Again.</strong>
+                                    </div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -176,9 +181,58 @@
 
 
 
-
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
+
+
+    <script>
+        function login() {
+            var un = document.getElementById("un").value;
+            var pass = document.getElementById("pass").value;
+            if (un === "" || pass === "") {
+                alert("You must fill in the username and the password!");
+            } else {
+                document.getElementById("login-form").submit();
+            }
+        }
+
+        function ClearForm() {
+            document.getElementById("un").value = "";
+            document.getElementById("pass").value = "";
+        }
+
+        function checkEnter(event, nextField) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById(nextField).focus();
+
+                if (nextField === 'login-form') {
+                    login();
+                }
+            }
+        }
+        $(function() {
+            $('#login-form').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('login') }}',
+                    data: formData,
+                    success: function(response) {
+                        // Redirect if login successful
+                        window.location.href = '{{ url('/dashboard') }}';
+                    },
+                    error: function(xhr, status, error) {
+                        // Display error message below the password field
+                        // $('#form1Example23').addClass('is-invalid');
+                        $('#invalid-feedback').show();
+                    }
+                });
+            });
+        });
+    </script>

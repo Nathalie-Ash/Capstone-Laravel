@@ -51,9 +51,16 @@
                                             style="width: min-content; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
 
                                         <div class="input-group-append">
-                                            <a href="#" class="btn"
+                                            <a  href="{{ route('password.request') }}" class="btn"
                                                 style="background-color: #FF6F28;  margin-left: 5px; color: white;border: none"
-                                                data-bs-toggle="modal" data-bs-target="#resetPasswordModal"> Reset<a>
+                                                > Reset<a>
+                                                    
+                                    {{-- @if (Route::has('password.request'))
+                                    <a class="btn btn-link" style="color:#ff6f28;"
+                                        href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a> --}}
+                                {{-- @endif --}}
                                                     {{-- <button type="submit" class="btn btn-primary"
                                                 style="margin-left: 5px; background-color: #FF6F28; border: none" data-bs-target="#resetPasswordModal">Reset</button> --}}
                                         </div>
@@ -162,7 +169,7 @@
         </div>
 
 
-        <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel"
+        {{-- <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
                 <form method="POST" action="{{ route('password.update') }}">
@@ -177,9 +184,9 @@
                         <div class="modal-body">
                             Are you sure you want to reset your password?
                             <div style="padding-top: 4%;">
-                                <input type="hidden" name="token" value="{{ $token }}">
+                                {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label for="email"
                                         class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -232,13 +239,14 @@
                                     </div>
                                 </div>
                             </div>
-                </form>
+                </form> --}}
 
 
-    </section>
+    
+            </section>
 
 
-    </div>
+    </div> 
 
     <script>
         function goToNextPage() {

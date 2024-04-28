@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,6 +70,33 @@
                     </ul>
                 </div>
             </div>
+        </nav> --}}
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" >Logo </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page">LAU Connect</a>
+                        </li>
+    
+                    </ul>
+                    <form class="d-flex">
+                        <a href="{{ route('login') }}" class="btn btn-primary"
+                            style=" border: none;width:max-content; background-color:rgba(87, 151, 146); color: white; ">LOG
+                            IN</a>
+                        <a href="{{ route('signup') }}" class="btn btn-primary"
+                            style=" border: none;width:max-content; background-color:#ff6f28; color: white; margin-left: 20px;">SIGN
+                            UP</a>
+                    </form>
+                </div>
+            </div>
         </nav>
 
         <main class="py-4">
@@ -78,3 +105,4 @@
     </div>
 </body>
 </html>
+
