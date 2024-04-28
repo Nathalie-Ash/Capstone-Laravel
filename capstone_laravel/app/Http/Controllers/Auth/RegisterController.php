@@ -2,26 +2,81 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
-    public $redirectTo = '/step1'; // Redirect to the login page
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
 
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/step1';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
+    protected function registered(Request $request, $user)
+    {
+        return redirect()->route('verification.notice');
+    }
+    // /**
+    //  * Get a validator for an incoming registration request.
+    //  *
+    //  * @param  array  $data
+    //  * @return \Illuminate\Contracts\Validation\Validator
+    //  */
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
 
+    // /**
+    //  * Create a new user instance after a valid registration.
+    //  *
+    //  * @param  array  $data
+    //  * @return \App\Models\User
+    //  */
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //     ]);
+    
     protected function showPage1()
     {
         return view('signup');
@@ -38,6 +93,7 @@ class RegisterController extends Controller
             'username' => ['required', 'min:3', 'max:30'],
             'password' => ['required', 'min:8', 'max:30', 'confirmed'],
         ]);
+        $request->session()->put('signup_email', $validatedData['email']);
 
         $request->session()->put('signup_data', $validatedData);
 
@@ -47,12 +103,13 @@ class RegisterController extends Controller
     protected function showPage2(Request $request)
     {
         $signupData = $request->session()->get('signup_data');
+        $signupEmail = $request->session()->get('signup_email');
 
-        if (!$signupData) {
+        if (!$signupData || !$signupEmail) {
             return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
         }
-
-        return view('sign2', compact('signupData'));
+    
+        return view('sign2', compact('signupData', 'signupEmail'));
     }
 
     public function register(Request $request)
@@ -88,10 +145,13 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
+            event(new Registered($user));
             Auth::login($user);
             $request->session()->forget('signup_data');
+            $user->sendEmailVerificationNotification(); // Send verification email
 
-            return redirect()->route('steps');
+            return redirect()->route('verification.notice');
+            // return redirect()->route('steps');
         } else {
             return 'user nu uh';
         }
@@ -112,5 +172,6 @@ class RegisterController extends Controller
         return response()->json('available');
     }
 }
+
 
 }

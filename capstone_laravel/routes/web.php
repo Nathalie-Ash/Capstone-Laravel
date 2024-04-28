@@ -1,8 +1,13 @@
 <?php
-
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
@@ -11,6 +16,9 @@ use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\userContactsController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+ 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\UserProfileControllerController;
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +30,62 @@ use App\Http\Controllers\UserProfileControllerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+ 
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+            $user->save();
+ 
+            event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+ 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/step1');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+ 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
@@ -97,4 +161,8 @@ Route::post('/connections/{connectionid}',[userContactsController::class,'sendCo
 Route::get('/contact', [userContactsController::class, 'receivedContacts'])->name('received.contacts');
 
 
-Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('reset.password');
+// Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('reset.password');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
