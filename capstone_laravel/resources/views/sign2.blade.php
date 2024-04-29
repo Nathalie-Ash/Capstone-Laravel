@@ -17,15 +17,19 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
-/* Style for placeholder text */
-.input-group input::placeholder {
-    color: white; /* Set the desired color */
-}
 
-.dropdown-menu .dropdown-item:hover {
-    background-color: #cccccc; /* Light grey color */
-    color: #000000; /* Text color when hovered */
-}
+        /* Style for placeholder text */
+        .input-group input::placeholder {
+            color: white;
+            /* Set the desired color */
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #cccccc;
+            /* Light grey color */
+            color: #000000;
+            /* Text color when hovered */
+        }
 
 
         .datepicker-dropdown {
@@ -35,22 +39,23 @@
 
         .input-group {
             width: max-content;
-           
+
             border-radius: 5%;
             /* Set the desired width */
         }
 
         .form-control {
             background-color: #579792;
-            
+
         }
 
         .date-selected .form-control {
             background-color: #579792;
         }
+
         .dropdown .dropdown-menu .dropdown-item:hover {
-    background-color: #c2c2c4 ;
-}
+            background-color: #c2c2c4;
+        }
     </style>
 </head>
 
@@ -119,8 +124,16 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block"
-                                style="border: none;background-color:#ff6f28; color:black">SUBMIT</button>
+                            <form action="{{ route('verification.send') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="email" value="{{ $signupEmail }}">
+
+                                <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                    style="border: none;background-color:#ff6f28; color:black">SUBMIT</button>
+                                 
+                                    
+                            </form>
+
                         </div>
                     </form>
                 </div>
@@ -149,7 +162,7 @@
         var genders = [
             "Male",
             "Female",
-            "Prefer Not To Say", 
+            "Prefer Not To Say",
         ];
 
         // Get the dropdown menu element for gender
@@ -174,8 +187,9 @@
                 gender + '</a>';
 
             genderDropdownMenu.appendChild(listItem);
-            if (gender!="Prefer Not To Say"){
-            genderDropdownMenu.appendChild(divider);}
+            if (gender != "Prefer Not To Say") {
+                genderDropdownMenu.appendChild(divider);
+            }
         });
 
         // Array of sexual orientation options
@@ -184,8 +198,8 @@
             "Homosexual",
             "Bisexual",
             "Pansexual",
-            "Asexual", 
-            "Other", 
+            "Asexual",
+            "Other",
             "Prefer Not To Specify"
         ];
 
@@ -212,8 +226,9 @@
                 orientation + '</a>';
 
             orientationDropdownMenu.appendChild(listItem);
-            if (orientation!="Prefer Not To Specify"){
-            orientationDropdownMenu.appendChild(divider);}
+            if (orientation != "Prefer Not To Specify") {
+                orientationDropdownMenu.appendChild(divider);
+            }
         });
     });
 
