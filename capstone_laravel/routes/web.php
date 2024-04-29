@@ -10,6 +10,7 @@ use App\Http\Controllers\ConnectionsController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\userContactsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserProfileControllerController;
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\UserProfileControllerController;
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+//Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 Route::get('/connections', [ExampleController::class, "connections"])->name('connections');
 Route::get('/dashboard', [ExampleController::class, "dashboard"]);
 Route::get('/ppp', [ExampleController::class, "ppp"]);

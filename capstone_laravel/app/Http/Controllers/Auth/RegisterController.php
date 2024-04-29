@@ -85,6 +85,7 @@ class RegisterController extends Controller
             'birthdate' => $userData['birthdate'],
             'sexualorientation' => $userData['sexualorientation'],
             'gender' => $userData['gender'],
+            'is_admin'=>false
         ]);
 
         if ($user) {
