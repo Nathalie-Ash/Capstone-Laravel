@@ -120,7 +120,7 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example13">Username</label>
                                     <input type="text" name = "username" id="form1Example13"
-                                        class="form-control form-control-lg" />
+                                        class="form-control" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">Password</label>

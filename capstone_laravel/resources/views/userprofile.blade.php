@@ -109,6 +109,12 @@
             padding-bottom: 0%;
             margin-bottom: 0%;
         }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 12px; /* Adjusted font size for smaller screens */
+            }
+        }
     </style>
     <div>
         <span style="font-size: 35px;">        

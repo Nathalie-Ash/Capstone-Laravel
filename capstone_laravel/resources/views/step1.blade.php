@@ -12,8 +12,8 @@
             <section id="steps" style="padding-top: 20px;padding-left: 30px">
 
                 <div class="container text-center">
-                    <div class="row">
-                        <div class="col">
+                    <div class="row" >
+                        <div class="col-md-4" style="padding-top:10px ">
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
 
                             <div id="division1">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
 
-                        <div class="col">
+                        <div class="col-md-4" style="padding-top:15px ">
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
                             <div id="division2" class="input">
 
@@ -43,7 +43,7 @@
                                 <input name="minor" id="minor" type="text"> <!-- Add name attribute -->
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-4" style="padding-top:15px ">
                             <img class="animated-element" src="{{ asset('images/image1.png') }}">
                             <div id="division3">
                                 <h1 id="step-title">Which Campus Are You In?</h1>
@@ -97,7 +97,7 @@
     </div>
     <div id="button-nav">
         <button type="submit" onclick ="goToNextPage()" class="btn"
-            style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+            style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;margin-bottom: 20px;">NEXT</button>
     </div>
 
     </section>
