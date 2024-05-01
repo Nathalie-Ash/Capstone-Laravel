@@ -26,7 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'gender',
         'sexualorientation',
         'birthdate',
-        'deleted'
+        'deleted',
+        'is_admin'
     ];
 
     /**
@@ -46,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
     ];
     
 }

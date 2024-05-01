@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('sexualorientation');
             $table->string('gender');
             $table->tinyInteger('deleted')->default(0);
+            $table->boolean('is_admin')->default(false);
         });
     }
 
