@@ -21,9 +21,11 @@ class ConnectionsController extends Controller
 
         // Retrieve pending connection requests for the authenticated user
         $requests = Connections::where('user_id', $userId) // Assuming receiver_id is the foreign key for the user who received the request
-            ->where('state', false)
-            ->with('sender')
-            ->get();
+        ->where('state', false)
+        ->join('users', 'users.id', '=', 'connections.connection_id')
+        ->where('users.deleted', false)
+        ->with('sender')
+        ->get();
         logger($requests);
 
         $userImages = [];
@@ -48,10 +50,16 @@ class ConnectionsController extends Controller
         $userId = auth()->id();
     
         // Retrieve pending connection requests for the authenticated user
+        $userId = auth()->id();
+
+        // Retrieve pending connection requests for the authenticated user
         $connections = Connections::where('user_id', $userId)
             ->where('state', true)
+            ->join('users', 'users.id', '=', 'connections.connection_id')
+            ->where('users.deleted', false)
             ->with('sender')
             ->get();
+        
         
         // Initialize an array to store user images
         $userImages = [];

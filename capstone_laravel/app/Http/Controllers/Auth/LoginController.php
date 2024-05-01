@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    //protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -85,6 +85,14 @@ class LoginController extends Controller
             $request->session()->invalidate(); // Invalidate the session
             $request->session()->regenerateToken(); // Regenerate the CSRF token
             return redirect('/'); // Redirect to the home page or any other page after logout
+        }
+        protected function authenticated(Request $request, $user)
+        {
+            if ($user->is_admin) {
+                return redirect('/admin');
+            }
+    
+            return redirect('/dashboard');
         }
     }
     
