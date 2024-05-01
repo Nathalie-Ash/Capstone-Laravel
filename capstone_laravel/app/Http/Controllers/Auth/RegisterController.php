@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['required', 'max:30'],
-            'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+[0-9]+@lau\.edu$/'],
+            'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+(?:[0-9]+)?@lau\.edu$/'],
             'username' => ['required', 'min:3', 'max:30'],
             'password' => ['required', 'min:8', 'max:30', 'confirmed'],
         ]);
