@@ -298,62 +298,53 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                   
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="contactInfoModalLabel">View Contact Information</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                    @if($sharedContact)
-                        <div class="modal-body">
-                            Connect with others by contacting them via phone number or instagram.
-                            <div style="padding-top: 4%;">
-                                <div class="mb-3 row">
-                                    <label for="phone" class="col-sm-4 col-form-label"
-                                        style="text-align: left; padding-left: 4.5%;">Phone Number</label>
-                                    <div class="col-sm-8">
-                                        <input type="text"  readonly class="form-control-plaintext" id="phone" style="width: 80%; background-color: #579792;border-radius:10%; padding-left: 10px" value= {{ $sharedContact->phone_number }}>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="instagram" class="col-sm-4 col-form-label"
-                                        style="text-align: left; padding-left: 4.5%;">Instagram</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="phone" style="width: 80%;background-color: #579792;border-radius:7%; padding-left: 10px" value={{ $sharedContact->instagram }}>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="phone" class="col-sm-4 col-form-label"
-                                        style="text-align: left; padding-left: 4.5%;">Tik Tok</label>
-                                    <div class="col-sm-8">
-                                        <input type="text"  readonly class="form-control-plaintext" id="phone" style="width: 80%; background-color: #579792;border-radius:10%; padding-left: 10px" value= {{ $sharedContact->tiktok }}>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="instagram" class="col-sm-4 col-form-label"
-                                        style="text-align: left; padding-left: 4.5%;">linkedIn</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="phone" style="width: 80%;background-color: #579792;border-radius:7%; padding-left: 10px" value={{ $sharedContact->linkedIn }}>
-                                    </div>
-                                </div>
+                <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="contactInfoModalLabel">View Contact Information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </div>
-                    
-                        @else
-                        <p style="padding: 2%;">No shared contact information available.</p>
-                    @endif
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    
-    
+                            @if($sharedContact)
+                                <div class="modal-body">
+                                    Connect with others by contacting them via phone number or Instagram.
+                                    <div style="padding-top: 4%;">
+                                        <div class="mb-3 row">
+                                            <label for="phone" class="col-sm-4 col-form-label" style="text-align: left; padding-left: 4.5%;">Phone Number</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control-plaintext" id="phone" style="width: 80%; background-color: #579792; border-radius:10%; padding-left: 10px" value="{{ $sharedContact->phone_number }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="instagram" class="col-sm-4 col-form-label" style="text-align: left; padding-left: 4.5%;">Instagram</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control-plaintext" id="instagram" style="width: 80%; background-color: #579792; border-radius:7%; padding-left: 10px" value="{{ $sharedContact->instagram }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="tiktok" class="col-sm-4 col-form-label" style="text-align: left; padding-left: 4.5%;">Tik Tok</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control-plaintext" id="tiktok" style="width: 80%; background-color: #579792; border-radius:10%; padding-left: 10px" value="{{ $sharedContact->tiktok }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="linkedIn" class="col-sm-4 col-form-label" style="text-align: left; padding-left: 4.5%;">LinkedIn</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" readonly class="form-control-plaintext" id="linkedIn" style="width: 80%; background-color: #579792; border-radius:7%; padding-left: 10px" value="{{ $sharedContact->linkedIn }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <p style="padding: 2%;">No shared contact information available.</p>
+                            @endif
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-            </div>
             {{-- <div class="animated-container">
 
                 <img class="animated-element" src={{ asset('images/image1.png') }}>
