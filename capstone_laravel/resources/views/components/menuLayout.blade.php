@@ -1,3 +1,8 @@
+<style>
+    html,body{
+    height: 100%
+}
+    </style>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
@@ -81,10 +86,10 @@
 
 
     {{ $slot }}
-
-    <footer class="fixed-bottom text-center small text-muted py-2"
-    style="position: unset; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
-    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+</body>
+    <footer class="footer fixed-bottom text-center small text-muted py-2"
+    style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">LAU</a>. All rights reserved.
     </p>
 </footer>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
