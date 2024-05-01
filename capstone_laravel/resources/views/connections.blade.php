@@ -96,7 +96,7 @@
                 @endforeach
             @endif
         </div>
-
+        @if (!$connections->isEmpty())
         <div class="modal fade" id="contactInfoModal" tabindex="-1" aria-labelledby="contactInfoModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -156,6 +156,7 @@
                 </form>
             </div>
         </div>
+        @endif
 
     </section>
 

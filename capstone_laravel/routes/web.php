@@ -90,7 +90,11 @@ Route::post('/forgot-password', function (Request $request) {
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-//Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/adminview/{id}', [AdminController::class, 'indexprofile'])->name('admin.profile');
+Route::delete('/adminview/{userid}/delete-avatar', [AdminController::class, 'deleteavatar'])->name('delete.avatar');
+Route::delete('/adminview/{userid}/delete-timetable', [AdminController::class, 'deletetimetable'])->name('delete.timetable');
+Route::put('/edit-bio/{userid}', [AdminController::class, 'updateBio'])->name('edit.bio');
 Route::get('/connections', [ExampleController::class, "connections"])->name('connections');
 Route::get('/dashboard', [ExampleController::class, "dashboard"]);
 Route::get('/ppp', [ExampleController::class, "ppp"]);

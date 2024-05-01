@@ -45,7 +45,7 @@
                                 style="background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
                                 data-bs-toggle="modal" data-bs-target="#contactInfoModal"> Share</a> --}}
 
-                            <a href="{{ route('user.profile', ['id' => $user->id]) }}" class="btn"
+                            <a href="{{ route('admin.profile', ['id' => $user->id]) }}" class="btn"
                                 style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
                                 Profile</a>
                             {{-- <a href="{{ route('remove.connection', ['connectionid' => $user->id]) }}" class="btn" 

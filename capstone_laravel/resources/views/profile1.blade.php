@@ -137,14 +137,16 @@
                             </div>
 
                         </div>
-                        <div
-                            style="display: flex;
-                                    align-items: center;
-                                    justify-content: center;">
-                            <button type="submit" onclick="goToNextPage()" class="btn btn-primary "
-                                style="width: 60%;text-align: center;background-color: #FF6F28; border: none;text-align: center;">Edit
-                                Personal Information </button>
-                        </div>
+                        <form action="{{ route('profile2') }}" method="GET" id="editPersonalInfoForm">
+                            @csrf
+                            <div style="display: flex;
+                                        align-items: center;
+                                        justify-content: center;">
+                                <button type="button" onclick="goToNextPage()" class="btn btn-primary"
+                                    style="width: 60%;text-align: center;background-color: #FF6F28; border: none;text-align: center;">Edit
+                                    Personal Information </button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
@@ -249,10 +251,9 @@
     </div> 
 
     <script>
-        function goToNextPage() {
-
-            window.location.href = "profile2";
-        }
+    function goToNextPage() {
+        document.getElementById('editPersonalInfoForm').submit();
+    }
     </script>
 
 </x-menuLayout>
