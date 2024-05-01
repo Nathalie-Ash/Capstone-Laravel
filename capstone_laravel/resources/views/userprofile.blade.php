@@ -352,10 +352,44 @@
                         </div>
                     </div>
                 </div>
+                
+            </div>
+            {{-- <div class="animated-container">
+
+                <img class="animated-element" src={{ asset('images/image1.png') }}>
+            </div> --}}
+            <div class="col" id="div1"
+                style="width: 206%;border-radius: 10px;height: max-content; margin-top: 40px;">
+                Timetable
+
+
+                <div class="mb-3 row" style="margin-top: 10px;">
+                    <div style="display: flex; align-items: center;">
+                        @if ($isConnection)
+                            @if ($userPreferences->timetable_path)
+                                <p
+                                    style="border-radius: 5%; padding: 5px; font-weight: normal; margin-right: 10px;">
+                                    Find out if you have common classes or similar free times!
+                                </p>
+                                <a href="{{ asset($userPreferences->timetable_path) }}"
+                                    style="padding-bottom: 14px;">View Timetable</a>
+                            @else
+                                <p>User time table not available</p>
+                            @endif
+                       
+                    </div>
+                  @else
+                            <p style="border-radius: 5%; padding: 5px; font-weight: normal; margin-right: 10px;"> 
+                                Add user as a connection to view their time table!!</p> 
+
+                    @endif
+
+                </div>
             </div>
     
             </div>
         </div>
+        
     </main>
 
     </body>
