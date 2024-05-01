@@ -153,7 +153,7 @@
                 <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
                 <div id="imageContainer" style="display: inline-block;">
                     @if ($userImage)
-                        <img style="height: 100%; width: 100%;" src="{{ asset($userImage->avatar) }}">
+                        <img style="height: 100%; width: 100%;object-fit:scale" src="{{ asset($userImage->avatar) }}">
                     @else
                         <img style="height: 100%; width: 100%;" src="{{ asset('images/placeholder.png') }}"
                             alt="Placeholder Image">
