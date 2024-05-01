@@ -28,11 +28,13 @@
     <head>
         <link rel="stylesheet" href="/styleN.css">
     </head>
+
+
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
-<div id="topNav" style="margin-top: 1.5%;">
+{{-- <div id="topNav" style="margin-top: 1.5%;">
     <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
         aria-controls="offcanvasExample" >
         
@@ -47,7 +49,37 @@
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
-    </form>
+    </form> --}}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" >Logo </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page">LAU Connect</a>
+                    </li>
+    
+                </ul>
+                
+              
+
+                <a href="{{ route('logout') }}" class="btn btn-primary"
+                style=" border: none;width:max-content; background-color:rgba(87, 151, 146); color: white; margin-left: 20px;"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    LOG OUT
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </nav>
+        
         <span style="font-size: 35px;">
             <i class="fas fa-star fa-lg md-3" style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
             The Users</span>

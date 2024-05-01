@@ -15,7 +15,7 @@
 
             <div class="container text-center" style="flex: 1;">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
 
                         <div id="division1">
@@ -58,7 +58,7 @@
 
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division2" class="input">
 
@@ -100,15 +100,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
-                        <div id="division3" class="input">
-                            <h1 id="step-title" style="padding-bottom: 30px">Tell Us More About You</h1>
-                            <textarea id="description" name="description"
-                                style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;color: white;"></textarea>
+                        <div id="division1" style="height: 85%;">
+                                                        <h1 id="step-title" style="padding-bottom: 20px">Tell Us More About You</h1>
+                            <div class="row "  style="height: 80%;max-height: min-content;justify-content: center; ">
 
+                            <textarea id="description" name="description"
+                                style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;color: white;width: 100%; max-width: 100%;"></textarea>
+                            </div>
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
 

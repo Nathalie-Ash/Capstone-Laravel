@@ -47,21 +47,21 @@
                                 <form action="{{ route('user.profile', ['id' => $request->sender->id]) }}">
                                     @csrf
                                     <button type="submit" class="btn"
-                                        style="background-color:#1b413d; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View
+                                        style="background-color:#1b413d; width: 25%;width:max-content; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View
                                         Profile</button>
                                 </form>
                                 <form method="POST" action="{{ route('acceptConnection') }}">
                                     @csrf
                                     <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
                                     <button type="submit" class="btn"
-                                        style="background-color:#579792; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Accept</button>
+                                        style="background-color:#579792; width: 15%; width:max-content; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Accept</button>
                                 </form>
 
                                 <form method="POST" action="{{ route('deleteRequest') }}">
                                     @csrf
                                     <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
                                     <button type="submit" class="btn"
-                                        style="background-color:#FF6F28; width: 15%; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Delete</button>
+                                        style="background-color:#FF6F28; width: 15%; width:max-content; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Delete</button>
                                 </form>
                                 {{-- <button type="button" class="btn"
                                     style=" width: 15%; border-left: 30px; color: white; background-color:#FF6F28;font-size: larger; float: right;">Delete

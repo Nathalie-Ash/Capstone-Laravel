@@ -61,3 +61,8 @@ img{
 .paragraph {
     text-align: center;
 }
+@media (max-width: 768px) {
+    body {
+        font-size: 12px; /* Adjusted font size for smaller screens */
+    }
+}

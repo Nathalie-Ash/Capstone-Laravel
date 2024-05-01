@@ -176,3 +176,4 @@ Route::get('/contact', [userContactsController::class, 'receivedContacts'])->nam
 Auth::routes();
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/update-timetable', 'UserPreferencesController@updateTimetable')->name('update.timetable');
