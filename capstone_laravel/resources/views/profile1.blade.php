@@ -19,7 +19,7 @@
         <div class="container text-center">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div id="division1" style="height: 100%;">
                         <p id="step-title" style="padding-top: 0px;">Account</p>
                         <div class="mb-3 row">
@@ -51,16 +51,16 @@
                                             style="width: min-content; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
 
                                         <div class="input-group-append">
-                                            <a  href="{{ route('password.request') }}" class="btn"
-                                                style="background-color: #FF6F28;  margin-left: 5px; color: white;border: none"
-                                                > Reset<a>
-                                                    
-                                    {{-- @if (Route::has('password.request'))
+                                            <a href="{{ route('password.request') }}" class="btn"
+                                                style="background-color: #FF6F28;  margin-left: 5px; color: white;border: none">
+                                                Reset<a>
+
+                                                    {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" style="color:#ff6f28;"
                                         href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a> --}}
-                                {{-- @endif --}}
+                                                    {{-- @endif --}}
                                                     {{-- <button type="submit" class="btn btn-primary"
                                                 style="margin-left: 5px; background-color: #FF6F28; border: none" data-bs-target="#resetPasswordModal">Reset</button> --}}
                                         </div>
@@ -139,7 +139,8 @@
                         </div>
                         <form action="{{ route('profile2') }}" method="GET" id="editPersonalInfoForm">
                             @csrf
-                            <div style="display: flex;
+                            <div
+                                style="display: flex;
                                         align-items: center;
                                         justify-content: center;">
                                 <button type="button" onclick="goToNextPage()" class="btn btn-primary"
@@ -151,19 +152,30 @@
 
                 </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-4">
                 <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
                 <div id="imageContainer" style="display: inline-block;">
                     @if ($userImage)
-                        <img style="height: 100%; width: 100%;object-fit:scale" src="{{ asset($userImage->avatar) }}">
-                        <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
-                            onchange="handleFileSelect(event)" name = "avatar">
+                        <img id="avatarImage" style="height: 100%; width: 100%; object-fit: scale;"
+                            src="{{ asset($userImage->avatar) }}">
                     @else
-                        <img style="height: 100%; width: 100%;" src="{{ asset('images/placeholder.png') }}"
-                            alt="Placeholder Image">
+                        <img id="avatarImage" style="height: 100%; width: 100%;"
+                            src="{{ asset('images/placeholder.png') }}" alt="Placeholder Image">
                     @endif
+                    <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
+                        onchange="handleFileSelect(event)" name="avatar">
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <p id="step-title" style="padding-top: 0px;">Add Time table</p>
+                <div style="position: relative;">
+                    <input type="file" id="timetablePath" name="timetable_path" accept=".pdf,.doc,.docx"
+                        style="margin-bottom: 15px;" onchange="handleTableSelect(event)">
+                </div>
+            </div>
+
 
         </div>
 
@@ -190,7 +202,7 @@
                             <div style="padding-top: 4%;">
                                 {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
 
-                                {{-- <div class="row mb-3">
+        {{-- <div class="row mb-3">
                                     <label for="email"
                                         class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -246,31 +258,45 @@
                 </form> --}}
 
 
-    
-            </section>
+
+    </section>
 
 
-    </div> 
+    </div>
 
     <script>
-    function goToNextPage() {
-        document.getElementById('editPersonalInfoForm').submit();
-    }
+        function goToNextPage() {
+            document.getElementById('editPersonalInfoForm').submit();
+        }
 
-    
-    function handleFileSelect(event) {
+
+        function handleFileSelect(event) {
             const fileInput = event.target;
-            const imagePlaceholder = document.getElementById('imagePlaceholder');
+            const avatarImage = document.getElementById('avatarImage');
 
             const file = fileInput.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    imagePlaceholder.src = e.target.result;
+                    avatarImage.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         }
-    </script>
+
+        function handleTableSelect(event) {
+            const fileInput = event.target;
+            const timetable = document.getElementById('timetablePath');
+
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    timetable.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        </script>
 
 </x-menuLayout>

@@ -22,13 +22,13 @@
             <div class="container text-center" style="flex: 1;">
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-4">
                         
                         <div >
                           <img src={{ asset('images/friends_picture.png') }} style="height: 350px;" >
                           </div> 
                       </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division1">
                             <h1 id="step-title">Pick 3 Outdoor Activities You Enjoy</h1>
@@ -72,7 +72,7 @@
 
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division2" class="input">
 
