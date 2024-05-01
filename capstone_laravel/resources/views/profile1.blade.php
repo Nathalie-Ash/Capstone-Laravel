@@ -19,7 +19,7 @@
         <div class="container text-center">
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-md-6">
                     <div id="division1" style="height: 100%;">
                         <p id="step-title" style="padding-top: 0px;">Account</p>
                         <div class="mb-3 row">
@@ -151,11 +151,13 @@
 
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
                 <div id="imageContainer" style="display: inline-block;">
                     @if ($userImage)
                         <img style="height: 100%; width: 100%;object-fit:scale" src="{{ asset($userImage->avatar) }}">
+                        <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
+                            onchange="handleFileSelect(event)" name = "avatar">
                     @else
                         <img style="height: 100%; width: 100%;" src="{{ asset('images/placeholder.png') }}"
                             alt="Placeholder Image">
@@ -254,6 +256,21 @@
     function goToNextPage() {
         document.getElementById('editPersonalInfoForm').submit();
     }
+
+    
+    function handleFileSelect(event) {
+            const fileInput = event.target;
+            const imagePlaceholder = document.getElementById('imagePlaceholder');
+
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePlaceholder.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 
 </x-menuLayout>

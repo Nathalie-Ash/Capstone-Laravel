@@ -19,10 +19,10 @@
             Personal Information</span>
         <div style="display:inline;float: right;text-align: right;margin-top: 10px;width: 50%;">
             <button type="button" id="editButton" class="btn"
-                style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger; margin-left: 30px;">Edit</button>
+                style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger; margin-left: 30px;min-width: max-content">Edit</button>
 
             <button type="button" id="saveButton" class="btn btn-secondary"
-                style=" width: 20%;color:white;font-size: larger;">Save</button>
+                style=" width: 20%;color:white;font-size: larger;min-width: max-content"">Save</button>
 
         </div>
 
@@ -30,160 +30,189 @@
     </div>
 
     <section id="steps"
-        style="padding-top:0px;padding-left: 30px;display: flex; flex-direction: column; color: black;">
+        style="padding-top:20px;padding-left: 30px;display: flex; flex-direction: column; color: black;">
         <div class="container text-center">
 
             <div class="container text-center" style="width: 100%;">
-                <div class="row row-cols-2">
+                <div class="row" style="padding-top: 20px;">
 
-                    <div class="col" id="div1">Info
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="school"
-                                    value="{{ $userData->school }}" style="background-color: #c2c2c2">
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Info</p>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="school"
+                                        value="{{ $userData->school }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="major"
-                                    value="{{ $userData->major }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="major"
+                                        value="{{ $userData->major }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="minor"
-                                    value="{{ $userData->minor }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="minor"
+                                        value="{{ $userData->minor }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="campus"
-                                    value="{{ $userData->campus }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext" id="campus"
+                                        value="{{ $userData->campus }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col" id="div2"
-                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
-                        Bio
-                        <input class="form-control" readonly type="text" value="{{ $userData->description }}"
-                            id = "description"
-                            style="background-color: #c2c2c2; height: 90%; width: 95%; text-align: left;">
-                    </div>
 
-                    <div class="col" id="div3">Outdoor Activites
-                        <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 1</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem1"
-                                    value="{{ $userData->outdoorItem1 }}" style="background-color: #c2c2c2">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 2</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem2"
-                                    value="{{ $userData->outdoorItem2 }}" style="background-color: #c2c2c2">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 3</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="outdoorItem3"
-                                    value="{{ $userData->outdoorItem3 }}" style="background-color: #c2c2c2">
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Bio</p>
+                            <div class="row "  style="height: 90%;max-height: min-content;justify-content: center; ">
+                                <input readonly type="text" value="{{ $userData->description }}" id="description"
+                                    style="background-color: #c2c2c2;  text-align: left; border-bottom: 5px;width: 100%; max-width: 100%;">
                             </div>
                         </div>
                     </div>
-                    <div class="col" id="div4">Indoor Activites
-                        <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 1</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="indoorItem1"
-                                    value="{{ $userData->indoorItem1 }}" style="background-color: #c2c2c2">
+                    
+                    
+                </div>
+                <div class ="row" style="padding-top: 20px;">
+
+
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Outdoor Activites</p>
+                            <div class="mb-3 row" style="margin-top: 10px;">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="outdoorItem1"
+                                        value="{{ $userData->outdoorItem1 }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 2</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="indoorItem2"
-                                    value="{{ $userData->indoorItem2 }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="outdoorItem2"
+                                        value="{{ $userData->outdoorItem2 }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Activity 3</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="indoorItem3"
-                                    value="{{ $userData->indoorItem3 }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 3</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="outdoorItem3"
+                                        value="{{ $userData->outdoorItem3 }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col" id="div5">Movies/Series
-                        <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                1</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="movieItem1"
-                                    value="{{ $userData->movieItem1 }}" style="background-color: #c2c2c2">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                2</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="movieItem2"
-                                    value="{{ $userData->movieItem2 }}" style="background-color: #c2c2c2">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                3</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="movieItem3"
-                                    value="{{ $userData->movieItem3 }}" style="background-color: #c2c2c2">
 
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Indoor Activities</p>
+                            <div class="mb-3 row" style="margin-top: 10px;">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="indoorItem1"
+                                        value="{{ $userData->indoorItem1 }}" style="background-color: #c2c2c2">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="indoorItem2"
+                                        value="{{ $userData->indoorItem2 }}" style="background-color: #c2c2c2">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Activity 3</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="indoorItem3"
+                                        value="{{ $userData->indoorItem3 }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col" id="div6">Music Genres
+                </div>
+                <div class = "row" style="padding-top: 20px;">
 
-                        <div class="mb-3 row" style="margin-top: 10px;">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                1</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="musicItem1"
-                                    value="{{ $userData->musicItem1 }}" style="background-color: #c2c2c2">
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Movies/Series Genre</p>
+                            <div class="mb-3 row" style="margin-top: 10px;">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="movieItem1"
+                                        value="{{ $userData->movieItem1 }}" style="background-color: #c2c2c2">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="movieItem2"
+                                        value="{{ $userData->movieItem2 }}" style="background-color: #c2c2c2">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    3</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="movieItem3"
+                                        value="{{ $userData->movieItem3 }}" style="background-color: #c2c2c2">
 
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                2</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="musicItem2"
-                                    value="{{ $userData->musicItem2 }}" style="background-color: #c2c2c2">
+                    </div>
+
+
+                    <div class="col-md-6" style="padding-top: 20px;">
+                        <div id="division1" style="height: 100%;">
+                            <p id="step-title" style="padding-top: 0px;">Music Genre</p>
+
+                            <div class="mb-3 row" style="margin-top: 10px;">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="musicItem1"
+                                        value="{{ $userData->musicItem1 }}" style="background-color: #c2c2c2">
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-2 col-form-label"
-                                style="width:fit-content;">Genre
-                                3</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="musicItem3"
-                                    value="{{ $userData->musicItem3 }}" style="background-color: #c2c2c2">
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="musicItem2"
+                                        value="{{ $userData->musicItem2 }}" style="background-color: #c2c2c2">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="width:fit-content;">Genre
+                                    3</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="musicItem3"
+                                        value="{{ $userData->musicItem3 }}" style="background-color: #c2c2c2">
+                                </div>
                             </div>
                         </div>
                     </div>
