@@ -19,6 +19,7 @@ class DashboardController extends Controller
         // Perform search logic, for example:
         $users = User::where('name', 'like', "%$query%")
                     ->where('id', '!=', $authenticatedUser->id)
+                    ->where('deleted',false)
                     ->get();
     
         // Retrieve the authenticated user's information
@@ -26,14 +27,16 @@ class DashboardController extends Controller
         $authenticatedUserPreferences = UserPreferences::where('user_id', $authenticatedUser->id)->first();
     
         $usersformatch = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
+    ->where('users.deleted', false)
+    ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
+        $query->select('connection_id')
+            ->from('connections')
+            ->where('user_id', $authenticatedUser->id)
+            ->where('state', true);
+    })
+    ->join('users', 'users.id', '=', 'user_preferences.user_id')
+    ->get();
 
-        ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
-            $query->select('connection_id')
-                ->from('connections')
-                ->where('user_id', $authenticatedUser->id)
-                ->where('state', true);
-        })
-        ->get();
 
 
         // Calculate matching scores for each user
@@ -129,12 +132,14 @@ $movies = UserPreferences::pluck('movieItem1')
         
         // Retrieve all users except the authenticated user
         $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
+        ->where('users.deleted', false)
         ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
             $query->select('connection_id')
-                  ->from('connections')
-                  ->where('user_id', $authenticatedUser->id)
-                  ->where('state', true);
+                ->from('connections')
+                ->where('user_id', $authenticatedUser->id)
+                ->where('state', true);
         })
+        ->join('users', 'users.id', '=', 'user_preferences.user_id')
         ->get();
 
         // Calculate matching scores for each user
@@ -233,27 +238,29 @@ $movies = UserPreferences::pluck('movieItem1')
         logger($value);
         $campuses = UserPreferences::distinct()->pluck('campus');
         $users = UserPreferences::where('user_id', '!=', $authenticatedUser->id)
-            ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
-                $query->select('connection_id')
-                    ->from('connections')
-                    ->where('user_id', $authenticatedUser->id)
-                    ->where('state', true);
-            });
+        ->where('users.deleted', false)
+        ->whereNotIn('user_id', function ($query) use ($authenticatedUser) {
+            $query->select('connection_id')
+                ->from('connections')
+                ->where('user_id', $authenticatedUser->id)
+                ->where('state', true);
+        });
     
-        if ($category === 'campus' & $value!="Both") {
-            $users = $users->where($category, $value);
-        } else if ($category === 'campus' & $value==="Both"){
-            $users = $users->whereIn($category, ['Beirut', 'Byblos']);
-        }
-            else {
-            $users = $users->where(function ($query) use ($category, $value) {
-                for ($i = 1; $i <= 3; $i++) {
-                    $query->orWhere($category . 'Item' . $i, $value);
-                }
-            });
-        }
+    if ($category === 'campus' && $value != "Both") {
+        $users = $users->where($category, $value);
+    } elseif ($category === 'campus' && $value === "Both") {
+        $users = $users->whereIn($category, ['Beirut', 'Byblos']);
+    } else {
+        $users = $users->where(function ($query) use ($category, $value) {
+            for ($i = 1; $i <= 3; $i++) {
+                $query->orWhere($category . 'Item' . $i, $value);
+            }
+        });
+    }
     
-        $users = $users->get();
+    $users = $users->join('users', 'users.id', '=', 'user_preferences.user_id')
+        ->get();
+    
     
         $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $users);
     

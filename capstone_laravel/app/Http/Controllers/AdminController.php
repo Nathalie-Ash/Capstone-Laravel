@@ -11,7 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::where('is_admin', false)->get(); // Get non-admin users
+        $users = User::where('is_admin', false)
+        ->where('deleted', false)->get(); // Get non-admin users
         $userImages = []; // Initialize an array to store user images
 
         // Populate the userImages array

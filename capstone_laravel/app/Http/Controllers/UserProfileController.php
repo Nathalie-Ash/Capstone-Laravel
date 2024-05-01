@@ -17,7 +17,7 @@ class UserProfileController extends Controller
         $userId = auth()->id();
         logger($id);
         // Retrieve the user based on the username
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->where('deleted',false)->first();
     
         // Check if user exists
         if ($user) {
