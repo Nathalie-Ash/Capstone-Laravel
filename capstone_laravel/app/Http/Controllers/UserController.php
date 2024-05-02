@@ -98,29 +98,29 @@ class UserController extends Controller
     }
 
 
-    public function updateTimetable(Request $request)
-    {
-        // Validate the request
-        $request->validate([
-            'timetable' => 'required|mimes:pdf,doc,docx|max:2048', // Adjust max file size as needed
-        ]);
+    // public function updateTimetable(Request $request)
+    // {
+    //     // Validate the request
+    //     $request->validate([
+    //         'timetable' => 'required|mimes:pdf,doc,docx|max:2048', // Adjust max file size as needed
+    //     ]);
 
-        // Get the authenticated user's preferences
-        $userPreferences = $request->user()->preferences;
+    //     // Get the authenticated user's preferences
+    //     $userPreferences = $request->user()->preferences;
 
-        // Handle file upload
-        if ($request->hasFile('timetable')) {
-            $file = $request->file('timetable');
-            $fileName = $file->getClientOriginalName(); // Get the original file name
-            $filePath = $file->storeAs('timetables', $fileName); // Store the file
+    //     // Handle file upload
+    //     if ($request->hasFile('timetable')) {
+    //         $file = $request->file('timetable');
+    //         $fileName = $file->getClientOriginalName(); // Get the original file name
+    //         $filePath = $file->storeAs('timetables', $fileName); // Store the file
 
-            // Update the timetable_path attribute in the UserPreferences table
-            $userPreferences->timetable_path = $filePath;
-            $userPreferences->save();
+    //         // Update the timetable_path attribute in the UserPreferences table
+    //         $userPreferences->timetable_path = $filePath;
+    //         $userPreferences->save();
 
-            return response()->json(['message' => 'File uploaded successfully'], 200);
-        }
+    //         return response()->json(['message' => 'File uploaded successfully'], 200);
+    //     }
 
-        return response()->json(['error' => 'File not provided'], 400);
-    }
+    //     return response()->json(['error' => 'File not provided'], 400);
+    // }
 }

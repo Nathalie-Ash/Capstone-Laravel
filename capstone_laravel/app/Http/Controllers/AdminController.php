@@ -32,9 +32,9 @@ class AdminController extends Controller
        
         $userPreferences = UserPreferences::where('user_id', $id)->first();
         $userImages = $userPreferences->avatar ?? 'images/default_profile.png';
+        $userTimetable[$user->id] = $userPreferences->timetable_path?? 'images/default_document.png';
 
-
-        return view('adminview', compact('user','userPreferences','userImages'));
+        return view('adminview', compact('user','userPreferences','userImages', 'userTimetable'));
     }
     public function deleteavatar($userid)
     {
@@ -54,12 +54,12 @@ class AdminController extends Controller
        logger('iam here');
         $userPreferences = UserPreferences::where('user_id', $userid)->first();
 
-        $userPreferences->timetable=null;
+        $userPreferences->timetable_path='images/default_document.png';
         $userPreferences->save();
         
     
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Avatar deleted successfully');
+        return redirect()->back()->with('success', 'Timetable deleted successfully');
     }
     // AdminController.php
 

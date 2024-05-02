@@ -58,18 +58,16 @@ class LoginController extends Controller
         // Override the login method to customize the authentication logic
         public function login(Request $request)
         {
-            // Validate the form data
             $request->validate([
                 $this->username() => 'required|string',
                 'password' => 'required|string',
             ]);
     
-            // Attempt to authenticate the user
-            if (Auth::attempt($this->credentials($request))) {
-                // Authentication passed
+            $remember = $request->has('remember');
+    
+            if (Auth::attempt($this->credentials($request), $remember)) {
                 return $this->sendLoginResponse($request);
             } else {
-                // Authentication failed
                 return $this->sendFailedLoginResponse($request);
             }
         }

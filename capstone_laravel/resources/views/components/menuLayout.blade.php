@@ -46,15 +46,16 @@
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
         style="width: 20%;">
-        <div class="offcanvas-header" style="background-color:#579792">
+        <div class="offcanvas-header" style="background-color:#579792; margin-top: 0px;">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body" style="background-color:#579792">
+        <div class="offcanvas-body" style="background-color:#579792; ">
 
-            <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792">
-                <span style="text-align: center;font-size: large">{{ auth()->user()->name }}</span>
-
+            <div class="list-group list-group-flush mx-3 mt-4" style="background-color:#579792; display: flex; flex-direction: column; align-items: center;">
+                
+                <span style="text-align: center; font-size: large; margin-top: 10px;">{{ auth()->user()->name }}</span>
+            
                 <a href="/profile1" class="list-group-item list-group-item-action py-2 ripple"
                     style="background-color:#579792">
                     <i class="fas fa-user fa-fw me-3"></i><span>MY PROFILE</span>
@@ -78,7 +79,8 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-
+                <img id="avatarImage" style="height: 40%; width: 40%; object-fit: scale; border-radius: 50%;margin-top: 20px;"
+                src="/images/Logo.png">
             </div>
 
         </div>
