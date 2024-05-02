@@ -19,6 +19,10 @@ class NonAdmin
         if (Auth::check() && Auth::user()->is_admin) {
             return redirect()->route('admin.index');
         }
+        else if (Auth::check() && Auth::user()->deleted){
+            Auth::logout();
+            // return redirect()->route('login');
+        }
 
         return $next($request);
     }

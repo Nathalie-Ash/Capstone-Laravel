@@ -63,20 +63,40 @@ class LoginController extends Controller
                 'password' => 'required|string',
             ]);
     
+
+            // Attempt to authenticate the user
+            if (Auth::attempt($this->credentials($request))) {
+                // Authentication passed
+                if (Auth::user()->deleted) {
+                    return $this->sendFailedLoginResponse($request);
+                }
+
             $remember = $request->has('remember');
     
             if (Auth::attempt($this->credentials($request), $remember)) {
+
                 return $this->sendLoginResponse($request);
             } else {
                 return $this->sendFailedLoginResponse($request);
             }
         }
         protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
-    }
+        {
+            $user = \App\Models\User::where($this->username(), $request->{$this->username()})->first();
+        
+            if ($user && $user->deleted) {
+                
+                throw ValidationException::withMessages([
+                   
+                    $this->username() => ['Your account has been deleted'],
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    $this->username() => [trans('auth.failed')],
+                ]);
+            }
+        }
+        
         public function logout(Request $request)
         {
             Auth::logout(); // Log the user out
@@ -93,4 +113,4 @@ class LoginController extends Controller
             return redirect('/dashboard');
         }
     }
-    
+

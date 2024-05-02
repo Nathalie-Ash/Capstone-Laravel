@@ -1,5 +1,6 @@
 <?php
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,8 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\userContactsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerificationController;
+
 use App\Http\Controllers\Auth\ResetPasswordController;
  
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -32,7 +35,9 @@ use App\Http\Controllers\UserProfileControllerController;
 |
 */
 
- 
+Route::get('/send-verification-email', [VerificationController::class, 'sendVerificationEmail'])->name('send-verification-email');
+
+
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
@@ -62,16 +67,22 @@ Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
- 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
- 
+Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) {
+    $user = User::find($id);
+
+    if ($user && $user->deleted) {
+        $user->markEmailAsVerified();
+        $user->deleted = false;
+        $user->save();
+        event(new Verified($user));
+        return redirect('/dashboard');
+    }
     return redirect('/step1');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
- 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
@@ -109,6 +120,10 @@ Route::get('/sign2', [RegisterController::class, 'showPage2'])->name('sign2');
 Route::post('/sign2', [RegisterController::class, 'register'])->name('register');
 
 // Auth::routes();
+// routes/web.php
+
+//Route::get('/retrieve-account', 'App\Http\Controllers\Auth\RetrieveAccountController@showVerifyEmailForm')->name('retrieve.account');
+//Route::get('/verify-email', 'App\Http\Controllers\Auth\RetrieveAccountController@verifyEmail')->name('retrieve.account.verify');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
