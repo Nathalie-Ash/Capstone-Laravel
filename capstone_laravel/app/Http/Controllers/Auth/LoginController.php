@@ -67,6 +67,9 @@ class LoginController extends Controller
             // Attempt to authenticate the user
             if (Auth::attempt($this->credentials($request))) {
                 // Authentication passed
+                if (Auth::user()->deleted) {
+                    return $this->sendFailedLoginResponse($request);
+                }
                 return $this->sendLoginResponse($request);
             } else {
                 // Authentication failed
@@ -74,11 +77,22 @@ class LoginController extends Controller
             }
         }
         protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
-    }
+        {
+            $user = \App\Models\User::where($this->username(), $request->{$this->username()})->first();
+        
+            if ($user && $user->deleted) {
+                
+                throw ValidationException::withMessages([
+                   
+                    $this->username() => ['Your account has been deleted'],
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    $this->username() => [trans('auth.failed')],
+                ]);
+            }
+        }
+        
         public function logout(Request $request)
         {
             Auth::logout(); // Log the user out
@@ -95,4 +109,4 @@ class LoginController extends Controller
             return redirect('/dashboard');
         }
     }
-    
+

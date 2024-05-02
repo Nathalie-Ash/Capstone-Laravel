@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -28,8 +28,19 @@
 
 </head>
 
-
 <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand">Logo </a>
@@ -110,7 +121,7 @@
                     <div class="col-md-6">
                         <img src="{{ asset('images/aboutUs.png') }}" class="img-fluid">
                     </div>
-                    <div class="col-md-6" id ="logIn">
+                    <div class="col-md-6" id="logIn">
                         <div style="border-radius: 3%;background-color: #f7f5f5; padding: 3%">
 
                             <form method="POST" action="{{ route('login') }}" id="login-form">
@@ -119,8 +130,7 @@
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example13">Username</label>
-                                    <input type="text" name = "username" id="form1Example13"
-                                        class="form-control" />
+                                    <input type="text" name="username" id="form1Example13" class="form-control" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">Password</label>
@@ -153,7 +163,7 @@
                                         </label>
                                         <input class="form-check-input" type="checkbox" name="remember"
                                             id="remember" {{ old('remember') ? 'checked' : '' }}
-                                            style = "color:#ff6f28;">
+                                            style="color:#ff6f28;">
 
 
                                     </div>
@@ -187,7 +197,12 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    
 
     <script>
         function login() {
@@ -215,24 +230,76 @@
                 }
             }
         }
-        $(function() {
-            $('#login-form').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('login') }}',
-                    data: formData,
-                    success: function(response) {
-                        // Redirect if login successful
+
+        $(document).ready(function(){
+        $('#login-form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+            var formData = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('login') }}',
+                data: formData,
+                success: function (response) {
+                    if (response.status === 'error') {
+                        if (response.message === 'Your account has been deleted') {
+                            $('#myModal').modal('show');
+                            $('.modal-body').html(response.message); // Set the error message in the modal
+                        } else {
+                            $('#invalid-feedback').show(); // Show the error message
+                            $('#invalid-feedback').text(response.message);
+                        }
+                    } else {
                         window.location.href = '{{ url('/dashboard') }}';
-                    },
-                    error: function(xhr, status, error) {
-                        // Display error message below the password field
-                        // $('#form1Example23').addClass('is-invalid');
-                        $('#invalid-feedback').show();
                     }
-                });
+                },
+                error: function (xhr, status, error) {
+                    if(xhr.responseJSON && xhr.responseJSON.message === 'Your account has been deleted') {
+                        $('#myModal').modal('show');
+                       // $('.modal-body').html(xhr.responseJSON.message); // Set the error message in the modal
+                    } else {
+                        $('#invalid-feedback').show(); // Show the error message
+                        $('#invalid-feedback').text('Authentication failed! Retry Again.');
+                    }
+                }
             });
         });
+    });
+    $(document).ready(function() {
+        $('#cancelButton').click(function() {
+            $('#myModal').modal('hide');
+        });
+        $('#retrieveAccountButton').click(function () {
+    window.location.href = '{{ route('send-verification-email') }}';
+});
+
+
+
+
+   
+    });
     </script>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                </div>
+                <div class="modal-body">
+                    Your account has been deleted
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="retrieveAccountButton"   style="background-color:#FF6F28;border:none">Retrieve Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
