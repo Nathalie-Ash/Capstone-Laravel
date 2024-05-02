@@ -3,6 +3,32 @@
     <head>
         <link rel="stylesheet" href="/styleN.css">
     </head>
+    <style>
+        input[type="file"] {
+            color: transparent;
+        }
+            /* Align the "View Timetable" link under the "Choose file" button */
+            #fileContainer {
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Change the color of the "View Timetable" link */
+            #fileContainer a {
+                color: #333;
+                /* You can adjust the color as needed */
+                text-decoration: none;
+                /* Remove underline */
+            }
+
+            /* Style for the "Time table not available" text */
+            #fileContainer p {
+                margin-bottom: 4px;
+                /* Adjust spacing */
+            }
+
+        
+    </style>
 
 
 
@@ -23,26 +49,27 @@
                     <div id="division1" style="height: 100%;">
                         <p id="step-title" style="padding-top: 0px;">Account</p>
                         <div class="mb-3 row">
-                            <label for="staticUsername" class="col-sm-3 col-form-label">Username</label>
+                            <label for="staticUsername" class="col-sm-3 col-form-label"
+                                style="text-align: left;">Username</label>
                             <div class="col-sm-9">
                                 <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                    value="{{ $userData->username }}" style="width: 70%;">
+                                    value="{{ $userData->username }}" style="width: 100%;">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label"
-                                style="text-align: left; padding-left: 4.5%;">Email</label>
+                                style="text-align: left; ">Email</label>
                             <div class="col-sm-9">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="{{ $userData->email }}" style="width: 70%;">
+                                    value="{{ $userData->email }}" style="width: 100%; margin-right: 5px;">
                             </div>
                         </div>
                         <form action="{{ route('password.update') }}" method="POST">
                             @csrf
                             <div class="mb-3 row">
 
-                                <label for="staticPass" class="col-sm-3 col-form-label"
-                                    style="text-align: left; padding-left: 4.5%;" name="password">Password</label>
+                                <label for="staticPass" class="col-sm-3 col-form-label" style="text-align: left; "
+                                    name="password">Password</label>
 
                                 <div class="col-sm-9">
                                     <div class="input-group">
@@ -55,35 +82,26 @@
                                                 style="background-color: #FF6F28;  margin-left: 5px; color: white;border: none">
                                                 Reset<a>
 
-                                                    {{-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" style="color:#ff6f28;"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a> --}}
-                                                    {{-- @endif --}}
-                                                    {{-- <button type="submit" class="btn btn-primary"
-                                                style="margin-left: 5px; background-color: #FF6F28; border: none" data-bs-target="#resetPasswordModal">Reset</button> --}}
                                         </div>
                                     </div>
                                 </div>
                         </form>
 
 
-                        <section class="container">
-                            <form class="row" style="padding-top: 20px;">
-                                <label class="col-sm-3 col-form-label"
-                                    style="text-align: left; padding-left: 4.5%;">Birthday</label>
-                                <div class="col-5">
-                                    <div class="input-group">
-                                        <input type="text" id="birthdate" value="{{ $userData->birthdate }}"
-                                            name="birthdate" class="form-control" style="color: white;" readonly>
-                                        <span class="input-group-text">
-                                            <i class="fas fa-calendar" style="color: #579792;"></i>
-                                        </span>
-                                    </div>
+
+                        <form class="mb-3 row" style="padding-top: 20px;">
+                            <label class="col-sm-3 col-form-label" style="text-align: left;">Birthday</label>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <input type="text" id="birthdate" value="{{ $userData->birthdate }}"
+                                        name="birthdate" class="form-control" style="color: white;" readonly>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar" style="color: #579792;"></i>
+                                    </span>
                                 </div>
-                            </form>
-                        </section>
+                            </div>
+                        </form>
+
                         <div class="row justify-content-between">
                             <div class="col-4">
 
@@ -102,7 +120,8 @@
 
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                                     data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
-                                    <span style="color:#FF6F28; font-weight: normal">Delete Account</span>
+                                    <span style="color:#FF6F28; font-weight: normal; width: max-content">Delete
+                                        Account</span>
                                 </a>
 
 
@@ -154,27 +173,39 @@
             </div>
 
             <div class="col-md-4">
-                <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
-                <div id="imageContainer" style="display: inline-block;">
-                    @if ($userImage)
-                        <img id="avatarImage" style="height: 100%; width: 100%; object-fit: scale;"
-                            src="{{ asset($userImage->avatar) }}">
-                    @else
-                        <img id="avatarImage" style="height: 100%; width: 100%;"
-                            src="{{ asset('images/placeholder.png') }}" alt="Placeholder Image">
-                    @endif
-                    <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
-                        onchange="handleFileSelect(event)" name="avatar">
-                </div>
+                <form action="{{ route('updateUserData') }}" method="POST">
+                    @csrf
+                    <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
+                    <div id="imageContainer" style="display: inline-block;">
+                        @if ($userImage)
+                            <img id="avatarImage" style="height: 100%; width: 100%; object-fit: scale;"
+                                src="{{ asset($userImage->avatar) }}">
+                        @else
+                            <img id="avatarImage" style="height: 100%; width: 100%;"
+                                src="{{ asset('images/placeholder.png') }}" alt="Placeholder Image">
+                        @endif
+                        <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
+                            onchange="handleFileSelect(event)" name="avatar">
+                    </div>
             </div>
 
             <div class="col-md-3">
                 <p id="step-title" style="padding-top: 0px;">Add Time table</p>
-                <div style="position: relative;">
+                <div id="fileContainer" style="display: flex; flex-direction: column;">
                     <input type="file" id="timetablePath" name="timetable_path" accept=".pdf,.doc,.docx"
-                        style="margin-bottom: 15px;" onchange="handleTableSelect(event)">
+                        style="margin-bottom: 10px;" onchange="handleTableSelect(event)">
+                    @if ($userTimetable->timetable_path)
+                    <iframe src="{{ asset($userTimetable->timetable_path) }}" width="100%" height="100%"  style="padding-bottom: 4px; color: #333;text-align: left;"></iframe>
+                        {{-- <a href="{{ asset($userTimetable->timetable_path) }}"
+                            style="padding-bottom: 4px; color: #333;text-align: left;">View Timetable</a>--}}
+                    @else 
+                    <img src='/images/default_document.png' style="max-width: 100%;max-height: 100%; 
+                    object-fit: contain;"> 
+                    @endif
                 </div>
             </div>
+            </form>
+        </div>
 
 
         </div>
@@ -269,34 +300,57 @@
             document.getElementById('editPersonalInfoForm').submit();
         }
 
-
         function handleFileSelect(event) {
             const fileInput = event.target;
-            const avatarImage = document.getElementById('avatarImage');
-
             const file = fileInput.files[0];
+
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
+                    const avatarImage = document.getElementById('avatarImage');
                     avatarImage.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+                updateUserData(formData);
             }
         }
 
         function handleTableSelect(event) {
             const fileInput = event.target;
-            const timetable = document.getElementById('timetablePath');
-
             const file = fileInput.files[0];
+
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    timetable.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                const formData = new FormData();
+                formData.append('timetable_path', file);
+                updateUserData(formData);
             }
         }
-        </script>
+
+        function updateUserData(formData) {
+            // Send a POST request to the backend endpoint with the updated data
+            fetch("{{ route('updateUserData') }}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}" // Add CSRF token
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "profile1";
+                    } else {
+                        // Error saving data
+                        alert("Failed to save user data.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred while saving user data.");
+                });
+        }
+    </script>
 
 </x-menuLayout>

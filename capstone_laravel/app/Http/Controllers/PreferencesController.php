@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\UserPreferences;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PreferencesController extends Controller
 {
@@ -141,7 +142,7 @@ class PreferencesController extends Controller
             'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        
+
         logger($validatedData);
         if ($request->hasFile('timetable_path')) {
             $timetableFile = $request->file('timetable_path');
@@ -202,7 +203,7 @@ class PreferencesController extends Controller
     {
         $this->middleware('auth'); // Assuming authentication is required for profile1 page
         $this->displayProfile2();
-       // $this->displayAvatar(); // Call the displayProfile1 method automatically
+        // $this->displayAvatar(); // Call the displayProfile1 method automatically
     }
 
     public function displayProfile2()
@@ -213,7 +214,7 @@ class PreferencesController extends Controller
         return view('profile2', compact('userData'));
     }
 
-    
+
     // public function displayAvatar()
     // {
     //     // Retrieve user data from the database
@@ -228,13 +229,44 @@ class PreferencesController extends Controller
     {
         // Retrieve the updated user data from the request
         $updatedData = $request->all();
-        
+
         // Update the user's information
         $user = UserPreferences::where('user_id', auth()->id())->first();
         $user->update($updatedData);
-    
+
         // Return a response indicating success or failure
         return response()->json(['message' => 'User data saved successfully.']);
     }
-    
+
+    public function updateUserData(Request $request)
+    {
+        $validatedData = $request->validate([
+            'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
+        ]);
+
+        // Process timetable file upload
+        if ($request->hasFile('timetable_path')) {
+            $timetableFile = $request->file('timetable_path');
+            $timetableFileName = time() . '.' . $timetableFile->extension(); // Generate unique timetable file name
+            $timetableFile->move(public_path('timetables'), $timetableFileName); // Move the uploaded file to the public/timetables directory
+            $validatedData['timetable_path'] = 'timetables/' . $timetableFileName;
+        }
+
+        // Process avatar file upload
+        if ($request->hasFile('avatar')) {
+            $avatarFile = $request->file('avatar');
+            $avatarFileName = time() . '.' . $avatarFile->extension(); // Generate unique avatar file name
+            $avatarFile->move(public_path('avatars'), $avatarFileName); // Move the uploaded file to the public/avatars directory
+            $validatedData['avatar'] = 'avatars/' . $avatarFileName; 
+          
+        }
+
+        // Update the user's information
+        $user = UserPreferences::where('user_id', auth()->id())->first();
+        $user->update($validatedData);
+
+        // Return a response indicating success
+        return response()->json(['message' => 'User data saved successfully.']);
+    }
 }

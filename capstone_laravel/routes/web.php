@@ -164,6 +164,7 @@ Route::get('profile1', [UserController::class, 'displayProfile1'])->name('profil
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::post('/saveUserData', [PreferencesController::class, 'saveUserData'])->name('saveUserData');
+Route::post('/updateUserData', [PreferencesController::class, 'updateUserData'])->name('updateUserData');
 
 
 Route::get('/user/{id}', [UserProfileController::class, 'userProfile'])->name('user.profile');
@@ -182,6 +183,7 @@ Route::get('/add-profile/{profileId}', [UserProfileController::class, 'addProfil
 Route::get('/dashboard/filter', [DashboardController::class, 'filter'])->name('dashboard.filter');
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
+
 
 Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
 Route::post('/connections/{connectionid}',[userContactsController::class,'sendContact'])->name('sendContact');
