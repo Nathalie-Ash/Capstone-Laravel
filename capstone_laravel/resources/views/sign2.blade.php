@@ -61,7 +61,7 @@
             <div class="row d-flex align-items-center justify-content-center">
                 
                 <div class="col-md-8 col-lg-7 col-xl-3">
-                    <img src="images/image4.png" class="img-fluid" alt="Phone image" style="height: 500px">
+                    <img src="images/fourpeople.png" class="img-fluid" alt="Phone image" style="height: 500px">
                 </div>
 
                 <div class="col-md-7 col-lg-5 col-xl-6 offset-xl-1"

@@ -151,10 +151,17 @@
 
             var outdoorActivities = [
                 "Running",
+                "Cycling",
+                "Hiking",
                 "Swimming",
                 "Basketball",
-                "Ziplining",
-                "Football"
+                "Football",
+                "Tennis",
+                "Snow Boarding",
+                "Skiing",
+                "Horseback Riding", 
+                "Gardening",
+                "Ziplining"
             ];
 
             var outdoorDropdownMenu1 = document.getElementById("outdoorItem1");
@@ -181,17 +188,17 @@
                     outdoorActivity + '</a>';
 
                 outdoorDropdownMenu1.appendChild(listItem1);
-                if (outdoorActivity != "Football") {
+                if (outdoorActivity != "Ziplining") {
                     outdoorDropdownMenu1.appendChild(divider1);
                 }
 
                 outdoorDropdownMenu2.appendChild(listItem2);
-                if (outdoorActivity != "Football") {
+                if (outdoorActivity != "Ziplining") {
                     outdoorDropdownMenu2.appendChild(divider2);
                 }
 
                 outdoorDropdownMenu3.appendChild(listItem3);
-                if (outdoorActivity != "Football") {
+                if (outdoorActivity != "Ziplining") {
                     outdoorDropdownMenu3.appendChild(divider3);
                 }
             });
@@ -201,6 +208,9 @@
                 "Writing",
                 "Waching TV",
                 "Drawing",
+                "Cooking",
+                "Crafting",
+                "Gaming",
                 "Meditating"
             ];
 
