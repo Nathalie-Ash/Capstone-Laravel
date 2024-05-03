@@ -7,7 +7,7 @@
 
 
     </div>
-    <form method="POST" action="{{ route('step3') }}">
+    <form id ="step3Form" method="POST" action="{{ route('step3') }}">
 
         @csrf
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
@@ -117,8 +117,10 @@
 
             </div>
             <div id="button-nav">
+
                 <button type="submit" class="btn"
                     style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+
             </div>
         </section>
 
@@ -126,7 +128,7 @@
 
     </div>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
@@ -302,6 +304,72 @@
             dropdownButton.innerText = buttonText;
         }
     </script>
+<script>
+    function storeStep3Data() {
+        var formData = {
+            musicItem1: document.getElementById('musicItem1Hidden').value,
+            musicItem2: document.getElementById('musicItem2Hidden').value,
+            musicItem3: document.getElementById('musicItem3Hidden').value,
+            movieItem1: document.getElementById('movieItem1Hidden').value,
+            movieItem2: document.getElementById('movieItem2Hidden').value,
+            movieItem3: document.getElementById('movieItem3Hidden').value,
+        };
+        localStorage.setItem('step3Data', JSON.stringify(formData));
+    }
 
+    function validateStep3() {
+        var musicItem1 = document.getElementById('musicItem1Hidden').value;
+        var musicItem2 = document.getElementById('musicItem2Hidden').value;
+        var musicItem3 = document.getElementById('musicItem3Hidden').value;
+        var movieItem1 = document.getElementById('movieItem1Hidden').value;
+        var movieItem2 = document.getElementById('movieItem2Hidden').value;
+        var movieItem3 = document.getElementById('movieItem3Hidden').value;
+
+        if (!musicItem1 || !musicItem2 || !musicItem3 || !movieItem1 || !movieItem2 || !movieItem3) {
+            $('#myModal').modal('show');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function goToNextPage(event) {
+        event.preventDefault(); // Prevent form submission and page refresh
+
+        // Validate Step 3
+        var isValid = validateStep3();
+        if (isValid) {
+            // Store Step 3 data before navigating to the next step
+            storeStep3Data();
+            // Submit the form
+            document.getElementById("step3Form").submit();
+        }
+    }
+
+    $(document).ready(function() {
+        $('#cancelButton').click(function() {
+            $('#myModal').modal('hide');
+        });
+    });
+</script>
 
 </x-stepLayout>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please select all options before moving to the next step.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
