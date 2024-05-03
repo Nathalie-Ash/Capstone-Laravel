@@ -67,7 +67,7 @@
                             <h2>Welcome to LAU Connect!</h2>
                         </div>
                         <div>
-                            <h2 style="color: rgba(87, 151, 146);">About Us</h2>
+                            <h2 style="color: rgba(87, 151, 146);text-align: left">About Us</h2>
                             <p>At LAU Connect, we're dedicated to making your experience at Lebanese American University
                                 (LAU)
                                 an unforgettable one by helping you connect with fellow students who share your
@@ -75,7 +75,7 @@
                                 passions, and goals. College is not just about academics; it's also about forming
                                 lifelong
                                 friendships and creating lasting memories. That's where we come in.</p>
-                            <h2 style="text-align: center; color:rgba(87, 151, 146);">How It Works</h2>
+                            <h2 style="text-align: left; color:rgba(87, 151, 146);">How It Works</h2>
                             <ul>
 
                                 <li><span style="color: #ff6f28;">Step 1:</span> Create Your Profile</li>
@@ -85,14 +85,14 @@
                                 <li><span style="color: #ff6f28;">Step 3:</span> Connect With Peers</li>
 
                             </ul>
-                            <h2 style="text-align: center; color:rgba(87, 151, 146);">Our Mission</h2>
+                            <h2 style="text-align: left; color:rgba(87, 151, 146);">Our Mission</h2>
                             <p>At LAU Connect, we believe that forming meaningful connections is essential to a
                                 fulfilling
                                 college
                                 experience. Whether you're looking for study buddies, gym partners, or simply someone to
                                 grab coffee
                                 with between classes, we're here to help you find your tribe.</p>
-                            <h2 style="text-align: center; color:rgba(87, 151, 146);">Get Started Today!</h2>
+                            <h2 style="text-align: left; color:rgba(87, 151, 146);">Get Started Today!</h2>
 
                             <p>Don't wait to start building your network at LAU. Join LAU Connect now and take the first
                                 step

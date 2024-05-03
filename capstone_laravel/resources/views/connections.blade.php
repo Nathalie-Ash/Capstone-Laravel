@@ -33,7 +33,6 @@
                             <img src="{{ asset($userImage) }}"
                                 style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
                         @else
-                            <!-- Display a default image if no user image is available -->
                             <img src="{{ asset('images/default_profile.png') }}"
                                 style="width: 100px; margin: 5px; float: left; margin-left: 15px;">
                         @endif
@@ -42,19 +41,15 @@
 
                         <div class="col-sm-2" style="float: left;">
                             <p class="textStyle"
-                                style="text-align: left; font-size: 30px; padding: 0; margin: 0;width: max-content;">
+                                style="text-align: left; font-size: 25px; padding: 0; margin: 0;width: max-content;">
                                 {{ $connection->sender->name }}</p>
                             <p style="text-align: left; font-weight: lighter; padding: 0;width: max-content">{{$mutualConnections[$senderId]}} mutual connections</p>
                         </div>
                         <div class="col-sm-8">
 
                         @if (isset($sentContact[$connection->sender->id]))
-                            <!-- Connection exists, display "Requested" button -->
-                            {{-- <a class="btn" style="background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
-                            data-bs-toggle="modal" data-bs-target="#contactInfoModal" disabled> Shared</a> --}}
-                            <button class="btn btn-primary" style="border: none;background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;" disabled>Shared</button>
+                          <button class="btn btn-primary" style="border: none;background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;" disabled>Shared</button>
                         @else
-                            <!-- No connection exists, display "Add Friend" button -->
                             <a href="#" class="btn"
                             style="background-color: #579792; width: 15%; border-left: 20px; color: white; font-size: larger; float: right; margin-left: 20px;"
                             data-bs-toggle="modal" data-bs-target="#contactInfoModal"> Share</a>
@@ -63,10 +58,7 @@
                             <a href="{{ route('user.profile', ['id' => $connection->sender->id]) }}" class="btn"
                                 style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
                                 Profile</a>
-                            {{-- <button type="button" class="btn btn-secondary"
-                                style="width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</button> --}}
-                                {{-- {{ route('remove.connection', ['connectionid' => $userPreferences->user_id]) }} --}}
-                                <a href="{{ route('remove.connection', ['connectionid' => $connection->sender->id]) }}" class="btn" 
+                          <a href="{{ route('remove.connection', ['connectionid' => $connection->sender->id]) }}" class="btn" 
                                     style=" background-color: black;width: 15%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;">Remove</a>
                                 
                         </div>
