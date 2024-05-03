@@ -59,6 +59,7 @@ class LoginController extends Controller
                 return $this->sendFailedLoginResponse($request);
             }
         }
+    }
         protected function sendFailedLoginResponse(Request $request)
         {
             $user = \App\Models\User::where($this->username(), $request->{$this->username()})->first();
@@ -83,13 +84,7 @@ class LoginController extends Controller
             $request->session()->regenerateToken(); // Regenerate the CSRF token
             return redirect('/'); // Redirect to the home page or any other page after logout
         }
-        protected function authenticated(Request $request, $user)
-        {
-            if ($user->is_admin) {
-                return redirect('/admin');
-            }
-
-    
+   
     protected function authenticated(Request $request, $user)
     {
         if ($user->is_admin) {
