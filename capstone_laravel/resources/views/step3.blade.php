@@ -137,6 +137,13 @@
                 "Metal",
                 "Pop",
                 "Arabic",
+                "Rock",
+                "Country",
+                "Classical",
+                "R&B",
+                "Punk",
+                "Alternative",
+                "Classical",
                 "Indie"
             ];
 
@@ -187,6 +194,14 @@
                 "Romance",
                 "Sci-Fi",
                 "Horror",
+                "Thriller",
+                "Mystery",
+                "Fantasy",
+                "Animation",
+                "Historical",
+                "Romance",
+                "Musical",
+                "Sports",
                 "Documentary"
             ];
             var movieDropdownMenu1 = document.getElementById("movieItem1");
