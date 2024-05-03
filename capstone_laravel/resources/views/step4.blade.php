@@ -11,8 +11,7 @@
             @csrf
             <section id="steps"
                 style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column; margin-bottom: 10px;">
-                <!-- <div id="steps"> -->
-
+           
                 <div class="container text-center" style="flex: 1;">
                     <div class="row">
                         <div class="col">
@@ -46,10 +45,7 @@
 
     </div>
     <div id="button-nav" style="padding-top: 0px; padding-bottom: 30px;">
-        <button type="button" onclick="goToPrevPage()" class="btn"
-            style="background-color:#a19e9e; width: 13%;border-right:50px;color:white;font-size: larger;">BACK</button>
-
-        <button type="submit" class="btn"
+       <button type="submit" class="btn"
             style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger;">Make Profile
             Public</button>
     </div>
@@ -69,11 +65,7 @@
             window.location.href = "dashboard";
         }
 
-        function goToPrevPage() {
-
-            window.location.href = "step3";
-        }
-
+       
         function handleFileSelect(event) {
             const fileInput = event.target;
             const imagePlaceholder = document.getElementById('imagePlaceholder');

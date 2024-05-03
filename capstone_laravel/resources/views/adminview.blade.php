@@ -228,25 +228,17 @@
                 </div>
                 <div class="col-md-6" style="height: 360px;">
                     <div class="card" style="background-color:#f7f5f5;">
-                        @if(!$userPreferences->timetable_path)
-                         <img src='/images/default_document.png' class="card-img-top" style="max-width: 100%;max-height: 100%; 
-                         object-fit: contain;"> 
+                        @if (!$userPreferences->timetable_path)
+                            <img src='/images/default_document.png' class="card-img-top"
+                                style="max-width: 100%;max-height: 100%; 
+                         object-fit: contain;">
                         @else
-                        <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%" height="433px"></iframe>
+                            <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%"
+                                height="433px"></iframe>
                         @endif
-                        <div class="card-body" >
-                            {{-- <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>
-                            <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }}
-                            <p>
-                            <p class="card-text" style=" font-weight: normal">{{ $userPreferences->description }} </p> --}}
-                           
+                        <div class="card-body">
 
-                            
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
-
-                                {{-- <a href="#" class="btn"
-                                style="background-color: #579792; width: 55%; color: white; font-size: larger; float: right; "
-                                data-bs-toggle="modal" data-bs-target="#contactInfoModal"> View contact</a> --}}
                                 <form id="delete-timetable-form"
                                     action="{{ route('delete.timetable', ['userid' => $user->id]) }}" method="POST"
                                     style="display: none;">

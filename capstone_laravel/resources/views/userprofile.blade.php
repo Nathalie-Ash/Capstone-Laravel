@@ -112,7 +112,7 @@
 
         @media (max-width: 768px) {
             body {
-                font-size: 12px; /* Adjusted font size for smaller screens */
+                font-size: 12px;
             }
         }
     </style>
@@ -129,7 +129,7 @@
                         <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;">
 
                         <div class="card-body">
-                            <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>
+                            <h1 class="card-title" style="font-size: 25px;">{{ $user->name }}</h1>
                             <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }}
                             <p>
                             <p class="card-text" style=" font-weight: normal">{{ $userPreferences->description }} </p>
@@ -156,25 +156,19 @@
                                     style="border: none;width:40%; background-color:#ff6f28; color: white;">REMOVE</a>
                             @else
                             @if ($existingConnection)
-                            <!-- Connection exists, display "Requested" button -->
                             <button class="btn btn-primary" style="border: none;width:98%; background-color:#579792; color: white" disabled>Requested</button>
                         @else
-                            <!-- No connection exists, display "Add Friend" button -->
                                           <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}" class="btn btn-primary"
                                 style="border: none;width:98%; background-color:#579792; color: white">ADD FRIEND</a>
                         @endif
-                        
-                            
-                                {{-- <a href="#" class="btn btn-primary"
-                                    style="border: none;width:49%; background-color:#ff6f28; color: white">REMOVE</a> --}}
-                            @endif
+                         @endif
                                 
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" style="margin-top: -40px">
+                <div class="col-md-4" >
                     <div>
                         <div class="text-center">
 
@@ -194,7 +188,7 @@
                                     style="width:fit-content;">Activity 2</label>
                                 <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="staticUsername"
-                                        value="{{ $userPreferences->outdoorItem2 }}">
+                                        value="{{ $userPreferences->outdoorItem2 }}" >
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -239,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4" style="margin-top: -40px">
+                <div class="col-md-4" >
                     <div>
                         <div class="text-center">
 

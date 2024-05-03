@@ -16,12 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // Check if the authenticated user is an admin
         if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
         }
 
-        // Redirect non-admin users to the dashboard or any other page
         return redirect('/dashboard')->with('error', 'Unauthorized access');
     }
 }
