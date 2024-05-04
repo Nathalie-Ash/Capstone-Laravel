@@ -226,37 +226,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="height: 360px;">
-                    <div class="card" style="background-color:#f7f5f5;">
+                <div class="col-md-6" style="height: 485px;">
+                    <div class="card" style="background-color:#f7f5f5; height: 100%;">
                         @if (!$userPreferences->timetable_path)
-                            <img src='/images/default_document.png' class="card-img-top"
-                                style="max-width: 100%;max-height: 100%; 
-                         object-fit: contain;">
+                        <img src='/images/default_document.png' class="card-img-top" style="max-width: 100%; max-height: 80%; object-fit: contain;">
                         @else
-                            <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%"
-                                height="433px"></iframe>
+                        <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%" height="80%" style="border: none;"></iframe>
                         @endif
-                        <div class="card-body">
-
+                        <div class="card-body" style="height: 100%;">
+                
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
-                                <form id="delete-timetable-form"
-                                    action="{{ route('delete.timetable', ['userid' => $user->id]) }}" method="POST"
-                                    style="display: none;">
+                                <form id="delete-timetable-form" action="{{ route('delete.timetable', ['userid' => $user->id]) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
-                                <a href="#" class="btn"
-                                    style="background-color: #7d9757; width: 100%;height: min-content; color: white; font-size: larger; float: right; "
-                                    onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">DELETE
-                                    TIMETABLE</a>
-
+                                <a href="#" class="btn" style="background-color: #7d9757; width: 100%; height: min-content; color: white; font-size: larger; float: right; " onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">DELETE TIMETABLE</a>
+                
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
+                
+                
+                
             </div>
             <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
                 aria-hidden="true">
@@ -320,7 +312,7 @@
 
 </html>
 <footer class="fixed-bottom text-center small text-muted py-2"
-    style="position: unset; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
     <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
     </p>
 </footer>

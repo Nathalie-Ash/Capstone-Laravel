@@ -223,12 +223,18 @@
 
 
         </div>
-
+    
+           
 
     </section>
 
 
     </div>
+    <footer class="fixed-bottom text-center small text-muted py-2"
+    style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+    </p>
+</footer>
     <script>
         function goToNextPage() {
 

@@ -133,5 +133,18 @@
 
     </div>
 
-
+    @if(count($connections)>=9)
+        <footer class="fixed-bottom text-center small text-muted py-2"
+            style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+            <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+            </p>
+        </footer>
+        @else
+            <footer class="fixed-bottom text-center small text-muted py-2"
+            style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+            <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+            </p>
+        </footer> 
+        
+        @endif
         </x-menuLayout>
