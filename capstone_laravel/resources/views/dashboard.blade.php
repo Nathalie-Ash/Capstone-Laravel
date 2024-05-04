@@ -8,7 +8,7 @@
 
         #textStyle {
             color: #000;
-            font-size: 25px;
+            font-size: 20px;
         }
 
         body {
@@ -149,8 +149,8 @@
 
                         <form class="filter-form" id="filterForm" action="{{ route('dashboard.filter') }}"
                             style="margin:0" method="GET">
-                            <input type="hidden" name="category" id="category"> <!-- New -->
-                            <input type="hidden" name="value" id="value"> <!-- New -->
+                            <input type="hidden" name="category" id="category">
+                            <input type="hidden" name="value" id="value">
                             <li>
                                 <select class="form-control form-control-sm" name="campus" id="campusSelect"
                                     onchange="changeCategory('campus', this.value)">
@@ -168,10 +168,6 @@
                                     @foreach ($outdoors as $outdoor)
                                         <option value="{{ $outdoor }}">{{ $outdoor }}</option>
                                     @endforeach
-                                    {{-- <option value="{{ $outdoor1 }}">{{ $outdoor1 }}</option>
-                                <option value="{{ $outdoor2 }}">{{ $outdoor2 }}</option>
-                                <option value="{{ $outdoor3 }}">{{ $outdoor3 }}</option> --}}
-
                                 </select>
                             </li>
                             <li>
@@ -181,10 +177,6 @@
                                     @foreach ($indoors as $indoor)
                                         <option value="{{ $indoor }}">{{ $indoor }}</option>
                                     @endforeach
-                                    {{-- <option value="{{ $indoor1 }}">{{ $indoor1 }}</option>
-                                <option value="{{ $indoor2 }}">{{ $indoor2 }}</option>
-                                <option value="{{ $indoor3 }}">{{ $indoor3 }}</option> --}}
-
                                 </select>
                             </li>
                             <li>
@@ -194,10 +186,6 @@
                                     @foreach ($musics as $music)
                                         <option value="{{ $music }}">{{ $music }}</option>
                                     @endforeach
-                                    {{-- <option value="{{ $music1 }}">{{ $music1 }}</option>
-                                <option value="{{ $music2 }}">{{ $music2 }}</option>
-                                <option value="{{ $music3 }}">{{ $music3 }}</option> --}}
-
                                 </select>
                             </li>
                             <li>
@@ -207,14 +195,9 @@
                                     @foreach ($movies as $movie)
                                         <option value="{{ $movie }}">{{ $movie }}</option>
                                     @endforeach
-                                    {{-- <option value="{{ $movie1 }}">{{ $movie1 }}</option>
-                                <option value="{{ $movie2 }}">{{ $movie2 }}</option>
-                                <option value="{{ $movie3 }}">{{ $movie3 }}</option> --}}
-
                                 </select>
                             </li>
 
-                            {{-- <li><button type="submit" class="btn btn-primary">Apply</button></li> --}}
                         </form>
 
 
@@ -286,7 +269,7 @@
                                                     src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
                                                     alt="...">
                                                 <div class="card-body">
-                                                    <h1 class="card-title">{{ $userName }}</h1>
+                                                    <h1 class="card-title" style="font-size: 25px;">{{ $userName }}</h1>
                                                     <p style="font-size: 15px; font-weight: lighter">
                                                         {{ $userPreferences->major }}, {{ $userPreferences->campus }}
                                                     </p>
@@ -379,41 +362,35 @@
                         "&value=" + encodeURIComponent(value);
                     filterForm.submit();
                 });
-});
+            });
 
-                document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
 
-        // Function to show or hide the dropdown based on text input
-        document.querySelector('.search-form button[type="submit"]').addEventListener('click', function (event) {
-            var searchInput = document.querySelector('.search-form input[type="text"]');
-            var dropdownMenu = document.querySelector('.searchDropdown');
+                document.querySelector('.search-form button[type="submit"]').addEventListener('click', function(event) {
+                    var searchInput = document.querySelector('.search-form input[type="text"]');
+                    var dropdownMenu = document.querySelector('.searchDropdown');
 
-            // Check if the search input is empty
-            if (searchInput.value.trim() === '') {
-                // If empty, prevent default action (form submission) and don't show the dropdown
-                event.preventDefault();
-                return;
-            }
+                    if (searchInput.value.trim() === '') {
+                        event.preventDefault();
+                        return;
+                    }
 
-            // If input is not empty, show the dropdown
-            dropdownMenu.classList.add('show');
-        });
+                    dropdownMenu.classList.add('show');
+                });
 
-    });
-    document.addEventListener('click', function (event) {
-    var dropdownMenu = document.getElementById('searchDropdown');
-    var searchInput = document.querySelector('.search-form input[type="text"]');
-    var searchButton = document.querySelector('.search-form button[type="submit"]');
-    
-    var isClickedInsideDropdown = dropdownMenu.contains(event.target);
-    var isClickedInsideSearch = searchInput.contains(event.target) || searchButton.contains(event.target);
+            });
+            document.addEventListener('click', function(event) {
+                var dropdownMenu = document.getElementById('searchDropdown');
+                var searchInput = document.querySelector('.search-form input[type="text"]');
+                var searchButton = document.querySelector('.search-form button[type="submit"]');
 
-    if (!isClickedInsideDropdown && !isClickedInsideSearch) {
-        dropdownMenu.classList.remove('show');
-    }
-});
+                var isClickedInsideDropdown = dropdownMenu.contains(event.target);
+                var isClickedInsideSearch = searchInput.contains(event.target) || searchButton.contains(event.target);
 
-      
+                if (!isClickedInsideDropdown && !isClickedInsideSearch) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
         </script>
 
 

@@ -38,9 +38,9 @@
                             <div id="division2" class="input">
 
                                 <h1 id="step-title">What is Your Major ?</h1>
-                                <input name="major" id="major" type="text"> <!-- Add name attribute -->
+                                <input name="major" id="major" type="text"> 
                                 <h1 id="step-title">Minor (if applicable)</h1>
-                                <input name="minor" id="minor" type="text"> <!-- Add name attribute -->
+                                <input name="minor" id="minor" type="text"> 
                             </div>
                         </div>
                         <div class="col-md-4" style="padding-top:15px ">
@@ -101,21 +101,7 @@
     </div>
 
     </section>
-    <!-- Within the Form in Step 1 View -->
-    <script>
-        // Function to store Step 1 data in local storage
-        function storeStep1Data() {
-            var formData = {
-                school: document.getElementById('school').value,
-                major: document.getElementById('major').value,
-                minor: document.getElementById('minor').value,
-                campus: document.querySelector('input[name="campus"]:checked').value
-            };
-            localStorage.setItem('step1Data', JSON.stringify(formData));
-            document.getElementById('dropdownMenuButton').innerText = formData.school;
 
-        }
-    </script>
 
     </form>
 
@@ -135,7 +121,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Array of items for the dropdown
             var schools = [
                 "School of Architecture & Design",
                 "School of Arts and Sciences",
@@ -146,21 +131,18 @@
                 "School of Pharmacy"
             ];
 
-            // Get the dropdown menu element
             var dropdownMenu = document.getElementById("dropdownItems");
 
-            // Add click event listener to dropdown items
             dropdownMenu.addEventListener("click", function(event) {
                 if (event.target && event.target.classList.contains("dropdown-item")) {
                     var selectedSchool = event.target.innerText;
                     document.getElementById('dropdownMenuButton').innerText =
-                        selectedSchool; // Update dropdown button text
+                        selectedSchool; 
                     document.getElementById('school').value =
-                        selectedSchool; // Set the selected school name to the hidden input field
+                        selectedSchool; 
                 }
             });
 
-            // Populate dropdown menu with school options
             schools.forEach(function(school, index) {
                 var listItem = document.createElement("li");
                 listItem.innerHTML =
@@ -169,7 +151,6 @@
 
                 dropdownMenu.appendChild(listItem);
 
-                // Add a divider after each item except for the last one
                 if (index < schools.length - 1) {
                     var divider = document.createElement("div");
                     divider.className = "dropdown-divider";
@@ -179,23 +160,17 @@
 
 
             var campusRadios = document.querySelectorAll('input[name="campus"]');
-
-            // Get the hidden input field to store selected campus ID
             var campusInput = document.getElementById("campus_id");
-
-            // Add change event listener to radio buttons
             campusRadios.forEach(function(radio) {
                 radio.addEventListener("change", function() {
                     if (this.checked) {
                         campusInput.value = this
-                            .value; // Update hidden input field with selected campus ID
+                            .value; 
                         console.log("Selected Campus ID:", campusInput
-                            .value); // Log selected campus ID
-                    }
+                            .value);  }
                 });
             });
 
-            // Call the function to populate Step 1 fields when the page loads
             populateStep1Fields();
         });
 
@@ -214,12 +189,6 @@
             }
         }
 
-        function goToPrevPage() {
-            // Store Step 2 data before navigating back to Step 1
-            storeStep1Data();
-            // Redirect to Step 1
-            window.location.href = "{{ route('step2') }}";
-        }
 
         function sendStep1Data() {
             var formData = {
@@ -228,7 +197,6 @@
                 minor: document.getElementById('minor').value,
                 campus: document.querySelector('input[name="campus"]:checked').value
             };
-            // Send the form data to the server using AJAX
             fetch("{{ route('step1') }}", {
                     method: "POST",
                     headers: {
@@ -239,10 +207,8 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Redirect to Step 2 upon successful submission
                         window.location.href = "{{ route('step2') }}";
                     } else {
-                        // Handle errors if needed
                         console.error('Failed to send Step 1 data');
                     }
                 })
@@ -251,9 +217,7 @@
                 });
         }
 
-        function storeStep1Data() {
-            // No longer needed since data is stored on the server-side
-        }
+      
     </script>
 
 </x-stepLayout>

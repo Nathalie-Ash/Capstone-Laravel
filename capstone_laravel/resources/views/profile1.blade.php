@@ -7,27 +7,26 @@
         input[type="file"] {
             color: transparent;
         }
-            /* Align the "View Timetable" link under the "Choose file" button */
-            #fileContainer {
-                display: flex;
-                flex-direction: column;
-            }
 
-            /* Change the color of the "View Timetable" link */
-            #fileContainer a {
-                color: #333;
-                /* You can adjust the color as needed */
-                text-decoration: none;
-                /* Remove underline */
-            }
+        /* Align the "View Timetable" link under the "Choose file" button */
+        #fileContainer {
+            display: flex;
+            flex-direction: column;
+        }
 
-            /* Style for the "Time table not available" text */
-            #fileContainer p {
-                margin-bottom: 4px;
-                /* Adjust spacing */
-            }
+        /* Change the color of the "View Timetable" link */
+        #fileContainer a {
+            color: #333;
+            /* You can adjust the color as needed */
+            text-decoration: none;
+            /* Remove underline */
+        }
 
-        
+        /* Style for the "Time table not available" text */
+        #fileContainer p {
+            margin-bottom: 4px;
+            /* Adjust spacing */
+        }
     </style>
 
 
@@ -45,7 +44,7 @@
         <div class="container text-center">
             <div class="row">
 
-                <div class="col-md-5">
+                <div class="col-md-5" style="padding-top: 10px;">
                     <div id="division1" style="height: 100%;">
                         <p id="step-title" style="padding-top: 0px;">Account</p>
                         <div class="mb-3 row">
@@ -172,36 +171,40 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <form action="{{ route('updateUserData') }}" method="POST">
-                    @csrf
-                    <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
-                    <div id="imageContainer" style="display: inline-block;">
-                        @if ($userImage)
-                            <img id="avatarImage" style="height: 100%; width: 100%; object-fit: scale;"
-                                src="{{ asset($userImage->avatar) }}">
-                        @else
-                            <img id="avatarImage" style="height: 100%; width: 100%;"
-                                src="{{ asset('images/placeholder.png') }}" alt="Placeholder Image">
-                        @endif
-                        <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
-                            onchange="handleFileSelect(event)" name="avatar">
-                    </div>
+            <div class="col-md-4" style="padding-top: 10px;">
+                <div id="division1" style="height: 100%;">
+                    <form action="{{ route('updateUserData') }}" method="POST">
+                        @csrf
+                        <p id="step-title" style="padding-top: 0px;">Click on image to change your profile picture</p>
+                        <div id="imageContainer" style="display: inline-block;">
+                            @if ($userImage)
+                                <img id="avatarImage" style="height: 100%; width: 100%; object-fit: scale;"
+                                    src="{{ asset($userImage->avatar) }}">
+                            @else
+                                <img id="avatarImage" style="height: 100%; width: 100%;"
+                                    src="{{ asset('images/placeholder.png') }}" alt="Placeholder Image">
+                            @endif
+                            <input type="file" id="fileInput" accept=".png, .jpg, .jpeg"
+                                onchange="handleFileSelect(event)" name="avatar">
+                        </div>
+                </div>
             </div>
 
-            <div class="col-md-3">
-                <p id="step-title" style="padding-top: 0px;">Add Time table</p>
-                <div id="fileContainer" style="display: flex; flex-direction: column;">
-                    <input type="file" id="timetablePath" name="timetable_path" accept=".pdf,.doc,.docx"
-                        style="margin-bottom: 10px;" onchange="handleTableSelect(event)">
-                    @if ($userTimetable->timetable_path)
-                    <iframe src="{{ asset($userTimetable->timetable_path) }}" width="100%" height="100%"  style="padding-bottom: 4px; color: #333;text-align: left;"></iframe>
-                        {{-- <a href="{{ asset($userTimetable->timetable_path) }}"
-                            style="padding-bottom: 4px; color: #333;text-align: left;">View Timetable</a>--}}
-                    @else 
-                    <img src='/images/default_document.png' style="max-width: 100%;max-height: 100%; 
-                    object-fit: contain;"> 
-                    @endif
+            <div class="col-md-3 " style="padding-top: 10px;">
+                <div id="division1" style="height: 100%;">
+                    <p id="step-title" style="padding-top: 0px;">Add Time table</p>
+                    <div id="fileContainer" style="display: flex; flex-direction: column;">
+                        <input type="file" id="timetablePath" name="timetable_path" accept=".pdf,.doc,.docx"
+                            style="margin-bottom: 10px;" onchange="handleTableSelect(event)">
+                        @if ($userTimetable->timetable_path)
+                            <iframe src="{{ asset($userTimetable->timetable_path) }}" width="100%" 
+                                style="padding-bottom: 4px; color: #333;text-align: left;height: 300px"></iframe>
+                        @else
+                            <img src='/images/default_document.png'
+                                style="max-width: 100%;max-height: 100%; 
+                    object-fit: contain;">
+                        @endif
+                    </div>
                 </div>
             </div>
             </form>
@@ -214,79 +217,6 @@
 
 
         </div>
-
-
-        {{-- <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <form method="POST" action="{{ route('password.update') }}">
-                    @csrf
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="resetPasswordModalLabel">Reset Password</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-body">
-                            Are you sure you want to reset your password?
-                            <div style="padding-top: 4%;">
-                                {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
-
-        {{-- <div class="row mb-3">
-                                    <label for="email"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="email" type="email"
-                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                            value="{{ $email ?? old('email') }}" required autocomplete="email"
-                                            autofocus>
-
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="password"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror"
-                                            name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="password-confirm"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control"
-                                            name="password_confirmation" required autocomplete="new-password">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Reset Password') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                </form> --}}
 
 
 

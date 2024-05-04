@@ -15,16 +15,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -48,35 +38,8 @@ class RegisterController extends Controller
     {
         return redirect()->route('verification.notice');
     }
-    // /**
-    //  * Get a validator for an incoming registration request.
-    //  *
-    //  * @param  array  $data
-    //  * @return \Illuminate\Contracts\Validation\Validator
-    //  */
-    // protected function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //     ]);
-    // }
 
-    // /**
-    //  * Create a new user instance after a valid registration.
-    //  *
-    //  * @param  array  $data
-    //  * @return \App\Models\User
-    //  */
-    // protected function create(array $data)
-    // {
-    //     return User::create([
-    //         'name' => $data['name'],
-    //         'email' => $data['email'],
-    //         'password' => Hash::make($data['password']),
-    //     ]);
-    
+
     protected function showPage1()
     {
         return view('signup');
@@ -84,9 +47,7 @@ class RegisterController extends Controller
 
     protected function handlePage1(Request $request)
     {
-        $incomingFields = $request->all();
-        logger($incomingFields);
-
+    
         $validatedData = $request->validate([
             'name' => ['required', 'max:30'],
             'email' => ['required', 'email', 'regex:/^[a-z]+\.[a-z]+(?:[0-9]+)?@lau\.edu$/'],
@@ -100,7 +61,7 @@ class RegisterController extends Controller
 
         return redirect()->route('sign2');
     }
-    
+
     protected function showPage2(Request $request)
     {
         $signupData = $request->session()->get('signup_data');
@@ -109,7 +70,7 @@ class RegisterController extends Controller
         if (!$signupData || !$signupEmail) {
             return redirect()->route('signup')->with('error', 'Please fill out page 1 form first');
         }
-    
+
         return view('sign2', compact('signupData', 'signupEmail'));
     }
 
@@ -143,37 +104,35 @@ class RegisterController extends Controller
             'birthdate' => $userData['birthdate'],
             'sexualorientation' => $userData['sexualorientation'],
             'gender' => $userData['gender'],
-            'is_admin'=>false
+            'is_admin' => false
         ]);
 
         if ($user) {
             event(new Registered($user));
             Auth::login($user);
             $request->session()->forget('signup_data');
-            $user->sendEmailVerificationNotification(); // Send verification email
+            $user->sendEmailVerificationNotification(); 
 
             return redirect()->route('verification.notice');
-            // return redirect()->route('steps');
         } else {
             return 'user nu uh';
         }
     }
 
-    
+
     public function redirectTo()
     {
         return route('steps');
     }
+    
     public function checkUsername(Request $request)
-{
-    $username = $request->username;
-    $user = User::where('username', $username)->first();
-    if ($user) {
-        return response()->json('taken');
-    } else {
-        return response()->json('available');
+    {
+        $username = $request->username;
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            return response()->json('taken');
+        } else {
+            return response()->json('available');
+        }
     }
-}
-
-
 }

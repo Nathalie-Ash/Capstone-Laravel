@@ -40,21 +40,21 @@
                         <div id="division1" style="height: 100%;">
                             <p id="step-title" style="padding-top: 0px;">Info</p>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label">School</label>
+                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">School</label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" id="school"
                                         value="{{ $userData->school }}" style="background-color: #c2c2c2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label">Major</label>
+                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">Major</label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" id="major"
                                         value="{{ $userData->major }}" style="background-color: #c2c2c2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label">Minor</label>
+                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">Minor</label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" id="minor"
                                         value="{{ $userData->minor }}" style="background-color: #c2c2c2">
@@ -299,20 +299,16 @@
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}" // Add CSRF token
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}" 
                     },
                     body: JSON.stringify(data)
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Data saved successfully
-
-
-                        // alert("User data saved successfully.");
+                        
                         resetTextBackground();
                         window.location.href = "profile1";
                     } else {
-                        // Error saving data
                         alert("Failed to save user data.");
                     }
                 })
@@ -324,7 +320,6 @@
 
 
         function changeTextBackground() {
-            // Change background color of text fields
             document.getElementById("school").style.backgroundColor = "#579792";
             document.getElementById("major").style.backgroundColor = "#579792";
             document.getElementById("minor").style.backgroundColor = "#579792";
@@ -347,7 +342,6 @@
 
 
         function resetTextBackground() {
-            // Change background color of text fields
             document.getElementById("school").style.backgroundColor = "#c2c2c2";
             document.getElementById("major").style.backgroundColor = "#c2c2c2";
             document.getElementById("minor").style.backgroundColor = "#c2c2c2";
