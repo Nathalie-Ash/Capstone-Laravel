@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\userPreferences;
-use App\Models\User; // Import the User model
+use App\Models\User; 
 
 
 class AdminController extends Controller

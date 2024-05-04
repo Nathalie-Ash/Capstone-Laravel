@@ -39,21 +39,6 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
-    // public function showRetrieveAccountForm()
-    // {
-    //     return view('auth.retrieve');
-    // }
-
-    // public function retrieveAccount(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //     ]);
-    
-    //     $request->user()->sendEmailVerificationNotification(['email' => $request->email]); // Send verification email
-    
-    //     return back()->with('message', 'Verification link sent!');
-    // }
     public function sendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();

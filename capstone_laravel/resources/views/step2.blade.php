@@ -1,25 +1,17 @@
-
 <x-stepLayout>
 
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
-        <p id="textStyle"style="text-align: left;">Tell Us More About You!</p>
-
-
+        <p id="textStyle" style="text-align: left;">Tell Us More About You!</p>
     </div>
+
     <form id="step2Form" method="POST" action="{{ route('step2') }}">
-
-
         @csrf
 
-
         <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
-
             <div class="container text-center" style="flex: 1;">
-
                 <div class="row">
                     <div class="col-md-4">
-
                         <div>
                             <img src={{ asset('images/friends_picture.png') }} style="height: 350px;">
                         </div>
@@ -34,11 +26,10 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem1" name="outdoorItem1">
                                 </ul>
                                 <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1">
-
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton2"
@@ -46,11 +37,10 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem2" name="outdoorItem2">
                                 </ul>
                                 <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2">
-
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="outdoorDropdownMenuButton3"
@@ -58,20 +48,16 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem3" name="outdoorItem3">
                                 </ul>
                                 <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3">
-
                             </div>
-
-
                         </div>
                     </div>
                     <div class="col-md-4">
                         <img class="animated-element" src={{ asset('images/image1.png') }}>
                         <div id="division2" class="input">
-
                             <h1 id="step-title">Pick 3 Indoor Activities You Enjoy</h1>
                             <div class="dropdown" style="padding-top: 5px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton1"
@@ -79,11 +65,10 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem1">
                                 </ul>
                                 <input type="hidden" id="indoorItem1Hidden" name="indoorItem1">
-
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton2"
@@ -91,11 +76,10 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem2">
                                 </ul>
                                 <input type="hidden" id="indoorItem2Hidden" name="indoorItem2">
-
                             </div>
                             <div class="dropdown" style="padding-top: 10px;">
                                 <button class="btn btn-secondary dropdown-toggle" id="indoorDropdownMenuButton3"
@@ -103,28 +87,22 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none;"
+                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem3">
-
                                 </ul>
                                 <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
-            </div>
             <div id="button-nav">
-                <button type="submit" onclick="goToNextPage(event)" class="btn" style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
-
-                {{-- <button type="submit" onclick="goToNextPage()" class="btn"
-                    style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button> --}}
+                <button type="submit" onclick="goToNextPage(event)"
+                    class="btn" style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
+        </section>
+    </form>
+{{-- </x-stepLayout> --}}
 
         </section>
         <script>
@@ -382,14 +360,14 @@
         }
 
         function goToNextPage(event) {
-        event.preventDefault(); // Prevent form submission and page refresh
+        event.preventDefault(); 
 
-        // Validate Step 2
+       
         var isValid = validateStep2();
         if (isValid) {
-            // Store Step 2 data before navigating to the next step
+        
             storeStep2Data();
-            // Submit the form
+        
             document.getElementById("step2Form").submit();
         }
     }

@@ -310,10 +310,21 @@
                     </div>
                 </div>
             </main>
+            @if(session('session_about_to_expire'))
+    <script>
+        alert("Your session is about to expire!");
+    </script>
+@endif
+
         </div>
 
         <script>
+          var sessionExpiryTime = "{{ session('expires_at') }}";
+          var now = new Date();
+        console.log("Current time: " + now);
+        console.log("Session expiry time: " + sessionExpiryTime);
             function changeCategory(category, value) {
+                
                 document.getElementById('category').value = category;
                 document.getElementById('value').value = value;
             }
@@ -352,7 +363,7 @@
             }
             linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-            // Event listener for filter select change
+           
             document.querySelectorAll('.filter-form select').forEach(select => {
                 select.addEventListener('change', function() {
                     var category = this.name;
