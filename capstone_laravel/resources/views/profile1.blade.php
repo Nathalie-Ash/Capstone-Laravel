@@ -8,24 +8,24 @@
             color: transparent;
         }
 
-        /* Align the "View Timetable" link under the "Choose file" button */
+    
         #fileContainer {
             display: flex;
             flex-direction: column;
         }
 
-        /* Change the color of the "View Timetable" link */
+        
         #fileContainer a {
             color: #333;
-            /* You can adjust the color as needed */
+         
             text-decoration: none;
-            /* Remove underline */
+          
         }
 
-        /* Style for the "Time table not available" text */
+        
         #fileContainer p {
             margin-bottom: 4px;
-            /* Adjust spacing */
+          
         }
     </style>
 
@@ -114,7 +114,7 @@
                                     @csrf
                                 </form>
                             </div>
-                            <!-- Delete Account Button -->
+                        
                             <div class="col-4">
 
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple"
@@ -264,7 +264,7 @@
             fetch("{{ route('updateUserData') }}", {
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}" // Add CSRF token
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}" 
                     },
                     body: formData
                 })
@@ -272,7 +272,7 @@
                     if (response.ok) {
                         window.location.href = "profile1";
                     } else {
-                        // Error saving data
+                       
                         alert("Failed to save user data.");
                     }
                 })

@@ -69,11 +69,11 @@ class Kernel extends HttpKernel
     // Kernel.php
 
 protected $routeMiddleware = [
-    // Other middleware...
+
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
     'adminview' =>\App\Http\Middleware\AdminMiddleware::class,
     'nonadmin' => \App\Http\Middleware\NonAdmin::class,
-
+    'session.timeout' => \App\Http\Middleware\CheckSessionTimeout::class,
 ];
 
 }

@@ -36,6 +36,8 @@ class RegisterController extends Controller
     }
     protected function registered(Request $request, $user)
     {
+        $request->session()->put('username', $user->username);
+        $request->session()->put('expires_at', now()->addMinutes(30));
         return redirect()->route('verification.notice');
     }
 

@@ -135,8 +135,7 @@
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">Password</label>
-                                    {{-- <input type="password" id="form1Example23" name="password"
-                                class="form-control form-control-lg" style="background-color:#dcdcdf;" /> --}}
+                                   
                                     <input id="password" type="password" name="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">
@@ -234,7 +233,7 @@
 
         $(document).ready(function(){
         $('#login-form').submit(function (e) {
-            e.preventDefault(); // Prevent the default form submission behavior
+            e.preventDefault(); 
             var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',
@@ -244,9 +243,9 @@
                     if (response.status === 'error') {
                         if (response.message === 'Your account has been deleted') {
                             $('#myModal').modal('show');
-                            $('.modal-body').html(response.message); // Set the error message in the modal
+                            $('.modal-body').html(response.message);
                         } else {
-                            $('#invalid-feedback').show(); // Show the error message
+                            $('#invalid-feedback').show();
                             $('#invalid-feedback').text(response.message);
                         }
                     } else {
@@ -256,9 +255,9 @@
                 error: function (xhr, status, error) {
                     if(xhr.responseJSON && xhr.responseJSON.message === 'Your account has been deleted') {
                         $('#myModal').modal('show');
-                       // $('.modal-body').html(xhr.responseJSON.message); // Set the error message in the modal
+                      
                     } else {
-                        $('#invalid-feedback').show(); // Show the error message
+                        $('#invalid-feedback').show(); 
                         $('#invalid-feedback').text('Authentication failed! Retry Again.');
                     }
                 }
@@ -280,15 +279,13 @@
     });
     </script>
   
-    <!-- Modal -->
+  
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> --}}
+                
                 </div>
                 <div class="modal-body">
                     Your account has been deleted

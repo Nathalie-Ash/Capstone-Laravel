@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
@@ -121,12 +122,7 @@ Route::post('/sign2', [RegisterController::class, 'register'])->name('register')
 
 // Auth::routes();
 // routes/web.php
-
-//Route::get('/retrieve-account', 'App\Http\Controllers\Auth\RetrieveAccountController@showVerifyEmailForm')->name('retrieve.account');
-//Route::get('/verify-email', 'App\Http\Controllers\Auth\RetrieveAccountController@verifyEmail')->name('retrieve.account.verify');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('step1', [PreferencesController::class, 'showStep1'])->name('steps');
 Route::post('step1', [PreferencesController::class, 'storeStep1'])->name('step1');
 Route::get('step2', [PreferencesController::class, 'showStep2'])->name('step2');
@@ -138,7 +134,17 @@ Route::post('step3', [PreferencesController::class, 'storeStep3'])->name('step3'
 Route::get('step4', [PreferencesController::class, 'showStep4'])->name('step4');
 
 Route::post('step4', [PreferencesController::class, 'storeStep4'])->name('step4');
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+//Route::get('/retrieve-account', 'App\Http\Controllers\Auth\RetrieveAccountController@showVerifyEmailForm')->name('retrieve.account');
+//Route::get('/verify-email', 'App\Http\Controllers\Auth\RetrieveAccountController@verifyEmail')->name('retrieve.account.verify');
+Route::middleware(['session.timeout'])->group(function () {
+
+Route::get('/set-session', [SessionController::class, 'setSession']);
+Route::get('/get-session', [SessionController::class, 'getSession']);
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 Route::middleware(['auth', 'nonadmin'])->group(function () {
 Route::get('/connections', [ExampleController::class, "connections"])->name('connections');
@@ -194,3 +200,4 @@ Auth::routes();
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/update-timetable', 'UserPreferencesController@updateTimetable')->name('update.timetable');
+});

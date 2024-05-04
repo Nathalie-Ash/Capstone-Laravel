@@ -235,16 +235,16 @@
             window.location.href = "profile2";
         }
         document.addEventListener("DOMContentLoaded", function() {
-            // Add event listener to the Edit button
+           
             document.getElementById("editButton").addEventListener("click", function() {
-                // Enable editing of form fields
+              
                 enableFormFields();
                 changeTextBackground();
             });
 
-            // Add event listener to the Save button
+            
             document.getElementById("saveButton").addEventListener("click", function() {
-                // Collect updated form data
+                
                 var updatedData = {
                     school: document.getElementById("school").value,
                     major: document.getElementById("major").value,
@@ -264,15 +264,15 @@
                     movieItem2: document.getElementById("movieItem2").value,
                     movieItem3: document.getElementById("movieItem3").value
                 };
-                // Send updated data to the backend for storage
+             
                 saveUserData(updatedData);
             });
         });
 
-        // Function to enable editing of form fields
+        
         function enableFormFields() {
 
-            // Remove readonly attribute from form fields to enable editing
+           
             document.getElementById("school").removeAttribute("readonly");
             document.getElementById("major").removeAttribute("readonly");
             document.getElementById("minor").removeAttribute("readonly");
@@ -292,9 +292,9 @@
             document.getElementById("movieItem3").removeAttribute("readonly");
         }
 
-        // Function to send updated user data to the backend for storage
+     
         function saveUserData(data) {
-            // Send a POST request to the backend endpoint with the updated data
+           
             fetch("{{ route('saveUserData') }}", {
                     method: "POST",
                     headers: {

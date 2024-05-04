@@ -45,7 +45,7 @@ class LoginController extends Controller
 
             // Attempt to authenticate the user
             if (Auth::attempt($this->credentials($request))) {
-                // Authentication passed
+                
                 if (Auth::user()->deleted) {
                     return $this->sendFailedLoginResponse($request);
                 }
@@ -79,14 +79,17 @@ class LoginController extends Controller
         
         public function logout(Request $request)
         {
-            Auth::logout(); // Log the user out
-            $request->session()->invalidate(); // Invalidate the session
-            $request->session()->regenerateToken(); // Regenerate the CSRF token
-            return redirect('/'); // Redirect to the home page or any other page after logout
+            Auth::logout();
+            $request->session()->invalidate(); 
+            $request->session()->regenerateToken();
+            return redirect('/'); 
         }
    
     protected function authenticated(Request $request, $user)
     {
+        $request->session()->put('username', $user->username);
+        $request->session()->put('expires_at', now()->addMinutes(30));
+    
         if ($user->is_admin) {
             return redirect('/admin');
         }
