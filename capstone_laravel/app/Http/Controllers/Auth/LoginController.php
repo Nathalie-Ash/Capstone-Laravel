@@ -80,6 +80,7 @@ class LoginController extends Controller
                 return $this->sendFailedLoginResponse($request);
             }
         }
+    }
         protected function sendFailedLoginResponse(Request $request)
         {
             $user = \App\Models\User::where($this->username(), $request->{$this->username()})->first();
