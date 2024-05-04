@@ -141,7 +141,7 @@ Route::middleware(['session.timeout'])->group(function () {
 Route::get('/set-session', [SessionController::class, 'setSession']);
 Route::get('/get-session', [SessionController::class, 'getSession']);
 
-
+Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -191,7 +191,7 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('d
 Route::post('/store-avatar', [PreferencesController::class, 'storeAvatar'])->name('store.avatar');
 
 
-Route::post('/soft-delete/{id}', [UserController::class, 'softDelete'])->name('softDeleteUser');
+
 Route::post('/connections/{connectionid}',[userContactsController::class,'sendContact'])->name('sendContact');
 Route::get('/contact', [userContactsController::class, 'receivedContacts'])->name('received.contacts');
 });

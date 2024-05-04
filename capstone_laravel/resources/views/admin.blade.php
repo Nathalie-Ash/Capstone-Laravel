@@ -113,11 +113,20 @@
     </section>
 
 </body>
+@if(count($users)>=9)
 <footer class="fixed-bottom text-center small text-muted py-2"
-    style="position: unset; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
     <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
     </p>
 </footer>
+@else
+    <footer class="fixed-bottom text-center small text-muted py-2"
+    style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
+    </p>
+</footer> 
+
+@endif
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
