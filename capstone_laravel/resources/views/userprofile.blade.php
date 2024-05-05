@@ -126,12 +126,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card" style="background-color:#f7f5f5;margin-bottom: 40px;">
-                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;">
-
-                    <div class="card" style="background-color:#f7f5f5;">
-                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit:cover">
-
-
+                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit: cover;">
 
                         <div class="card-body" >
                             <h1 class="card-title" style="font-size: 25px;">{{ $user->name }}</h1>
@@ -362,7 +357,7 @@
                 <div class="mb-3 row" style="margin-top: 10px;">
                     <div style="display: flex; align-items: center;">
                         @if ($isConnection)
-                            @if ($userPreferences->timetable_path && $userPreferences->timetable_path!='images/default_document.png')
+                            @if ($userPreferences->timetable_path)
                                 <p
                                     style="border-radius: 5%; padding: 5px; font-weight: normal; margin-right: 10px;">
                                     Find out if you have common classes or similar free times!

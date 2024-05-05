@@ -226,13 +226,13 @@
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                                     class="btn btn-primary"
 
-                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">DELETE
-                                    ACCOUNT</a>
+                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">Delete
+                                    Account</a>
                                 @else  
                                 <a href="#" onclick="event.preventDefault(); document.getElementById('idc-form').submit();"
                                     class="btn"
-                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">RETRIEVE
-                                    ACCOUNT</a>
+                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">Retreive
+                                    Account</a>
                                 @endif
 
 
@@ -240,24 +240,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="height: 485px;">
+                <div class="col-md-6" style="height: 520px;">
                     <div class="card" style="background-color:#f7f5f5; height: 100%;">
                         @if (!$userPreferences->timetable_path)
-                        <img src='/images/default_document.png' class="card-img-top" style="max-width: 100%; max-height: 80%; object-fit: contain;">
+                        <img src='/images/default_document.png' class="card-img-top" style="text-align: center; object-fit: contain;">
                         @else
                         <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%" height="80%" style="border: none;"></iframe>
                         @endif
-                        <div class="card-body" style="height: 100%;">
+                        
                 
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
                                 <form id="delete-timetable-form" action="{{ route('delete.timetable', ['userid' => $user->id]) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
-                                <a href="#" class="btn" style="background-color: #7d9757; width: 100%; height: min-content; color: white; font-size: larger; float: right; " onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">Delete Timetable</a>
+                                <a href="#" class="btn" style="background-color: #7d9757; width: 100%; height: min-content; color: white; font-size: larger; float: right; margin: 20px;" onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">Delete Timetable</a>
                 
                             </div>
-                        </div>
+                       
                     </div>
                 </div>
                 
