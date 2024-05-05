@@ -23,7 +23,8 @@
                     @foreach ($requests as $request)
                         <div class="row"
                             style="border: 2px solid black; display: flex; align-items: center; border-radius: 5px;">
-                            <div class="col-sm-2">
+
+                            <div class="col-md-2">
                                 @php
                                 $senderId = $request->sender->id;
                                 $userImage = $userImages[$senderId] ?? null;
@@ -35,18 +36,18 @@
                                 <img src="{{ asset('images/default_profile.png') }}"
                                     style="width: 100px; margin: 5px; float: left; margin-left: 15px;object-fit:cover">
                             @endif
-                                </div>
-                            <div class="col-sm-2" style="float: left;">
-                                <p class="textStyle"
-                                    style="text-align: left; font-size: 25px; padding: 0p; margin: 0px;width: max-content;">
-                                    {{ $request->sender->name }}</p>
-                                <p style="text-align: left; font-weight: lighter; padding: 0px;width: max-content">{{$mutualConnections[$senderId]}} mutual connections</p>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-md-2" style="float: left;">
+                                <p class="textStyle"
+                                    style="text-align: left; font-size: 25px; padding: 0; margin: 0;width: max-content;">
+                                    {{ $request->sender->name }}</p>
+                                <p style="text-align: left; font-weight: lighter; padding: 0;width: max-content">{{$mutualConnections[$senderId]}} mutual connections</p>
+                            </div>
+                            <div class="col-md-8" >
                                 <form action="{{ route('user.profile', ['id' => $request->sender->id]) }}">
                                     @csrf
                                     <button type="submit" class="btn"
-                                        style="background-color:#1b413d; width: 25%;width:max-content; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;">View
+                                        style="background-color:#1b413d; width: 25%;width:max-content; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 30px;margin-top:16px;margin-bottom: 10px;">View
                                         Profile</button>
                                 </form>
                                 <form method="POST" action="{{ route('acceptConnection') }}">
@@ -60,7 +61,7 @@
                                     @csrf
                                     <input type="hidden" name="connection_id" value="{{ $request->sender->id }}">
                                     <button type="submit" class="btn"
-                                        style="background-color:#FF6F28; width: 15%; width:max-content; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;">Delete</button>
+                                        style="background-color:#FF6F28; width: 15%; width:max-content; border-left: 30px; color: white; font-size: larger; float: right;float:bottom; margin-left: 30px;" style="margin-bottom: 10px;margin-top: 10px;">Delete</button>
                                 </form>
 
                             </div>

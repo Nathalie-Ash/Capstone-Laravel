@@ -125,10 +125,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
+                    <div class="card" style="background-color:#f7f5f5;margin-bottom: 40px;">
+                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;">
+
                     <div class="card" style="background-color:#f7f5f5;">
                         <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit:cover">
 
-                        <div class="card-body">
+
+
+                        <div class="card-body" >
                             <h1 class="card-title" style="font-size: 25px;">{{ $user->name }}</h1>
                             <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }}
                             <p>
@@ -169,12 +174,12 @@
                     </div>
                 </div>
                 <div class="col-md-4" >
-                    <div>
+                    <div style="margin-top: -40px;margin-bottom: 40px;"> 
                         <div class="text-center">
 
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
                         </div>
-                        <div class="col" id="div1">Outdoor Activites
+                        <div class="col" id="div1" >Outdoor Activites
                             <div class="mb-3 row" style="margin-top: 10px;">
                                 <label for="staticUsername" class="col-sm-2 col-form-label"
                                     style="width:fit-content;">Activity 1</label>
@@ -234,7 +239,7 @@
                     </div>
                 </div>
                 <div class="col-md-4" >
-                    <div>
+                    <div style ="margin-top: -40px;margin-bottom: 40px;">
                         <div class="text-center">
 
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
@@ -350,7 +355,7 @@
                 <img class="animated-element" src={{ asset('images/image1.png') }}>
             </div> --}}
             <div class="col" id="div1"
-                style="width: 206%;border-radius: 10px;height: max-content; margin-top: 40px;">
+                style="width: 206%;border-radius: 10px;height: max-content; ">
                 Timetable
 
 
