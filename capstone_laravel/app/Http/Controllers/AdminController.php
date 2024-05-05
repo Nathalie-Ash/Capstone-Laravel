@@ -19,8 +19,16 @@ class AdminController extends Controller
             $userPreferences = UserPreferences::where('user_id', $user->id)->first();
             $userImages[$user->id] = $userPreferences->avatar ?? 'images/default_profile.png';
         }
+        $deletedusers = User::where('is_admin', false)
+        ->where('deleted', true)->get();
+    $deleteduserImages = [];
 
-        return view('admin', compact('users', 'userImages'));
+    foreach ($deletedusers as $deleteduser) {
+        $deleteduserPreferences = UserPreferences::where('user_id', $deleteduser->id)->first();
+        $deleteduserImages[$deleteduser->id] = $deleteduserPreferences->avatar ?? 'images/default_profile.png';
+    }
+
+        return view('admin', compact('users', 'userImages','deletedusers','deleteduserImages'));
     }
     public function indexprofile($id)
     {
@@ -48,6 +56,19 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Timetable deleted successfully');
     }
+    public function retrieveaccount($id)
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'User not found');
+    }
+
+    $user->deleted = false;
+    $user->save();
+
+    return redirect()->back()->with('success', 'Account retrieved successfully');
+}
 
 
     public function updateBio(Request $request, $userid)

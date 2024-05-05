@@ -109,6 +109,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/edit-bio/{userid}', [AdminController::class, 'updateBio'])->name('edit.bio');
     Route::delete('/adminview/{userid}/delete-avatar', [AdminController::class, 'deleteavatar'])->name('delete.avatar');
     Route::delete('/adminview/{userid}/delete-timetable', [AdminController::class, 'deletetimetable'])->name('delete.timetable');
+    Route::post('/retrieve-account/{id}',[AdminController::class, 'retrieveaccount'])->name('retrieve.acc');
 });
 
 Route::post('/check-username', [RegisterController::class, 'checkUsername'])->name('checkUsername');

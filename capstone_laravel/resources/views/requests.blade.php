@@ -31,10 +31,10 @@
                             @endphp
                             @if ($userImage)
                                 <img src="{{ asset($userImage) }}"
-                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
+                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;object-fit:cover">
                             @else
                                 <img src="{{ asset('images/default_profile.png') }}"
-                                    style="width: 100px; margin: 5px; float: left; margin-left: 15px;">
+                                    style="width: 100px; margin: 5px; float: left; margin-left: 15px;object-fit:cover">
                             @endif
                             </div>
                             <div class="col-md-2" style="float: left;">

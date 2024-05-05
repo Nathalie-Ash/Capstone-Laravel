@@ -25,6 +25,7 @@
                     <div class="row"
                         style="border: 2px solid black; display: flex; align-items: center; border-radius: 5px;">
 
+
                         <div class="col-md-2">
                             @php
                                 $senderId = $connection->sender->id;
@@ -32,13 +33,14 @@
                             @endphp
                             @if ($userImage)
                                 <img src="{{ asset($userImage) }}"
-                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; margin-left: 15px;">
+                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; margin-left: 15px;object-fit:cover">
                             @else
                                 <img src="{{ asset('images/default_profile.png') }}"
                                     style="width: 100px; margin: 5px; margin-left: 15px;">
                             @endif
                         </div>
                         <div class="col-md-5">
+
                             <p class="textStyle"
                                 style="text-align: left; font-size: 25px; padding: 0; margin: 0;width: max-content;">
                                 {{ $connection->sender->name }}</p>

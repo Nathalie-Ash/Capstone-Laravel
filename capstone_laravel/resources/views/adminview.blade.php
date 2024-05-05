@@ -186,9 +186,10 @@
     <main class="main-content">
         <div class="container">
             <div class="row">
+                
                 <div class="col-md-6">
                     <div class="card" style="background-color:#f7f5f5;">
-                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;">
+                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit:contain">
 
                         <div class="card-body">
                             <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>
@@ -209,17 +210,30 @@
                                     @csrf
                                     @method('DELETE')
                                 </form>
+                                <form id="idc-form"
+                                action="{{ route('retrieve.acc', ['id' => $user->id]) }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                        
+                            </form>
                                 <a href="#" class="btn"
                                     style="background-color: #7d9757; width: 33%; color: white; font-size: 20px; float: right;text-align: center "
                                     onclick="event.preventDefault(); document.getElementById('delete-avatar-form').submit();">Delete
                                     Avatar</a>
 
 
-
+                                 @if(!$user->deleted)
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                                     class="btn btn-primary"
-                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;font-size: 20px">Delete
-                                    Account</a>
+
+                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">DELETE
+                                    ACCOUNT</a>
+                                @else  
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('idc-form').submit();"
+                                    class="btn"
+                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">RETRIEVE
+                                    ACCOUNT</a>
+                                @endif
 
 
                             </div>
