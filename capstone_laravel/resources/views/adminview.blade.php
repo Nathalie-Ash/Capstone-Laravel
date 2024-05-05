@@ -240,10 +240,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="height: 520px;">
+                <div class="col-md-6" style="height: 485px;">
                     <div class="card" style="background-color:#f7f5f5; height: 100%;">
                         @if (!$userPreferences->timetable_path)
-                        <img src='/images/default_document.png' class="card-img-top" style="text-align: center; object-fit: contain;">
+                        <img src='/images/default_document.png' class="card-img-top" style="height:80%;text-align: center; object-fit: contain;">
                         @else
                         <iframe src="{{ asset($userPreferences->timetable_path) }}" width="100%" height="80%" style="border: none;"></iframe>
                         @endif
