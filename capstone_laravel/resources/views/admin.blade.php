@@ -90,7 +90,7 @@
                             $userImage = $userImages[$user->id];
                         @endphp
                         <img src="{{ asset($userImage) }}"
-                            style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;">
+                            style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;object-fit:cover">
 
 
                         <div class="col-sm-2" style="float: left;">
@@ -111,9 +111,54 @@
         </div>
 
     </section>
+    <div style="margin-top:10px">
+    <span style="font-size: 35px">
+        <i class="fas fa-star fa-lg md-3"
+            style="font-size: 50px; color: #8971f6;margin-left:10%;text-align: start;vertical-align: sub;"></i>
+        The Deleted Users</span>
+    </div>
 
+
+    <section id="steps" style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column;">
+        <div class="container text-center">
+
+            @if ($deletedusers->isEmpty())
+                <p>
+                <h2>No Current Deleted Users</h2>
+                </p>
+            @else
+                @foreach ($deletedusers as $deleteduser)
+                    <div class="row"
+                        style="border: 2px solid black; display: flex; align-items: center; border-radius: 5px;">
+
+
+                        @php
+                            $deleteduserImage = $deleteduserImages[$deleteduser->id];
+                        @endphp
+                        <img src="{{ asset($deleteduserImage) }}"
+                            style="width: 100px;height: 50px;border-radius:50%; margin: 5px; float: left; margin-left: 15px;object-fit:cover">
+
+
+                        <div class="col-sm-2" style="float: left;">
+                            <p class="textStyle"
+                                style="text-align: left; font-size: 30px; padding: 0; margin: 0;width: max-content;">
+                                {{ $deleteduser->name }}</p>
+                        </div>
+                        <div class="col-sm-8">
+
+
+                            <a href="{{ route('admin.profile', ['id' => $deleteduser->id]) }}" class="btn"
+                                style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
+                                Profile</a>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+
+    </section>
 </body>
-@if(count($users)>=9)
+@if(count($users)+count($deletedusers)>=9)
 <footer class="fixed-bottom text-center small text-muted py-2"
     style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
     <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
