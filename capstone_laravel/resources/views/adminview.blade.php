@@ -200,8 +200,8 @@
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
 
                                 <a href="#" class="btn"
-                                    style="background-color: #579792; width: 33%; color: white; font-size: larger; float: right; "
-                                    data-bs-toggle="modal" data-bs-target="#editBioModal">EDIT DESCRIPTION</a>
+                                    style="background-color: #579792; width: 33%; color: white; font-size: 20px; float: right; "
+                                    data-bs-toggle="modal" data-bs-target="#editBioModal">Edit Description</a>
 
                                 <form id="delete-avatar-form"
                                     action="{{ route('delete.avatar', ['userid' => $user->id]) }}" method="POST"
@@ -210,16 +210,16 @@
                                     @method('DELETE')
                                 </form>
                                 <a href="#" class="btn"
-                                    style="background-color: #7d9757; width: 33%; color: white; font-size: larger; float: right; "
-                                    onclick="event.preventDefault(); document.getElementById('delete-avatar-form').submit();">DELETE
-                                    AVATAR</a>
+                                    style="background-color: #7d9757; width: 33%; color: white; font-size: 20px; float: right;text-align: center "
+                                    onclick="event.preventDefault(); document.getElementById('delete-avatar-form').submit();">Delete
+                                    Avatar</a>
 
 
 
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                                     class="btn btn-primary"
-                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;">DELETE
-                                    ACCOUNT</a>
+                                    style="border: none;width:33%; background-color:#ff6f28; color: white;font-size: larger; float: right;font-size: 20px">Delete
+                                    Account</a>
 
 
                             </div>
@@ -240,7 +240,7 @@
                                     @csrf
                                     @method('DELETE')
                                 </form>
-                                <a href="#" class="btn" style="background-color: #7d9757; width: 100%; height: min-content; color: white; font-size: larger; float: right; " onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">DELETE TIMETABLE</a>
+                                <a href="#" class="btn" style="background-color: #7d9757; width: 100%; height: min-content; color: white; font-size: larger; float: right; " onclick="event.preventDefault(); document.getElementById('delete-timetable-form').submit();">Delete Timetable</a>
                 
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editBioModalLabel">Edit Description</h5>
+                            <h5 class="modal-title" id="editBioModalLabel" style = "font-size: 20px;">Edit Description</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -297,7 +297,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Cancel</button>
+                                    data-bs-dismiss="modal" >Cancel</button>
                                 <button type="submit" class="btn btn-danger" style="background-color:#FF6F28 ">Save
                                     Changes</button>
                             </div>

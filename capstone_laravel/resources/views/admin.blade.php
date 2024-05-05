@@ -102,7 +102,7 @@
 
 
                             <a href="{{ route('admin.profile', ['id' => $user->id]) }}" class="btn"
-                                style="background-color:#FF6F28; width: 25%; border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;">View
+                                style="background-color:#FF6F28;  border-left: 30px; color: white; font-size: larger; float: right; margin-left: 20px;margin-bottom: 10px; margin-top: 10px;">View
                                 Profile</a>
                         </div>
                     </div>

@@ -46,7 +46,7 @@
                                 style="text-align: left; font-size: 25px; padding: 0; margin: 0;width: max-content;">
                                 {{ $contact->receiver_name }}</p>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8" style="margin-bottom:10px;margin-top: 10px; ">
 
                             @if ($receivedContacts->isEmpty())
                                 <p> No info shared</p>
