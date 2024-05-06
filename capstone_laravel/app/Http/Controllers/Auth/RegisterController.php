@@ -137,4 +137,15 @@ class RegisterController extends Controller
             return response()->json('available');
         }
     }
+    public function checkEmail(Request $request)
+{
+    $email = $request->email;
+    $user = User::where('email', $email)->first();
+    if ($user) {
+        return response()->json('taken');
+    } else {
+        return response()->json('available');
+    }
+}
+
 }

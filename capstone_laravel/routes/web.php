@@ -113,7 +113,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::post('/check-username', [RegisterController::class, 'checkUsername'])->name('checkUsername');
-
+Route::post('/check-email', [RegisterController::class, 'checkEmail'])->name('checkEmail');
 Route::get('/signup', [RegisterController::class, 'showPage1'])->name('signup');
 Route::post('/signup', [RegisterController::class, 'handlePage1']);
 
