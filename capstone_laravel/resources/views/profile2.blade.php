@@ -7,6 +7,8 @@
             input[type="text"] {
                 color: black;
             }
+
+         
         </style>
 
 
@@ -22,7 +24,7 @@
                 style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger; margin-left: 30px;min-width: max-content">Edit</button>
 
             <button type="button" id="saveButton" class="btn btn-secondary"
-                style=" width: 20%;color:white;font-size: larger;min-width: max-content"">Save</button>
+                style=" width: 20%;color:white;font-size: larger;min-width: max-content">Save</button>
 
         </div>
 
@@ -40,47 +42,53 @@
                         <div id="division1" style="height: 100%;">
                             <p id="step-title" style="padding-top: 0px;">Info</p>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">School</label>
-                                <div class="col-sm-10">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="text-align: left">School</label>
+                                <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="school"
                                         value="{{ $userData->school }}" style="background-color: #c2c2c2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">Major</label>
-                                <div class="col-sm-10">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="text-align: left">Major</label>
+                                <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="major"
                                         value="{{ $userData->major }}" style="background-color: #c2c2c2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label" style="text-align: left">Minor</label>
-                                <div class="col-sm-10">
+                                <label for="staticUsername" class="col-sm-2 col-form-label"
+                                    style="text-align: left">Minor</label>
+                                <div class="col-sm-8">
                                     <input type="text" readonly class="form-control-plaintext" id="minor"
                                         value="{{ $userData->minor }}" style="background-color: #c2c2c2">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="staticUsername" class="col-sm-2 col-form-label">Campus</label>
-                                <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="campus"
-                                        value="{{ $userData->campus }}" style="background-color: #c2c2c2">
+                                <label for="staticUsername" class="col-sm-2 col-form-label" style="width: min-content">Campus</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="campus" value="{{ $userData->campus }}" style="background-color: #c2c2c2;">
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 
                     <div class="col-md-6" style="padding-top: 20px;">
-                        <div id="division1" style="height: 100%;">
+                        <div id="division1" style="height: 302px">
                             <p id="step-title" style="padding-top: 0px;">Bio</p>
-                            <div class="row "  style="height: 90%;max-height: min-content;justify-content: center; ">
-                                <input readonly type="text" value="{{ $userData->description }}" id="description"
-                                    style="background-color: #c2c2c2;  text-align: left; border-bottom: 5px;width: 100%; max-width: 100%;">
+                            <div class="row description-container" style="height: 90%; max-height: min-content; justify-content: center;">
+                                <textarea readonly id="description" class="description-text"
+                                    style="background-color: #c2c2c2; text-align: top; border-bottom: 5px; width: 90%; height: 80%; margin-bottom: 3px;font-weight: normal; border-radius: 5%">{{ $userData->description }}</textarea>
                             </div>
                         </div>
                     </div>
                     
                     
+                    
+
+
                 </div>
                 <div class ="row" style="padding-top: 20px;">
 
@@ -223,34 +231,35 @@
 
 
         </div>
-    
-           
+
+
 
     </section>
 
 
     </div>
     <footer class="fixed-bottom text-center small text-muted py-2"
-    style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
-    <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
-    </p>
-</footer>
+        style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+        <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights
+            reserved.
+        </p>
+    </footer>
     <script>
         function goToNextPage() {
 
             window.location.href = "profile2";
         }
         document.addEventListener("DOMContentLoaded", function() {
-           
+
             document.getElementById("editButton").addEventListener("click", function() {
-              
+
                 enableFormFields();
                 changeTextBackground();
             });
 
-            
+
             document.getElementById("saveButton").addEventListener("click", function() {
-                
+
                 var updatedData = {
                     school: document.getElementById("school").value,
                     major: document.getElementById("major").value,
@@ -270,15 +279,15 @@
                     movieItem2: document.getElementById("movieItem2").value,
                     movieItem3: document.getElementById("movieItem3").value
                 };
-             
+
                 saveUserData(updatedData);
             });
         });
 
-        
+
         function enableFormFields() {
 
-           
+
             document.getElementById("school").removeAttribute("readonly");
             document.getElementById("major").removeAttribute("readonly");
             document.getElementById("minor").removeAttribute("readonly");
@@ -298,20 +307,20 @@
             document.getElementById("movieItem3").removeAttribute("readonly");
         }
 
-     
+
         function saveUserData(data) {
-           
+
             fetch("{{ route('saveUserData') }}", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}" 
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
                     },
                     body: JSON.stringify(data)
                 })
                 .then(response => {
                     if (response.ok) {
-                        
+
                         resetTextBackground();
                         window.location.href = "profile1";
                     } else {

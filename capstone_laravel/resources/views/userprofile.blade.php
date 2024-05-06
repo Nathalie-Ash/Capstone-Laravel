@@ -130,7 +130,7 @@
 
                         <div class="card-body" >
                             <h1 class="card-title" style="font-size: 25px;">{{ $user->name }}</h1>
-                            <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }}
+                            <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }} Campus
                             <p>
                             <p class="card-text" style=" font-weight: normal">{{ $userPreferences->description }} </p>
 
