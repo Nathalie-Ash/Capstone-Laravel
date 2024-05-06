@@ -264,18 +264,20 @@
                                             )->first();
                                         @endphp
                                         <div class="col-md-6" style="margin-top: 1%;">
-                                            <div class="card" style="background-color:#f7f5f5;">
-                                                <img style="height: 300px;margin-top: 7px; object-fit:fill"
+
+                                            <div class="card" style="background-color:#f7f5f5; height:550px">
+                                                <img style="height: 300px;margin-top: 7px; object-fit:cover"
+
                                                     src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
                                                     alt="...">
-                                                <div class="card-body">
+                                                <div class="card-body d-flex flex-column">
                                                     <h1 class="card-title" style="font-size: 25px;">{{ $userName }}</h1>
                                                     <p style="font-size: 15px; font-weight: lighter">
                                                         {{ $userPreferences->major }}, {{ $userPreferences->campus }} Campus
                                                     </p>
                                                     <p class="card-text" style=" font-weight: normal; height: 20%;">
                                                         {{ $userPreferences->description }}</p>
-                                                    <div class="progress-container">
+                                                    <div class="progress-container mt-auto">
                                                         <span>MATCH:</span>
                                                         <div class="progress-wrapper">
                                                             <div class="progress">
@@ -288,16 +290,17 @@
                                                         </div>
                                                         <span>{{ $matchedUser['matching_percentage'] }}%</span>
                                                     </div>
-                                                    <div
-                                                        style="display:flex; margin-top:1%; justify-content: space-between">
-                                                        <a href="{{ route('user.profile', ['id' => $userPreferences->user_id]) }}"
-                                                            class="btn btn-primary"
-                                                            style=" border: none;width:49%; background-color:#ff6f28; color: white">View
-                                                            Profile</a>
-                                                        <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}"
-                                                            class="btn btn-primary"
-                                                            style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
-                                                            Add</a>
+                                                    <div class="mt-3">
+                                                        <div style="display:flex; justify-content: space-between">
+                                                            <a href="{{ route('user.profile', ['id' => $userPreferences->user_id]) }}"
+                                                                class="btn btn-primary"
+                                                                style=" border: none;width:49%; background-color:#ff6f28; color: white">View
+                                                                Profile</a>
+                                                            <a href="{{ route('add.profile', ['profileId' => $userPreferences->user_id]) }}"
+                                                                class="btn btn-primary"
+                                                                style="border: none;width:49%; background-color:#ff6f28; color: white">Quick
+                                                                Add</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,6 +313,8 @@
                     </div>
                 </div>
             </main>
+            
+
             @if(session('session_about_to_expire'))
     <script>
         alert("Your session is about to expire!");
