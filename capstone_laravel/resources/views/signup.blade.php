@@ -46,8 +46,9 @@
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form1Example13">LAU Email</label>
-                            <input type="email" name ="email" id="form1Example123"
-                                class="form-control form-control-lg" style="background-color:#dcdcdf;" />
+                            <input type="email" name="email" id="form1Example123" class="form-control form-control-lg" style="background-color:#dcdcdf;" />
+                            <span id="emailAvailability" style="color: red; margin-left:0.5%"></span>
+                            <span id="emailAvailability1" style="color: black;"></span>
                         </div>
 
                         <div class="form-outline mb-4">
@@ -73,7 +74,7 @@
                         </div>
                         <div style ="text-align: center;">
 
-                            <button type= "submit" class="btn btn-primary btn-lg btn-block"
+                            <button id="nextButton" type= "submit" class="btn btn-primary btn-lg btn-block"
                                 style="border: none;background-color:#ff6f28;">NEXT</button>
 
                             </br>
@@ -101,7 +102,34 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    
     $(document).ready(function() {
+        $('#form1Example123').on('input', function() {
+            var email = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('checkEmail') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "email": email
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.trim() === 'taken') {
+                        $('#emailAvailability').html("Email is already taken.");
+                        $('#emailAvailability1').html("");
+                        $('#nextButton').prop('disabled', true);
+                    } else {
+                        $('#emailAvailability1').html("Email is available.");
+                        $('#emailAvailability').html("");
+                        $('#nextButton').prop('disabled', false);
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
         $('#form1Example1234').on('input', function() {
             var username = $(this).val();
             $.ajax({
@@ -116,15 +144,31 @@
                     if (response.trim() === 'taken') {
                         $('#usernameAvailability').html("Username is already taken.");
                         $('#usernameAvailability1').html("");
+                        $('#nextButton').prop('disabled', true);
                     } else {
                         $('#usernameAvailability1').html("Username is available.");
                         $('#usernameAvailability').html("");
+                        $('#nextButton').prop('disabled', false);
                     }
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
                 }
             });
+        });
+        $('#form1Example23').on('input', function() {
+            let password = $('#form1Example23').val();
+            let confirmPassword = $('#form1Example234').val();
+
+            if (password !== confirmPassword) {
+                $('#passwordMatchError').html("Passwords do not match");
+                $('#nextButton').prop('disabled', true);
+            } else {
+                $('#passwordMatchError').html("");
+                if ($('#emailAvailability').html() === "" && $('#usernameAvailability').html() === "") {
+                    $('#nextButton').prop('disabled', false);
+                }
+            }
         });
     });
 </script>
