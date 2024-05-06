@@ -78,7 +78,7 @@ class PreferencesController extends Controller
             'movieItem1' => 'required',
             'movieItem2' => 'required',
             'movieItem3' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
         ]);
 
         $request->session()->put('user_preferences.step3', $validatedData);

@@ -271,9 +271,9 @@
                                                 <div class="card-body">
                                                     <h1 class="card-title" style="font-size: 25px;">{{ $userName }}</h1>
                                                     <p style="font-size: 15px; font-weight: lighter">
-                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }}
+                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }} Campus
                                                     </p>
-                                                    <p class="card-text" style=" font-weight: normal">
+                                                    <p class="card-text" style=" font-weight: normal; height: 20%;">
                                                         {{ $userPreferences->description }}</p>
                                                     <div class="progress-container">
                                                         <span>MATCH:</span>
