@@ -265,7 +265,7 @@
                                         @endphp
                                         <div class="col-md-6" style="margin-top: 1%;">
                                             <div class="card" style="background-color:#f7f5f5;">
-                                                <img style="height: 300px;margin-top: 7px; object-fit:cover"
+                                                <img style="height: 300px;margin-top: 7px; object-fit:fill"
                                                     src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
                                                     alt="...">
                                                 <div class="card-body">

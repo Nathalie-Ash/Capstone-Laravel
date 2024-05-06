@@ -36,7 +36,8 @@ use App\Http\Controllers\UserProfileControllerController;
 |
 */
 
-Route::get('/send-verification-email', [VerificationController::class, 'sendVerificationEmail'])->name('send-verification-email');
+Route::get('/send-verification-email', [VerificationController::class, 'sendVerificationEmail'])
+->name('send-verification-email');
 
 
 Route::post('/reset-password', function (Request $request) {

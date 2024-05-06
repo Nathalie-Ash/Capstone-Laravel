@@ -128,25 +128,24 @@
                     <div class="card" style="background-color:#f7f5f5;margin-bottom: 40px;">
                         <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit: cover;">
 
-                        <div class="card-body" >
+                        <div class="card-body">
                             <h1 class="card-title" style="font-size: 25px;">{{ $user->name }}</h1>
-                            <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }}, {{ $userPreferences->campus }} Campus
-                            <p>
-                            <p class="card-text" style=" font-weight: normal">{{ $userPreferences->description }} </p>
-
+                            <p style="font-size: 15px; font-weight: lighter; margin-bottom: 0px;">{{ $userPreferences->major }}, {{ $userPreferences->campus }}</p>
+                            <div class="scrollable-description" style="max-height: 100px; overflow-y: auto;">
+                                <p class="card-text" style="font-weight: normal; font-size: 13px;">{{ $userPreferences->description }}</p>
+                            </div>
+                        
                             <div class="progress-container">
                                 <span>MATCH:</span>
                                 <div class="progress-wrapper">
                                     <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ $matchingPercentage }}%"
-                                            aria-valuenow="{{ $matchingPercentage }}" aria-valuemin="0" aria-valuemax="100"
-                                            style="background-color:#579792;"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: {{ $matchingPercentage }}%" aria-valuenow="{{ $matchingPercentage }}" aria-valuemin="0" aria-valuemax="100" style="background-color:#579792;"></div>
                                     </div>
                                 </div>
                                 <span>{{ $matchingPercentage }}%</span>
                             </div>
-
-
+                        
+                        
                             <div style="display:flex; margin-top:1%; justify-content: space-between">
                             @if ($isConnection)  
                                 <a href="#" class="btn"
