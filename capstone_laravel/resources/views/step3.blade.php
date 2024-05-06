@@ -93,7 +93,7 @@
                         <div id="division1" style="height: 85%;">
                             <h1 id="step-title" style="padding-bottom: 20px">Tell Us More About You</h1>
                             <div class="row " style="height: 80%;max-height: min-content;justify-content: center; ">
-                                <textarea id="description" name="description" maxlength="255"
+                                <textarea id="description" name="description" maxlength="150"
                                     style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;color: white;width: 100%; max-width: 100%;"></textarea>
                                     <span id="descriptionWarning" style="color: red;"></span>
                             </div>
@@ -357,7 +357,7 @@
 
         descriptionInput.addEventListener('input', function() {
             var descriptionLength = descriptionInput.value.length;
-            if (descriptionLength>=255) {
+            if (descriptionLength>150) {
                 descriptionWarning.textContent = "Description should be maximum 255 characters.";
                 descriptionInput.value = descriptionInput.value.slice(0, 255);
             } else {
