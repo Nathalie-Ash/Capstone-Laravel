@@ -33,7 +33,7 @@
                             @endphp
                             @if ($userImage)
                                 <img src="{{ asset($userImage) }}"
-                                    style="width: 100px;height: 50px;border-radius:50%; margin: 5px; margin-left: 15px;object-fit:cover">
+                                    style="width: 80px;height: 80px;border-radius:50%; margin: 5px; margin-left: 15px;object-fit:cover">
                             @else
                                 <img src="{{ asset('images/default_profile.png') }}"
                                     style="width: 100px; margin: 5px; margin-left: 15px;">

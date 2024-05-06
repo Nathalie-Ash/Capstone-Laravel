@@ -188,9 +188,10 @@
             <div class="row">
                 
                 <div class="col-md-6">
-                    <div class="card" style="background-color:#f7f5f5;">
-                        <img src={{ asset($userPreferences->avatar) }} class="card-img-top" style="height: 285px;object-fit:contain">
-
+                    <div class="card" style="background-color:#f7f5f5;height: 550px;margin-bottom: 10px; ">
+                        <img style="height: 300px;margin-top: 7px; object-fit:scale"
+                        src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
+                        alt="...">
                         <div class="card-body">
                             <h1 class="card-title" style="font-size: 30px;">{{ $user->name }}</h1>
                             <p style="font-size: 15px; font-weight: lighter">{{ $userPreferences->major }},
@@ -240,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="height: 485px;">
+                <div class="col-md-6" style="height: 550px;">
                     <div class="card" style="background-color:#f7f5f5; height: 100%;">
                         @if (!$userPreferences->timetable_path)
                         <img src='/images/default_document.png' class="card-img-top" style="height:80%;text-align: center; object-fit: contain;">
