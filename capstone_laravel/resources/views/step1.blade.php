@@ -1,4 +1,8 @@
 <x-stepLayout>
+
+    <head>
+        <title>Step 1</title>
+    </head>
     <div>
 
 
@@ -12,7 +16,7 @@
             <section id="steps" style="padding-top: 20px;padding-left: 30px">
 
                 <div class="container text-center">
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-md-4" style="padding-top:10px ">
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
 
@@ -38,9 +42,9 @@
                             <div id="division2" class="input">
 
                                 <h1 id="step-title">What is Your Major ?</h1>
-                                <input name="major" id="major" type="text"> 
+                                <input name="major" id="major" type="text">
                                 <h1 id="step-title">Minor (if applicable)</h1>
-                                <input name="minor" id="minor" type="text"> 
+                                <input name="minor" id="minor" type="text">
                             </div>
                         </div>
                         <div class="col-md-4" style="padding-top:15px ">
@@ -117,7 +121,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
 
-   
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -137,9 +141,9 @@
                 if (event.target && event.target.classList.contains("dropdown-item")) {
                     var selectedSchool = event.target.innerText;
                     document.getElementById('dropdownMenuButton').innerText =
-                        selectedSchool; 
+                        selectedSchool;
                     document.getElementById('school').value =
-                        selectedSchool; 
+                        selectedSchool;
                 }
             });
 
@@ -165,9 +169,10 @@
                 radio.addEventListener("change", function() {
                     if (this.checked) {
                         campusInput.value = this
-                            .value; 
+                            .value;
                         console.log("Selected Campus ID:", campusInput
-                            .value);  }
+                            .value);
+                    }
                 });
             });
 
@@ -216,8 +221,6 @@
                     console.error('Error:', error);
                 });
         }
-
-      
     </script>
 
 </x-stepLayout>

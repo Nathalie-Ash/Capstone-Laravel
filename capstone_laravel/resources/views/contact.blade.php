@@ -3,6 +3,7 @@
 
     <head>
         <link rel="stylesheet" href="/styleN.css">
+        <title>Contact </title>
     </head>
 
     <div>
@@ -81,7 +82,7 @@
                                         style="text-align: left; padding-left: 4.5%;">Phone Number</label>
                                     <div class="col-sm-8">
                                         <input type="text" readonly class="form-control-plaintext" id="phone"
-                                            style="width: 80%; background-color: #579792;border-radius:10%; padding-left: 10px"
+                                            style="width: 80%; background-color: #579792;border-radius:5px; padding-left: 10px"
                                             value="{{ $contact->phone_number }}">
                                     </div>
                                 </div>
@@ -90,7 +91,7 @@
                                         style="text-align: left; padding-left: 4.5%;">Instagram</label>
                                     <div class="col-sm-8">
                                         <input type="text" readonly class="form-control-plaintext" id="instagram"
-                                            style="width: 80%;background-color: #579792;border-radius:7%; padding-left: 10px"
+                                            style="width: 80%;background-color: #579792;border-radius:5px; padding-left: 10px"
                                             value="{{ $contact->instagram }}">
                                     </div>
                                 </div>
@@ -99,7 +100,7 @@
                                         style="text-align: left; padding-left: 4.5%;">Tik Tok</label>
                                     <div class="col-sm-8">
                                         <input type="text" readonly class="form-control-plaintext" id="tiktok"
-                                            style="width: 80%; background-color: #579792;border-radius:10%; padding-left: 10px"
+                                            style="width: 80%; background-color: #579792;border-radius:5px; padding-left: 10px"
                                             value="{{ $contact->tiktok }}">
                                     </div>
                                 </div>
@@ -108,7 +109,7 @@
                                         style="text-align: left; padding-left: 4.5%;">LinkedIn</label>
                                     <div class="col-sm-8">
                                         <input type="text" readonly class="form-control-plaintext" id="linkedIn"
-                                            style="width: 80%;background-color: #579792;border-radius:7%; padding-left: 10px"
+                                            style="width: 80%;background-color: #579792;border-radius:5px; padding-left: 10px"
                                             value="{{ $contact->linkedIn }}">
                                     </div>
                                 </div>

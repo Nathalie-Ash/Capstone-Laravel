@@ -2,6 +2,7 @@
 
     <head>
         <link rel="stylesheet" href="/styleN.css">
+        <title>Profile </title>
     </head>
     <style>
         input[type="file"] {
@@ -74,7 +75,7 @@
                                     <div class="input-group">
                                         <input type="password" readonly class="form-control" id="staticPassword"
                                             value="{{ substr($userData->password, 0, 13) }}"
-                                            style="width: min-content; background-color: #579792; border-radius: 5%; color: white;font-weight: larger;">
+                                            style="width: min-content; background-color: #579792; border-radius: 5px; color: white;font-weight: larger;">
 
                                         <div class="input-group-append">
                                             <a href="{{ route('password.request') }}" class="btn"

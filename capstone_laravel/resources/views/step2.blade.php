@@ -1,5 +1,8 @@
 <x-stepLayout>
 
+    <head>
+        <title>Step 2</title>
+    </head>
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 2</p>
         <p id="textStyle" style="text-align: left;">Tell Us More About You!</p>
@@ -26,7 +29,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem1" name="outdoorItem1">
                                 </ul>
                                 <input type="hidden" id="outdoorItem1Hidden" name="outdoorItem1">
@@ -37,7 +41,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem2" name="outdoorItem2">
                                 </ul>
                                 <input type="hidden" id="outdoorItem2Hidden" name="outdoorItem2">
@@ -48,7 +53,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="outdoorItem3" name="outdoorItem3">
                                 </ul>
                                 <input type="hidden" id="outdoorItem3Hidden" name="outdoorItem3">
@@ -65,7 +71,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem1">
                                 </ul>
                                 <input type="hidden" id="indoorItem1Hidden" name="indoorItem1">
@@ -76,7 +83,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem2">
                                 </ul>
                                 <input type="hidden" id="indoorItem2Hidden" name="indoorItem2">
@@ -87,7 +95,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Activity 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="indoorItem3">
                                 </ul>
                                 <input type="hidden" id="indoorItem3Hidden" name="indoorItem3">
@@ -97,27 +106,27 @@
                 </div>
             </div>
             <div id="button-nav">
-                <button type="submit" onclick="goToNextPage(event)"
-                    class="btn" style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+                <button type="submit" onclick="goToNextPage(event)" class="btn"
+                    style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
         </section>
     </form>
-{{-- </x-stepLayout> --}}
+    {{-- </x-stepLayout> --}}
 
-        </section>
-        <script>
-            function storeStep2Data() {
-                var formData = {
-                    outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
-                    outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
-                    outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
-                    indoorItem1: document.getElementById('indoorItem1Hidden').value,
-                    indoorItem2: document.getElementById('indoorItem2Hidden').value,
-                    indoorItem3: document.getElementById('indoorItem3Hidden').value,
-                };
-                localStorage.setItem('step2Data', JSON.stringify(formData));
-            }
-        </script>
+    </section>
+    <script>
+        function storeStep2Data() {
+            var formData = {
+                outdoorItem1: document.getElementById('outdoorItem1Hidden').value,
+                outdoorItem2: document.getElementById('outdoorItem2Hidden').value,
+                outdoorItem3: document.getElementById('outdoorItem3Hidden').value,
+                indoorItem1: document.getElementById('indoorItem1Hidden').value,
+                indoorItem2: document.getElementById('indoorItem2Hidden').value,
+                indoorItem3: document.getElementById('indoorItem3Hidden').value,
+            };
+            localStorage.setItem('step2Data', JSON.stringify(formData));
+        }
+    </script>
 
 
     </form>
@@ -137,7 +146,7 @@
                 "Tennis",
                 "Snow Boarding",
                 "Skiing",
-                "Horseback Riding", 
+                "Horseback Riding",
                 "Gardening",
                 "Ziplining"
             ];
@@ -360,22 +369,22 @@
         }
 
         function goToNextPage(event) {
-        event.preventDefault(); 
+            event.preventDefault();
 
-       
-        var isValid = validateStep2();
-        if (isValid) {
-        
-            storeStep2Data();
-        
-            document.getElementById("step2Form").submit();
+
+            var isValid = validateStep2();
+            if (isValid) {
+
+                storeStep2Data();
+
+                document.getElementById("step2Form").submit();
+            }
         }
-    }
-    $(document).ready(function() {
-        $('#cancelButton').click(function() {
-            $('#myModal').modal('hide');
+        $(document).ready(function() {
+            $('#cancelButton').click(function() {
+                $('#myModal').modal('hide');
+            });
         });
-    });
     </script>
 
 
@@ -394,7 +403,8 @@
                 Please select all options before moving to the next step.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" id="cancelButton"
+                    data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>

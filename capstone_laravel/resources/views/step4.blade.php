@@ -1,4 +1,8 @@
 <x-stepLayout>
+
+    <head>
+        <title>Step 4</title>
+    </head>
     <div>
 
         <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
@@ -11,7 +15,7 @@
             @csrf
             <section id="steps"
                 style="padding-top: 20px;padding-left: 30px;display: flex; flex-direction: column; margin-bottom: 10px;">
-           
+
                 <div class="container text-center" style="flex: 1;">
                     <div class="row">
                         <div class="col">
@@ -27,17 +31,21 @@
                         </div>
                         <div class="col">
                             <img class="animated-element" src={{ asset('images/image1.png') }}>
-                            
-                           
-                                
-                                <div id="division3" class="input" style ="height:min-content; ">
-                                    <h1 id="step-title" style="padding-top: 5px;">Upload Your Timetable</h1>
-                                    <p style="background-color: #579792; border-radius: 5%; padding: 5px; font-weight: normal"> Upload your schedules to help others know your free time and any potential common classes ! 
-                                        Accepted formats are in .pdf, .doc, .docx
-                                    <input type="file" id="timetable" name="timetable_path" accept=".pdf,.doc,.docx" style="margin-bottom: 15px;">
-                                </div>
-                            
-                            
+
+
+
+                            <div id="division3" class="input" style ="height:min-content; ">
+                                <h1 id="step-title" style="padding-top: 5px;">Upload Your Timetable</h1>
+                                <p
+                                    style="background-color: #579792; border-radius: 5%; padding: 5px; font-weight: normal">
+                                    Upload your schedules to help others know your free time and any potential common
+                                    classes !
+                                    Accepted formats are in .pdf, .doc, .docx
+                                    <input type="file" id="timetable" name="timetable_path" accept=".pdf,.doc,.docx"
+                                        style="margin-bottom: 15px;">
+                            </div>
+
+
                         </div>
 
                     </div>
@@ -45,7 +53,7 @@
 
     </div>
     <div id="button-nav" style="padding-top: 0px; padding-bottom: 30px;">
-       <button type="submit" class="btn"
+        <button type="submit" class="btn"
             style="background-color:#FF6F28; width: 20%;border-right:30px;color:white;font-size: larger;">Make Profile
             Public</button>
     </div>
@@ -65,7 +73,7 @@
             window.location.href = "dashboard";
         }
 
-       
+
         function handleFileSelect(event) {
             const fileInput = event.target;
             const imagePlaceholder = document.getElementById('imagePlaceholder');

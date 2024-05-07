@@ -22,7 +22,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <title>Admin View </title>
 </head>
 
 <head>
@@ -189,7 +189,7 @@
                 
                 <div class="col-md-6">
                     <div class="card" style="background-color:#f7f5f5;height: 550px;margin-bottom: 10px; ">
-                        <img style="height: 300px;margin-top: 7px; object-fit:scale"
+                        <img style="height: 300px;margin-top: 10px; object-fit:scale"
                         src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
                         alt="...">
                         <div class="card-body">

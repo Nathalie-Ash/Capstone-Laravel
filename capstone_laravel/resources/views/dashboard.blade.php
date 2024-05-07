@@ -1,5 +1,8 @@
 <x-menuLayout>
 
+    <head>
+        <title>Dashboard</title>
+    </head>
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -267,13 +270,14 @@
 
                                             <div class="card" style="background-color:#f7f5f5; height:550px">
                                                 <img style="height: 300px;margin-top: 7px; object-fit:cover"
-
                                                     src="{{ asset($userPreferences->avatar) }}" class="card-img-top"
                                                     alt="...">
                                                 <div class="card-body d-flex flex-column">
-                                                    <h1 class="card-title" style="font-size: 25px;">{{ $userName }}</h1>
+                                                    <h1 class="card-title" style="font-size: 25px;">{{ $userName }}
+                                                    </h1>
                                                     <p style="font-size: 15px; font-weight: lighter">
-                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }} Campus
+                                                        {{ $userPreferences->major }}, {{ $userPreferences->campus }}
+                                                        Campus
                                                     </p>
                                                     <p class="card-text" style=" font-weight: normal; height: 20%;">
                                                         {{ $userPreferences->description }}</p>
@@ -313,23 +317,24 @@
                     </div>
                 </div>
             </main>
-            
 
-            @if(session('session_about_to_expire'))
-    <script>
-        alert("Your session is about to expire!");
-    </script>
-@endif
+
+            @if (session('session_about_to_expire'))
+                <script>
+                    alert("Your session is about to expire!");
+                </script>
+            @endif
 
         </div>
 
         <script>
-          var sessionExpiryTime = "{{ session('expires_at') }}";
-          var now = new Date();
-        console.log("Current time: " + now);
-        console.log("Session expiry time: " + sessionExpiryTime);
+            var sessionExpiryTime = "{{ session('expires_at') }}";
+            var now = new Date();
+            console.log("Current time: " + now);
+            console.log("Session expiry time: " + sessionExpiryTime);
+
             function changeCategory(category, value) {
-                
+
                 document.getElementById('category').value = category;
                 document.getElementById('value').value = value;
             }
@@ -368,7 +373,7 @@
             }
             linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-           
+
             document.querySelectorAll('.filter-form select').forEach(select => {
                 select.addEventListener('change', function() {
                     var category = this.name;
@@ -410,19 +415,20 @@
         </script>
 
 
-@if(count($matchedUsers)>=1)
-    <footer class="fixed-bottom text-center small text-muted py-2"
-        style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
-        <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
-        </p>
-    </footer>
-    @else
-        <footer class="fixed-bottom text-center small text-muted py-2"
-        style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
-        <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights reserved.
-        </p>
-    </footer> 
-    
-@endif
+        @if (count($matchedUsers) >= 1)
+            <footer class="fixed-bottom text-center small text-muted py-2"
+                style="position: static; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+                <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights
+                    reserved.
+                </p>
+            </footer>
+        @else
+            <footer class="fixed-bottom text-center small text-muted py-2"
+                style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1; margin-top: 20px;">
+                <p class="m-0">Copyright &copy; 2024 <a href="/" class="text-muted">Friends</a>. All rights
+                    reserved.
+                </p>
+            </footer>
+        @endif
 
 </x-menuLayout>
