@@ -232,38 +232,38 @@
         }
 
         $(document).ready(function(){
-        $('#login-form').submit(function (e) {
-            e.preventDefault(); 
-            var formData = $(this).serialize();
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('login') }}',
-                data: formData,
-                success: function (response) {
-                    if (response.status === 'error') {
-                        if (response.message === 'Your account has been deleted') {
-                            $('#myModal').modal('show');
-                            $('.modal-body').html(response.message);
-                        } else {
-                            $('#invalid-feedback').show();
-                            $('#invalid-feedback').text(response.message);
-                        }
-                    } else {
-                        window.location.href = '{{ url('/dashboard') }}';
-                    }
-                },
-                error: function (xhr, status, error) {
-                    if(xhr.responseJSON && xhr.responseJSON.message === 'Your account has been deleted') {
+    $('#login-form').submit(function (e) {
+        e.preventDefault(); 
+        var formData = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('login') }}',
+            data: formData,
+            success: function (response) {
+                if (response.status === 'error') {
+                    if (response.message === 'Your account has been deleted') {
                         $('#myModal').modal('show');
-                      
+                        $('.modal-body').html(response.message);
                     } else {
-                        $('#invalid-feedback').show(); 
-                        $('#invalid-feedback').text('Authentication failed! Retry Again.');
+                        $('#invalid-feedback').show();
+                        $('#invalid-feedback').text(response.message);
                     }
+                } else {
+                    window.location.href = '{{ url('/dashboard') }}';
                 }
-            });
+            },
+            error: function (xhr, status, error) {
+                if(xhr.responseJSON && xhr.responseJSON.message === 'Your account has been deleted') {
+                    $('#myModal').modal('show');
+                } else {
+                    $('#invalid-feedback').show(); 
+                    $('#invalid-feedback').text('Authentication failed! Retry Again.');
+                }
+            }
         });
     });
+});
+
     $(document).ready(function() {
         $('#cancelButton').click(function() {
             $('#myModal').modal('hide');

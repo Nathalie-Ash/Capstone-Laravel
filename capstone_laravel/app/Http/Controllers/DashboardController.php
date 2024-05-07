@@ -33,10 +33,8 @@ class DashboardController extends Controller
             })
             ->join('users', 'users.id', '=', 'user_preferences.user_id')
             ->get();
-
-
-
         $matchedUsers = $this->calculateMatchingScores($authenticatedUserPreferences, $usersformatch);
+
         $campuses = UserPreferences::distinct()->pluck('campus');
         $outdoors = UserPreferences::pluck('outdoorItem1')
             ->merge(UserPreferences::pluck('outdoorItem2'))
@@ -151,32 +149,20 @@ class DashboardController extends Controller
     }
 
     private function calculateMatchingScores($authenticatedUser, $users)
-    {
-        $matchedUsers = [];
-
+    {   $matchedUsers = [];
         foreach ($users as $user) {
             $score = 0;
-
             if ($authenticatedUser->school == $user->school) {
-                $score += 5;
-            }
-
+                $score += 5;}
             if ($authenticatedUser->major == $user->major) {
-                $score += 8;
-            }
-
+                $score += 8; }
             if ($authenticatedUser->campus == $user->campus) {
-                $score += 8;
-            }
-
+                $score += 8; }
             $preferences = ['outdoor', 'indoor', 'music', 'movie'];
-
             foreach ($preferences as $preference) {
                 for ($i = 1; $i <= 3; $i++) {
                     $userPreference = $user->{$preference . 'Item' . $i};
-
                     $authenticatedUserPreference = $authenticatedUser->{$preference . 'Item' . $i};
-
                     if ($userPreference == $authenticatedUserPreference) {
                         switch ($i) {
                             case 1:
@@ -187,22 +173,14 @@ class DashboardController extends Controller
                                 break;
                             case 3:
                                 $score += 5;
-                                break;
-                        }
-                        break;
-                    }
-                }
-            }
-
+                                break;}
+                        break; } }  }
             $totalScore = 100;
             $matchingPercentage = ceil(($score / $totalScore) * 100);
-
             $matchedUsers[] = [
-                'user_id' => $user->user_id,
-                'matching_percentage' => $matchingPercentage
+                'user_id' => $user->user_id,  'matching_percentage' => $matchingPercentage
             ];
         }
-
         return $matchedUsers;
     }
     public function filter(Request $request)
