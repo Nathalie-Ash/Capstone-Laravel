@@ -2,6 +2,7 @@
 
     <head>
         <link rel="stylesheet" href="/styleN.css">
+        <title>Requests</title>
     </head>
     <div>
         <span

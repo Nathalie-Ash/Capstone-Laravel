@@ -2,6 +2,7 @@
 
     <head>
         <link rel="stylesheet" href="/styleN.css">
+        <title>Connections</title>
     </head>
 
     <div>
@@ -93,7 +94,7 @@
                                             style="text-align: left; padding-left: 4.5%;">Phone Number</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control-plaintext" id="phone"
-                                                name="phone_number" style="width: 80%;">
+                                                name="phone_number" style="width: 80%;border-radius: 5px;">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">

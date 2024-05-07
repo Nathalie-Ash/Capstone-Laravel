@@ -2,7 +2,7 @@
 
     <head>
         <link rel="stylesheet" href="/styleN.css">
-
+        <title>Profile </title>
         <style>
             input[type="text"] {
                 color: black;
@@ -80,7 +80,7 @@
                             <p id="step-title" style="padding-top: 0px;">Bio</p>
                             <div class="row description-container" style="height: 90%; max-height: min-content; justify-content: center;">
                                 <textarea readonly id="description" class="description-text"
-                                    style="background-color: #c2c2c2; text-align: top; border-bottom: 5px; width: 90%; height: 80%; margin-bottom: 3px;font-weight: normal; border-radius: 5%">{{ $userData->description }}</textarea>
+                                    style="background-color: #c2c2c2; text-align: top; border-bottom: 5px; width: 90%; height: 80%; margin-bottom: 3px;font-weight: normal; border-radius: 5%; border: none;">{{ $userData->description }}</textarea>
                             </div>
                         </div>
                     </div>

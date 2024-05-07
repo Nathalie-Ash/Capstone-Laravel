@@ -1,5 +1,8 @@
 <x-stepLayout>
 
+    <head>
+        <title>Step 3</title>
+    </head>
     <div id="topNav" style="width: 80%;text-align: center;margin: auto;padding-top: 2%;">
         <p style="color:#FF6F28; font-size: 20px;text-align: left;">Step 3</p>
         <p id="textStyle" style="text-align: left;">Almost There!</p>
@@ -20,7 +23,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Genre 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="musicItem1">
                                 </ul>
                                 <input type="hidden" id="musicItem1Hidden" name="musicItem1">
@@ -31,7 +35,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Genre 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="musicItem2">
                                 </ul>
                                 <input type="hidden" id="musicItem2Hidden" name="musicItem2">
@@ -42,7 +47,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Genre 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="musicItem3">
                                 </ul>
                                 <input type="hidden" id="musicItem3Hidden" name="musicItem3">
@@ -59,7 +65,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Movie 1
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="movieItem1">
                                 </ul>
                                 <input type="hidden" id="movieItem1Hidden" name="movieItem1">
@@ -70,7 +77,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Movie 2
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="movieItem2">
                                 </ul>
                                 <input type="hidden" id="movieItem2Hidden" name="movieItem2">
@@ -81,7 +89,8 @@
                                     style="background-color: #579792;border: none;">
                                     Select Movie 3
                                 </button>
-                                <ul class="dropdown-menu" style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
+                                <ul class="dropdown-menu"
+                                    style="background-color: #579792;width: 90%;border: none; max-height: 150px; overflow-y: auto;"
                                     id="movieItem3">
                                 </ul>
                                 <input type="hidden" id="movieItem3Hidden" name="movieItem3">
@@ -95,15 +104,15 @@
                             <div class="row " style="height: 80%;max-height: min-content;justify-content: center; ">
                                 <textarea id="description" name="description" maxlength="150"
                                     style="margin-bottom: 15px; min-height:65% ;vertical-align: top;text-align:top;font-weight:lighter; border-radius: 5px;color: white;width: 100%; max-width: 100%;"></textarea>
-                                    <span id="descriptionWarning" style="color: red;"></span>
+                                <span id="descriptionWarning" style="color: red;"></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="button-nav">
-                <button type="submit" onclick="goToNextPage(event)"
-                    class="btn" style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
+                <button type="submit" onclick="goToNextPage(event)" class="btn"
+                    style="background-color:#FF6F28; width: 15%;border-right:30px;color:white;font-size: larger;">NEXT</button>
             </div>
         </section>
     </form>
@@ -301,7 +310,6 @@
 </script>
 
 <script>
-
     function storeStep3Data() {
         var formData = {
             musicItem1: document.getElementById('musicItem1Hidden').value,
@@ -357,11 +365,12 @@
 
         descriptionInput.addEventListener('input', function() {
             var descriptionLength = descriptionInput.value.length;
-            if (descriptionLength>150) {
+            if (descriptionLength > 150) {
                 descriptionWarning.textContent = "Description should be maximum 255 characters.";
                 descriptionInput.value = descriptionInput.value.slice(0, 255);
             } else {
-                descriptionWarning.textContent = ""; // Clear warning message when description is within limit
+                descriptionWarning.textContent =
+                ""; // Clear warning message when description is within limit
             }
         });
     });
@@ -382,7 +391,8 @@
                 Please select all options before moving to the next step.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" id="cancelButton"
+                    data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
