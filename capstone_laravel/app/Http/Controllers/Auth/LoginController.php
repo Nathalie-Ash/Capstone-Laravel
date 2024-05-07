@@ -41,25 +41,24 @@ class LoginController extends Controller
                 $this->username() => 'required|string',
                 'password' => 'required|string',
             ]);
-    
-
+        
+            $credentials = $request->only($this->username(), 'password');
+        
             // Attempt to authenticate the user
-            if (Auth::attempt($this->credentials($request))) {
-                
+            if (Auth::attempt($credentials)) {
                 if (Auth::user()->deleted) {
-                    return $this->sendFailedLoginResponse($request);
+                    throw ValidationException::withMessages([
+                        $this->username() => ['Your account has been deleted'],
+                    ]);
                 }
-
-            $remember = $request->has('remember');
-    
-            if (Auth::attempt($this->credentials($request), $remember)) {
-
                 return $this->sendLoginResponse($request);
             } else {
-                return $this->sendFailedLoginResponse($request);
+                throw ValidationException::withMessages([
+                    $this->username() => [trans('auth.failed')],
+                ]);
             }
         }
-    }
+        
         protected function sendFailedLoginResponse(Request $request)
         {
             $user = \App\Models\User::where($this->username(), $request->{$this->username()})->first();

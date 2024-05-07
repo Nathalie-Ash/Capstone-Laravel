@@ -39,7 +39,8 @@ class UserProfileController extends Controller
             logger("shared contact info", [$sharedContact]);
             $isContact = $contact && $contact->sent;
 
-            return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage', 'existingConnection', 'sharedContact', 'isContact'));
+            return view('userProfile', compact('user', 'userPreferences', 'isConnection', 'matchingPercentage', 
+            'existingConnection', 'sharedContact', 'isContact'));
         }
     }
 

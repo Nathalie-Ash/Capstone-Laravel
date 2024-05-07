@@ -106,37 +106,27 @@ class PreferencesController extends Controller
             'timetable_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'avatar' => 'nullable|file|mimes:png,jpg,jpeg|max:2048'
         ]);
-
-
-        logger($validatedData);
         if ($request->hasFile('timetable_path')) {
             $timetableFile = $request->file('timetable_path');
             $timetableFileName = time() . '.' . $timetableFile->extension();
             $timetableFile->move(public_path('timetables'), $timetableFileName);
             $validatedData['timetable_path'] = 'timetables/' . $timetableFileName;
         }
-
         if ($request->hasFile('avatar')) {
             $avatarFile = $request->file('avatar');
             $avatarFileName = time() . '.' . $avatarFile->extension();
             $avatarFile->move(public_path('avatars'), $avatarFileName);
             $validatedData['avatar'] = 'avatars/' . $avatarFileName;
         }
-
         $request->session()->put('user_preferences.step4', $validatedData);
-
         $step1Data = $request->session()->get('user_preferences.step1');
         $step2Data = $request->session()->get('user_preferences.step2');
         $step3Data = $request->session()->get('user_preferences.step3');
-
         $userData = array_merge($step1Data, $step2Data, $step3Data, $validatedData);
         $user = Auth::user();
         $userId = $user->id;
         $userData['user_id'] = $userId;
-        logger($userData);
-
         UserPreferences::create($userData);
-
         $request->session()->put('success', 'Preferences submitted successfully!');
         return redirect()->route('dashboard');
     }
