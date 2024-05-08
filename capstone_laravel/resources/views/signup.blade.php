@@ -49,6 +49,8 @@
                             <input type="email" name="email" id="form1Example123" class="form-control form-control-lg" style="background-color:#dcdcdf;" />
                             <span id="emailAvailability" style="color: red; margin-left:0.5%"></span>
                             <span id="emailAvailability1" style="color: black;"></span>
+                            <br>
+                            <span id="emailFormatError" style="color: red;"></span>
                         </div>
 
                         <div class="form-outline mb-4">
@@ -156,7 +158,20 @@
                 }
             });
         });
-        $('#form1Example23').on('input', function() {
+        $('#form1Example123').on('blur', function() {
+        var email = $(this).val();
+        var emailRegex = /^[a-z]+\.[a-z]+(?:[0-9]+)?@lau\.edu$/i; // Regular expression for LAU email
+        if (!emailRegex.test(email)) {
+            $('#emailFormatError').html("Wrong Email format");
+            $('#emailAvailability').html("");
+            $('#emailAvailability1').html("");
+            $('#nextButton').prop('disabled', true);
+        } else {
+            $('#emailFormatError').html("");
+            $('#nextButton').prop('disabled', false);
+        }
+    });
+        $('#form1Example23', '#form1Example234').on('input', function() {
             let password = $('#form1Example23').val();
             let confirmPassword = $('#form1Example234').val();
 
